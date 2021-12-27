@@ -1,1 +1,12 @@
 !/resources/
+
+.gradle
+.idea
+gradle
+src/main/java
+src/test
+build.gradle
+gradlew
+gradlew.bat
+HELP.md
+settings.gradle
