@@ -121,7 +121,7 @@ body {
 .username {
     font-weight: bold;
     width: 200px;
-    margin: 0 35px 20px;
+    margin: 17px 35px 0;
     height: 35px;
     padding: 6px 15px;
     border-radius: 5px;
@@ -134,7 +134,7 @@ body {
 .btn {
     font-weight: bold;
     width: 230px;
-    margin: 0 35px 20px;
+    margin: 20px 35px 0;
     height: 45px;
     padding: 6px 15px;
     border-radius: 5px;
@@ -162,4 +162,21 @@ a {
 }
 .signin {
     display: initial;
+}
+
+.warning1{
+    display: block;
+    position: absolute;
+    margin-left: 14rem;
+    margin-top: 1.9rem;
+    text-align: right;
+    color: rgba(255, 68, 68, 0.75);
+}
+.warning2{
+    display: block;
+    position: absolute;
+    margin-left: 14rem;
+    margin-top: 1.9rem;
+    text-align: right;
+    color: rgba(255, 68, 68, 0.75);
 }
