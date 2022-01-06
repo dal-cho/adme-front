@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../styles/home.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+<!--    <link rel="stylesheet" href="../static/styles/home.css">-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 </head>
@@ -23,7 +24,7 @@
             <div id="right"><h1 class="s2class"><span>SIGN</span><span class="su">UP</span></h1></div>
         </div>
         <div class="c2">
-            <form class="signup">
+            <form class="signup" action="/user/signup" method="post">
                 <h1 class="signup1">SIGN UP</h1>
 
                 <h5 class="warning1">중복</h5>
@@ -42,7 +43,7 @@
 
                 <button class="btn">Sign Up</button>
             </form>
-            <form class="signin">
+            <form class="signin" action="/user/login" method="post">
 
                 <h1 class="signup1">SIGN IN</h1>
                 <br><br><br><br>
@@ -59,8 +60,7 @@
         </div>
     </div>
 
-    <script src="../scripts/home.js"></script>
-
+    <script src="/scripts/home.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

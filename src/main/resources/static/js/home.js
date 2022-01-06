@@ -7,6 +7,7 @@ $(document).ready(function(){
     $(".signin").css({"display":"none"});
     $(".signup").css({"display":""});
 });
+
 $("#right").click(function(){
     $("#left").removeClass("left_hover");
     $(".s2class").css({"color":"#537ac9"});
@@ -15,6 +16,7 @@ $("#right").click(function(){
     $(".signin").css({"display":"none"});
     $(".signup").css({"display":""});
 });
+
 $("#left").click(function(){
     $(".s1class").css({"color":"#537ac9"});
     $(".s2class").css({"color":"#748194"});
