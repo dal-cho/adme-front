@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>main page</title>
+</head>
+<body>
+<div class="header" style="position:relative;">
+    <div id="header-title-login-user">
+        <span th:text="${username}"></span> 님
+    </div>
+    <a id="logout-text" href="/user/logout">
+        로그아웃
+    </a>
+</div>
+</body>
+</html>
