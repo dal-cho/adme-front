@@ -194,7 +194,7 @@ li.icon {
 
 }
 .btn-lg {
-
+    display: inline;
     margin-top: 800px;
     margin-left: 800px;
 
