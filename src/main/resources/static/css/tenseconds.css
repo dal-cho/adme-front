@@ -75,7 +75,7 @@ li.icon {
     box-shadow: 0 0 5px antiquewhite;
     background-color: rgba(255, 255, 255, 0.5);
     width: 980px;
-    height: 760px;
+    height: 770px;
     border: 10px solid #D5EDFFC6;
     display: inline-block;
     border-radius: 5px 5px 5px 5px;
@@ -87,18 +87,20 @@ li.icon {
 }
 .item {
     margin: auto;
-    margin-top: 10px;
+    margin-top: 13px;
     width: 200px;
-    height: 200px;
+    height: 190px;
     border: 3px solid black;
     border-radius: 10px 10px 10px 10px;
+    position: relative;
+    cursor: pointer;
 }
 .item-title {
     text-decoration: none;
     color: black;
     position: absolute;
-    left: 34px;
-    top: 227px;
+    left: 3px;
+    top: 195px;
     width: 200px;
     height: 40px;
     text-overflow: ellipsis;
@@ -107,136 +109,72 @@ li.icon {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-
+}
+.item-title:visited {
+    color: mediumpurple;
+}
+.item-title:hover {
+    color: blue;
+}
+.paging_right_button {
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% + 530px);
+}
+.paging_right_button > img {
+    width: 50px;
+}
+.paging_right_button > img:hover {
+    cursor: pointer;
+}
+.paging_left_button {
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 570px);
+}
+.paging_left_button > img {
+    width: 50px;
+}
+.paging_left_button > img:hover {
+    cursor: pointer;
 }
 
-/*#left,*/
-/*#right {*/
-/*    color: white;*/
-/*    display: inline-block;*/
-/*    width: 146px;*/
-/*    height: 500px;*/
-/*    background-color: white;*/
-/*    cursor: pointer;*/
-/*}*/
-/*#left {*/
-/*    border-radius: 15px 0px 0px 15px;*/
-/*}*/
-/*#right {*/
-/*    border-radius: 15px 15px 15px 0px;*/
-/*}*/
-/*.left_hover {*/
-/*    color: #748194;*/
-/*    box-shadow: 5px 0 18px -10px #333;*/
-/*    z-index: 1;*/
-/*    position: absolute;*/
-/*}*/
-/*.right_hover {*/
-/*    box-shadow: -5px 0 15px -10px #333;*/
-/*    z-index: 1;*/
-/*    position: absolute;*/
-/*}*/
-/*.s1class {*/
-/*    color: #748194;*/
-/*    position: absolute;*/
-/*    bottom: 0;*/
-/*    left: 63%;*/
-/*    margin-left: -50%;*/
-/*}*/
-/*.s1class span,*/
-/*.s2class span {*/
-/*    display: block;*/
-/*}*/
-/*.su {*/
-/*    font-size: 20px;*/
-/*}*/
-/*.s2class {*/
-/*    color: #748194;*/
-/*    position: absolute;*/
-/*    bottom: 0;*/
-/*    right: 63%;*/
-/*    margin-right: -50%;*/
-/*}*/
-/*.mainhead {*/
-/*    color: white;*/
-/*    font-size: 24px;*/
-/*    text-align: center;*/
-/*    margin-top: 50px;*/
-/*}*/
-/*.mainp {*/
-/*    color: white;*/
-/*    font-size: 13px;*/
-/*    text-align: center;*/
-/*    margin-top: 10px;*/
-/*}*/
-/*.c2 {*/
-/*    background-color: white;*/
-/*    width: 300px;*/
-/*    height: 500px;*/
-/*    border-radius: 15px;*/
-/*    position: absolute;*/
-/*    left: 370px;*/
-/*    display: inline-block;*/
-/*}*/
-/*.username {*/
-/*    font-weight: bold;*/
-/*    width: 200px;*/
-/*    margin: 17px 35px 0;*/
-/*    height: 35px;*/
-/*    padding: 6px 15px;*/
-/*    border-radius: 5px;*/
-/*    outline: none;*/
-/*    border: none;*/
-/*    background: #f6f7f9;*/
-/*    color: #748194;*/
-/*    font-size: 14px;*/
-/*}*/
-/*.btn {*/
-/*    font-weight: bold;*/
-/*    width: 230px;*/
-/*    margin: 20px 35px 0;*/
-/*    height: 45px;*/
-/*    padding: 6px 15px;*/
-/*    border-radius: 5px;*/
-/*    outline: none;*/
-/*    border: none;*/
-/*    background: #537ac9;*/
-/*    color: white;*/
-/*    font-size: 14px;*/
-/*}*/
-/*.signup1 {*/
-/*    color: #748194;*/
-/*    font-size: 30px;*/
-/*    text-align: center;*/
-/*}*/
-/*a {*/
-/*    text-decoration: none;*/
-/*}*/
-/*.signup2 {*/
-/*    color: #537ac9;*/
-/*    font-size: 20px;*/
-/*    text-align: center;*/
-/*}*/
-/*.signup {*/
-/*    display: initial;*/
-/*}*/
-/*.signin {*/
-/*    display: initial;*/
-/*}*/
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
-/*.warning1{*/
-/*    display: block;*/
-/*    position: absolute;*/
-/*    margin-left: 14rem;*/
-/*    margin-top: 1.9rem;*/
-/*    text-align: right;*/
-/*    color: rgba(255, 68, 68, 0.75);*/
-/*}*/
-/*.warning2{*/
-/*    display: block;*/
-/*    position: absolute;*/
-/*    margin-left: 14rem;*/
-/*    margin-top: 1.9rem;*/
-/*    text-align: right;*/
-/*    color: rgba(255, 68, 68, 0.75);*/
-/*}*/
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 900px; /* Could be more or less, depending on screen size */
+    height: 700px;
+    border-radius: 10px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
