@@ -110,9 +110,10 @@ li.icon {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
-.item-title:visited {
-    color: mediumpurple;
-}
+/*.item-title:visited {*/
+/*    color: mediumpurple;*/
+/*}*/
+
 .item-title:hover {
     color: blue;
 }
@@ -139,7 +140,6 @@ li.icon {
     cursor: pointer;
 }
 
-/* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -154,7 +154,7 @@ li.icon {
 }
 
 /* Modal Content/Box */
-.modal-content {
+.modal-container {
     background-color: #fefefe;
     margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -163,6 +163,16 @@ li.icon {
     height: 700px;
     border-radius: 10px;
 }
+
+.modal-content > img {
+    display: block;
+    margin: auto;
+    max-width: 800px;
+    max-height: 560px;
+
+}
+
+
 
 /* The Close Button */
 .close {

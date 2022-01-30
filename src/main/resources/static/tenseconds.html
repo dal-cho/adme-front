@@ -15,7 +15,7 @@
 <!--            <li><a href="#" class="m11" style="color: rgba(175, 209, 250, 0.78);">공감공간</a></li>-->
 <!--            <li><a href="#" class="m11" style="color: rgba(175, 209, 250, 0.78);">문의하기</a></li>-->
             <li><a href="#" class="m11" >나</a></li>
-            <li><a href="#" class="m11" >10s</a></li>
+            <li><a href="#" class="m11" style="color: rgba(98,150,241,0.87);">10s</a></li>
             <li><a href="#" class="m11" >공감공간</a></li>
             <li><a href="#" class="m11" >문의하기</a></li>
         </ul>
@@ -24,7 +24,10 @@
 <div class="container">
     <div class="c1">
         <ul class="items">
-            <div class="item" id="0">동영상1<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>
+            <div class="item" id="0">
+                <div class="contents">동영상1</div>
+                <a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a>
+            </div>
             <div class="item" id="1">동영상2<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>
             <div class="item" id="2">동영상3<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>
             <div class="item" id="3">동영상4<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>
@@ -37,18 +40,14 @@
             <div class="item" id="10">동영상11<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>
             <div class="item" id="11">동영상12<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>
         </ul>
-        <!-- Trigger/Open The Modal -->
-<!--        <button id="myBtn">Open Modal</button>-->
-
-        <!-- The Modal -->
         <div id="myModal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
+            <div class="modal-container">
                 <span class="close">&times;</span>
+                <div class="modal-content">
+                    <img src="img/baby.png">
+                </div>
                 <p>Some text in the Modal..</p>
             </div>
-
         </div>
     </div>
 </div>
@@ -63,6 +62,8 @@
 
 
 <script src="/static/js/tenseconds.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
