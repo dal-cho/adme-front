@@ -67,7 +67,7 @@ li.icon {
     position: absolute;
     width: auto;
     height: auto;
-    top: calc(50% - 360px);
+    top: calc(50% - 376px);
     left: calc(50% - 500px);
     border-radius: 7px 7px 7px 7px;
 }
@@ -110,9 +110,6 @@ li.icon {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
-/*.item-title:visited {*/
-/*    color: mediumpurple;*/
-/*}*/
 
 .item-title:hover {
     color: blue;
@@ -153,7 +150,6 @@ li.icon {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
 .modal-container {
     background-color: #fefefe;
     margin: 5% auto; /* 15% from the top and centered */
@@ -172,9 +168,6 @@ li.icon {
 
 }
 
-
-
-/* The Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -187,4 +180,53 @@ li.icon {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+.upload_button {
+    display: none;
+}
+
+.upload_button_item {
+    position: absolute;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    width: 120px;
+    height: 40px;
+    top: calc(50% + 411px);
+    left: calc(50% + 380px);
+    color: rgba(98,150,241,0.87);
+    background-color: rgba(213, 237, 255, 0.78);
+    border-radius: 0px 0px 7px 7px;
+    box-shadow: 3px 3px 3px antiquewhite;
+}
+.upload_button_item:hover {
+    cursor: pointer;
+}
+
+.upload_container {
+    display: none;
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: calc(50% - 376px);
+    left: calc(50% - 500px);
+    border-radius: 7px 7px 7px 7px;
+}
+
+
+
+.uc1 {
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 980px;
+    height: 770px;
+    border: 10px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.upload_box {
+    display: block;
+    position: absolute;
+    border: 10px solid #D5EDFFC6;
 }

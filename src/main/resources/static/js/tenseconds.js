@@ -2,6 +2,7 @@ $(document).ready(function(){
     $(".container").fadeIn(1000);
     $(".menu").fadeIn(1000);
     $(".paging_button").fadeIn(1000);
+    $(".upload_button").fadeIn(1000);
     item_click();
     getVideos();
 });
@@ -20,14 +21,6 @@ function close_click(){
        $("#myModal").hide();
     });
 }
-
-// function background_click(){
-//     $(window).click(function (event) {
-//         if (event.target == $("#myModal")){
-//             $("#myModal").hide();
-//         };
-//     });
-// }
 
 var modal = document.getElementById("myModal");
 
@@ -66,4 +59,10 @@ function videoInfoPost(article, index) {
                     </div>
                     `;
     $(".modal-content").append(tempHtml);
+}
+
+function upload() {
+    $(".container").hide();
+    $(".upload_button").hide();
+    $(".upload_container").fadeIn(300);
 }
