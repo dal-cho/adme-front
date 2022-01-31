@@ -2,6 +2,7 @@ $(document).ready(function(){
     $(".container").fadeIn(1000);
     $(".menu").fadeIn(1000);
     $(".paging_button").fadeIn(1000);
+    getmain();
 });
 
 
@@ -36,7 +37,6 @@ $(document).ready(function () {
 });
 
 //저장하기 button
-
 $(".btn").on("click", function () {
     let $this = $(this);
     $this.button("loading");
@@ -45,3 +45,23 @@ $(".btn").on("click", function () {
     }, 2000);
 });
 
+
+//
+function getmain() {
+    $.ajax({
+        type: "GET",
+        url: `/space`,
+        success: function (response) {
+            for (let i = 0; i < response.length; i++) {
+                console.log(response[i])
+                let idx = response['idx'][i];
+                let title = response[i]['title'];
+                let main = response[i]['main'];
+                let temp_html = `              
+        <li class="item">${title}</li>
+`
+                $("#c1-posting").append(temp_html);
+            }
+        }
+    });
+}
