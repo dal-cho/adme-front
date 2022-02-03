@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" type="text/css" href="css/registry.css">
-  <link rel="stylesheet" type="text/css" href="css/button.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="/static/registry.css">
+<!--    <link rel="stylesheet" type="text/css" href="css/registry.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="css/button.css">-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
 <div class="menu">
-  <div class="m1">
-    <ul>
-      <li><a href="#" class="m11" >나</a></li>
-      <li><a href="http://localhost:8080/10s" class="m11" >10s</a></li>
-      <li><a href="http://localhost:8080/space" class="m11" >공감공간</a></li>
-      <li><a href="#" class="m11" >문의하기</a></li>
-    </ul>
-  </div>
+    <div class="m1">
+        <ul>
+            <li><a href="#" class="m11" >나</a></li>
+            <li><a href="http://localhost:8080/10s" class="m11" >10s</a></li>
+            <li><a href="http://localhost:8080/space" class="m11" >공감공간</a></li>
+            <li><a href="#" class="m11" >문의하기</a></li>
+        </ul>
+    </div>
 </div>
 
 <div class="container">
-  <div class="c1">
-<!--    <div class="c1-comment-add">-->
-     <input id="h1" class="c1-title" placeholder="제목을 입력해주세요" type="text" required/>
-<!--    </div>-->
-
-<!--    <div class="c1-title">-->
-      <input id="h2" class="c1-main" placeholder="본문 내용을 입력해주세요" type="text" required/>
-<!--    </div>-->
-
-    <button name="submit" type="submit" class="bubbly-button" onclick="saveArticle()">완료!</button>
-  </div>
+    <div class="c1">
+        <div class="c1-title">
+            <div class="c1-title-title">제목</div>
+            <input class="c1-title-content" placeholder="제목을 입력해주세요." type="text" required/>
+        </div>
+        <div class="c1-comment">
+            <div class="c1-comment-title">본문 내용</div>
+            <textarea class="c1-comment-content" placeholder="본문 내용을 입력해주세요." type="text" required></textarea>
+<!--            <input class="c1-comment-content" placeholder="본문 내용을 입력해주세요" type="text" required/>-->
+        </div>
+        <div class="button-box">
+            <div class="public-private-box">
+                <button name="submit" type="submit" onclick="public_check()" class="check-button" id="default-button">공개</button>
+                <button name="submit" type="submit" class="check-button" id="public-button">공개</button>
+                <button name="submit" type="submit" class="check-button" id="private-button">비공개</button>
+            </div>
+            <button name="submit" type="submit" class="check-button">완료</button>
+        </div>
+    </div>
 
 
 </div>
-
-
-
 
 <script src="js/registry.js"></script>
 <script src="js/button.js"></script>
