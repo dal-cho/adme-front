@@ -194,8 +194,18 @@ li.icon {
 
 }
 .btn-lg {
-
     margin-top: 800px;
     margin-left: 800px;
+}
+#write-button {
 
+    background: lightgoldenrodyellow;
+    margin-top: 20px;
+    padding: 15px;
+    position: absolute;
+    top: 780px;
+    left: 1290px;
+    border:lightskyblue;
+    border-radius: 10px 10px 10px 10px;
+    color: black;
 }
