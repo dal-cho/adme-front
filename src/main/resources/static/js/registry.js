@@ -18,7 +18,8 @@ function saveArticle() {
         success: function (response) {
             alert("성공적으로 업로드 되었습니다.");
             // sessionStorage.setItem("image_idx", response['idx']);
-            location.href = "/space"; // 페이지 변환
+
+            location.href = "space.html"; // 페이지 변환
         }
     });
 }

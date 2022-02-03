@@ -2,7 +2,7 @@ $(document).ready(function(){
     $(".container").fadeIn(1000);
     $(".menu").fadeIn(1000);
     $(".paging_button").fadeIn(1000);
-    getmain();
+    showMain();
 });
 
 
@@ -46,22 +46,26 @@ $(".btn").on("click", function () {
 });
 
 
-//
-function getmain() {
+
+function showMain() {
     $.ajax({
         type: "GET",
         url: `/space`,
+        data: {},
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
-                console.log(response[i])
-                let idx = response['idx'][i];
+                let idx = response[i]['idx'];
                 let title = response[i]['title'];
                 let main = response[i]['main'];
-                let temp_html = `              
-        <li class="item">${title}</li>
-`
+                if(title.length >= 15) {
+                    title = title.substr(0,15) + "...";
+                }
+                let temp_html = `
+                            <li class="item"><div style="font-size: 20px; text-align: center; margin-top: 60px; padding-left: 5px; padding-right: 5px ">${title}</div></li>
+                        `
                 $("#c1-posting").append(temp_html);
             }
         }
     });
 }
+

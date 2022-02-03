@@ -80,7 +80,7 @@ li.icon {
     border-radius: 5px 5px 5px 5px;
 }
 
-.c1-title {
+.c1-title { /* 제목 */
     font-size: 30px;
     box-shadow: 0 0 5px antiquewhite;
     background-color: rgba(255, 255, 255, 0.5);
@@ -94,7 +94,8 @@ li.icon {
     display: inline-block;
     border-radius: 20px 20px 20px 20px;
 }
-.c1-main{
+
+.c1-main{ /* 본문 */
     font-size: 20px;
     box-shadow: 0 0 5px antiquewhite;
     background-color: rgba(255, 255, 255, 0.5);
