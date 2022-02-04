@@ -3,8 +3,8 @@ $(document).ready(function(){
     $(".menu").fadeIn(1000);
     $(".paging_button").fadeIn(1000);
     showMain();
+    //$("#c1-posting").sort()
 });
-
 
 // page
 $(document).ready(function () {
@@ -46,24 +46,30 @@ $(".btn").on("click", function () {
 });
 
 
-
 function showMain() {
     $.ajax({
         type: "GET",
         url: `/space`,
         data: {},
         success: function (response) {
+            let respon = response.reverse();
+            for (let i = 0; i < respon.length; i++) {
+                let idx = respon[i]['idx'];
+                let title = respon[i]['title'];
+                let main = respon[i]['main'];
+            /*
             for (let i = 0; i < response.length; i++) {
                 let idx = response[i]['idx'];
                 let title = response[i]['title'];
-                let main = response[i]['main'];
+                let main = response[i]['main']; */
                 if(title.length >= 15) {
                     title = title.substr(0,15) + "...";
                 }
                 let temp_html = `
-                            <li class="item"><div style="font-size: 20px; text-align: center; margin-top: 60px; padding-left: 5px; padding-right: 5px ">${title}</div></li>
+                            <li class="item"><div id="${idx}" style="font-size: 20px; text-align: center; margin-top: 60px; padding-left: 5px; padding-right: 5px ">${title}</div></li>
                         `
                 $("#c1-posting").append(temp_html);
+
             }
         }
     });
