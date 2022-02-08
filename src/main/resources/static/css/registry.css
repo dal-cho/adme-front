@@ -1,6 +1,4 @@
 body {
-    /*background: #c6dff5; */ /* #8eb3d4*/
-    /*background-image: linear-gradient(-225deg, #7085B6 0%, #87A7D9 50%, #DEF3F8 100%);*/
     background: linear-gradient(70deg, rgba(132, 204, 222, 0.76), #eee5ca);
     font-family: "Roboto";
 }
@@ -96,7 +94,7 @@ li.icon {
     height: 60px;
 }
 
-.c1-title-title {
+.c1-title-name {
     margin: auto;
     font-size: 22px;
     color: #304bee;
@@ -121,8 +119,8 @@ li.icon {
     border-radius: 10px 10px 10px 10px;
 }
 
-.c1-comment {
-    top: 35px;
+.c1-content {
+    top: 38px;
     margin-left: 40px;
     display: flex;
     position: relative;
@@ -130,7 +128,7 @@ li.icon {
     height: 60px;
 }
 
-.c1-comment-title {
+.c1-content-name {
     margin: auto;
     text-align: center;
     font-size: 22px;
@@ -142,12 +140,12 @@ li.icon {
     border-radius: 3px 3px 3px 3px;
 }
 
-.c1-comment-content {
+.c1-content-content {
     margin-left: 5px;
     margin-top: 9px;
     font-size: 20px;
     width: 850px;
-    height: 500px;
+    height: 540px;
     box-shadow: 0 0 5px antiquewhite;
     background-color: rgba(255, 255, 255, 0.5);
     border: 7px solid #D5EDFFC6;
@@ -159,8 +157,8 @@ li.icon {
 .button-box {
     display: flex;
     position: relative;
-    top: 530px;
-    margin-left: 340px;
+    top: 560px;
+    margin-left: 416px;
 }
 
 .check-button {

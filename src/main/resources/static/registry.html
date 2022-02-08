@@ -23,21 +23,16 @@
 <div class="container">
     <div class="c1">
         <div class="c1-title">
-            <div class="c1-title-title">제목</div>
-            <input class="c1-title-content" placeholder="제목을 입력해주세요." type="text" required/>
+            <div class="c1-title-name">제목</div>
+            <input class="c1-title-content" id="h1" placeholder="제목을 입력해주세요." type="text" required/>
         </div>
-        <div class="c1-comment">
-            <div class="c1-comment-title">본문 내용</div>
-            <textarea class="c1-comment-content" placeholder="본문 내용을 입력해주세요." type="text" required></textarea>
-<!--            <input class="c1-comment-content" placeholder="본문 내용을 입력해주세요" type="text" required/>-->
+        <div class="c1-content">
+            <div class="c1-content-name">본문 내용</div>
+            <textarea class="c1-content-content" id="h2" placeholder="본문 내용을 입력해주세요." type="text" required></textarea>
+<!--            <input class="c1-content-content" placeholder="본문 내용을 입력해주세요" type="text" required/>-->
         </div>
         <div class="button-box">
-            <div class="public-private-box">
-                <button name="submit" type="submit" onclick="public_check()" class="check-button" id="default-button">공개</button>
-                <button name="submit" type="submit" class="check-button" id="public-button">공개</button>
-                <button name="submit" type="submit" class="check-button" id="private-button">비공개</button>
-            </div>
-            <button name="submit" type="submit" class="check-button">완료</button>
+            <button name="submit" type="submit" onclick="saveArticle()" class="check-button">완료</button>
         </div>
     </div>
 
