@@ -2,34 +2,7 @@ $(document).ready(function(){
     $(".container").fadeIn(1000);
     $(".menu").fadeIn(1000);
     $(".paging_button").fadeIn(1000);
-
-    // dropdown
-    $("#default-public-button").show();
-    $("#default-private-button").hide();
-    $("#public-button").hide();
-    $("#private-button").hide();
 });
-
-// dropdown
-function choice_button() {
-    $("#default-public-button").hide();
-    $("#default-private-button").hide();
-    $("#public-button").show();
-    $("#private-button").show();
-}
-function public_check() {
-    $("#default-public-button").show();
-    $("#default-private-button").hide();
-    $("#public-button").hide();
-    $("#private-button").hide();
-}
-function private_check() {
-    $("#default-public-button").hide();
-    $("#default-private-button").show();
-    $("#public-button").hide();
-    $("#private-button").hide();
-}
-
 function saveArticle() {
     let form_data = new FormData()
     form_data.append("c1-title-content", $("#h1").val())
