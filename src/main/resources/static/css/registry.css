@@ -20,7 +20,7 @@ body {
 }
 
 .menu {
-    display: none;
+    display: block;
     position: absolute;
     width: auto;
     height: auto;
@@ -28,15 +28,18 @@ body {
     left: calc(50% - 500px);
     border-radius: 7px 7px 7px 7px;
 }
+
 ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
 }
+
 li.icon {
     flex-basis: 25%;
 }
+
 .m1 {
     /*box-shadow: 0 0 10px rgba(195, 250, 245, 0.87);*/
     box-shadow: 0 0 3px antiquewhite;
@@ -46,6 +49,7 @@ li.icon {
     display: inline-block;
     border-radius: 10px 10px 10px 10px;
 }
+
 .m11 {
     display: inline-block;
     font-size: 24px;
@@ -56,16 +60,17 @@ li.icon {
     font-weight: bold;
     color: rgba(175, 209, 250, 0.78);
 }
+
 .m11:hover {
     color: rgba(98,150,241,0.87);
 }
 
 .container {
-    display: none;
+    display: block;
     position: absolute;
     width: auto;
     height: auto;
-    top: calc(50% - 360px);
+    top: calc(50% - 376px);
     left: calc(50% - 500px);
     border-radius: 7px 7px 7px 7px;
 }
@@ -73,39 +78,107 @@ li.icon {
 .c1 {
     box-shadow: 0 0 5px antiquewhite;
     background-color: rgba(255, 255, 255, 0.5);
-    width: 980px; /* 980 */
-    height: 760px; /*760px*/
+    width: 980px;
+    height: 770px;
     border: 10px solid #D5EDFFC6;
     display: inline-block;
     border-radius: 5px 5px 5px 5px;
 }
 
-.c1-title { /* 제목 */
-    font-size: 30px;
-    box-shadow: 0 0 5px antiquewhite;
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 940px; /* 980 */
+.c1-title {
+    top: 30px;
+    margin-left: 40px;
+    display: flex;
+    position: relative;
+    width: 900px;
     height: 60px;
-    border: 7px solid #D5EDFFC6;
-    padding-top : 15px;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 15px;
-    display: inline-block;
-    border-radius: 20px 20px 20px 20px;
 }
 
-.c1-main{ /* 본문 */
+.c1-title-name {
+    margin: auto;
+    font-size: 22px;
+    color: #304bee;
+    text-align: center;
+    width: 120px;
+    height: 30px;
+    background-color: rgba(175, 209, 250, 0.78);
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    border-radius: 3px 3px 3px 3px;
+}
+
+.c1-title-content {
+    margin-left: 5px;
+    margin-top: 9px;
     font-size: 20px;
+    width: 850px;
+    height: 30px;
     box-shadow: 0 0 5px antiquewhite;
     background-color: rgba(255, 255, 255, 0.5);
-    width: 940px; /* 980 */
-    height: 560px;
     border: 7px solid #D5EDFFC6;
-    padding-top : 15px;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 15px;
     display: inline-block;
-    border-radius: 20px 20px 20px 20px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.c1-content {
+    top: 38px;
+    margin-left: 40px;
+    display: flex;
+    position: relative;
+    width: 900px;
+    height: 60px;
+}
+
+.c1-content-name {
+    margin: auto;
+    text-align: center;
+    font-size: 22px;
+    color: #304bee;
+    width: 120px;
+    height: 30px;
+    background-color: rgba(175, 209, 250, 0.78);
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    border-radius: 3px 3px 3px 3px;
+}
+
+.c1-content-content {
+    margin-left: 5px;
+    margin-top: 9px;
+    font-size: 20px;
+    width: 850px;
+    height: 540px;
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 7px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 10px 10px 10px 10px;
+    resize: none;
+}
+
+.button-box {
+    display: flex;
+    position: relative;
+    top: 560px;
+    margin-left: 416px;
+}
+
+.check-button {
+    color: rgba(4, 16, 185, 0.75);
+    cursor: pointer;
+    font-size: 21px;
+    margin-right: 20px;
+    width: 150px;
+    height: 40px;
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    background-color: #D5EDFFC6;
+    border-radius: 10px;
+}
+.check-button:hover {
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    background-color: rgba(175, 209, 250, 0.78);
+}
+
+.public-private-box {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }

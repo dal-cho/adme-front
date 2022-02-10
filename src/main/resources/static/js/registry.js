@@ -3,11 +3,10 @@ $(document).ready(function(){
     $(".menu").fadeIn(1000);
     $(".paging_button").fadeIn(1000);
 });
-
 function saveArticle() {
     let form_data = new FormData()
-    form_data.append("title", $("#h1").val())
-    form_data.append("main", $("#h2").val())
+    form_data.append("c1-title-content", $("#h1").val())
+    form_data.append("c1-content-content", $("#h2").val())
 
     $.ajax({
         type: "POST",
@@ -23,8 +22,3 @@ function saveArticle() {
         }
     });
 }
-
-
-
-
-
