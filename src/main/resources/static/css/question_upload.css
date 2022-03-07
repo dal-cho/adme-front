@@ -1,4 +1,6 @@
 body {
+    /*background: #c6dff5; */ /* #8eb3d4*/
+    /*background-image: linear-gradient(-225deg, #7085B6 0%, #87A7D9 50%, #DEF3F8 100%);*/
     background: linear-gradient(70deg, rgba(132, 204, 222, 0.76), #eee5ca);
     font-family: "Roboto";
 }
@@ -86,7 +88,7 @@ li.icon {
 }
 
 .c1-title {
-    top: 30px;
+    top: 10px;
     margin-left: 40px;
     display: flex;
     position: relative;
@@ -120,7 +122,7 @@ li.icon {
 }
 
 .c1-content {
-    top: 38px;
+    top: 5px;
     margin-left: 40px;
     display: flex;
     position: relative;
@@ -145,7 +147,7 @@ li.icon {
     margin-top: 9px;
     font-size: 20px;
     width: 850px;
-    height: 540px;
+    height: 500px;
     box-shadow: 0 0 5px antiquewhite;
     background-color: rgba(255, 255, 255, 0.5);
     border: 7px solid #D5EDFFC6;
@@ -154,11 +156,50 @@ li.icon {
     resize: none;
 }
 
+.c1-file {
+    top: 473px;
+    margin-left: 40px;
+    display: flex;
+    position: relative;
+    width: 900px;
+    height: 60px;
+}
+
+.c1-file-name {
+    margin: auto;
+    font-size: 22px;
+    color: #304bee;
+    text-align: center;
+    width: 120px;
+    height: 30px;
+    background-color: rgba(175, 209, 250, 0.78);
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    border-radius: 3px 3px 3px 3px;
+}
+
+.c1-file-content {
+    margin-left: 5px;
+    margin-top: 9px;
+    font-size: 20px;
+    width: 850px;
+    height: 30px;
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 7px solid #D5EDFFC6;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.c1 > h4 {
+    position: relative;
+    top: 455px;
+    margin-left: 350px;
+}
+
 .button-box {
     display: flex;
     position: relative;
-    top: 560px;
-    margin-left: 416px;
+    top: 460px;
+    margin-left: 340px;
 }
 
 .check-button {
@@ -181,4 +222,10 @@ li.icon {
     display: flex;
     flex-direction: column;
     gap: 3px;
+}
+.public-button {
+    display: block;
+}
+.private-button {
+    display: block;
 }

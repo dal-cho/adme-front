@@ -1,42 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" type="text/css" href="css/registry.css">
-  <link rel="stylesheet" type="text/css" href="css/button.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="css/registry.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
 <div class="menu">
-  <div class="m1">
-    <ul>
-      <li><a href="#" class="m11" >나</a></li>
-      <li><a href="http://localhost:8080/10s" class="m11" >10s</a></li>
-      <li><a href="http://localhost:8080/space" class="m11" >공감공간</a></li>
-      <li><a href="#" class="m11" >문의하기</a></li>
-    </ul>
-  </div>
+    <div class="m1">
+        <ul>
+            <li><a href="#" class="m11" >나</a></li>
+            <li><a href="http://localhost:8080/10s" class="m11" >10s</a></li>
+            <li><a href="http://localhost:8080/space" class="m11" style="color: rgba(98,150,241,0.87);" >공감공간</a></li>
+            <li><a href="#" class="m11" >문의하기</a></li>
+        </ul>
+    </div>
 </div>
 
 <div class="container">
-  <div class="c1">
-<!--    <div class="c1-comment-add">-->
-     <input id="h1" class="c1-title" placeholder="제목을 입력해주세요" type="text" required/>
-<!--    </div>-->
-
-<!--    <div class="c1-title">-->
-      <input id="h2" class="c1-main" placeholder="본문 내용을 입력해주세요" type="text" required/>
-<!--    </div>-->
-
-    <button name="submit" type="submit" class="bubbly-button" onclick="saveArticle()">완료!</button>
-  </div>
+    <div class="c1">
+        <div class="c1-title">
+            <div class="c1-title-name">제목</div>
+            <input class="c1-title-content" id="h1" placeholder="제목을 입력해주세요." type="text" required/>
+        </div>
+        <div class="c1-content">
+            <div class="c1-content-name">본문 내용</div>
+            <textarea class="c1-content-content" id="h2" placeholder="본문 내용을 입력해주세요." type="text" required></textarea>
+        </div>
+        <div class="button-box">
+            <button name="submit" type="submit" onclick="saveArticle()" class="check-button">완료</button>
+        </div>
+    </div>
 
 
 </div>
-
-
-
 
 <script src="js/registry.js"></script>
 <script src="js/button.js"></script>

@@ -122,3 +122,4 @@ function makePagination(count, curpage) {
     }
     $('#board_pages').html(tempHtml);
 }
+
