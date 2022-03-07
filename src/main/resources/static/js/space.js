@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(".menu").fadeIn(1000);
     $(".paging_button").fadeIn(1000);
     showMain();
-    //$("#c1-posting").sort()
+    getArticle(1);
 });
 
 // page
@@ -73,5 +73,53 @@ function showMain() {
             }
         }
     });
+}
+
+
+
+function getArticle(curpage) {
+    $.ajax({
+        type: "GET",
+        url: `space/${curpage}`,
+        contentType: 'application/json; charset=utf-8',
+        success: function (response) {
+            let list = response.data;
+            let fullCount = response.count;
+            $("#board-list").empty();
+            for (let i = 0; i < list.length; i++) {
+                num = i + 1;
+                makeListPost(list[i], num, curpage);
+            }
+            makePagination(fullCount, curpage);
+        }
+    })
+}
+
+function makeListPost(board, num) {
+    let title = board.title;
+    let content = board.main;
+    let modi = board.modifiedAt;
+    let mode = modi.substr(0, 10);
+    let idx = board.idx;
+
+    let tempHtml = `<div onclick="window.location.href='space.html?idx=${idx}'">
+                            <div class="num">${num}</div>
+                            <div class="title">${title}</a></div>
+                            <div class="date">${mode}</div>
+                        </div>`
+    $("#board-list").append(tempHtml);
+
+}
+
+function makePagination(count, curpage) {
+    let tempHtml = ``;
+    for (let i = 0; i < count; i++) {
+        if (i + 1 == curpage) {
+            tempHtml += `<a href="#" class="num on">${i + 1}</a>`;
+        } else {
+            tempHtml += `<a href="#" class="num" onclick="getArticle(${i + 1})">${i + 1}</a>`;
+        }
+    }
+    $('#board_pages').html(tempHtml);
 }
 
