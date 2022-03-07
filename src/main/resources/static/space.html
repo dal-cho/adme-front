@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="css/space.css">
+<!--    <link rel="stylesheet" type="text/css" href="css/space.css">-->
+    <link rel="stylesheet" type="text/css" href="space.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
@@ -12,51 +13,65 @@
         <ul>
             <li><a href="#" class="m11" >나</a></li>
             <li><a href="http://localhost:8080/10s" class="m11" >10s</a></li>
-            <li><a href="http://localhost:8080/space" class="m11" >공감공간</a></li>
+            <li><a href="http://localhost:8080/space" class="m11" style="color: rgba(98,150,241,0.87);">공감공간</a></li>
             <li><a href="#" class="m11" >문의하기</a></li>
         </ul>
     </div>
 </div>
 
 <div class="container">
-    <h3 class="space-title">공감 공간</h3>
+    <div class="space-title">공감공간</div>
     <div class="c1" id="c1-wide">
         <ul class="items" id="c1-posting">
+            <li class="item">테스트 박스</li>
+            <li class="item">테스트 박스</li>
+            <li class="item">테스트 박스</li>
+            <li class="item">테스트 박스</li>
+            <li class="item">테스트 박스</li>
+            <li class="item">테스트 박스</li>
+            <li class="item">테스트 박스</li>
+            <li class="item">테스트 박스</li>
+            <li class="item">테스트 박스</li>
         </ul>
-
-        <!-- page -->
-        <ul class="dots">
-            <li class="select"></li>
-            <li class="dot" id="dot-1"></li>
-            <li class="dot" id="dot-2"></li>
-            <li class="dot" id="dot-3"></li>
-            <li class="dot" id="dot-4"></li>
-            <li class="dot" id="dot-5"></li>
+        <ul class="page-numbering">
+            <li class="left-number" value="before"><img class="paging-num" id="left-num-img" value="0" src="img/left-num.png"></li>
+            <li class="page-number" value="1"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="2"><img class="paging-num" id="page-number2-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="3"><img class="paging-num" id="page-number3-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="4"><img class="paging-num" id="page-number4-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="5"><img class="paging-num" id="page-number5-img" value="0" src="img/num.png"></li>
+            <li class="right-number" value="after"><img class="paging-num" id="right-num-img" value="0" src="img/right-num.png"></li>
         </ul>
-
-
+<!--         page -->
+<!--        <ul class="dots">-->
+<!--            <li class="select"></li>-->
+<!--            <li class="dot" id="dot-1"></li>-->
+<!--            <li class="dot" id="dot-2"></li>-->
+<!--            <li class="dot" id="dot-3"></li>-->
+<!--            <li class="dot" id="dot-4"></li>-->
+<!--            <li class="dot" id="dot-5"></li>-->
+<!--        </ul>-->
     </div>
 </div>
 
-<div class = "container1">
-    <h3 class="space-title">이 글도 공감 해주세요</h3>
+<div class ="container1">
+    <div class="space-title">이 글도 공감 해주세요</div>
     <div class="c2">
         <ul class="items1">
-            <li class="item1">크리스마스에 혼자 입니다. 너무 슬퍼요ㅜ</li>
-            <li class="item1">크리스마스에 혼자 입니다. 너무 슬퍼요ㅜ</li>
-            <li class="item1">크리스마스에 혼자 입니다. 너무 슬퍼요ㅜ</li>
-            <li class="item1">크리스마스에 혼자 입니다. 너무 슬퍼요ㅜ</li>
-            <li class="item1">크리스마스에 혼자 입니다. 너무 슬퍼요ㅜ</li>
-            <li class="item1">크리스마스에 혼자 입니다. 너무 슬퍼요ㅜ</li>
-
+            <li class="item1"> 크리스마스에 혼자 입니다. 너무 슬퍼요. </li>
+            <li class="item1"> 크리스마스에 혼자 입니다. 너무 슬퍼요. </li>
+            <li class="item1"> 크리스마스에 혼자 입니다. 너무 슬퍼요. </li>
+            <li class="item1"> 크리스마스에 혼자 입니다. 너무 슬퍼요. </li>
+            <li class="item1"> 크리스마스에 혼자 입니다. 너무 슬퍼요. </li>
+            <li class="item1"> 크리스마스에 혼자 입니다. 너무 슬퍼요. </li>
         </ul>
     </div>
-
 </div>
-
+<div class="upload-button">
+    <button class="upload-button-item" onclick="location.href='loading.html'"> 글 작성하기 </button>
+</div>
 <!--<button type="button" class="btn-lg" id="load2" data-loading-text="<i class='fa fa-spinner fa-spin'></i> 로딩 중 ...">작성하기</button>-->
-<button id="write-button" onClick="location.href='loading.html'">글 작성하기</button>
-
+<!--<button id="write-button" onClick="location.href='loading.html'">글 작성하기</button>-->
 
 <!--<div class="paging_button">-->
 <!--    <img href="우측화살표.png">-->

@@ -1,0 +1,204 @@
+body {
+    /*background: #c6dff5; */ /* #8eb3d4*/
+    /*background-image: linear-gradient(-225deg, #7085B6 0%, #87A7D9 50%, #DEF3F8 100%);*/
+    background: linear-gradient(70deg, rgba(132, 204, 222, 0.76), #eee5ca);
+    font-family: "Roboto";
+}
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #748194;
+}
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #748194;
+}
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #748194;
+}
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #748194;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: calc(50% - 460px);
+    left: calc(50% - 500px);
+    border-radius: 7px 7px 7px 7px;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+li.icon {
+    flex-basis: 25%;
+}
+.m1 {
+    /*box-shadow: 0 0 10px rgba(195, 250, 245, 0.87);*/
+    box-shadow: 0 0 3px antiquewhite;
+    background-color: rgba(213, 237, 255, 0.78);
+    width: 1000px;
+    height: 65px;
+    display: inline-block;
+    border-radius: 10px 10px 10px 10px;
+}
+.m11 {
+    display: inline-block;
+    font-size: 24px;
+    text-align: center;
+    margin: .25rem;
+    padding: .8rem 5.57rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgba(175, 209, 250, 0.78);
+}
+.m11:hover {
+    color: rgba(98,150,241,0.87);
+}
+
+.container {
+    display: none;
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: calc(50% - 385px);
+    left: calc(50% - 500px);
+    border-radius: 7px 7px 7px 7px;
+}
+
+.space-title {
+    margin: 7px;
+    font-size: 19px;
+    color: rgba(98,150,241,0.87);
+    font-weight: bolder;
+}
+
+.container1 {
+    display: none;
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: calc(50% - 385px);
+    left: calc(50% - 500px);
+    border-radius: 7px 7px 7px 7px;
+    margin-left : 780px;
+}
+.c1 {
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 770px; /* 980 */
+    height: 741px; /*760px*/
+    border: 10px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 5px 5px 5px 5px;
+}
+.c2 {
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 200px; /* 980 */
+    height: 741px;
+    border: 10px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 5px 5px 5px 5px;
+}
+.items {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr); /* 가로에 몇개 둘껀지 */
+    grid-template-rows: repeat(3, 230px); /* 세로로 얼만큼의 간격으로 얼마나 반복할 것인지 */
+}
+
+.items1 {
+    display: grid;
+    grid-template-columns: repeat(1, 2fr);
+    grid-template-rows: repeat(6, 70px);
+}
+.item {
+    margin: auto;
+    margin-top: 16px;
+    width: 220px;
+    height: 190px;
+    border: 3px solid black;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.item1 { /* 상자 크기 */
+    margin: auto;
+    margin-top: 10px;
+    width: 170px;
+    height: 40px;
+    border: 3px solid black;
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 42px;
+    padding: 5px;
+}
+
+
+.item-title {
+    text-decoration: none;
+    color: black;
+    position: absolute;
+    left: 34px;
+    top: 227px;
+    width: 200px;
+    height: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.page-numbering {
+    /*border: 3px solid black;*/
+    height: 40px;
+    width: 216px;
+    margin: auto;
+}
+
+.page-numbering>li>img:hover {
+    cursor: pointer;
+}
+
+.left-number {
+    margin-top: 3px;
+}
+.page-number {
+    margin: auto;
+    margin-top: 5px;
+}
+.right-number {
+    margin-top: 8px;
+}
+
+/*업로드 버튼*/
+.upload-button {
+    display: none;
+}
+
+.upload-button-item {
+    position: absolute;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    width: 120px;
+    height: 40px;
+    top: calc(50% + 411px);
+    left: calc(50% + 380px);
+    color: rgba(98,150,241,0.87);
+    background-color: rgba(213, 237, 255, 0.78);
+    border-radius: 0px 0px 7px 7px;
+    box-shadow: 3px 3px 3px antiquewhite;
+}
+.upload-button-item:hover {
+    cursor: pointer;
+}
