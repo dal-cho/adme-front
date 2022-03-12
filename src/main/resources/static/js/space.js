@@ -3,23 +3,10 @@ $(document).ready(function(){
     $(".container1").fadeIn(1000);
     $(".menu").fadeIn(1000);
     $(".upload-button").fadeIn(1000);
-    pagingController();
     pageSelect();
+    pageOver();
+    pageLeave();
 })
-
-function pagingController() {
-    $('.paging-num').mouseover(function(){
-        let value_check = $(this).attr("value");
-        console.log(value_check);
-        if (value_check === "0") {
-            pageOver();
-            pageLeave();
-        }else if (value_check === "1") {
-            // alert("value=1")
-        }
-    });
-}
-
 
 //페이지번호 클릭시 fill 이미지로 변경
 function pageSelect() {
@@ -31,6 +18,7 @@ function pageSelect() {
                 $('.paging-num').eq(i).attr("src", "img/num.png");
                 $('.paging-num').eq(i).attr("value", "0");
             }
+            // $(this).attr("src", "img/num-fill.png");
             $(this).attr("src", "img/num-fill.png");
             $(this).attr("value", "1");
         }
@@ -42,11 +30,12 @@ function pageOver() {
     //마우스 올린 곳의 이미지 값을 변화시켜준다.
     $('.paging-num').mouseover(function(){
         let id_check = $(this).attr("id");
+        let value_check = $(this).attr("value");
         if (id_check === "left-num-img") {
             $(this).attr("src", "img/left-num-fill.png");
         } else if (id_check === "right-num-img") {
             $(this).attr("src", "img/right-num-fill.png");
-        } else if (id_check.slice(0, 11) === "page-number") {
+        } else if (value_check === "0" && id_check.slice(0, 11) === "page-number") {
             $(this).attr("src", "img/num-fill.png");
         }
     });
@@ -57,11 +46,12 @@ function pageLeave(){
     //마우스가 위치를 벗어나면 이미지 값을 변화시킨다.
     $('.paging-num').mouseleave(function(){
         let id_check = $(this).attr("id");
+        let value_check = $(this).attr("value");
         if (id_check === "left-num-img"){
             $(this).attr("src", "img/left-num.png");
         }else if (id_check === "right-num-img"){
             $(this).attr("src", "img/right-num.png");
-        }else if (id_check.slice(0,11) === "page-number"){
+        }else if (value_check === "0" && id_check.slice(0,11) === "page-number"){
             $(this).attr("src", "img/num.png");
         }
     });
