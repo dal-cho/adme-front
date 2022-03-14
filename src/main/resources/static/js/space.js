@@ -12,7 +12,7 @@ $(document).ready(function(){
     getArticle(1);
 })
 
-//페이지번튼 클릭시 fill 이미지로 변경
+//페이지버튼 클릭시 fill 이미지로 변경
 function pageSelect() {
     //마우스 클릭한 곳의 이미지 값을 변화시켜준다. (다른 곳을 클릭하면 이전 클릭 기록은 지워준다.)
     $('.paging-num').on("click",function(){
