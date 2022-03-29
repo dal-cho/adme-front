@@ -1,51 +1,67 @@
 $(document).ready(function(){
     $(".container").fadeIn(1000);
+    $(".container1").fadeIn(1000);
     $(".menu").fadeIn(1000);
-    $(".paging_button").fadeIn(1000);
+    $(".upload-button").fadeIn(1000);
+    pageSelect();
+    pageOver();
+    pageLeave();
+    // 게시물
     showMain();
+    // paging
     getArticle(1);
 });
 
-// page
-$(document).ready(function () {
-    $(".dot").hover(function () {
-        var cur = $(this);
-        var dest = cur.position().left;
-        var t = 0.6;
-        TweenMax.to($(".select"), t, { x: dest, ease: Back.easeOut });
-     });
-    var lastPos = $(".select").position().left;
-    function updateScale() {
-        var pos = $(".select").position().left;
-
-        var speed = Math.abs(pos - lastPos);
-        var d = 44;
-        var offset = -20;
-        var hd = d / 2;
-        var scale = (offset + pos) % d;
-        if (scale > hd) {
-            scale = hd - (scale - hd);
+//페이지버튼 클릭시 fill 이미지로 변경
+function pageSelect() {
+    //마우스 클릭한 곳의 이미지 값을 변화시켜준다. (다른 곳을 클릭하면 이전 클릭 기록은 지워준다.)
+    $('.paging-num').on("click",function(){
+        let id_check = $(this).attr("id");
+        if (id_check.slice(0,11) === "page-number"){
+            for (let i=1; i<6; i++){
+                $('.paging-num').eq(i).attr("src", "img/num.png");
+                $('.paging-num').eq(i).attr("value", "0");
+            }
+            // $(this).attr("src", "img/num-fill.png");
+            $(this).attr("src", "img/num-fill.png");
+            $(this).attr("value", "1");
         }
-        scale = 1 - (scale / hd) * 0.35;
-        TweenMax.to($(".select"), 0.1, { scaleY: scale, scaleX: 1 + speed * 0.06 });
+    });
+}
 
-        lastPos = pos;
-        requestAnimationFrame(updateScale);
-    }
-    requestAnimationFrame(updateScale);
-    $(".dot:eq(0)").trigger("mouseover");
-});
+//페이징버튼에 마우스 올릴시 fill 이미지로 변경
+function pageOver() {
+    //마우스 올린 곳의 이미지 값을 변화시켜준다.
+    $('.paging-num').mouseover(function(){
+        let id_check = $(this).attr("id");
+        let value_check = $(this).attr("value");
+        if (id_check === "left-num-img") {
+            $(this).attr("src", "img/left-num-fill.png");
+        } else if (id_check === "right-num-img") {
+            $(this).attr("src", "img/right-num-fill.png");
+        } else if (value_check === "0" && id_check.slice(0, 11) === "page-number") {
+            $(this).attr("src", "img/num-fill.png");
+        }
+    });
+}
 
-//저장하기 button
-$(".btn").on("click", function () {
-    let $this = $(this);
-    $this.button("loading");
-    setTimeout(function () {
-        $this.button("reset");
-    }, 2000);
-});
+//페이징버튼에서 마우스 내릴시 빈 이미지로 변경
+function pageLeave(){
+    //마우스가 위치를 벗어나면 이미지 값을 변화시킨다.
+    $('.paging-num').mouseleave(function(){
+        let id_check = $(this).attr("id");
+        let value_check = $(this).attr("value");
+        if (id_check === "left-num-img"){
+            $(this).attr("src", "img/left-num.png");
+        }else if (id_check === "right-num-img"){
+            $(this).attr("src", "img/right-num.png");
+        }else if (value_check === "0" && id_check.slice(0,11) === "page-number"){
+            $(this).attr("src", "img/num.png");
+        }
+    });
+}
 
-
+// 게시물
 function showMain() {
     $.ajax({
         type: "GET",
@@ -57,11 +73,11 @@ function showMain() {
                 let idx = respon[i]['idx'];
                 let title = respon[i]['title'];
                 let main = respon[i]['main'];
-            /*
-            for (let i = 0; i < response.length; i++) {
-                let idx = response[i]['idx'];
-                let title = response[i]['title'];
-                let main = response[i]['main']; */
+                /*
+                for (let i = 0; i < response.length; i++) {
+                    let idx = response[i]['idx'];
+                    let title = response[i]['title'];
+                    let main = response[i]['main']; */
                 if(title.length >= 15) {
                     title = title.substr(0,15) + "...";
                 }
@@ -75,7 +91,7 @@ function showMain() {
     });
 }
 
-
+// paging
 
 function getArticle(curpage) {
     $.ajax({
@@ -85,7 +101,8 @@ function getArticle(curpage) {
         success: function (response) {
             let list = response.data;
             let fullCount = response.count;
-            $("#board-list").empty();
+            $("#c1-posting").empty();
+
             for (let i = 0; i < list.length; i++) {
                 num = i + 1;
                 makeListPost(list[i], num, curpage);
@@ -101,15 +118,12 @@ function makeListPost(board, num) {
     let modi = board.modifiedAt;
     let mode = modi.substr(0, 10);
     let idx = board.idx;
-
-    let tempHtml = `<div onclick="window.location.href='space.html?idx=${idx}'">
-                            <div class="num">${num}</div>
-                            <div class="title">${title}</a></div>
-                            <div class="date">${mode}</div>
-                        </div>`
-    $("#board-list").append(tempHtml);
-
-}
+    let tempHtml = `<div class="item" onclick="window.location.href='space.html?idx=${idx}'">
+                        <div class="num">${num}</div>
+                        <div class="title">${title}</a></div>
+                        <div class="date">${mode}</div>
+                   </div>`
+    $("#c1-posting").append(tempHtml);
 
 function makePagination(count, curpage) {
     let tempHtml = ``;
@@ -120,6 +134,6 @@ function makePagination(count, curpage) {
             tempHtml += `<a href="#" class="num" onclick="getArticle(${i + 1})">${i + 1}</a>`;
         }
     }
-    $('#board_pages').html(tempHtml);
+    $('#board-pages').html(tempHtml);
 }
 
