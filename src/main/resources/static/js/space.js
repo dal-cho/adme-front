@@ -10,7 +10,7 @@ $(document).ready(function(){
     showMain();
     // paging
     getArticle(1);
-})
+});
 
 //페이지버튼 클릭시 fill 이미지로 변경
 function pageSelect() {
@@ -92,6 +92,7 @@ function showMain() {
 }
 
 // paging
+
 function getArticle(curpage) {
     $.ajax({
         type: "GET",
@@ -101,6 +102,7 @@ function getArticle(curpage) {
             let list = response.data;
             let fullCount = response.count;
             $("#c1-posting").empty();
+
             for (let i = 0; i < list.length; i++) {
                 num = i + 1;
                 makeListPost(list[i], num, curpage);
@@ -122,7 +124,6 @@ function makeListPost(board, num) {
                         <div class="date">${mode}</div>
                    </div>`
     $("#c1-posting").append(tempHtml);
-}
 
 function makePagination(count, curpage) {
     let tempHtml = ``;
@@ -135,3 +136,4 @@ function makePagination(count, curpage) {
     }
     $('#board-pages').html(tempHtml);
 }
+
