@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="text" placeholder="보낼 메세지를 입력하세요." class="content">
+<button type="button" value="전송" class="sendBtn" onclick="sendMsg()">전송</button>
+<div>
+  <span>메세지</span>
+  <div class="msgArea"></div>
+</div>
+
+<script src="/webjars/stomp-websocket/2.3.3-1/stomp.js" type="text/javascript"></script>
+<script src="/webjars/sockjs-client/1.1.2/sockjs.js" type="text/javascript"></script>
+</body>
+<script>
+  let username = sessionStorage.getItem("username");
+  let socket = new WebSocket("ws://localhost:8080/websocket");
+
+  socket.onopen = function (e) {
+    console.log('open server!')
+    let str = username + " 님이 입장하셨습니다.";
+    socket.send(str);
+  };
+
+  socket.onclose = function (e) { // 채팅방에서 나갔을 때
+    let str = username + " 님이 방을 나가셨습니다.";
+    socket.send(str);
+  }
+
+  socket.onerror = function (e){
+    console.log(e);
+  }
+
+  socket.onmessage = function (e) {
+    console.log(e.data);
+    let msgArea = document.querySelector('.msgArea');
+    let newMsg = document.createElement('div');
+    newMsg.innerText=e.data;
+    msgArea.append(newMsg);
+  }
+
+  function sendMsg() {
+    let content=document.querySelector('.content').value;
+    socket.send(username + " : " + content); // 닉네임 : message 형태
+  }
+
+</script>
+</html>
