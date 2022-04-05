@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="css/space.css">
+    <link rel="stylesheet" type="text/css" href="css/empathy_space.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
@@ -33,23 +33,23 @@
             <li class="item">테스트 박스</li>
         </ul>
         <ul class="page-numbering" id="board-pages">
-<!--            <li class="left-number" value="before"><img class="paging-num" id="left-num-img" value="0" src="img/left-num.png"></li>-->
-<!--            <li class="page-number" value="1"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>-->
-<!--            <li class="page-number" value="2"><img class="paging-num" id="page-number2-img" value="0" src="img/num.png"></li>-->
-<!--            <li class="page-number" value="3"><img class="paging-num" id="page-number3-img" value="0" src="img/num.png"></li>-->
-<!--            <li class="page-number" value="4"><img class="paging-num" id="page-number4-img" value="0" src="img/num.png"></li>-->
-<!--            <li class="page-number" value="5"><img class="paging-num" id="page-number5-img" value="0" src="img/num.png"></li>-->
-<!--            <li class="right-number" value="after"><img class="paging-num" id="right-num-img" value="0" src="img/right-num.png"></li>-->
+            <li class="left-number" value="before"><img class="paging-num" id="left-num-img" value="0" src="img/left-num.png"></li>
+            <li class="page-number" value="1"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="2"><img class="paging-num" id="page-number2-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="3"><img class="paging-num" id="page-number3-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="4"><img class="paging-num" id="page-number4-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="5"><img class="paging-num" id="page-number5-img" value="0" src="img/num.png"></li>
+            <li class="right-number" value="after"><img class="paging-num" id="right-num-img" value="0" src="img/right-num.png"></li>
         </ul>
-<!--         page -->
-<!--        <ul class="dots">-->
-<!--            <li class="select"></li>-->
-<!--            <li class="dot" id="dot-1"></li>-->
-<!--            <li class="dot" id="dot-2"></li>-->
-<!--            <li class="dot" id="dot-3"></li>-->
-<!--            <li class="dot" id="dot-4"></li>-->
-<!--            <li class="dot" id="dot-5"></li>-->
-<!--        </ul>-->
+        <!--         page -->
+        <!--        <ul class="dots">-->
+        <!--            <li class="select"></li>-->
+        <!--            <li class="dot" id="dot-1"></li>-->
+        <!--            <li class="dot" id="dot-2"></li>-->
+        <!--            <li class="dot" id="dot-3"></li>-->
+        <!--            <li class="dot" id="dot-4"></li>-->
+        <!--            <li class="dot" id="dot-5"></li>-->
+        <!--        </ul>-->
     </div>
 </div>
 
@@ -66,20 +66,34 @@
         </ul>
     </div>
 </div>
+
+<div class="registry-container">
+    <div class="registry-c1">
+        <div class="c1-title">
+            <div class="c1-title-name">제목</div>
+            <input class="c1-title-content" id="h1" placeholder="제목을 입력해주세요." type="text" required/>
+        </div>
+        <div class="c1-content">
+            <div class="c1-content-name">본문 내용</div>
+            <textarea class="c1-content-content" id="h2" placeholder="본문 내용을 입력해주세요." type="text" required></textarea>
+        </div>
+        <div class="button-box">
+            <button name="submit" type="submit" onclick="saveArticle()" class="check-button">완료</button>
+        </div>
+    </div>
+</div>
+
 <div class="upload-button">
-    <button class="upload-button-item" onclick="location.href='loading.html'"> 글 작성하기 </button>
+    <button class="upload-button-item" onclick="registryPage()"> 글 작성하기 </button>
 </div>
 <!--<button type="button" class="btn-lg" id="load2" data-loading-text="<i class='fa fa-spinner fa-spin'></i> 로딩 중 ...">작성하기</button>-->
 <!--<button id="write-button" onClick="location.href='loading.html'">글 작성하기</button>-->
-
-
 
 <!--  paging 예시  -->
 <div class="paging">
     <span href=""></span>
 
 </div>
-
 
 <div id="header"></div>
 <div class="board_wrap">
@@ -90,7 +104,7 @@
 <div class="search">
     <input id="searchBoard" type="text" class="searchTerm" placeholder="제목으로 검색">
 
-        <i class="fa fa-search"></i>
+    <i class="fa fa-search"></i>
 </div>
 <div class="board_list_wrap">
     <div class="board_list" id="board-list">
@@ -113,9 +127,7 @@
 <div id="footer"></div>
 
 
-
-
-<script src="js/space.js"></script>
+<script src="js/empathy_space.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

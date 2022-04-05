@@ -2,13 +2,18 @@ $(document).ready(function(){
     $(".container").fadeIn(1000);
     $(".menu").fadeIn(1000);
     $(".paging_button").fadeIn(1000);
+});
+
+function inquiry(){
+    $(".container").hide();
+    $(".upload-container").show();
 
     // dropdown
     $("#default-public-button").show();
     $("#default-private-button").hide();
     $("#public-button").hide();
     $("#private-button").hide();
-});
+}
 
 // dropdown
 function choice_button() {

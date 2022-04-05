@@ -67,16 +67,24 @@ li.icon {
     position: absolute;
     width: auto;
     height: auto;
-    top: calc(50% - 360px);
+    top: calc(50% - 385px);
     left: calc(50% - 500px);
     border-radius: 7px 7px 7px 7px;
 }
+
+.space-title {
+    margin: 7px;
+    font-size: 19px;
+    color: rgba(98,150,241,0.87);
+    font-weight: bolder;
+}
+
 .container1 {
-    /*display: none;*/
+    display: none;
     position: absolute;
     width: auto;
     height: auto;
-    top: calc(50% - 360px);
+    top: calc(50% - 385px);
     left: calc(50% - 500px);
     border-radius: 7px 7px 7px 7px;
     margin-left : 780px;
@@ -85,7 +93,7 @@ li.icon {
     box-shadow: 0 0 5px antiquewhite;
     background-color: rgba(255, 255, 255, 0.5);
     width: 770px; /* 980 */
-    height: 580px; /*760px*/
+    height: 741px; /*760px*/
     border: 10px solid #D5EDFFC6;
     display: inline-block;
     border-radius: 5px 5px 5px 5px;
@@ -94,7 +102,7 @@ li.icon {
     box-shadow: 0 0 5px antiquewhite;
     background-color: rgba(255, 255, 255, 0.5);
     width: 200px; /* 980 */
-    height: 580px;
+    height: 741px;
     border: 10px solid #D5EDFFC6;
     display: inline-block;
     border-radius: 5px 5px 5px 5px;
@@ -102,29 +110,35 @@ li.icon {
 .items {
     display: grid;
     grid-template-columns: repeat(3, 3fr); /* 가로에 몇개 둘껀지 */
-    grid-template-rows: repeat(2, 253px); /* 세로로 얼만큼의 간격으로 얼마나 반복할 것인지 */
+    grid-template-rows: repeat(3, 230px); /* 세로로 얼만큼의 간격으로 얼마나 반복할 것인지 */
 }
+
 .items1 {
     display: grid;
     grid-template-columns: repeat(1, 2fr);
-    grid-template-rows: repeat(6, 100px);
+    grid-template-rows: repeat(6, 70px);
 }
 .item {
     margin: auto;
-    margin-top: 10px;
-    width: 200px;
-    height: 200px;
+    margin-top: 16px;
+    width: 220px;
+    height: 190px;
     border: 3px solid black;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 4px 4px 4px 4px;
 }
 
 .item1 { /* 상자 크기 */
     margin: auto;
     margin-top: 10px;
-    width: 200px;
-    height: 50px;
+    width: 170px;
+    height: 40px;
     border: 3px solid black;
     border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 42px;
+    padding: 5px;
 }
 
 
@@ -144,68 +158,47 @@ li.icon {
     -webkit-box-orient: vertical;
 }
 
-
-
-
-/* page*/
-.dots {
-    list-style-type: none;
-    background: white;
-    -webkit-filter: blur(5px) contrast(10);
-    padding: 0;
-    margin: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    margin-left: -10px;
-    padding-right: 10px;
-    /*position: relative;*/
-    left: 100px;
-    top: 30px;
-}
-.dot {
-    display: inline-block;
-    vertical-align: middle;
-    border-radius: 100%;
-    width: 30px;
-    height: 30px;
-    background: black;
-    margin-left: 25px; /* 5px */
-    margin-right: 25px; /* 5px */
-    cursor: pointer;
-    color: white;
-    position: relative;
-    z-index: 2;
-}
-.select {
-    display: block;
-    border-radius: 100%;
-    width: 40px;
+.page-numbering {
+    /*border: 3px solid black;*/
     height: 40px;
-    background: lightskyblue;
-    position: absolute;
-    z-index: 3;
-    top: 14px;
-    left: 0;
-    pointer-events: none;
-
-    /*추가*/
-    margin-left:18px;
-
+    width: 216px;
+    margin: auto;
 }
-.btn-lg {
-    margin-top: 800px;
-    margin-left: 800px;
+
+.page-numbering>li>img:hover {
+    cursor: pointer;
 }
-#write-button {
-    display: flex;
-    background: lightgoldenrodyellow;
-    margin-top: 20px;
-    padding: 15px;
+
+.left-number {
+    margin-top: 3px;
+}
+.page-number {
+    margin: auto;
+    margin-top: 5px;
+}
+.right-number {
+    margin-top: 8px;
+}
+
+/*업로드 버튼*/
+.upload-button {
+    display: none;
+}
+
+.upload-button-item {
     position: absolute;
-    top: 780px;
-    left: 1290px;
-    border:lightskyblue;
-    border-radius: 10px 10px 10px 10px;
-    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    width: 120px;
+    height: 40px;
+    top: calc(50% + 411px);
+    left: calc(50% + 380px);
+    color: rgba(98,150,241,0.87);
+    background-color: rgba(213, 237, 255, 0.78);
+    border-radius: 0px 0px 7px 7px;
+    box-shadow: 3px 3px 3px antiquewhite;
+}
+.upload-button-item:hover {
+    cursor: pointer;
 }

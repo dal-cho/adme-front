@@ -39,6 +39,7 @@ ul {
 li.icon {
     flex-basis: 25%;
 }
+/*메뉴박스 스타일*/
 .m1 {
     /*box-shadow: 0 0 10px rgba(195, 250, 245, 0.87);*/
     box-shadow: 0 0 3px antiquewhite;
@@ -48,6 +49,7 @@ li.icon {
     display: inline-block;
     border-radius: 10px 10px 10px 10px;
 }
+/*메뉴 글씨 스타일*/
 .m11 {
     display: inline-block;
     font-size: 24px;

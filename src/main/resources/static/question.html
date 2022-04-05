@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="/static/question_upload.css">
+    <link rel="stylesheet" type="text/css" href="css/question.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
@@ -11,15 +11,67 @@
     <div class="m1">
         <ul>
             <li><a href="#" class="m11" >나</a></li>
-            <li><a href="http://localhost:8080/10s" class="m11" >10s</a></li>
-            <li><a href="http://localhost:8080/space" class="m11" >공감공간</a></li>
-            <li><a href="#" class="m11" style="color: rgba(98,150,241,0.87);" >문의하기</a></li>
+            <li><a href="http://localhost:8080/tenseconds" class="m11" >10s</a></li>
+            <li><a href="http://localhost:8080/empathy_space" class="m11" >공감공간</a></li>
+            <li><a href="question.html" class="m11" style="color: rgba(98,150,241,0.87);" >문의하기</a></li>
         </ul>
     </div>
 </div>
 
+<!--게시글 페이지-->
 <div class="container">
     <div class="c1">
+        <div class="queries label" id="label">
+            <div class="query-number">No</div>
+            <div class="line"></div>
+            <div class="query-type">문의내용</div>
+            <div class="line"></div>
+            <div class="query-name">제목</div>
+            <div class="line"></div>
+            <div class="enquirer">작성자</div>
+            <div class="line"></div>
+            <div class="query-date">등록일</div>
+            <div class="line"></div>
+            <div class="query-status">답변상태</div>
+            <div class="line"></div>
+            <div class="public-private">공개여부</div>
+        </div>
+        <div class="queries queries-items" id="lne1">
+            <div class="query-number">1</div>
+            <div class="line"></div>
+            <div class="query-type">사용불편</div>
+            <div class="line"></div>
+            <div class="query-name">"tenseconds" 페이지 문의합니다.</div>
+            <div class="line"></div>
+            <div class="enquirer">db******</div>
+            <div class="line"></div>
+            <div class="query-date">2022.02.13</div>
+            <div class="line"></div>
+            <div class="query-status">처리중</div>
+            <div class="line"></div>
+            <div class="public-private">공개</div>
+        </div>
+        <div class="queries queries-items" id="lne2">
+            <div class="query-number">1</div>
+            <div class="line"></div>
+            <div class="query-type">사용불편</div>
+            <div class="line"></div>
+            <div class="query-name">"tenseconds" 페이지 문의합니다.</div>
+            <div class="line"></div>
+            <div class="enquirer">db******</div>
+            <div class="line"></div>
+            <div class="query-date">2022.02.13</div>
+            <div class="line"></div>
+            <div class="query-status">처리중</div>
+            <div class="line"></div>
+            <div class="public-private">공개</div>
+        </div>
+    </div>
+</div>
+
+<!--업로드 페이지-->
+<div class="upload-container">
+    <div class="upload-c1">
         <div class="c1-title">
             <div class="c1-title-name">제목</div>
             <input class="c1-title-content" placeholder="제목을 입력해주세요." type="text" required/>
@@ -48,7 +100,12 @@
 
 </div>
 
-<script src="js/question_upload.js"></script>
+
+<div class="upload-button">
+    <button class="upload-button-item" onclick="inquiry()"> 글 작성하기 </button>
+</div>
+
+<script src="js/question.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
