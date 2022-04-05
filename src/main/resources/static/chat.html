@@ -27,7 +27,11 @@
 
   socket.onclose = function (e) { // 채팅방에서 나갔을 때
     let str = username + " 님이 방을 나가셨습니다.";
-    socket.send(str);
+    // socket.send(str);
+
+    let msgArea = document.querySelector('.msgArea');
+    msgArea.append(str)
+
   }
 
   socket.onerror = function (e){
@@ -40,6 +44,7 @@
     let newMsg = document.createElement('div');
     newMsg.innerText=e.data;
     msgArea.append(newMsg);
+
   }
 
   function sendMsg() {
