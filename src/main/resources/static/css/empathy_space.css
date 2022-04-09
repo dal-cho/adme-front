@@ -134,6 +134,7 @@ li.icon {
     height: 40px;
     border: 3px solid black;
     border-radius: 10px 10px 10px 10px;
+    /*글씨 넘치는거 처리*/
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

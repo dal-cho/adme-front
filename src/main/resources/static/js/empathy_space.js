@@ -126,7 +126,7 @@ function makeListPost(board, num) {
     let modi = board.modifiedAt;
     let mode = modi.substr(0, 10);
     let idx = board.idx;
-    let tempHtml = `<div class="item" onclick="window.location.href='space.html?idx=${idx}'">
+    let tempHtml = `<div class="item" onclick="window.location.href='empathy_space.html?idx=${idx}'">
                         <div class="num">${num}</div>
                         <div class="title">${title}</a></div>
                         <div class="date">${mode}</div>
@@ -162,7 +162,7 @@ function saveArticle() {
             alert("성공적으로 업로드 되었습니다.");
             // sessionStorage.setItem("image_idx", response['idx']);
 
-            location.href = "space.html"; // 페이지 변환
+            location.href = "empathy_space.html"; // 페이지 변환
         }
     });
 }
