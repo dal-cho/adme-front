@@ -2,13 +2,18 @@ $(document).ready(function(){
     $(".container").fadeIn(1000);
     $(".menu").fadeIn(1000);
     $(".paging_button").fadeIn(1000);
+});
+
+function inquiry(){
+    $(".container").hide();
+    $(".upload-container").show();
 
     // dropdown
     $("#default-public-button").show();
     $("#default-private-button").hide();
     $("#public-button").hide();
     $("#private-button").hide();
-});
+}
 
 // dropdown
 function choice_button() {
@@ -45,7 +50,7 @@ function saveArticle() {
             alert("성공적으로 업로드 되었습니다.");
             // sessionStorage.setItem("image_idx", response['idx']);
 
-            location.href = "space.html"; // 페이지 변환
+            location.href = "empathy_space.html"; // 페이지 변환
         }
     });
 }

@@ -134,6 +134,7 @@ li.icon {
     height: 40px;
     border: 3px solid black;
     border-radius: 10px 10px 10px 10px;
+    /*글씨 넘치는거 처리*/
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -201,4 +202,123 @@ li.icon {
 }
 .upload-button-item:hover {
     cursor: pointer;
+}
+
+/* registry page */
+.registry-container {
+    display: none;
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: calc(50% - 376px);
+    left: calc(50% - 500px);
+    border-radius: 7px 7px 7px 7px;
+}
+
+.registry-c1 {
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 980px;
+    height: 770px;
+    border: 10px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.c1-title {
+    top: 30px;
+    margin-left: 40px;
+    display: flex;
+    position: relative;
+    width: 900px;
+    height: 60px;
+}
+
+.c1-title-name {
+    margin: auto;
+    font-size: 22px;
+    color: #304bee;
+    text-align: center;
+    width: 120px;
+    height: 30px;
+    background-color: rgba(175, 209, 250, 0.78);
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    border-radius: 3px 3px 3px 3px;
+}
+
+.c1-title-content {
+    margin-left: 5px;
+    margin-top: 9px;
+    font-size: 20px;
+    width: 850px;
+    height: 30px;
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 7px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.c1-content {
+    top: 38px;
+    margin-left: 40px;
+    display: flex;
+    position: relative;
+    width: 900px;
+    height: 60px;
+}
+
+.c1-content-name {
+    margin: auto;
+    text-align: center;
+    font-size: 22px;
+    color: #304bee;
+    width: 120px;
+    height: 30px;
+    background-color: rgba(175, 209, 250, 0.78);
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    border-radius: 3px 3px 3px 3px;
+}
+
+.c1-content-content {
+    margin-left: 5px;
+    margin-top: 9px;
+    font-size: 20px;
+    width: 850px;
+    height: 540px;
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 7px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 10px 10px 10px 10px;
+    resize: none;
+}
+.button-box {
+    display: flex;
+    position: relative;
+    top: 560px;
+    margin-left: 416px;
+}
+
+.check-button {
+    color: rgba(4, 16, 185, 0.75);
+    cursor: pointer;
+    font-size: 21px;
+    margin-right: 20px;
+    width: 150px;
+    height: 40px;
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    background-color: #D5EDFFC6;
+    border-radius: 10px;
+}
+
+.check-button:hover {
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    background-color: rgba(175, 209, 250, 0.78);
+}
+
+.public-private-box {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }

@@ -12,7 +12,15 @@ $(document).ready(function(){
     getArticle(1);
 });
 
-//페이지버튼 클릭시 fill 이미지로 변경
+// 업로드 버튼
+function registryPage(){
+    $(".container").hide();
+    $(".container1").hide();
+    $(".upload-button").hide();
+    $(".registry-container").show();
+}
+
+// 페이지버튼 클릭시 fill 이미지로 변경
 function pageSelect() {
     //마우스 클릭한 곳의 이미지 값을 변화시켜준다. (다른 곳을 클릭하면 이전 클릭 기록은 지워준다.)
     $('.paging-num').on("click",function(){
@@ -29,7 +37,7 @@ function pageSelect() {
     });
 }
 
-//페이징버튼에 마우스 올릴시 fill 이미지로 변경
+// 페이징버튼에 마우스 올릴시 fill 이미지로 변경
 function pageOver() {
     //마우스 올린 곳의 이미지 값을 변화시켜준다.
     $('.paging-num').mouseover(function(){
@@ -45,7 +53,7 @@ function pageOver() {
     });
 }
 
-//페이징버튼에서 마우스 내릴시 빈 이미지로 변경
+// 페이징버튼에서 마우스 내릴시 빈 이미지로 변경
 function pageLeave(){
     //마우스가 위치를 벗어나면 이미지 값을 변화시킨다.
     $('.paging-num').mouseleave(function(){
@@ -92,7 +100,6 @@ function showMain() {
 }
 
 // paging
-
 function getArticle(curpage) {
     $.ajax({
         type: "GET",
@@ -112,18 +119,20 @@ function getArticle(curpage) {
     })
 }
 
+// 리스트 출력
 function makeListPost(board, num) {
     let title = board.title;
     let content = board.main;
     let modi = board.modifiedAt;
     let mode = modi.substr(0, 10);
     let idx = board.idx;
-    let tempHtml = `<div class="item" onclick="window.location.href='space.html?idx=${idx}'">
+    let tempHtml = `<div class="item" onclick="window.location.href='empathy_space.html?idx=${idx}'">
                         <div class="num">${num}</div>
                         <div class="title">${title}</a></div>
                         <div class="date">${mode}</div>
                    </div>`
     $("#c1-posting").append(tempHtml);
+}
 
 function makePagination(count, curpage) {
     let tempHtml = ``;
@@ -137,3 +146,23 @@ function makePagination(count, curpage) {
     $('#board-pages').html(tempHtml);
 }
 
+// 저장하기
+function saveArticle() {
+    let form_data = new FormData()
+    form_data.append("c1-title-content", $("#h1").val())
+    form_data.append("c1-content-content", $("#h2").val())
+
+    $.ajax({
+        type: "POST",
+        url: `/registry`,
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            alert("성공적으로 업로드 되었습니다.");
+            // sessionStorage.setItem("image_idx", response['idx']);
+
+            location.href = "empathy_space.html"; // 페이지 변환
+        }
+    });
+}
