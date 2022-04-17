@@ -180,11 +180,12 @@ li.icon {
 
 .c1-title-name {
     margin: auto;
+    padding: 4px;
     font-size: 22px;
     color: #304bee;
     text-align: center;
-    width: 120px;
-    height: 30px;
+    width: 113px;
+    height: 23px;
     background-color: rgba(175, 209, 250, 0.78);
     border: 3px solid rgba(175, 209, 250, 0.78);
     border-radius: 3px 3px 3px 3px;
@@ -201,6 +202,7 @@ li.icon {
     border: 7px solid #D5EDFFC6;
     display: inline-block;
     border-radius: 10px 10px 10px 10px;
+    outline: none;
 }
 
 .c1-content {
@@ -214,11 +216,12 @@ li.icon {
 
 .c1-content-name {
     margin: auto;
+    padding: 4px;
     text-align: center;
     font-size: 22px;
     color: #304bee;
-    width: 120px;
-    height: 30px;
+    width: 113px;
+    height: 23px;
     background-color: rgba(175, 209, 250, 0.78);
     border: 3px solid rgba(175, 209, 250, 0.78);
     border-radius: 3px 3px 3px 3px;
@@ -236,6 +239,7 @@ li.icon {
     display: inline-block;
     border-radius: 10px 10px 10px 10px;
     resize: none;
+    outline: none;
 }
 
 .c1-file {
@@ -249,11 +253,12 @@ li.icon {
 
 .c1-file-name {
     margin: auto;
+    padding: 4px;
     font-size: 22px;
     color: #304bee;
     text-align: center;
-    width: 120px;
-    height: 30px;
+    width: 113px;
+    height: 23px;
     background-color: rgba(175, 209, 250, 0.78);
     border: 3px solid rgba(175, 209, 250, 0.78);
     border-radius: 3px 3px 3px 3px;
@@ -269,6 +274,7 @@ li.icon {
     background-color: rgba(255, 255, 255, 0.5);
     border: 7px solid #D5EDFFC6;
     border-radius: 10px 10px 10px 10px;
+    outline: none;
 }
 
 .upload-c1 > h4 {
@@ -280,7 +286,7 @@ li.icon {
 .button-box {
     display: flex;
     position: relative;
-    top: 460px;
+    top: 445px;
     margin-left: 340px;
 }
 
