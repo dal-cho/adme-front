@@ -13,11 +13,30 @@
 <body>
 <div class="header" style="position:relative;">
     <div id="header-title-login-user">
-        <span th:text="${username}"></span> 님
+        <span id="nickname" th:text="${nickname}"></span> 님
     </div>
     <a id="logout-text" href="/user/logout">
         로그아웃
     </a>
 </div>
+<script>
+    $(document).ready(
+        home)
+
+    let nick = $("#nickname").text();
+    sessionStorage.setItem("nickname", nick);
+    console.log(sessionStorage.getItem("nickname"))
+    function home() {
+        $.ajax({
+            type : "GET",
+            url: `http://localhost:8080/`,
+            contentType : "application/json",
+            data: {},
+            success: function (response) {
+                console.log("sucess임")
+            }
+        })
+    }
+</script>
 </body>
 </html>
