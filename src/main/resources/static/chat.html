@@ -3,64 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <link rel="stylesheet" type="text/css" href="css/chat.css">
     <!-- $.ajax is not a function  error 해결방법 -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
-<input type="text" placeholder="보낼 메세지를 입력하세요." class="content">
-<button type="button" value="전송" class="sendBtn" onclick="sendMsg()">전송</button>
-<div id="join-count">
-    <!--  <span id="join-span">현재 참여 인원 ${user_count}명</span>-->
-    <div class="msgArea"></div>
+
+<div id="chat">
+    <input type="text" placeholder="보낼 메세지를 입력하세요." class="content">
+    <button type="button" value="전송" class="sendBtn" onclick="sendMsg()">전송</button>
+    <div id="join-count">
+        <!--  <span id="join-span">현재 참여 인원 ${user_count}명</span>-->
+        <div class="msgArea"></div>
+    </div>
 </div>
-<script src="js/socket.js"></script>
+
+<div id="user">
+    <div class="menu">
+        <div class="m1">
+            <a id="num" class="m11" style="color: rgba(98,150,241,0.87);">0</a>
+            <a class="m11">명</a>
+        </div>
+    </div>
+</div>
+
+<script src="/js/chat.js"></script>
 <script src="/webjars/stomp-websocket/2.3.3-1/stomp.js" type="text/javascript"></script>
 <script src="/webjars/sockjs-client/1.1.2/sockjs.js" type="text/javascript"></script>
 </body>
+
 <script>
-    let username = sessionStorage.getItem("nickname");
-    let socket = new WebSocket("ws://localhost:8080/websocket");
-
-    let count = [1];
-    socket.onopen = function (e) {
-        console.log('open server!')
-        let str = username + " 님이 입장하셨습니다.";
-        socket.send(str);
-        count.push(username);
-    };
-
-    socket.onclose = function (e) { // 채팅방에서 나갔을 때
-        let str = username + " 님이 방을 나가셨습니다.";
-        socket.send(str);
-        count.pop(username)
-        $("#join-count").load(window.location.href + " #join-span")
-    }
-
-    // 접속자 수 띄우기
-    $(document).ready(count_user)
-
-    function count_user() {
-        let html_temp = `<span id="join-span">현재 참여 인원 : ${count.length}명</span>`
-        $("#join-count").append(html_temp);
-    }
-
-    socket.onerror = function (e) {
-        console.log(e);
-    }
-
-    socket.onmessage = function (e) {
-        console.log(e.data);
-        let msgArea = document.querySelector('.msgArea');
-        let newMsg = document.createElement('div');
-        newMsg.innerText = e.data;
-        msgArea.append(newMsg);
-    }
-
-    function sendMsg() {
-        let content = document.querySelector('.content').value;
-        socket.send(username + " : " + content); // 닉네임 : message 형태
-    }
-
 </script>
 </html>
