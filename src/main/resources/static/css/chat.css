@@ -1,0 +1,58 @@
+body {
+    /*background: #c6dff5; */ /* #8eb3d4*/
+    /*background-image: linear-gradient(-225deg, #7085B6 0%, #87A7D9 50%, #DEF3F8 100%);*/
+    background: linear-gradient(70deg, rgba(132, 204, 222, 0.76), #eee5ca);
+    font-family: "Roboto";
+}
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #748194;
+}
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #748194;
+}
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #748194;
+}
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #748194;
+}
+
+.content { /* 채팅 input */
+    margin-left: 15px;
+    margin-top: 19px;
+    margin-right: 10px;
+    font-size: 20px;
+    width: 850px;
+    height: 30px;
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 7px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 10px 10px 10px 10px;
+}
+.sendBtn{ /* 전송 버튼 */
+    color: rgba(4, 16, 185, 0.75);
+    cursor: pointer;
+    font-size: 21px;
+    margin-right: 20px;
+    width: 150px;
+    height: 40px;
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    background-color: #D5EDFFC6;
+    border-radius: 10px;
+}
+
+#user{
+    margin-left: 1200px;
+}
+.menu {
+    width: auto;
+    height: auto;
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    border-radius: 7px 7px 7px 7px;
+}
+
