@@ -8,21 +8,23 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
+<div class="container">
+    <div class="chat-box">
+        <div id="chat">
+            <div id="join-count">
+                <!--  <span id="join-span">현재 참여 인원 ${user_count}명</span>-->
+                <div class="msgArea"></div>
+            </div>
+            <input type="text" placeholder="보낼 메세지를 입력하세요." class="content">
+            <button type="button" value="전송" class="sendBtn" onclick="sendMsg()">전송</button>
+        </div>
 
-<div id="chat">
-    <input type="text" placeholder="보낼 메세지를 입력하세요." class="content">
-    <button type="button" value="전송" class="sendBtn" onclick="sendMsg()">전송</button>
-    <div id="join-count">
-        <!--  <span id="join-span">현재 참여 인원 ${user_count}명</span>-->
-        <div class="msgArea"></div>
-    </div>
-</div>
-
-<div id="user">
-    <div class="menu">
-        <div class="m1">
-            <a id="num" class="m11" style="color: rgba(98,150,241,0.87);">0</a>
-            <a class="m11">명</a>
+        <div id="user">
+            <div class="menu">
+                <div class="m1">
+                    <a id="num" style="color: rgba(98,150,241,0.87);">0</a> 명
+                </div>
+            </div>
         </div>
     </div>
 </div>
