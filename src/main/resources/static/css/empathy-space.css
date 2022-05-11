@@ -257,6 +257,7 @@ li.icon {
     border: 7px solid #D5EDFFC6;
     display: inline-block;
     border-radius: 10px 10px 10px 10px;
+    outline: none;
 }
 
 .c1-content {
@@ -292,6 +293,7 @@ li.icon {
     display: inline-block;
     border-radius: 10px 10px 10px 10px;
     resize: none;
+    outline: none;
 }
 .button-box {
     display: flex;
