@@ -39,6 +39,7 @@ socket.onmessage = function (e) {
     console.log(e.data);
     let msgArea = document.querySelector('.msgArea');
     let newMsg = document.createElement('div');
+    newMsg.className = "chat-msg";
     newMsg.innerText = e.data;
     msgArea.append(newMsg);
 }
@@ -46,5 +47,6 @@ socket.onmessage = function (e) {
 function sendMsg() {
     let content = document.querySelector('.content').value;
     socket.send(username + " : " + content); // 닉네임 : message 형태
+    $(".content").val('')
     count_user();
 }

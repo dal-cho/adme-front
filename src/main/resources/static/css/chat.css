@@ -72,6 +72,12 @@ body {
     border: 5px solid rgba(175, 209, 250, 0.78);
 }
 
+.chat-msg {
+    display: inline-block;
+    width: 400px;
+    white-space: normal;
+}
+
 #user {
     position: absolute;
     top: 14px;
