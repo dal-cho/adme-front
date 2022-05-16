@@ -6,10 +6,8 @@ $(document).ready(function(){
     pageSelect();
     pageOver();
     pageLeave();
-    // 게시물
-    showMain();
-    // paging
-    getArticle(1);
+    
+    getArticle(1); // paging
 });
 
 // 업로드 버튼
@@ -69,35 +67,8 @@ function pageLeave(){
     });
 }
 
-// 게시물
-function showMain() {
-    $.ajax({
-        type: "GET",
-        url: `/space`,
-        data: {},
-        success: function (response) {
-            let respon = response.reverse();
-            for (let i = 0; i < respon.length; i++) {
-                let idx = respon[i]['idx'];
-                let title = respon[i]['title'];
-                let main = respon[i]['main'];
-                /*
-                for (let i = 0; i < response.length; i++) {
-                    let idx = response[i]['idx'];
-                    let title = response[i]['title'];
-                    let main = response[i]['main']; */
-                if(title.length >= 15) {
-                    title = title.substr(0,15) + "...";
-                }
-                let temp_html = `
-                            <li class="item"><div id="${idx}" style="font-size: 20px; text-align: center; margin-top: 60px; padding-left: 5px; padding-right: 5px ">${title}</div></li>
-                        `
-                $("#c1-posting").append(temp_html);
+let nickname = sessionStorage.getItem("nickname");
 
-            }
-        }
-    });
-}
 
 // paging
 function getArticle(curpage) {
@@ -126,7 +97,7 @@ function makeListPost(board, num) {
     let modi = board.modifiedAt;
     let mode = modi.substr(0, 10);
     let idx = board.idx;
-    let tempHtml = `<div class="item" onclick="window.location.href='empathy-space.html?idx=${idx}'">
+    let tempHtml = `<div class="item"><button onclick="allRegistry(${idx})">
                         <div class="num">${num}</div>
                         <div class="title">${title}</a></div>
                         <div class="date">${mode}</div>
@@ -146,11 +117,13 @@ function makePagination(count, curpage) {
     $('#board-pages').html(tempHtml);
 }
 
-// 저장하기
+
+// 게시글 등록하기
 function saveArticle() {
     let form_data = new FormData()
     form_data.append("title", $("#h1").val())
     form_data.append("main", $("#h2").val())
+    form_data.append("nickname",nickname)
 
     $.ajax({
         type: "POST",
@@ -163,6 +136,37 @@ function saveArticle() {
             // sessionStorage.setItem("image_idx", response['idx']);
 
             location.href = "empathy-space.html"; // 페이지 변환
+        }
+    });
+}
+
+
+
+// 게시글 상세 페이지
+function allRegistry(idx) {
+    $.ajax({
+        type: "GET",
+        url: `/registry?idx=${idx}`,
+        data: {},
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            //alert(JSON.stringify(response)) // 받아오는 값 모두 보기
+            let created = response['createdAt']
+            let modified = response['modifiedAt']
+            let idx = response['idx']
+            let title = response['title']
+            let main = response['main']
+            let username = response['nickname']
+
+            // 0000-00-00 형식으로 출력
+            let date = new Date(created)
+            let newcreated = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+
+            alert("작성자 : " + username + "\n" +
+                 "작성일자 : " + newcreated + "\n" +
+             "title : " + title + "\n" +
+             "main : " + main)
         }
     });
 }
