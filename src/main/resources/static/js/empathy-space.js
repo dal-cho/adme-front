@@ -111,9 +111,15 @@ function makePagination(count, curpage) {
     let tempHtml = ``;
     for (let i = 0; i < count; i++) {
         if (i + 1 == curpage) {
-            tempHtml += `<a href="#" class="num on">${i + 1}</a>`;
-        } else {
-            tempHtml += `<a href="#" class="num" onclick="getArticle(${i + 1})">${i + 1}</a>`;
+            // <a href="#" class="num on">${i + 1}</a>
+            tempHtml += `
+<li class="page-number" value="${i + 1}"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
+      `;
+
+        } else { // <a href="#" class="num" onclick="getArticle(${i + 1})">${i + 1}</a>
+            tempHtml += `
+<li class="page-number" value="${i + 1}"><img class="paging-num" id="page-number1-img" value="0" onclick="getArticle(${i + 1})" src="img/num.png"></li>
+`;
         }
     }
     $('#board-pages').html(tempHtml);
@@ -166,9 +172,9 @@ function allRegistry(idx) {
             let newcreated = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
 
             alert("작성자 : " + username + "\n" +
-                 "작성일자 : " + newcreated + "\n" +
-             "title : " + title + "\n" +
-             "main : " + main)
+                "작성일자 : " + newcreated + "\n" +
+                "title : " + title + "\n" +
+                "main : " + main)
         }
     });
 }
