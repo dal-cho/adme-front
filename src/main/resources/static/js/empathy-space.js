@@ -6,7 +6,6 @@ $(document).ready(function(){
     pageSelect();
     pageOver();
     pageLeave();
-    
     getArticle(1); // paging
 });
 
@@ -67,30 +66,32 @@ function pageLeave(){
     });
 }
 
+// nickname 가져오기
 let nickname = sessionStorage.getItem("nickname");
 
 
-// paging
+// 작성 글 페이징
 function getArticle(curpage) {
     $.ajax({
         type: "GET",
         url: `space/${curpage}`,
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            let list = response.data;
-            let fullCount = response.count;
+            let list = response.data; // 조회된 데이터
+            let fullCount = response.count; // 전체 페이지의 수
             $("#c1-posting").empty();
 
             for (let i = 0; i < list.length; i++) {
                 num = i + 1;
-                makeListPost(list[i], num, curpage);
+                makeListPost(list[i], num, curpage); // 네모 칸 리스트 출력
             }
-            makePagination(fullCount, curpage);
+            makePagination(fullCount, curpage); // 아래 하단 페이징
         }
     })
 }
 
-// 리스트 출력
+
+// 네모 칸 리스트 출력
 function makeListPost(board, num) {
     let title = board.title;
     let content = board.main;
@@ -105,6 +106,7 @@ function makeListPost(board, num) {
     $("#c1-posting").append(tempHtml);
 }
 
+// 아래 하단 페이징
 function makePagination(count, curpage) {
     let tempHtml = ``;
     for (let i = 0; i < count; i++) {
