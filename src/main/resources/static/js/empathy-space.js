@@ -15,6 +15,8 @@ function registryPage(){
     $(".container1").hide();
     $(".upload-button").hide();
     $(".registry-container").show();
+    $(".registry-c1").fadeIn();
+
 }
 
 // 페이지버튼 클릭시 fill 이미지로 변경
@@ -98,11 +100,12 @@ function makeListPost(board, num) {
     let modi = board.modifiedAt;
     let mode = modi.substr(0, 10);
     let idx = board.idx;
-    let tempHtml = `<div class="item"><button onclick="allRegistry(${idx})">
+    let tempHtml = `<div class="item"><button onclick="allRegistry(${idx}); openModal();">
                         <div class="num">${num}</div>
                         <div class="title">${title}</a></div>
                         <div class="date">${mode}</div>
-                   </div>`
+                   </div>
+`
     $("#c1-posting").append(tempHtml);
 }
 
@@ -171,10 +174,22 @@ function allRegistry(idx) {
             let date = new Date(created)
             let newcreated = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
 
-            alert("작성자 : " + username + "\n" +
-                "작성일자 : " + newcreated + "\n" +
-                "title : " + title + "\n" +
-                "main : " + main)
+            $("#user").html(username)
+            $("#created").html(newcreated)
+            $("#modal-title").html(title)
+            $("#modal-main").html(main)
+
+            $(".registry-container").fadeIn();
+            $(".registry-c1").fadeOut();
+
+
         }
     });
+}
+
+function openModal() {
+    $("#articleModal").fadeIn();
+}
+function closeModal() {
+    $("#articleModal").fadeOut();
 }
