@@ -16,6 +16,7 @@ function registryPage(){
     $(".upload-button").hide();
     $(".registry-container").show();
     $(".registry-c1").fadeIn();
+    $("#articleModal").fadeOut();
 
 }
 
@@ -100,7 +101,7 @@ function makeListPost(board, num) {
     let modi = board.modifiedAt;
     let mode = modi.substr(0, 10);
     let idx = board.idx;
-    let tempHtml = `<div class="item"><button onclick="allRegistry(${idx}); openModal();">
+    let tempHtml = `<div class="item"><button onclick="allRegistry(${idx})">
                         <div class="num">${num}</div>
                         <div class="title">${title}</a></div>
                         <div class="date">${mode}</div>
@@ -179,17 +180,12 @@ function allRegistry(idx) {
             $("#modal-title").html(title)
             $("#modal-main").html(main)
 
-            $(".registry-container").fadeIn();
+            $("#articleModal").fadeIn();
             $(".registry-c1").fadeOut();
-
-
         }
     });
 }
 
-function openModal() {
-    $("#articleModal").fadeIn();
-}
 function closeModal() {
     $("#articleModal").fadeOut();
 }
