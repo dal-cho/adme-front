@@ -324,3 +324,21 @@ li.icon {
     flex-direction: column;
     gap: 3px;
 }
+
+
+
+/* 모달 */
+.modal{
+    position: absolute;
+    width: 55%; /* 모달 창 가로 */
+    height: 85%;
+    display: none;
+    border: #748194;
+    border-radius: 7px 7px 7px 7px;
+    background: #eee5ca;
+
+    padding-bottom: 15px;
+    top:20%; left:25%; /* 박스 바깥 폭 */
+    margin-top:-100px; margin-left:-200px;
+    overflow: hidden;
+}
