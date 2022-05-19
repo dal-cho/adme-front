@@ -189,3 +189,5 @@ function allRegistry(idx) {
 function closeModal() {
     $("#articleModal").fadeOut();
 }
+
+//////////// pull test
