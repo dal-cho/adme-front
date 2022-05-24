@@ -80,18 +80,17 @@ function getArticle(curpage) {
         url: `space/${curpage}`,
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            let list = response.data; // 조회된 데이터
-            let fullCount = response.count; // 전체 페이지의 수
+            let list = response.data;
+            let fullCount = response.count;
             $("#c1-posting").empty();
+            $("#nowPage").empty();
 
             let startPage = response.startPage;
             let endPage = response.endPage;
             let prev = response.prev;
             let next = response.next
-            console.log(fullCount, startPage, endPage, prev, next) // 6 1 5 false true // 6 6 6 true false
-            //console.log(JSON.stringify(response))
 
-
+            $("#nowPage").append(curpage + "페이지")
             for (let i = 0; i < list.length; i++) {
                 num = i + 1;
                 makeListPost(list[i], num, curpage); // 네모 칸 리스트 출력
@@ -118,22 +117,37 @@ function makeListPost(board, num) {
     $("#c1-posting").append(tempHtml);
 }
 
+
 // 아래 하단 페이징
 function makePagination(count, curpage, startPage, endPage, prev, next) {
     let tempHtml = ``;
-    for (let i = 0; i < count; i++) {
-        if (i + 1 == curpage) {
+    if (prev) {
+        tempHtml += `<li class="left-number" value="before" ><button type="button" onclick="beforeClick(${curpage})"><img type="button" class="paging-num" id="left-num-img" value="0" src="img/left-num.png"></button></li>`
+    }
+
+    // 페이징 번호 표시
+    for (let i = startPage; i <= endPage; i++) {
+        if(curpage ==i) {
             tempHtml += `
-<li class="page-number" value="${i + 1}"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
+<li class="page-number" value="${i}" id="curPage"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
       `;
-        }
-        else {
+        } else {
             tempHtml += `
-<li class="page-number" value="${i + 1}"><img class="paging-num" id="page-number1-img" value="0" onclick="getArticle(${i + 1})" src="img/num.png"></li>
-`; // value는 페이지 값 // getArticle(db 저장된 idx) 값
+<li class="page-number" value="${i}" id="otherPage"><img class="paging-num" id="page-number1-img" value="0" onclick="getArticle(${i})" src="img/num.png"></li>
+`;
         }
     }
+    if (next) { // 다음 버튼
+        tempHtml += `<li class="right-number" value="after"><button type="button" id="nextButton" onclick="nextClick(${curpage})"><img class="paging-num" id="right-num-img" value="0" src="img/right-num.png"></button></li>`
+    }
     $('#board-pages').html(tempHtml);
+}
+
+function beforeClick(curpage){
+    getArticle(curpage-1);
+}
+function nextClick(curpage) {
+    getArticle(curpage+1);
 }
 
 
@@ -152,8 +166,6 @@ function saveArticle() {
         processData: false,
         success: function (response) {
             alert("성공적으로 업로드 되었습니다.");
-            // sessionStorage.setItem("image_idx", response['idx']);
-
             location.href = "empathy-space.html"; // 페이지 변환
         }
     });
