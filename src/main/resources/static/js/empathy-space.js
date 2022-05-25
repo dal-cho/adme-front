@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $(".container").fadeIn(1000);
     $(".container1").fadeIn(1000);
     $(".menu").fadeIn(1000);
@@ -10,7 +10,7 @@ $(document).ready(function(){
 });
 
 // 업로드 버튼
-function registryPage(){
+function registryPage() {
     $(".container").hide();
     $(".container1").hide();
     $(".upload-button").hide();
@@ -23,10 +23,10 @@ function registryPage(){
 // 페이지버튼 클릭시 fill 이미지로 변경
 function pageSelect() {
     //마우스 클릭한 곳의 이미지 값을 변화시켜준다. (다른 곳을 클릭하면 이전 클릭 기록은 지워준다.)
-    $('.paging-num').on("click",function(){
+    $('.paging-num').on("click", function () {
         let id_check = $(this).attr("id");
-        if (id_check.slice(0,11) === "page-number"){
-            for (let i=1; i<6; i++){
+        if (id_check.slice(0, 11) === "page-number") {
+            for (let i = 1; i < 6; i++) {
                 $('.paging-num').eq(i).attr("src", "img/num.png");
                 $('.paging-num').eq(i).attr("value", "0");
             }
@@ -40,7 +40,7 @@ function pageSelect() {
 // 페이징버튼에 마우스 올릴시 fill 이미지로 변경
 function pageOver() {
     //마우스 올린 곳의 이미지 값을 변화시켜준다.
-    $('.paging-num').mouseover(function(){
+    $('.paging-num').mouseover(function () {
         let id_check = $(this).attr("id");
         let value_check = $(this).attr("value");
         if (id_check === "left-num-img") {
@@ -54,16 +54,16 @@ function pageOver() {
 }
 
 // 페이징버튼에서 마우스 내릴시 빈 이미지로 변경
-function pageLeave(){
+function pageLeave() {
     //마우스가 위치를 벗어나면 이미지 값을 변화시킨다.
-    $('.paging-num').mouseleave(function(){
+    $('.paging-num').mouseleave(function () {
         let id_check = $(this).attr("id");
         let value_check = $(this).attr("value");
-        if (id_check === "left-num-img"){
+        if (id_check === "left-num-img") {
             $(this).attr("src", "img/left-num.png");
-        }else if (id_check === "right-num-img"){
+        } else if (id_check === "right-num-img") {
             $(this).attr("src", "img/right-num.png");
-        }else if (value_check === "0" && id_check.slice(0,11) === "page-number"){
+        } else if (value_check === "0" && id_check.slice(0, 11) === "page-number") {
             $(this).attr("src", "img/num.png");
         }
     });
@@ -80,15 +80,22 @@ function getArticle(curpage) {
         url: `space/${curpage}`,
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            let list = response.data; // 조회된 데이터
-            let fullCount = response.count; // 전체 페이지의 수
+            let list = response.data;
+            let fullCount = response.count;
             $("#c1-posting").empty();
+            $("#nowPage").empty();
 
+            let startPage = response.startPage;
+            let endPage = response.endPage;
+            let prev = response.prev;
+            let next = response.next
+
+            $("#nowPage").append(curpage + "페이지")
             for (let i = 0; i < list.length; i++) {
                 num = i + 1;
                 makeListPost(list[i], num, curpage); // 네모 칸 리스트 출력
             }
-            makePagination(fullCount, curpage); // 아래 하단 페이징
+            makePagination(fullCount, curpage, startPage, endPage, prev, next); // 아래 하단 페이징
         }
     })
 }
@@ -110,23 +117,37 @@ function makeListPost(board, num) {
     $("#c1-posting").append(tempHtml);
 }
 
-// 아래 하단 페이징
-function makePagination(count, curpage) {
-    let tempHtml = ``;
-    for (let i = 0; i < count; i++) {
-        if (i + 1 == curpage) {
-            // <a href="#" class="num on">${i + 1}</a>
-            tempHtml += `
-<li class="page-number" value="${i + 1}"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
-      `;
 
-        } else { // <a href="#" class="num" onclick="getArticle(${i + 1})">${i + 1}</a>
+// 아래 하단 페이징
+function makePagination(count, curpage, startPage, endPage, prev, next) {
+    let tempHtml = ``;
+    if (prev) {
+        tempHtml += `<li class="left-number" value="before" ><button type="button" onclick="beforeClick(${curpage})"><img type="button" class="paging-num" id="left-num-img" value="0" src="img/left-num.png"></button></li>`
+    }
+
+    // 페이징 번호 표시
+    for (let i = startPage; i <= endPage; i++) {
+        if(curpage ==i) {
             tempHtml += `
-<li class="page-number" value="${i + 1}"><img class="paging-num" id="page-number1-img" value="0" onclick="getArticle(${i + 1})" src="img/num.png"></li>
+<li class="page-number" value="${i}" id="curPage"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
+      `;
+        } else {
+            tempHtml += `
+<li class="page-number" value="${i}" id="otherPage"><img class="paging-num" id="page-number1-img" value="0" onclick="getArticle(${i})" src="img/num.png"></li>
 `;
         }
     }
+    if (next) { // 다음 버튼
+        tempHtml += `<li class="right-number" value="after"><button type="button" id="nextButton" onclick="nextClick(${curpage})"><img class="paging-num" id="right-num-img" value="0" src="img/right-num.png"></button></li>`
+    }
     $('#board-pages').html(tempHtml);
+}
+
+function beforeClick(curpage){
+    getArticle(curpage-1);
+}
+function nextClick(curpage) {
+    getArticle(curpage+1);
 }
 
 
@@ -135,7 +156,7 @@ function saveArticle() {
     let form_data = new FormData()
     form_data.append("title", $("#h1").val())
     form_data.append("main", $("#h2").val())
-    form_data.append("nickname",nickname)
+    form_data.append("nickname", nickname)
 
     $.ajax({
         type: "POST",
@@ -145,13 +166,10 @@ function saveArticle() {
         processData: false,
         success: function (response) {
             alert("성공적으로 업로드 되었습니다.");
-            // sessionStorage.setItem("image_idx", response['idx']);
-
             location.href = "empathy-space.html"; // 페이지 변환
         }
     });
 }
-
 
 
 // 게시글 상세 페이지
@@ -189,5 +207,3 @@ function allRegistry(idx) {
 function closeModal() {
     $("#articleModal").fadeOut();
 }
-
-//////////// pull test
