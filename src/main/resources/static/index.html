@@ -17,7 +17,9 @@
     </div>
     <a id="logout-text" href="/user/logout">
         로그아웃
-    </a>
+    </a><br>
+    <a href="/tenseconds.html">10s </a><br>
+    <a href="/empathy-space.html">공감공간 </a>
 </div>
 <script>
     $(document).ready(
@@ -33,7 +35,7 @@
             contentType : "application/json",
             data: {},
             success: function (response) {
-                console.log("sucess임")
+                console.log("login")
             }
         })
     }
