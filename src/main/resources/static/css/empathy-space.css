@@ -330,15 +330,27 @@ li.icon {
 /* 모달 */
 .modal{
     position: absolute;
-    width: 55%; /* 모달 창 가로 */
-    height: 85%;
+    width: 55em; /* 모달 창 가로 */
+    height: 38em;
     display: none;
     border: #748194;
     border-radius: 7px 7px 7px 7px;
     background: #eee5ca;
 
-    padding-bottom: 15px;
+    padding: 25px;
     top:20%; left:25%; /* 박스 바깥 폭 */
-    margin-top:-100px; margin-left:-200px;
+    margin-top:-30px;
     overflow: hidden;
+}
+
+.modal-checkButton{
+    color: rgba(4, 16, 185, 0.75);
+    cursor: pointer;
+    font-size: 19px;
+    margin-right: 20px;
+    width: 80px;
+    height: 36px;
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    background-color: #D5EDFFC6;
+    border-radius: 10px;
 }
