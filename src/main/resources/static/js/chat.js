@@ -5,6 +5,7 @@ socket.onopen = function (e) {
     console.log('open server!')
     let str = username + " 님이 입장하셨습니다.";
     socket.send(str);
+    count_user()
 };
 
 socket.onclose = function (e) { // 채팅방에서 나갔을 때
@@ -49,4 +50,12 @@ function sendMsg() {
     socket.send(username + " : " + content); // 닉네임 : message 형태
     $(".content").val('')
     count_user();
+}
+
+function endChat() {
+    let str = username + " 님이 방을 나가셨습니다.";
+    socket.send(str);
+    $("#join-count").load(window.location.href + " #join-span")
+    count_user()
+    location.href = "/";
 }
