@@ -70,12 +70,11 @@ body {
     width: 720px;
     height: 650px;
     border: 5px solid rgba(175, 209, 250, 0.78);
+    overflow: auto; /* 스크롤 생성 */
+    display : flex;
 }
-
-.chat-msg {
-    display: inline-block;
-    width: 400px;
-    white-space: normal;
+.msgArea::-webkit-scrollbar { /* 스크롤바 숨기기 */
+    display:none /* Chrome , Safari , Opera */
 }
 
 #user {
@@ -88,3 +87,20 @@ body {
     font-size: 18px;
 }
 
+.chatIntro-msg{ /* 입장 알림 msg */
+    margin: 10px;
+    padding-left:280px;
+    font-size: 16px;
+    background: #aaaaaa
+}
+.chat-msg { /* 채팅 msg */
+    word-wrap: break-word;
+    display: inline-block;
+    /*width: 400px;*/
+    white-space: normal;
+    margin : 4px;
+    margin-left: 10px;
+    font-size: 18px;
+    max-width: 400px;
+    padding-left: 5px;
+}
