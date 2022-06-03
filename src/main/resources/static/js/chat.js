@@ -43,26 +43,39 @@ socket.onmessage = function (e) {
     let msgArea = document.querySelector('.msgArea');
     let newMsg = document.createElement('div');
 
-    if (e.data.includes("님이 입장하셨습니다.")) {
+    if (e.data.includes(" 님이 입장하셨습니다.")) {
         newMsg.className = "chatIntro-msg";
         newMsg.innerText = e.data;
-        newMsg.style = "margin: 10px; padding-left:280px; padding : auto; font-size: 16px; background: #aaaaaa";
-    } else {
+    } else { // 채팅 msg
         newMsg.className = "chat-msg";
         newMsg.innerText = e.data;
-        newMsg.style = "margin-left: 10px; margin : 4px; font-size: 18px;"
+
     }
 
     msgArea.append(newMsg);
 
+    // 입장 알림 msg
+    let introSize = $(".chatIntro-msg").length
+    if (introSize>0) {
+        for (let i = 0; i<introSize; i++) {
+            if (  $(".chatIntro-msg")[i].innerText[0] == "$") {
+                newMsg.innerText = $(".chatIntro-msg")[i].innerText.split("$")[1]
+            }
+        }
+    }
+
+    // 채팅 msg
     let size = $(".chat-msg").length
-    if (size>0) {
-        for (let i = 0; i<size; i++) {
-            if (  $("div.chat-msg")[i].innerText[0] == "$") {
-                newMsg.innerText = $("div.chat-msg")[i].innerText.split("$")[1]
-                newMsg.style = "margin-left: 10px; margin : 4px; font-size: 18px; background: #fefefe";
-            } else {
-                newMsg.style = "margin-left: 10px; margin : 4px; font-size: 18px;"
+
+    if(newMsg.className == "chat-msg") {
+        if (size>0) {
+            for (let i = 0; i<size; i++) {
+                if (  $(".chat-msg")[i].innerText[0] == "$") { // 상대
+                    newMsg.innerText = $("div.chat-msg")[i].innerText.split("$")[1]
+                    newMsg.style = "background: rgba(132, 204, 222, 0.76)";
+                } else { // 나
+                    newMsg.style = "float: right; margin-left: 300px; margin-right: 10px; background : #eee5ca"
+                }
             }
         }
     }
