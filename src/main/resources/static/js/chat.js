@@ -55,6 +55,17 @@ socket.onmessage = function (e) {
 
     msgArea.append(newMsg);
 
+    // 입장 알림 msg
+    let introSize = $(".chatIntro-msg").length
+    if (introSize>0) {
+        for (let i = 0; i<introSize; i++) {
+            if (  $(".chatIntro-msg")[i].innerText[0] == "$") {
+                newMsg.innerText = $(".chatIntro-msg")[i].innerText.split("$")[1]
+            }
+        }
+    }
+
+    // 채팅 msg
     let size = $(".chat-msg").length
     if (size>0) {
         for (let i = 0; i<size; i++) {
