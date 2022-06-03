@@ -54,6 +54,19 @@ socket.onmessage = function (e) {
     }
 
     msgArea.append(newMsg);
+
+    let size = $(".chat-msg").length
+    if (size>0) {
+        for (let i = 0; i<size; i++) {
+            if (  $("div.chat-msg")[i].innerText[0] == "$") {
+                newMsg.innerText = $("div.chat-msg")[i].innerText.split("$")[1]
+                newMsg.style = "margin-left: 10px; margin : 4px; font-size: 18px; background: #fefefe";
+            } else {
+                newMsg.style = "margin-left: 10px; margin : 4px; font-size: 18px;"
+            }
+        }
+    }
+
 }
 
 function sendMsg() {
