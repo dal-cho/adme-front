@@ -15,7 +15,9 @@ socket.onclose = function (e) { // 채팅방에서 나갔을 때
 }
 
 // 접속자 수 띄우기
-$(document).ready(count_user)
+$(document).ready(function(){
+    count_user()
+});
 
 function count_user() {
     $.ajax({
@@ -40,8 +42,17 @@ socket.onmessage = function (e) {
     console.log(e.data);
     let msgArea = document.querySelector('.msgArea');
     let newMsg = document.createElement('div');
-    newMsg.className = "chat-msg";
-    newMsg.innerText = e.data;
+
+    if (e.data.includes("님이 입장하셨습니다.")) {
+        newMsg.className = "chatIntro-msg";
+        newMsg.innerText = e.data;
+        newMsg.style = "margin: 10px; padding-left:280px; padding : auto; font-size: 16px; background: #aaaaaa";
+    } else {
+        newMsg.className = "chat-msg";
+        newMsg.innerText = e.data;
+        newMsg.style = "margin-left: 10px; margin : 4px; font-size: 18px;"
+    }
+
     msgArea.append(newMsg);
 }
 
