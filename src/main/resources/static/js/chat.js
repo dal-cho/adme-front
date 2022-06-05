@@ -19,6 +19,10 @@ $(document).ready(function(){
     count_user()
 });
 
+function gotoBottom(){
+    $('.msgArea').scrollTop($('.msgArea')[0].scrollHeight);
+}
+
 function count_user() {
     $.ajax({
         type: "GET",
@@ -49,7 +53,6 @@ socket.onmessage = function (e) {
     } else { // 채팅 msg
         newMsg.className = "chat-msg";
         newMsg.innerText = e.data;
-
     }
 
     msgArea.append(newMsg);
@@ -66,7 +69,6 @@ socket.onmessage = function (e) {
 
     // 채팅 msg
     let size = $(".chat-msg").length
-
     if(newMsg.className == "chat-msg") {
         if (size>0) {
             for (let i = 0; i<size; i++) {
@@ -74,12 +76,12 @@ socket.onmessage = function (e) {
                     newMsg.innerText = $("div.chat-msg")[i].innerText.split("$")[1]
                     newMsg.style = "background: rgba(132, 204, 222, 0.76)";
                 } else { // 나
-                    newMsg.style = "float: right; margin-left: 300px; margin-right: 10px; background : #eee5ca"
+                    newMsg.style = "margin-left: 300px; margin-right: 10px; background : #eee5ca;"
                 }
             }
         }
     }
-
+    gotoBottom()
 }
 
 function sendMsg() {
