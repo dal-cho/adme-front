@@ -71,7 +71,6 @@ body {
     height: 650px;
     border: 5px solid rgba(175, 209, 250, 0.78);
     overflow: auto; /* 스크롤 생성 */
-    display : flex;
 }
 .msgArea::-webkit-scrollbar { /* 스크롤바 숨기기 */
     display:none /* Chrome , Safari , Opera */
@@ -96,7 +95,7 @@ body {
 .chat-msg { /* 채팅 msg */
     word-wrap: break-word;
     display: inline-block;
-    /*width: 400px;*/
+    width: 400px;
     white-space: normal;
     margin : 4px;
     margin-left: 10px;
