@@ -76,7 +76,7 @@ socket.onmessage = function (e) {
                     newMsg.innerText = $("div.chat-msg")[i].innerText.split("$")[1]
                     newMsg.style = "background: rgba(132, 204, 222, 0.76)";
                 } else { // 나
-                    newMsg.style = "margin-left: 300px; margin-right: 10px; background : #eee5ca;"
+                    newMsg.style = "margin-left: 300px; margin-right: 10px; background : #eee5ca; text-align: end;"
                 }
             }
         }
