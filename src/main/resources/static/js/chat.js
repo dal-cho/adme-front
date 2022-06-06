@@ -20,13 +20,18 @@ $(document).ready(function () {
     loading();
 });
 
+
+let cnt = 0
 function loading() { // 채팅 입력 중 띄우기
     $(".content").on("propertychange change keyup paste input", function () {
-        let parentLoading = document.querySelector('.loading');
-        let childLoading = document.createElement('div');
-        childLoading.className = "child-loading";
-        childLoading.innerText = "입력 중....";
-        parentLoading.append(childLoading);
+        cnt ++;
+        if (cnt == 1) {
+            let parentLoading = document.querySelector('.loading');
+            let childLoading = document.createElement('div');
+            childLoading.className = "child-loading";
+            childLoading.innerText = "입력 중....";
+            parentLoading.append(childLoading);
+        }
     })
 }
 
@@ -79,6 +84,7 @@ socket.onmessage = function (e) {
         }
     }
 
+
     // 채팅 msg
     let size = $(".chat-msg").length
     if (newMsg.className == "chat-msg") {
@@ -102,6 +108,7 @@ function sendMsg() {
     $(".content").val('')
     count_user();
     $(".child-loading").remove() // 채팅 입력 완료 되면 입력 중 지우기
+    cnt = 0
 }
 
 function endChat() {
