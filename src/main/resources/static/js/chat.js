@@ -15,11 +15,23 @@ socket.onclose = function (e) { // 채팅방에서 나갔을 때
 }
 
 // 접속자 수 띄우기
-$(document).ready(function(){
-    count_user()
+$(document).ready(function () {
+    count_user();
+    loading();
 });
 
-function gotoBottom(){
+function loading() { // 채팅 입력 중 띄우기
+    $(".content").on("propertychange change keyup paste input", function () {
+        let parentLoading = document.querySelector('.loading');
+        let childLoading = document.createElement('div');
+        childLoading.className = "child-loading";
+        childLoading.innerText = "입력 중....";
+        parentLoading.append(childLoading);
+    })
+}
+
+
+function gotoBottom() { // 스크롤 바 자동으로 내리기
     $('.msgArea').scrollTop($('.msgArea')[0].scrollHeight);
 }
 
@@ -59,9 +71,9 @@ socket.onmessage = function (e) {
 
     // 입장 알림 msg
     let introSize = $(".chatIntro-msg").length
-    if (introSize>0) {
-        for (let i = 0; i<introSize; i++) {
-            if (  $(".chatIntro-msg")[i].innerText[0] == "$") {
+    if (introSize > 0) {
+        for (let i = 0; i < introSize; i++) {
+            if ($(".chatIntro-msg")[i].innerText[0] == "$") {
                 newMsg.innerText = $(".chatIntro-msg")[i].innerText.split("$")[1]
             }
         }
@@ -69,10 +81,10 @@ socket.onmessage = function (e) {
 
     // 채팅 msg
     let size = $(".chat-msg").length
-    if(newMsg.className == "chat-msg") {
-        if (size>0) {
-            for (let i = 0; i<size; i++) {
-                if (  $(".chat-msg")[i].innerText[0] == "$") { // 상대
+    if (newMsg.className == "chat-msg") {
+        if (size > 0) {
+            for (let i = 0; i < size; i++) {
+                if ($(".chat-msg")[i].innerText[0] == "$") { // 상대
                     newMsg.innerText = $("div.chat-msg")[i].innerText.split("$")[1]
                     newMsg.style = "background: rgba(132, 204, 222, 0.76)";
                 } else { // 나
@@ -89,6 +101,7 @@ function sendMsg() {
     socket.send(username + " : " + content); // 닉네임 : message 형태
     $(".content").val('')
     count_user();
+    $(".child-loading").remove() // 채팅 입력 완료 되면 입력 중 지우기
 }
 
 function endChat() {
