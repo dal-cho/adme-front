@@ -61,22 +61,6 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(
-            home)
-
-        function home() {
-            $.ajax({
-                type : "GET",
-                url: `http://localhost:8080/login`,
-                contentType : "application/json",
-                data: JSON.stringify(),
-                success: function (response) {
-                    console.log("login")
-                }
-            })
-        }
-    </script>
     <script src="/js/login.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
