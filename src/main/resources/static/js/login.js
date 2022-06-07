@@ -25,3 +25,36 @@ $("#left").click(function(){
     $(".signup").css({"display":"none"});
     $(".signin").css({"display":""});
 });
+
+$(document).ready(function () {
+    home()
+});
+
+
+function home() {
+    findSession()
+    $.ajax({
+        type: "GET",
+        url: `http://localhost:8080/login`,
+        contentType: "application/json",
+        data: JSON.stringify(),
+        success: function (response) {
+            console.log("login")
+        }
+    })
+}
+
+function findSession() { // session 저장
+    if (sessionStorage.getItem("nickname")) {
+        sessionStorage.removeItem("nickname");
+    }
+    $.ajax({
+        type: "GET",
+        url: `http://localhost:8080/user/login/nickname`,
+        contentType: "application/json",
+        data: JSON.stringify(),
+        success: function (response) {
+            sessionStorage.setItem("nickname", response)
+        }
+    })
+}

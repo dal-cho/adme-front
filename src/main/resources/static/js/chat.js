@@ -18,6 +18,7 @@ socket.onclose = function (e) { // 채팅방에서 나갔을 때
 $(document).ready(function () {
     count_user();
     loading();
+    findSession();
 });
 
 
@@ -118,3 +119,18 @@ function endChat() {
     count_user()
     location.href = "/";
 }
+
+
+function findSession() { // 값이 저장되지 않는 경우 서버에서 session 저장 된 값 가져오기
+    if (!sessionStorage.getItem("nickname")) {
+        $.ajax({
+            type : "GET",
+            url: `http://localhost:8080/user/login/nickname`,
+            contentType : "application/json",
+            data: JSON.stringify(),
+            success: function (response) {
+                sessionStorage.setItem("nickname", response)
+                username = sessionStorage.getItem("nickname");
+            }
+        })
+    }}
