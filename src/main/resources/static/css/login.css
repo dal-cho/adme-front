@@ -1,5 +1,5 @@
 body {
-     /*background: #c6dff5; */ /* #8eb3d4*/
+    /*background: #c6dff5; */ /* #8eb3d4*/
     /*background-image: linear-gradient(-225deg, #7085B6 0%, #87A7D9 50%, #DEF3F8 100%);*/
     background: linear-gradient(70deg, rgba(132, 204, 222, 0.76), #eee5ca);
     font-family: "Roboto";
@@ -179,4 +179,9 @@ a {
     margin-top: 1.9rem;
     text-align: right;
     color: rgba(255, 68, 68, 0.75);
+}
+.warningMsg{
+    font-size: 8px;
+    color: red;
+    padding-left: 50px;
 }

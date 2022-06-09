@@ -6,6 +6,14 @@ $(document).ready(function(){
     $("#right").addClass("right_hover");
     $(".signin").css({"display":"none"});
     $(".signup").css({"display":""});
+
+    $("#username").on('focus keyup', function () {
+        checkId()
+    })
+    $("#nickname").on('focus keyup', function () {
+        checkNickname()
+    })
+
 });
 
 $("#right").click(function(){
@@ -57,4 +65,34 @@ function findSession() { // session 저장
             sessionStorage.setItem("nickname", response)
         }
     })
+}
+
+function checkId() { // id 중복 확인
+    let form_data = new FormData();
+    form_data.append("username", $("#username").val())
+    $.ajax({
+        type: "POST",
+        url: `http://localhost:8080/user/signup`,
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            $("#usernameMsg").text(response);
+        }
+    });
+}
+
+function checkNickname() { // 닉네임 중복 확인
+    let form_data = new FormData();
+    form_data.append("nickname", $("#nickname").val())
+    $.ajax({
+        type: "POST",
+        url: `http://localhost:8080/user/signup/nickname`,
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            $("#nicknameMsg").text(response);
+        }
+    });
 }
