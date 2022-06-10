@@ -38,14 +38,17 @@
             <input name="nickname" type="text" placeholder="닉네임*" class="username" id="nickname"/>
             <div class="warningMsg" id="nicknameMsg">닉네임을 입력해주세요</div>
 
-            <input name="email" type="text" placeholder="이메일*" class="username"/>
+            <input name="email" type="text" placeholder="이메일*" class="username" id="email"/>
             <!--                <input name="email" type="email" placeholder="이메일*" class="username"/>-->
 
-            <input name="password" type="password" placeholder="비밀번호*" class="username"/>
+            <input name="password" type="password" placeholder="비밀번호*" class="username" id="password"/>
+            <div class="warningMsg" id="passwordCheckMsg">비밀번호를 입력해주세요</div>
 
-            <input name="password_check" type="password" placeholder="비밀번호 확인*" class="username"/>
+            <input name="passwordConfirm" type="password" placeholder="비밀번호 확인*" class="username" id="passwordConfirm"/>
+            <div class="warningMsg" id="passwordConfirmCheckMsg">비밀번호를 입력해주세요</div>
 
-            <button class="btn">Sign Up</button>
+            <button class="btn" onclick="signUp()">Sign Up</button>
+
         </form>
         <form class="signin" action="/user/login" method="post">
 

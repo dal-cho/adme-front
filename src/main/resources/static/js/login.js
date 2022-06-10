@@ -1,11 +1,11 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $(".container").fadeIn(1000);
-    $(".s2class").css({"color":"#537ac9"});
-    $(".s1class").css({"color":"#748194"});
+    $(".s2class").css({"color": "#537ac9"});
+    $(".s1class").css({"color": "#748194"});
     $("#left").removeClass("left_hover");
     $("#right").addClass("right_hover");
-    $(".signin").css({"display":"none"});
-    $(".signup").css({"display":""});
+    $(".signin").css({"display": "none"});
+    $(".signup").css({"display": ""});
 
     $("#username").on('focus keyup', function () {
         checkId()
@@ -13,25 +13,27 @@ $(document).ready(function(){
     $("#nickname").on('focus keyup', function () {
         checkNickname()
     })
-
+    $("#passwordConfirm").on('focus keyup', function () {
+        checkPasswordConfirm()
+    })
 });
 
-$("#right").click(function(){
+$("#right").click(function () {
     $("#left").removeClass("left_hover");
-    $(".s2class").css({"color":"#537ac9"});
-    $(".s1class").css({"color":"#748194"});
+    $(".s2class").css({"color": "#537ac9"});
+    $(".s1class").css({"color": "#748194"});
     $("#right").addClass("right_hover");
-    $(".signin").css({"display":"none"});
-    $(".signup").css({"display":""});
+    $(".signin").css({"display": "none"});
+    $(".signup").css({"display": ""});
 });
 
-$("#left").click(function(){
-    $(".s1class").css({"color":"#537ac9"});
-    $(".s2class").css({"color":"#748194"});
+$("#left").click(function () {
+    $(".s1class").css({"color": "#537ac9"});
+    $(".s2class").css({"color": "#748194"});
     $("#right").removeClass("right_hover");
     $("#left").addClass("left_hover");
-    $(".signup").css({"display":"none"});
-    $(".signin").css({"display":""});
+    $(".signup").css({"display": "none"});
+    $(".signin").css({"display": ""});
 });
 
 $(document).ready(function () {
@@ -55,16 +57,16 @@ function home() {
 function findSession() { // session 저장
     if (sessionStorage.getItem("nickname")) {
         sessionStorage.removeItem("nickname");
+        $.ajax({
+            type: "GET",
+            url: `http://localhost:8080/user/login/nickname`,
+            contentType: "application/json",
+            data: JSON.stringify(),
+            success: function (response) {
+                sessionStorage.setItem("nickname", response)
+            }
+        })
     }
-    $.ajax({
-        type: "GET",
-        url: `http://localhost:8080/user/login/nickname`,
-        contentType: "application/json",
-        data: JSON.stringify(),
-        success: function (response) {
-            sessionStorage.setItem("nickname", response)
-        }
-    })
 }
 
 function checkId() { // id 중복 확인
@@ -72,7 +74,7 @@ function checkId() { // id 중복 확인
     form_data.append("username", $("#username").val())
     $.ajax({
         type: "POST",
-        url: `http://localhost:8080/user/signup`,
+        url: `http://localhost:8080/user/signup/username`,
         data: form_data,
         contentType: false,
         processData: false,
@@ -93,6 +95,25 @@ function checkNickname() { // 닉네임 중복 확인
         processData: false,
         success: function (response) {
             $("#nicknameMsg").text(response);
+        }
+    });
+}
+
+function checkPasswordConfirm() {
+    let form_data = new FormData();
+    let password = $("#password").val()
+    let passwordConfirm = $("#passwordConfirm").val()
+    form_data.append("password", password)
+    form_data.append("passwordConfirm", passwordConfirm)
+
+    $.ajax({
+        type: "POST",
+        url: `http://localhost:8080/user/signup/password`,
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            $("#passwordConfirmCheckMsg").text(response);
         }
     });
 }
