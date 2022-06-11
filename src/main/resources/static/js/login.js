@@ -16,6 +16,15 @@ $(document).ready(function () {
     $("#passwordConfirm").on('focus keyup', function () {
         checkPasswordConfirm()
     })
+
+    $("#password").on('focus keyup', function () {
+        if ( $("#password").val().length == 0) {
+            $("#passwordCheckMsg").text("비밀번호를 입력해주세요")
+        } else{
+            $("#passwordCheckMsg").text("")
+        }
+    })
+
 });
 
 $("#right").click(function () {
@@ -79,7 +88,14 @@ function checkId() { // id 중복 확인
         contentType: false,
         processData: false,
         success: function (response) {
-            $("#usernameMsg").text(response);
+            if( response == "사용가능한 ID 입니다.") {
+                document.getElementById("usernameMsg").style.color="cornflowerblue";
+                $("#usernameMsg").text(response);
+            } else {
+                document.getElementById("usernameMsg").style.color="red";
+                $("#usernameMsg").text(response);
+            }
+
         }
     });
 }
@@ -94,12 +110,18 @@ function checkNickname() { // 닉네임 중복 확인
         contentType: false,
         processData: false,
         success: function (response) {
-            $("#nicknameMsg").text(response);
+            if( response == "사용가능한 닉네임 입니다.") {
+                document.getElementById("nicknameMsg").style.color="cornflowerblue";
+                $("#nicknameMsg").text(response);
+            } else {
+                document.getElementById("nicknameMsg").style.color="red";
+                $("#nicknameMsg").text(response);
+            }
         }
     });
 }
 
-function checkPasswordConfirm() {
+function checkPasswordConfirm() { // 비밀번호 확인 체크
     let form_data = new FormData();
     let password = $("#password").val()
     let passwordConfirm = $("#passwordConfirm").val()
@@ -113,7 +135,13 @@ function checkPasswordConfirm() {
         contentType: false,
         processData: false,
         success: function (response) {
-            $("#passwordConfirmCheckMsg").text(response);
+            if( response == "비밀번호가 일치합니다.") {
+                document.getElementById("passwordConfirmCheckMsg").style.color="cornflowerblue";
+                $("#passwordConfirmCheckMsg").text(response);
+            } else {
+                document.getElementById("passwordConfirmCheckMsg").style.color="red";
+                $("#passwordConfirmCheckMsg").text(response);
+            }
         }
     });
 }
