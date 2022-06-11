@@ -16,6 +16,15 @@ $(document).ready(function () {
     $("#passwordConfirm").on('focus keyup', function () {
         checkPasswordConfirm()
     })
+
+    $("#password").on('focus keyup', function () {
+        if ( $("#password").val().length == 0) {
+            $("#passwordCheckMsg").text("비밀번호를 입력해주세요")
+        } else{
+            $("#passwordCheckMsg").text("")
+        }
+    })
+
 });
 
 $("#right").click(function () {
