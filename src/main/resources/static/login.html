@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
-    <!--    <link rel="stylesheet" href="../static/styles/login.css">-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 </head>
@@ -24,22 +23,16 @@
         <div id="right"><h1 class="s2class"><span>SIGN</span><span class="su">UP</span></h1></div>
     </div>
     <div class="c2">
-        <!--        <form class="signup" action="/user/signup" method="post">-->
         <form class="signup">
             <h1 class="signup1">SIGN UP</h1>
-
-            <!--            <h5 class="warning1">중복</h5>-->
-
             <input name="username" type="text" placeholder="아이디*" class="username" id="username"/>
 
             <div class="warningMsg" id="usernameMsg">아이디를 입력해주세요</div>
-            <!--            <h5 class="warning2">중복</h5>-->
 
             <input name="nickname" type="text" placeholder="닉네임*" class="username" id="nickname"/>
             <div class="warningMsg" id="nicknameMsg">닉네임을 입력해주세요</div>
 
             <input name="email" type="text" placeholder="이메일*" class="username" id="email"/>
-            <!--                <input name="email" type="email" placeholder="이메일*" class="username"/>-->
 
             <input name="password" type="password" placeholder="비밀번호*" class="username" id="password"/>
             <div class="warningMsg" id="passwordCheckMsg">비밀번호를 입력해주세요</div>
@@ -50,8 +43,8 @@
             <button class="btn" onclick="signUp()">Sign Up</button>
 
         </form>
-        <form class="signin" action="/user/login" method="post">
 
+        <form class="signin" action="/user/login" method="post">
             <h1 class="signup1">SIGN IN</h1>
             <br><br><br><br>
             <input name="username" type="text" placeholder="아이디*" class="username"/>
@@ -61,7 +54,6 @@
             <button class="btn">Get Started</button>
 
             <br><br><br><br>
-            <!--                <a href=""><p class="signup2">Forget Password?</p></a>-->
         </form>
 
     </div>

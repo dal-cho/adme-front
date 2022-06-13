@@ -164,22 +164,6 @@ a {
     display: initial;
 }
 
-.warning1{
-    display: block;
-    position: absolute;
-    margin-left: 14rem;
-    margin-top: 1.9rem;
-    text-align: right;
-    color: rgba(255, 68, 68, 0.75);
-}
-.warning2{
-    display: block;
-    position: absolute;
-    margin-left: 14rem;
-    margin-top: 1.9rem;
-    text-align: right;
-    color: rgba(255, 68, 68, 0.75);
-}
 .warningMsg{
     font-size: 8px;
     color: red;
