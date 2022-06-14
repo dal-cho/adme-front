@@ -18,7 +18,7 @@
                 쉽게 표현 할 수 없는 ‘나’의 내면, <br>
                 이제 ‘나’를 기록하세요.</p>
         </div>
-        <div id="left"><h1 class="s1class"><span>SIGN</span><span class="su">IN</span>
+        <div id="left">><h1 class="s1class"><span>SIGN</span><span class="su">IN</span>
         </h1></div>
         <div id="right"><h1 class="s2class"><span>SIGN</span><span class="su">UP</span></h1></div>
     </div>
@@ -40,11 +40,14 @@
             <input name="passwordConfirm" type="password" placeholder="비밀번호 확인*" class="username" id="passwordConfirm"/>
             <div class="warningMsg" id="passwordConfirmCheckMsg">비밀번호를 입력해주세요</div>
 
-            <button class="btn" onclick="signUp()">Sign Up</button>
+            <button type="button" class="btn" onclick="checkSignUp()">Sign Up</button>
 
         </form>
+        <div  class="alert alert-danger" role="alert"></div>
+        <div class="successMsg" role="alert"></div>
 
         <form class="signin" action="/user/login" method="post">
+
             <h1 class="signup1">SIGN IN</h1>
             <br><br><br><br>
             <input name="username" type="text" placeholder="아이디*" class="username"/>

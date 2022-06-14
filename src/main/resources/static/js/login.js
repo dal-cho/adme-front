@@ -24,7 +24,6 @@ $(document).ready(function () {
             $("#passwordCheckMsg").text("")
         }
     })
-
 });
 
 $("#right").click(function () {
@@ -48,6 +47,11 @@ $("#left").click(function () {
 $(document).ready(function () {
     home()
 });
+
+let nicknameType=false
+let usernameType=false
+let emailType=true
+let passwordType=false
 
 
 function home() {
@@ -91,6 +95,7 @@ function checkId() { // id 중복 확인
             if( response == "사용가능한 ID 입니다.") {
                 document.getElementById("usernameMsg").style.color="cornflowerblue";
                 $("#usernameMsg").text(response);
+                usernameType = true;
             } else {
                 document.getElementById("usernameMsg").style.color="red";
                 $("#usernameMsg").text(response);
@@ -113,6 +118,7 @@ function checkNickname() { // 닉네임 중복 확인
             if( response == "사용가능한 닉네임 입니다.") {
                 document.getElementById("nicknameMsg").style.color="cornflowerblue";
                 $("#nicknameMsg").text(response);
+                nicknameType = true
             } else {
                 document.getElementById("nicknameMsg").style.color="red";
                 $("#nicknameMsg").text(response);
@@ -138,10 +144,79 @@ function checkPasswordConfirm() { // 비밀번호 확인 체크
             if( response == "비밀번호가 일치합니다.") {
                 document.getElementById("passwordConfirmCheckMsg").style.color="cornflowerblue";
                 $("#passwordConfirmCheckMsg").text(response);
+                passwordType = true
             } else {
                 document.getElementById("passwordConfirmCheckMsg").style.color="red";
                 $("#passwordConfirmCheckMsg").text(response);
             }
+        }
+    });
+}
+
+
+function checkEmail() { // 이메일 체크
+
+}
+
+
+function checkSignUp(){ // 회원가입 저장 전 체크
+    $(".alert-danger").text("")
+    if ( (usernameType) && (nicknameType) && (emailType) && (passwordType) ) {
+        signUp()
+    }
+    else{
+
+        if(usernameType == false) {
+            $(".alert-danger").text("아이디를 확인해주세요");
+        }
+        if( nicknameType == false){
+            $(".alert-danger").text("닉네임을 확인해주세요");
+        }
+        if ( emailType == false) {
+            $(".alert-danger").text("이메일을 확인해주세요");
+        }
+        if( passwordType == false){
+            $(".alert-danger").text("비밀번호를 확인해주세요");
+        }
+    }
+
+
+}
+function signUp(){ // 회원가입 db 저장
+    let username = $("#username").val();
+    let nickname = $("#nickname").val()
+    let email = $("#email").val()
+    let password = $("#password").val()
+    let passwordConfirm = $("#passwordConfirm").val()
+
+    let form_data = new FormData();
+    form_data.append("username", username)
+    form_data.append("nickname", nickname)
+    form_data.append("email", email)
+    form_data.append("password", password)
+    form_data.append("passwordConfirm", passwordConfirm)
+    $(".successMsg").text("");
+
+    $.ajax({
+        type: "POST",
+        url: `http://localhost:8080/user/signup`,
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if (response == "회원가입이 완료되었습니다."){
+                $(".successMsg").text("회원가입이 완료되었습니다.");
+
+                setTimeout(function (){
+                    $(".successMsg").text("로그인 창으로 전환합니다.");
+                },1500)
+
+                setTimeout(function (){ // 로그인 창 전환 msg 2초뒤 화면 전환
+                    $("#left").click()
+                    $(".successMsg").text("")
+                }, 3500)
+            }
+
         }
     });
 }
