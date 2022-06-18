@@ -195,3 +195,24 @@ a {
 #username{
     margin-top: -10px;
 }
+
+.Login-danger{ /* 로그인 에러 메세지 */
+    margin: 15px;
+    margin-top: 35px;
+    font-size: 14px;
+    background: pink;
+    color: red;
+    font-weight: bold;
+    padding-left: 25px;
+    border-radius: 5px;
+}
+.LoginSuccessMsg{ /* 로그인 성공 msg */
+    margin: 15px;
+    margin-top: 35px;
+    font-size: 14px;
+    background: lightskyblue;
+    color: blue;
+    font-weight: bold;
+    padding-left: 30px;
+    border-radius: 5px;
+}

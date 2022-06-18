@@ -22,7 +22,7 @@
         </h1></div>
         <div id="right"><h1 class="s2class"><span>SIGN</span><span class="su">UP</span></h1></div>
     </div>
-    <div class="c2">
+    <div id="c2" class="c2">
         <form class="signup">
             <h1 class="signup1">SIGN UP</h1>
             <input name="username" type="text" placeholder="아이디*" class="username" id="username"/>
@@ -50,15 +50,17 @@
 
             <h1 class="signup1">SIGN IN</h1>
             <br><br><br><br>
-            <input name="username" type="text" placeholder="아이디*" class="username"/>
+            <input name="username" type="text" placeholder="아이디*" class="username" id="LoginUsername"/>
 
-            <input name="password" type="password" placeholder="비밀번호*" class="username"/>
+            <input name="password" type="password" placeholder="비밀번호*" class="username" id="LoginPw"/>
 
-            <button class="btn">Get Started</button>
+            <button id="signInBtn" class="btn" type="button" onclick="checkSignIn()">Get Started</button>
 
             <br><br><br><br>
         </form>
 
+        <div  class="Login-danger" role="alert"></div>
+        <div class="LoginSuccessMsg" role="alert"></div>
     </div>
 </div>
 
