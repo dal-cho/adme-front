@@ -220,3 +220,47 @@ function signUp(){ // 회원가입 db 저장
         }
     });
 }
+
+
+function checkSignIn() { // 로그인 체크
+    if ( $("#LoginUsername").val().length ==0 ) {
+        alert("아이디를 입력해주세요")
+    }
+    if( $("#LoginPw").val().length == 0 ){
+        alert("비밀번호를 입력해주세요")
+    }
+
+    if( ($("#LoginUsername").val().length > 0) && ($("#LoginPw").val().length > 0) ) {
+        SignIn()
+    }
+
+}
+
+function SignIn() { // 로그인 성공 or 실패 메세지
+    let form_data = new FormData();
+    let username = $("#LoginUsername").val();
+    let password = $("#LoginPw").val()
+    form_data.append("username", username)
+    form_data.append("password", password)
+
+    $(".Login-danger").text("")
+    $.ajax({
+        type: "POST",
+        url: `http://localhost:8080/user/login/input`,
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if (response == "환영합니다.") {
+                $(".LoginSuccessMsg").text(username + "님" + " " + response);
+                setTimeout(function () {
+                    document.getElementById("signInBtn").setAttribute("type","submit");
+                    document.getElementById("signInBtn").click()
+                }, 1500)
+            } else {
+                $(".Login-danger").text(response)
+
+            }
+        }
+    });
+}
