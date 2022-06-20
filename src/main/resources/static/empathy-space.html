@@ -8,10 +8,11 @@
 
 </head>
 <body>
+<div id="name"></div>
 <div class="menu">
     <div class="m1">
         <ul>
-            <li><a href="#" class="m11" >나</a></li>
+            <li><a href="#" class="m11">나</a></li>
             <li><a href="http://localhost:8080/tenseconds.html" class="m11" >10s</a></li>
             <li><a href="http://localhost:8080/empathy-space.html" class="m11" style="color: rgba(98,150,241,0.87);" >공감공간</a></li>
             <li><a href="question.html" class="m11">문의하기</a></li>
@@ -140,6 +141,7 @@
     <div class="modal-registry-container">
         <div class="modal-registry-c1">
             <div class="modal-c1-title">
+                <a id="RegistryId" style="display: none"></a>
                 <div class="modal-c1-title-name">작성자</div>
                 <a class="modal-c1-title-content" id="user"></a>
                 <div class="modal-c1-title-name">작성일자</div>
@@ -156,7 +158,13 @@
                 <a class="modal-c1-content-content" id="modal-main"></a>
             </div>
 
+            <br><br><br>
 
+            <div id="commentList"></div>
+            <input id="comment">
+            <button id="commentBtn" class="btn" type="submit" onclick="Comment()">등록하기</button>
+
+            <br><br><br>
             <button name="submit" type="submit" onclick="closeModal()" class="modal-checkButton">닫기</button>
 
         </div>

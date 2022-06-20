@@ -7,6 +7,7 @@ $(document).ready(function () {
     pageOver();
     pageLeave();
     getArticle(1); // paging
+    $("#name").text(nickname + "님 환영합니다.")
 });
 
 // 업로드 버튼
@@ -90,6 +91,7 @@ function getArticle(curpage) {
             let prev = response.prev;
             let next = response.next
 
+            console.log(fullCount, curpage, startPage, endPage, prev, next)
             $("#nowPage").append(curpage + "페이지")
             for (let i = 0; i < list.length; i++) {
                 num = i + 1;
@@ -108,7 +110,7 @@ function makeListPost(board, num) {
     let modi = board.modifiedAt;
     let mode = modi.substr(0, 10);
     let idx = board.idx;
-    let tempHtml = `<div class="item"><button onclick="allRegistry(${idx})">
+    let tempHtml = `<div class="item"><button onclick="allRegistry(${idx}); findComment(${idx})">
                         <div class="num">${num}</div>
                         <div class="title">${title}</a></div>
                         <div class="date">${mode}</div>
@@ -193,6 +195,7 @@ function allRegistry(idx) {
             let date = new Date(created)
             let newcreated = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
 
+            $("#RegistryId").html(idx);
             $("#user").html(username)
             $("#created").html(newcreated)
             $("#modal-title").html(title)
@@ -206,4 +209,72 @@ function allRegistry(idx) {
 
 function closeModal() {
     $("#articleModal").fadeOut();
+}
+
+
+// 댓글 등록하기
+function Comment() {
+    let form_data = new FormData()
+    form_data.append("comment", $("#comment").val())
+    form_data.append("nickname", nickname)
+    form_data.append("registryId",$("#RegistryId").html() )
+    form_data.append("registryNickname", $("#user").html())
+
+    $.ajax({
+        type: "POST",
+        url: `/comment`,
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            $("#commentList").append(nickname + "님 : " + $("#comment").val())
+            let temp = `<br>`
+            $("#commentList").append(temp)
+
+            // 댓글 창 값 없애기
+            $("#comment").val("")
+        }
+    });
+}
+
+
+function findComment(idx){ // comment db 가져오기
+    $("#commentList").text("") // 초기화
+    $.ajax({
+        type: "GET",
+        url: `/comment?idx=${idx}`,
+        data: {},
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            console.log(response)
+            for (let i=0; i<response.length; i++){
+                $("#commentList").append(response[i]["nickname"] + "님 : " + response[i]["comment"])
+
+                let temp = `<br>`
+                $("#commentList").append(temp)
+            }
+        }
+    })
+}
+
+
+function addComment() {
+    let idx = $("#RegistryId").html();
+    $.ajax({
+        type: "GET",
+        url: `/comment?idx=${idx}`,
+        data: {},
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            console.log(response)
+            for (let i=0; i<response.length; i++){
+                $("#commentList").append(response[i]["comment"])
+                let temp = `<br>`
+                $("#commentList").append(temp)
+                console.log(response[i]["comment"])
+            }
+        }
+    })
 }

@@ -343,7 +343,9 @@ li.icon {
     overflow: hidden;
 }
 
-.modal-checkButton{
+.modal-checkButton{ /* 모달 닫기 버튼 */
+    position: fixed;
+    margin-left: 42.5em;
     color: rgba(4, 16, 185, 0.75);
     cursor: pointer;
     font-size: 19px;
@@ -353,4 +355,17 @@ li.icon {
     border: 3px solid rgba(175, 209, 250, 0.78);
     background-color: #D5EDFFC6;
     border-radius: 10px;
+}
+
+#commentList{ /* 댓글 모아보기 */
+    overflow: auto;
+    height: 250px;
+    width: 750px;
+    margin: 20px;
+}
+
+#name{ /* ooo님 환영합니다. */
+    margin-left: 1520px;
+    margin-top: 100px;
+    font-size: 20px;
 }
