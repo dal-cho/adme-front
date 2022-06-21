@@ -223,7 +223,7 @@ function Comment() {
     let registryId = $("#RegistryId").html()
     $.ajax({
         type: "POST",
-        url: `/comment/registry/${registryId}`,
+        url: `/comment`,
         data: form_data,
         contentType: false,
         processData: false,
