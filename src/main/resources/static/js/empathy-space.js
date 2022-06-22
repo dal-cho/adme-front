@@ -8,6 +8,7 @@ $(document).ready(function () {
     pageLeave();
     getArticle(1); // paging
     $("#name").text(nickname + "님 환영합니다.")
+    findNickname() // nickname 가져오기
 });
 
 // 업로드 버튼
@@ -72,7 +73,30 @@ function pageLeave() {
 
 // nickname 가져오기
 let nickname = sessionStorage.getItem("nickname");
+function findNickname() {
+    if (!nickname) {
+        $.ajax({
+            type : "GET",
+            url: `http://localhost:8080/finduser`,
+            contentType : "application/json",
+            data: JSON.stringify(),
+            success: function (response) {
+                sessionStorage.setItem("nickname", response)
+                console.log("null일때 받아오는 닉네임 값 : " + response)
+                nickname = sessionStorage.getItem("nickname");
+            }
+        })
+    }
+}
 
+// nickname이 null 값인 경우 변경 확인
+function reload(){
+    $("#name").text(nickname + "님 환영합니다.")
+}
+
+if (!nickname) { // 0.5초 뒤에 다시 띄워짐
+    setInterval(reload, 500);
+}
 
 // 작성 글 페이징
 function getArticle(curpage) {
@@ -129,7 +153,7 @@ function makePagination(count, curpage, startPage, endPage, prev, next) {
 
     // 페이징 번호 표시
     for (let i = startPage; i <= endPage; i++) {
-        if (curpage == i) {
+        if(curpage ==i) {
             tempHtml += `
 <li class="page-number" value="${i}" id="curPage"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
       `;
@@ -145,12 +169,11 @@ function makePagination(count, curpage, startPage, endPage, prev, next) {
     $('#board-pages').html(tempHtml);
 }
 
-function beforeClick(curpage) {
-    getArticle(curpage - 1);
+function beforeClick(curpage){
+    getArticle(curpage-1);
 }
-
 function nextClick(curpage) {
-    getArticle(curpage + 1);
+    getArticle(curpage+1);
 }
 
 
@@ -218,7 +241,7 @@ function Comment() {
     let form_data = new FormData()
     form_data.append("comment", $("#comment").val())
     form_data.append("nickname", nickname)
-    form_data.append("registryId", $("#RegistryId").html())
+    form_data.append("registryId",$("#RegistryId").html())
 
     let registryId = $("#RegistryId").html()
     $.ajax({
@@ -239,7 +262,7 @@ function Comment() {
 }
 
 
-function findComment(idx) { // comment db 가져오기
+function findComment(idx){ // comment db 가져오기
     $("#commentList").text("") // 초기화
     $.ajax({
         type: "GET",
@@ -249,12 +272,12 @@ function findComment(idx) { // comment db 가져오기
         processData: false,
         success: function (response) {
             console.log(response)
-            for (let i = 0; i < response.length; i++) {
+            for (let i=0; i<response.length; i++){
                 let commentName = response[i]["nickname"]
                 let comment = response[i]["comment"]
                 let commentId = response[i]["idx"]
                 let temp_html
-                temp_html = `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentName">${commentName}님 : </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
+                temp_html= `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentName">${commentName}님 : </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
                 if (nickname == commentName) {
                     temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentName">${commentName}님 : </a><a id="${commentId}-comment">${comment}</a>
 <button id="updateBtn" type="button" onclick="updateCommentBtn(${commentId})" style="margin-left: 60px">수정</button></div> 
@@ -270,7 +293,7 @@ function findComment(idx) { // comment db 가져오기
 function updateCommentBtn(commentId) {
     // 수정 버튼을 누르면 수정 버튼은 사라지고 그 글이 input 칸안에 들어가야 함
 
-    let num = commentId + "-comment" // id 값을 가져옴
+    let num = commentId+"-comment" // id 값을 가져옴
     console.log("num : " + num)
 
     $("#updateBtn").hide() // 수정 버튼 숨김
@@ -283,12 +306,12 @@ function updateCommentBtn(commentId) {
 }
 
 
-function afterUpdateComment(commentId) {     // 저장 버튼을 누르면 그 값이 원래 값 대신 들어가야 함
+function afterUpdateComment(commentId){     // 저장 버튼을 누르면 그 값이 원래 값 대신 들어가야 함
     let comment = $("#updateCommentInput").val(); // 수정 댓글
     $("#updateCommentInput").hide(); // input 숨기기
     $("#updateAftersaveBtn").hide() // 저장 버튼 숨기기
 
-    let queryNum = "#" + commentId + "-comment" // id 값을 가져옴 + 제이쿼리 이용
+    let queryNum = "#"+commentId+"-comment" // id 값을 가져옴 + 제이쿼리 이용
     $(queryNum).text("") // 기존 값 초기화
     $(queryNum).text(comment) // 수정 값 추가
 
@@ -304,7 +327,7 @@ function afterUpdateComment(commentId) {     // 저장 버튼을 누르면 그 �
     $.ajax({
         type: "PUT",
         url: `/comment/${commentId}/registry/${registryId}`,
-        dataType: 'json',
+        dataType:'json',
         data: JSON.stringify(RegistryComment),
         contentType: 'application/json; charset=utf-8',
         success: function (response) {

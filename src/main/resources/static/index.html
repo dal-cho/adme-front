@@ -15,7 +15,7 @@
     <div id="header-title-login-user">
         <span id="nickname" th:text="${nickname}"></span> 님
     </div>
-    <a id="logout-text" href="/user/logout">
+    <a id="logout-text" href="/user/logout" onclick="logout()">
         로그아웃
     </a><br>
     <a href="/tenseconds.html">10s </a><br>
@@ -26,9 +26,8 @@
     $(document).ready(
         home)
 
-    let nick = $("#nickname").text();
-    sessionStorage.setItem("nickname", nick);
-    console.log(sessionStorage.getItem("nickname"))
+    let nickname = $("#nickname").text();
+    sessionStorage.setItem("nickname", nickname);
     function home() {
         $.ajax({
             type : "GET",
@@ -40,6 +39,11 @@
             }
         })
     }
+
+    function logout(){
+        sessionStorage.removeItem("nickname");
+    }
+
 </script>
 </body>
 </html>
