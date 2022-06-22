@@ -55,7 +55,6 @@ let passwordType=false
 
 
 function home() {
-    findSession()
     $.ajax({
         type: "GET",
         url: `http://localhost:8080/login`,
@@ -67,19 +66,10 @@ function home() {
     })
 }
 
-function findSession() { // session 저장
-    if (sessionStorage.getItem("nickname")) {
-        sessionStorage.removeItem("nickname");
-        $.ajax({
-            type: "GET",
-            url: `http://localhost:8080/user/login/nickname`,
-            contentType: "application/json",
-            data: JSON.stringify(),
-            success: function (response) {
-                sessionStorage.setItem("nickname", response)
-            }
-        })
-    }
+// 기존에 저장된 닉네임 삭제
+let saveNickname = sessionStorage.getItem("nickname");
+if (saveNickname) {
+    sessionStorage.removeItem("nickname");
 }
 
 function checkId() { // id 중복 확인
@@ -256,7 +246,7 @@ function SignIn() { // 로그인 성공 or 실패 메세지
                 setTimeout(function () {
                     document.getElementById("signInBtn").setAttribute("type","submit");
                     document.getElementById("signInBtn").click()
-                }, 1500)
+                }, 1000)
             } else {
                 $(".Login-danger").text(response)
 
