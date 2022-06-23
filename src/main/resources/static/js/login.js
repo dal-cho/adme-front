@@ -155,7 +155,6 @@ function checkSignUp(){ // 회원가입 저장 전 체크
         signUp()
     }
     else{
-
         if(usernameType == false) {
             $(".alert-danger").text("아이디를 확인해주세요");
         }
@@ -168,6 +167,7 @@ function checkSignUp(){ // 회원가입 저장 전 체크
         if( passwordType == false){
             $(".alert-danger").text("비밀번호를 확인해주세요");
         }
+
     }
 
 
@@ -233,7 +233,7 @@ function SignIn() { // 로그인 성공 or 실패 메세지
     form_data.append("username", username)
     form_data.append("password", password)
 
-    $(".Login-danger").text("")
+    $(".Login-danger").text("") // 로그인 msg 초기화
     $.ajax({
         type: "POST",
         url: `http://localhost:8080/user/login/input`,
@@ -246,11 +246,18 @@ function SignIn() { // 로그인 성공 or 실패 메세지
                 setTimeout(function () {
                     document.getElementById("signInBtn").setAttribute("type","submit");
                     document.getElementById("signInBtn").click()
-                }, 1000)
+                }, 800)
             } else {
                 $(".Login-danger").text(response)
 
             }
         }
     });
+}
+
+function deleteMsg() { // 로그인 실패 msg 띄워준 후 회원가입 창으로 변경 시
+    $(".Login-danger").text("") // 로그인 msg 초기화
+}
+function deleteSignUpMsg() { // 회원가입 실패 msg 띄워준 후 로그인 창으로 변경 시
+    $(".alert-danger").text("")
 }

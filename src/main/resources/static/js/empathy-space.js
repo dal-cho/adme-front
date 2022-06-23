@@ -130,14 +130,17 @@ function getArticle(curpage) {
 // 네모 칸 리스트 출력
 function makeListPost(board, num) {
     let title = board.title;
+    if(title.length >= 20) {
+        title = title.substr(0,20) + "...";
+    }
     let content = board.main;
     let modi = board.modifiedAt;
     let mode = modi.substr(0, 10);
     let idx = board.idx;
-    let tempHtml = `<div class="item"><button onclick="allRegistry(${idx}); findComment(${idx})">
-                        <div class="num">${num}</div>
-                        <div class="title">${title}</a></div>
-                        <div class="date">${mode}</div>
+    let tempHtml = `<div class="item"><button class="makeListPostBtn" onclick="allRegistry(${idx}); findComment(${idx})">
+                        <div class="num" style="display: none">${num}</div>
+                        <div class="title" style="font-size: 16px;">${title}</a></div>
+                        <div class="date" style="display: none">${mode}</div>
                    </div>
 `
     $("#c1-posting").append(tempHtml);

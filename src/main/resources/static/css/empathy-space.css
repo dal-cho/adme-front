@@ -123,7 +123,7 @@ li.icon {
     margin-top: 16px;
     width: 220px;
     height: 190px;
-    border: 3px solid black;
+    border: 3px solid powderblue;
     border-radius: 4px 4px 4px 4px;
 }
 
@@ -368,4 +368,26 @@ li.icon {
     margin-left: 1520px;
     margin-top: 100px;
     font-size: 20px;
+}
+
+.makeListPostBtn{
+    width: 220px;
+    height: 190px;
+    /*all: unset;*/
+    border: 0;
+    outline: 0;
+
+    background-color: inherit;
+    border-radius: 10px;
+}
+.makeListPostBtn:hover{
+    background: #D5EDFFC6;
+    cursor: pointer;
+}
+.paging-num:hover{
+    cursor: pointer;
+    background: rgba(98,150,241,0.87);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
 }
