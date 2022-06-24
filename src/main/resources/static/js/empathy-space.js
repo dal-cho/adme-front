@@ -71,7 +71,7 @@ function pageLeave() {
     });
 }
 
-// nickname 가져오기
+// nickname 가져오기 (index 페이지로 가지 않고 다른 페이지로 갈 경우)
 let nickname = sessionStorage.getItem("nickname");
 function findNickname() {
     if (!nickname) {
@@ -82,7 +82,6 @@ function findNickname() {
             data: JSON.stringify(),
             success: function (response) {
                 sessionStorage.setItem("nickname", response)
-                console.log("null일때 받아오는 닉네임 값 : " + response)
                 nickname = sessionStorage.getItem("nickname");
             }
         })
@@ -115,7 +114,6 @@ function getArticle(curpage) {
             let prev = response.prev;
             let next = response.next
 
-            console.log(fullCount, curpage, startPage, endPage, prev, next)
             $("#nowPage").append(curpage + "페이지")
             for (let i = 0; i < list.length; i++) {
                 num = i + 1;
@@ -260,6 +258,9 @@ function Comment() {
 
             // 댓글 창 값 없애기
             $("#comment").val("")
+
+            // 댓글 입력 후 댓글 db reload
+            findComment(registryId)
         }
     });
 }
@@ -274,7 +275,6 @@ function findComment(idx){ // comment db 가져오기
         contentType: false,
         processData: false,
         success: function (response) {
-            console.log(response)
             for (let i=0; i<response.length; i++){
                 let commentName = response[i]["nickname"]
                 let comment = response[i]["comment"]
@@ -283,7 +283,8 @@ function findComment(idx){ // comment db 가져오기
                 temp_html= `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentName">${commentName}님 : </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
                 if (nickname == commentName) {
                     temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentName">${commentName}님 : </a><a id="${commentId}-comment">${comment}</a>
-<button id="updateBtn" type="button" onclick="updateCommentBtn(${commentId})" style="margin-left: 60px">수정</button></div> 
+<button id="updateBtn" type="button" onclick="updateCommentBtn(${commentId})">수정</button>
+<button id="deleteBtn" type="button" onclick="checkDelete(${commentId})">삭제</button></div> 
 <a><input id="updateCommentInput" style="display: none"><button id="updateAftersaveBtn" style="display: none" type="button" onclick="afterUpdateComment(${commentId})">저장</button> </a><br>`
                 }
                 $("#commentList").append(temp_html)
@@ -297,11 +298,9 @@ function updateCommentBtn(commentId) {
     // 수정 버튼을 누르면 수정 버튼은 사라지고 그 글이 input 칸안에 들어가야 함
 
     let num = commentId+"-comment" // id 값을 가져옴
-    console.log("num : " + num)
 
     $("#updateBtn").hide() // 수정 버튼 숨김
     let comment = document.getElementById(num).innerText // 댓글 값을 가져온다.
-    console.log("comment : " + comment)
 
     $("#updateCommentInput").show() // input 창 보여주기
     $("#updateAftersaveBtn").show() // 저장 버튼 보여주기
@@ -338,4 +337,34 @@ function afterUpdateComment(commentId){     // 저장 버튼을 누르면 그 �
         }
     })
 
+}
+
+function checkDelete(commentId) { // 삭제 여부를 묻고 삭제하겠다고 하면 deleteComment 호출
+    let checkDelete = confirm("정말 삭제하실건가요?")
+    if (checkDelete) {
+        deleteComment(commentId)
+    }
+}
+
+function deleteComment(commentId) {
+    let num = commentId+"-comment" // id 값을 가져옴
+    let comment = document.getElementById(num).innerText // 댓글 값을 가져온다.
+    let registryId = $("#RegistryId").html();
+
+    let RegistryComment = {
+        nickname: nickname,
+        comment: comment,
+        registryId: registryId
+    }
+
+    $.ajax({
+        type: "DELETE",
+        url: `/comment/${commentId}/registry/${registryId}`,
+        dataType:'json',
+        data: JSON.stringify(RegistryComment),
+        contentType: 'application/json; charset=utf-8',
+        success: function (response) {
+
+        }
+    })
 }

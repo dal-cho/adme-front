@@ -370,7 +370,7 @@ li.icon {
     font-size: 20px;
 }
 
-.makeListPostBtn{
+.makeListPostBtn{ /* 게시글 리스트 형태 버튼 타입 숨기기 */
     width: 220px;
     height: 190px;
     /*all: unset;*/
@@ -380,14 +380,30 @@ li.icon {
     background-color: inherit;
     border-radius: 10px;
 }
-.makeListPostBtn:hover{
+
+.makeListPostBtn:hover{ /* 게시글에 마우스 올려놓을 시 색 변경*/
     background: #D5EDFFC6;
     cursor: pointer;
 }
-.paging-num:hover{
+
+.paging-num:hover{ /* 페이징 버튼 마우스 올려놓을 시 색 변경 */
     cursor: pointer;
     background: rgba(98,150,241,0.87);
     border-radius: 50%;
     width: 24px;
     height: 24px;
+}
+
+#updateBtn{ /* 수정 버튼 */
+    cursor: pointer;
+    margin-left: 60px;
+    border: 0;
+    outline: 0;
+}
+
+#deleteBtn{ /* 삭제 버튼 */
+    margin-left: 10px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
 }
