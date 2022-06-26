@@ -252,11 +252,7 @@ function Comment() {
         contentType: false,
         processData: false,
         success: function (response) {
-            $("#commentList").append(nickname + "님 : " + $("#comment").val())
-            let temp = `<br>`
-            $("#commentList").append(temp)
-
-            // 댓글 창 값 없애기
+            // // 댓글 창 값 없애기(input 칸 비우기)
             $("#comment").val("")
 
             // 댓글 입력 후 댓글 db reload
@@ -367,4 +363,7 @@ function deleteComment(commentId) {
 
         }
     })
+    let query = "." + commentId
+    let queryEnd = " ." + commentId
+    $(query).load(window.location.href + queryEnd) // 삭제 댓글만 새로고침
 }
