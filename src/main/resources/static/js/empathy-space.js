@@ -294,26 +294,40 @@ function updateCommentBtn(commentId) {
     // 수정 버튼을 누르면 수정 버튼은 사라지고 그 글이 input 칸안에 들어가야 함
 
     let num = commentId+"-comment" // id 값을 가져옴
+    let updateBtn = "#updateBtn-" + commentId
+    let deleteBtn = "#deleteBtn-"+ commentId
 
-    $("#updateBtn").hide() // 수정 버튼 숨김
+    $(updateBtn).hide() // 수정 버튼 숨김
+    $(deleteBtn).hide() // 삭제 버튼 숨김
+
     let comment = document.getElementById(num).innerText // 댓글 값을 가져온다.
+    let updateCommentInput = "#updateCommentInput-" + commentId // 수정 입력 input 창
+    let updateAftersaveBtn = "#updateAftersaveBtn-" + commentId // 저장 버튼
 
-    $("#updateCommentInput").show() // input 창 보여주기
-    $("#updateAftersaveBtn").show() // 저장 버튼 보여주기
-    $("#updateCommentInput").val(comment) // 수정 전 값 input 창에 띄워주기
+    $(updateCommentInput).show() // 수정 입력 input 창 보여주기
+    $(updateAftersaveBtn).show() // 저장 버튼 보여주기
+    $(updateCommentInput).val(comment) // 수정 전 값 input 창에 띄워주기
 }
 
 
 function afterUpdateComment(commentId){     // 저장 버튼을 누르면 그 값이 원래 값 대신 들어가야 함
-    let comment = $("#updateCommentInput").val(); // 수정 댓글
-    $("#updateCommentInput").hide(); // input 숨기기
-    $("#updateAftersaveBtn").hide() // 저장 버튼 숨기기
+    let updateCommentInput = "#updateCommentInput-"+commentId // 수정 입력 input 창
+    let updateAftersaveBtn = "#updateAftersaveBtn-" + commentId // 저장 버튼
 
+    $(updateCommentInput).hide(); // input 숨기기
+    $(updateAftersaveBtn).hide() // 저장 버튼 숨기기
+
+    let comment = $(updateCommentInput).val(); // 수정 댓글
     let queryNum = "#"+commentId+"-comment" // id 값을 가져옴 + 제이쿼리 이용
     $(queryNum).text("") // 기존 값 초기화
     $(queryNum).text(comment) // 수정 값 추가
 
-    $("#updateBtn").show()
+    let updateBtn = "#updateBtn-" + commentId // 수정 버튼
+    let deleteBtn = "#deleteBtn-"+ commentId // 삭제 버튼
+
+    $(updateBtn).show() // 수정 버튼 보여주기
+    $(deleteBtn).show() // 삭제 버튼 보여주기
+
     let registryId = $("#RegistryId").html();
 
     let RegistryComment = {
