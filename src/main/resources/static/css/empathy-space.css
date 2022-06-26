@@ -355,13 +355,15 @@ li.icon {
     border: 3px solid rgba(175, 209, 250, 0.78);
     background-color: #D5EDFFC6;
     border-radius: 10px;
+    margin-top: -20px;
 }
 
 #commentList{ /* 댓글 모아보기 */
     overflow: auto;
     height: 250px;
-    width: 750px;
-    margin: 20px;
+    width: 870px;
+    /* margin: 20px; */
+    padding: 20px;
 }
 
 #name{ /* ooo님 환영합니다. */
@@ -394,16 +396,70 @@ li.icon {
     height: 24px;
 }
 
-#updateBtn{ /* 수정 버튼 */
+.updateBtn{ /* 수정 버튼 */
     cursor: pointer;
     margin-left: 60px;
     border: 0;
     outline: 0;
 }
 
-#deleteBtn{ /* 삭제 버튼 */
+.deleteBtn{ /* 삭제 버튼 */
     margin-left: 10px;
     border: 0;
     outline: 0;
     cursor: pointer;
+}
+
+.updateAftersaveBtn{ /* 수정 버튼 누르고 나오는 저장 버튼 */
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+}
+
+.updateCommentInput{ /* 수정하기 위해 나타나는 input */
+    border: 0;
+    outline: 0;
+    margin: 10px;
+    padding: 6px;
+    width: 270px;
+    font-size: 15px;
+}
+.commentInputSubmit{ /* 댓글 달기 input */
+    border: 0;
+    outline: 0;
+    margin: 10px;
+    padding: 6px;
+    width: 750px;
+    font-size: 15px;
+}
+
+.commentBtnSubmit { /* 댓글 등록하기 btn */
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+
+    color: rgba(4, 16, 185, 0.75);
+    font-size: 14px;
+    width: 80px;
+    height: 36px;
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    background-color: #D5EDFFC6;
+    /*border-radius: 10px;*/
+}
+#commentParent{ /* 댓글 div */
+    word-break:break-all /* 자동 줄바꿈 */
+    /*글자 단위로 줄바꿈 한다. (글자단위로 줄바꿈이 되어 글자가 박스 안에서 가득차는 형태)*/
+}
+
+.commentName{ /* 댓글 창 닉네임 꾸미기 */
+    color: rgba(4, 16, 185, 0.75);
+    font-size: 14px;
+    width: 80px;
+    height: 36px;
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    background-color: #D5EDFFC6;
+    padding: 3px;
+    border-radius: 7px 7px 7px 7px;
+    margin-right: 15px;
+    padding-left: 8px;
 }
