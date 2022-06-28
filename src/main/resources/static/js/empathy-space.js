@@ -276,12 +276,39 @@ function findComment(idx){ // comment db 가져오기
                 let comment = response[i]["comment"]
                 let commentId = response[i]["idx"]
                 let temp_html
-                temp_html= `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentName">${commentName}님 : </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
-                if (nickname == commentName) {
-                    temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentName">${commentName}님 : </a><a id="${commentId}-comment">${comment}</a>
-<button id="updateBtn" type="button" onclick="updateCommentBtn(${commentId})">수정</button>
-<button id="deleteBtn" type="button" onclick="checkDelete(${commentId})">삭제</button></div> 
-<a><input id="updateCommentInput" style="display: none"><button id="updateAftersaveBtn" style="display: none" type="button" onclick="afterUpdateComment(${commentId})">저장</button> </a><br>`
+                let writerRegistry = $("#user").text() // 게시글 작성자
+
+                if (writerRegistry == commentName) { // 게시글 작성자인 경우
+
+                    // 댓글 작성자인 경우
+                    if (nickname == commentName) { // 댓글 작성자인 경우
+                        temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentName" class="writerCommentName">${commentName} : 작성자 </a><a id="${commentId}-comment">${comment}</a>
+<button id="updateBtn-${commentId}" class="updateBtn" type="button" onclick="updateCommentBtn(${commentId})">수정</button>
+<button id="deleteBtn-${commentId}" class="deleteBtn" type="button" onclick="checkDelete(${commentId})">삭제</button></div> 
+<a><input id="updateCommentInput-${commentId}" class="updateCommentInput" style="display: none"><button id="updateAftersaveBtn-${commentId}" class="updateAftersaveBtn" style="display: none" type="button" onclick="afterUpdateComment(${commentId})">저장</button> </a><br>`
+                    }
+
+                    // 댓글 작성자가 아닌 경우
+                    else{
+                        temp_html= `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentName" class="commentName">${commentName} : 작성자 </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
+                    }
+
+                } else{ // 댓글 작성자가 아닌 경우
+
+                    // 댓글 작성자인 경우
+                    if (nickname == commentName) { // 댓글 작성자인 경우
+                        temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentName" class="writerCommentName">${commentName}</a><a id="${commentId}-comment">${comment}</a>
+<button id="updateBtn-${commentId}" class="updateBtn" type="button" onclick="updateCommentBtn(${commentId})">수정</button>
+<button id="deleteBtn-${commentId}" class="deleteBtn" type="button" onclick="checkDelete(${commentId})">삭제</button></div> 
+<a><input id="updateCommentInput-${commentId}" class="updateCommentInput" style="display: none"><button id="updateAftersaveBtn-${commentId}" class="updateAftersaveBtn" style="display: none" type="button" onclick="afterUpdateComment(${commentId})">저장</button> </a><br>`
+                    }
+
+                    // 댓글 작성자가 아닌 경우
+
+                    else {
+                        temp_html= `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentName" class="commentName">${commentName} </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
+                    }
+
                 }
                 $("#commentList").append(temp_html)
 

@@ -463,3 +463,14 @@ li.icon {
     margin-right: 15px;
     padding-left: 8px;
 }
+.writerCommentName{ /* 작성자 닉네임 */
+    font-size: 16px;
+    width: 80px;
+    height: 36px;
+    background: linear-gradient(40deg, #b2c8d2, #c5e0e2,#edf5d8, #e7e7fb, rgb(162 199 226 / 78%), #D5EDFFC6);
+    border-radius: 7px 7px 7px 7px;
+    margin-right: 15px;
+    padding-left: 6px;
+    color: currentcolor;
+
+}
