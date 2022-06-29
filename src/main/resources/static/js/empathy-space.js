@@ -124,7 +124,6 @@ function getArticle(curpage) {
     })
 }
 
-
 // 네모 칸 리스트 출력
 function makeListPost(board, num) {
     let title = board.title;
@@ -243,6 +242,7 @@ function Comment() {
     form_data.append("comment", $("#comment").val())
     form_data.append("nickname", nickname)
     form_data.append("registryId",$("#RegistryId").html())
+    form_data.append("registryNickname",$("#user").text()) // 게시글 작성자
 
     let registryId = $("#RegistryId").html()
     $.ajax({
@@ -275,10 +275,11 @@ function findComment(idx){ // comment db 가져오기
                 let commentName = response[i]["nickname"]
                 let comment = response[i]["comment"]
                 let commentId = response[i]["idx"]
+                let registryNickname = response[i]["registryNickname"]
                 let temp_html
-                let writerRegistry = $("#user").text() // 게시글 작성자
+                console.log("registryNickname : " + registryNickname)
 
-                if (writerRegistry == commentName) { // 게시글 작성자인 경우
+                if (registryNickname == commentName) { // 게시글 작성자인 경우
 
                     // 댓글 작성자인 경우
                     if (nickname == commentName) { // 댓글 작성자인 경우
@@ -310,6 +311,8 @@ function findComment(idx){ // comment db 가져오기
                     }
 
                 }
+
+
                 $("#commentList").append(temp_html)
 
             }
@@ -356,11 +359,13 @@ function afterUpdateComment(commentId){     // 저장 버튼을 누르면 그 �
     $(deleteBtn).show() // 삭제 버튼 보여주기
 
     let registryId = $("#RegistryId").html();
+    let registryNickname = $("#user").text() // 게시글 작성자
 
     let RegistryComment = {
         nickname: nickname,
         comment: comment,
-        registryId: registryId
+        registryId: registryId,
+        registryNickname: registryNickname
     }
 
     $.ajax({
@@ -387,11 +392,13 @@ function deleteComment(commentId) {
     let num = commentId+"-comment" // id 값을 가져옴
     let comment = document.getElementById(num).innerText // 댓글 값을 가져온다.
     let registryId = $("#RegistryId").html();
+    let registryNickname = $("#user").text() // 게시글 작성자
 
     let RegistryComment = {
         nickname: nickname,
         comment: comment,
-        registryId: registryId
+        registryId: registryId,
+        registryNickname: registryNickname
     }
 
     $.ajax({
