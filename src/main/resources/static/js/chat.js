@@ -122,7 +122,7 @@ function findSession() { // 값이 저장되지 않는 경우 서버에서 sessi
     if (!sessionStorage.getItem("nickname")) {
         $.ajax({
             type : "GET",
-            url: `http://localhost:8080/user/login/nickname`,
+            url: `http://localhost:8080/finduser`,
             contentType : "application/json",
             data: JSON.stringify(),
             success: function (response) {
