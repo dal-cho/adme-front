@@ -161,9 +161,12 @@ function makeListPost(board, num) {
 
             let temp
             if(commentLength == 0) { // 공감이 필요해요
+                if(title.length >= 8) {
+                    title = title.substr(0,8) + "...";
+                }
                 if ($(".item1").length < 11) {
                     for (let i=0; i<11; i++){
-                        temp = `<div class="item1" id="needComment"><button onclick="allRegistry(${idx}); findComment(${idx})">
+                        temp = `<div class="item1" ><button id="needComment" onclick="allRegistry(${idx}); findComment(${idx})">
                         <div class="comment-num" style="display: none">${num}</div>
                         <div class="comment-title" style="font-size: 16px;">${title}</a></div>
                         <div class="comment-date" style="display: none">${mode}</div>
@@ -281,8 +284,11 @@ function allRegistry(idx) {
 
 function closeModal() {
     $("#articleModal").fadeOut();
+    spaceReload()
 }
-
+function spaceReload() {
+    location.reload(); // 새로고침
+}
 
 // 댓글 등록하기
 function Comment() {
