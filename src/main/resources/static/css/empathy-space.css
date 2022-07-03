@@ -474,3 +474,19 @@ li.icon {
     color: currentcolor;
 
 }
+
+.commentLength{ /* 게시글 칸 댓글 수 보여주기 */
+    position: fixed;
+    margin: 55px;
+    margin-left: 180px;
+    font-size: 16px;
+    color: #304bee;
+}
+
+#needComment{
+    border: 0;
+    outline: 0;
+}
+#needComment:hover{ /* 공감이 필요해요 마우스 올려놓을 시 마우스 변경 */
+    cursor: pointer;
+}

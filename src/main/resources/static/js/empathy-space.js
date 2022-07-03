@@ -97,6 +97,10 @@ if (!nickname) { // 0.5초 뒤에 다시 띄워짐
     setInterval(reload, 500);
 }
 
+// 모든 registry를 갖고와
+// comment 댓글
+
+
 // 작성 글 페이징
 function getArticle(curpage) {
     $.ajax({
@@ -124,6 +128,7 @@ function getArticle(curpage) {
     })
 }
 
+
 // 네모 칸 리스트 출력
 function makeListPost(board, num) {
     let title = board.title;
@@ -134,13 +139,56 @@ function makeListPost(board, num) {
     let modi = board.modifiedAt;
     let mode = modi.substr(0, 10);
     let idx = board.idx;
-    let tempHtml = `<div class="item"><button class="makeListPostBtn" onclick="allRegistry(${idx}); findComment(${idx})">
+
+    $("ul.items1").text("") // 공감이 필요해요 칸 초기화
+
+    $.ajax({
+        type: "GET",
+        url: `/comment?idx=${idx}`,
+        data: {},
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            let commentLength = response.length
+            let tempHtml = `<div class="item"><button class="makeListPostBtn" onclick="allRegistry(${idx}); findComment(${idx})">
                         <div class="num" style="display: none">${num}</div>
                         <div class="title" style="font-size: 16px;">${title}</a></div>
                         <div class="date" style="display: none">${mode}</div>
+                        <div class="commentLength" >${commentLength}</div>
                    </div>
 `
-    $("#c1-posting").append(tempHtml);
+            $("#c1-posting").append(tempHtml);
+
+            let temp
+            if(commentLength == 0) { // 공감이 필요해요
+                if ($(".item1").length < 11) {
+                    for (let i=0; i<11; i++){
+                        temp = `<div class="item1" id="needComment"><button onclick="allRegistry(${idx}); findComment(${idx})">
+                        <div class="comment-num" style="display: none">${num}</div>
+                        <div class="comment-title" style="font-size: 16px;">${title}</a></div>
+                        <div class="comment-date" style="display: none">${mode}</div>
+                   </div>
+`
+                        //$("ul.items1").append(temp)
+                    }
+                } else {
+                    temp = `<div class="item1"><button onclick="allRegistry(${idx}); findComment(${idx})">
+                        <div class="comment-num" style="display: none">${num}</div>
+                        <div class="comment-title" style="font-size: 16px;">${title}</a></div>
+                        <div class="comment-date" style="display: none">${mode}</div>
+                   </div>
+`
+
+                }
+
+                $("ul.items1").append(temp)
+            }
+
+
+        }
+    })
+
+
 }
 
 
