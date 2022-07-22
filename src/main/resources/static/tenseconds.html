@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="css/tenseconds.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <title>TenSeconds</title>
 </head>
 <body>
 <div class="menu">
     <div class="m1">
         <ul>
             <li><a href="#" class="m11" >나</a></li>
-            <li><a href="http://localhost:8080/tenseconds.html" class="m11"  style="color: rgba(98,150,241,0.87);" >10s</a></li>
+            <li><a href="http://localhost:8080/tenseconds" class="m11"  style="color: rgba(98,150,241,0.87);" >10s</a></li>
             <li><a href="http://localhost:8080/empathy-space.html" class="m11" >공감공간</a></li>
             <li><a href="question.html" class="m11">문의하기</a></li>
         </ul>
@@ -46,7 +47,9 @@
 </div>
 <div class="upload">
     <div class="upload-container">
-        <div class="upload-box"></div>
+        <div class="upload-box">
+            <input type="file" name="uploadFile" multiple>
+        </div>
         <div class="upload-title">
             <input class="upload-title-content" placeholder="제목을 입력하세요." type="text" required/>
         </div>
