@@ -7,6 +7,62 @@ $(document).ready(function(){
     getVideos();
 });
 
+//파일 저장
+function saveArticle(){
+    // 업로드 후 초기화용 변수
+    let cloneObj = $(".upload-box").clone();
+
+    // formData = 가상의 <form> 태그라 생각하면 된다.
+    let formData = new FormData();
+    let inputFile = $("input[name='uploadFile']");
+    let files = inputFile[0].files;
+
+    // formData에 값들을 for문으로 입력해서 담아준다.
+    for (let i=0; i<files.length; i++){
+        // 파일 확장자, 크기에 대한 예외처리
+        if(!checkExtension(files[i].name, files[i].size)){
+            return false;
+        }
+        formData.append("uploadFile", files[i]);
+    }
+
+    //ajax 를 통해 controller 와 연결
+    $.ajax({
+        type: "POST",
+        url: '/10s/videos',
+        data: formData,
+        dataType: "json",
+        contentType: false,
+        async: false,
+        processData: false,
+        success: function(result) {
+            console.log(result);
+            // // 업로드 이미지 처리
+            // showUploadedFile(result);
+            // input 초기화
+            $(".upload-box").html(cloneObj.html());
+            alert("동작 완료")
+        }
+    });
+}
+
+// 파일 확장자, 크기 처리
+function checkExtension(fileName, fileSize){
+    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+    let maxSize = 5242880; //5MB
+
+    if(fileSize >= maxSize){
+        alert("파일 사이즈 초과");
+        return false;
+    }
+
+    if(regex.test(fileName)){
+        alert("해당 종류의 파일은 업로드할 수 없습니다.");
+        return false;
+    }
+    return true;
+}
+
 function item_click(){
     $(".item").click(function (){
         $("#myModal").show();
