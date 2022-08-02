@@ -8,7 +8,7 @@ $(document).ready(function(){
 });
 
 //파일 저장
-function saveArticle(){
+function saveArticle() {
     // 업로드 후 초기화용 변수
     let cloneObj = $(".upload-box").clone();
 
@@ -29,7 +29,7 @@ function saveArticle(){
     //ajax 를 통해 controller 와 연결
     $.ajax({
         type: "POST",
-        url: '/10s/videos',
+        url: '/tenseconds/videos',
         data: formData,
         dataType: "json",
         contentType: false,
@@ -41,22 +41,24 @@ function saveArticle(){
             // showUploadedFile(result);
             // input 초기화
             $(".upload-box").html(cloneObj.html());
-            alert("동작 완료")
+            alert("동작 완료");
+            window.location.reload();
         }
     });
 }
 
 // 파일 확장자, 크기 처리
 function checkExtension(fileName, fileSize){
-    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-    let maxSize = 5242880; //5MB
+    // let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+    let regex = new RegExp("(.*?)\.(mp4)$");
+    let maxSize = 256000000;
 
     if(fileSize >= maxSize){
         alert("파일 사이즈 초과");
         return false;
     }
 
-    if(regex.test(fileName)){
+    if(!regex.test(fileName)){
         alert("해당 종류의 파일은 업로드할 수 없습니다.");
         return false;
     }
@@ -87,31 +89,32 @@ window.onclick = function(event) {
 }
 
 function getVideos() {
+    console.log("getVideos")
     $.ajax({
         type: "GET",
-        url: "/videos",
-        contentType: 'application/json; charset=utf-8',
+        url: '/tenseconds/list',
         success: function (response) {
-            for (let i = 0; i < response.length; i++) {
-                num = response.length - i;
+            alert("get 동작시작");
+            console.log(response);
+            for (let i=0; i<response.length; i++) {
+                let num = response.length-i;
                 videoListPost(response[i], num);
-                videoInfoPost(response[i], num);
+                // videoInfoPost(response[i], num);
             }
         }
     })
 }
 
 function videoListPost(article, index) {
-    let tempHtml = `<div class="item" id="${index}">${article["video"]}
-                    <a href="#" class="item_title">${article['title']}</a>
-                    </div>
+    let tempHtml = `<video class="item" controls id="${index}">
+                        <source src="${"files/" + article["fileName"]}" type="${article['fileType']}">
+                    </video>
                     `;
-    $(".item").append(tempHtml);
+    $(".items").append(tempHtml);
 }
 
 function videoInfoPost(article, index) {
     let tempHtml = `<div>
-
                     </div>
                     `;
     $(".modal_content").append(tempHtml);
