@@ -1,30 +1,28 @@
 let username = sessionStorage.getItem("nickname");
 let socket = new WebSocket("ws://localhost:8080/websocket");
 
-socket.onopen = function (e) {
+socket.onopen = function(e) {
     console.log('open server!')
     let str = username + " 님이 입장하셨습니다.";
     socket.send(str);
 };
 
-socket.onclose = function (e) { // 채팅방에서 나갔을 때
+socket.onclose = function(e) { // 채팅방에서 나갔을 때
     let str = username + " 님이 방을 나가셨습니다.";
     socket.send(str);
     $("#join-count").load(window.location.href + " #join-span")
 }
 
 // 접속자 수 띄우기
-$(document).ready(function () {
+$(document).ready(function() {
     count_user();
     loading();
     findSession();
 });
-
-
 let cnt = 0
 function loading() { // 채팅 입력 중 띄우기
-    $(".content").on("propertychange change keyup paste input", function () {
-        cnt ++;
+    $(".content").on("propertychange change keyup paste input", function() {
+        cnt++;
         if (cnt == 1) {
             let parentLoading = document.querySelector('.loading');
             let childLoading = document.createElement('div');
@@ -34,7 +32,6 @@ function loading() { // 채팅 입력 중 띄우기
         }
     })
 }
-
 
 function gotoBottom() { // 스크롤 바 자동으로 내리기
     $('.msgArea').scrollTop($('.msgArea')[0].scrollHeight);
@@ -54,17 +51,14 @@ function count_user() {
     })
 }
 
-
-socket.onerror = function (e) {
+socket.onerror = function(e) {
     console.log(e);
 }
-
-socket.onmessage = function (e) {
+socket.onmessage = function(e) {
     console.log(e.data);
     let msgArea = document.querySelector('.msgArea');
     let newMsg = document.createElement('div');
-
-    if (e.data.includes(" 님이 입장하셨습니다.")) {
+    if (e.data.includes(" 님이 입장하셨습니다.") || e.data.includes(" 님이 방을 나가셨습니다.")) {
         newMsg.className = "chatIntro-msg";
         newMsg.innerText = e.data;
     } else { // 채팅 msg
@@ -117,21 +111,21 @@ function endChat() {
     location.href = "/";
 }
 
-
 function findSession() { // 값이 저장되지 않는 경우 서버에서 session 저장 된 값 가져오기
     if (!sessionStorage.getItem("nickname")) {
         $.ajax({
-            type : "GET",
+            type: "GET",
             url: `http://localhost:8080/finduser`,
-            contentType : "application/json",
+            contentType: "application/json",
             data: JSON.stringify(),
-            success: function (response) {
+            success: function(response) {
                 sessionStorage.setItem("nickname", response)
                 username = sessionStorage.getItem("nickname");
             }
         })
-    }}
+    }
+}
 
-setInterval(function (){
+setInterval(function() {
     count_user()
-},500)
+}, 500)
