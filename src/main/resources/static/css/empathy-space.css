@@ -493,3 +493,18 @@ li.icon {
 #needComment:hover{ /* 공감이 필요해요 마우스 올려놓을 시 마우스 변경 */
     cursor: pointer;
 }
+#chatButton{
+    position:fixed;
+    bottom:0px;
+    right:0px;
+    margin: 40px;
+    margin-right: 250px;
+    border-radius: 50%;
+    text-align: center;
+    background: #b2c8d2;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    color: #F2F5F8;
+    border:none;
+}
