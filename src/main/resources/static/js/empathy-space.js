@@ -76,9 +76,9 @@ let nickname = sessionStorage.getItem("nickname");
 function findNickname() {
     if (!nickname) {
         $.ajax({
-            type : "GET",
+            type: "GET",
             url: `http://localhost:8080/finduser`,
-            contentType : "application/json",
+            contentType: "application/json",
             data: JSON.stringify(),
             success: function (response) {
                 sessionStorage.setItem("nickname", response)
@@ -268,12 +268,12 @@ function allRegistry(idx) {
         contentType: false,
         processData: false,
         success: function (response) {
-            let created = response['createdAt']
-            let modified = response['modifiedAt']
-            let idx = response['idx']
-            let title = response['title']
-            let main = response['main']
-            let registryNickname = response['nickname']
+            let created = response[0]['createdAt']
+            let modified = response[0]['modifiedAt']
+            let idx = response[0]['idx']
+            let title = response[0]['title']
+            let main = response[0]['main']
+            let registryNickname = response[1]
 
             // 0000-00-00 형식으로 출력
             let date = new Date(created)
@@ -340,7 +340,6 @@ function findComment(idx) { // comment db 가져오기
                 let commentId = response[i]["idx"]
                 let registryNickname = response[i]["registryNickname"]
                 let temp_html
-                console.log("registryNickname : " + registryNickname)
 
                 if (registryNickname == commentName) { // 게시글 작성자인 경우
 
@@ -439,7 +438,6 @@ function afterUpdateComment(commentId) {     // 저장 버튼을 누르면 그 �
             console.log("success")
         }
     })
-
 }
 
 function checkDelete(commentId) { // 삭제 여부를 묻고 삭제하겠다고 하면 deleteComment 호출
@@ -467,7 +465,6 @@ function deleteComment(commentId) {
         data: JSON.stringify(RegistryComment),
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-
         }
     })
     let query = "." + commentId
