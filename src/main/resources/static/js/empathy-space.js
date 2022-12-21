@@ -144,12 +144,12 @@ function makeListPost(board, num) {
     $("ul.items1").text("") // 공감이 필요해요 칸 초기화
     $.ajax({
         type: "GET",
-        url: `/comment?idx=${idx}`,
+        url: `/comment-count?idx=${idx}`,
         data: {},
         contentType: false,
         processData: false,
         success: function (response){
-            let commentLength = response.length;
+            let commentLength = response["size"];
             let tempHtml = `<div class="item"><button class="makeListPostBtn" onclick="allRegistry(${idx}); findComment(${idx})">
                         <div class="num" style="display: none">${num}</div>
                         <div class="title" style="font-size: 16px;">${title}</a></div>
