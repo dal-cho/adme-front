@@ -142,15 +142,14 @@ function makeListPost(board, num) {
     let idx = board.idx;
 
     $("ul.items1").text("") // 공감이 필요해요 칸 초기화
-
     $.ajax({
         type: "GET",
         url: `/comment?idx=${idx}`,
         data: {},
         contentType: false,
         processData: false,
-        success: function (response) {
-            let commentLength = response.length
+        success: function (response){
+            let commentLength = response.length;
             let tempHtml = `<div class="item"><button class="makeListPostBtn" onclick="allRegistry(${idx}); findComment(${idx})">
                         <div class="num" style="display: none">${num}</div>
                         <div class="title" style="font-size: 16px;">${title}</a></div>
@@ -171,8 +170,6 @@ function needComment() {
         contentType: false,
         processData: false,
         success: function (response) {
-            console.log("need Comment : " + JSON.stringify(response))
-
             switch (response.length) {
                 case 0 :
                     let temp1 = ` 모든 게시글에 댓글이 달려있어요!`
@@ -335,9 +332,9 @@ function findComment(idx) { // comment db 가져오기
         processData: false,
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
-                let commentName = response[i]["nickname"]
+                let commentId = response[i]["commentId"]
+                let commentName = response[i]["commentName"]
                 let comment = response[i]["comment"]
-                let commentId = response[i]["idx"]
                 let registryNickname = response[i]["registryNickname"]
                 let temp_html
 
