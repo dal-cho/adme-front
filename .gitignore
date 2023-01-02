@@ -1,7 +1,5 @@
 .gradle
 .idea
-src/main/java
-src/test
 gradlew
 gradlew.bat
 HELP.md
