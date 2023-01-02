@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="css/tenseconds.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <title>TenSeconds</title>
+</head>
+<body>
+<div class="menu">
+    <div class="m1">
+        <ul>
+            <li><a href="#" class="m11" >나</a></li>
+            <li><a href="http://localhost:8080/tenseconds" class="m11"  style="color: rgba(98,150,241,0.87);" >10s</a></li>
+            <li><a href="http://localhost:8080/empathy-space.html" class="m11" >공감공간</a></li>
+            <li><a href="question.html" class="m11">문의하기</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="c1">
+        <ul class="items">
+<!--            <div class="item" id="0">동영상1<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안 보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="1">동영상2<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="2">동영상3<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="3">동영상4<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="4">동영상5<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="5">동영상6<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="6">동영상7<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="7">동영상8<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="8">동영상9<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="9">동영상10<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="10">동영상11<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+<!--            <div class="item" id="11">동영상12<a href="#" class="item-title">이 동영상의 제목은 엄청나게 길어서 두줄밖에 안보입니다. 참고해주세요</a></div>-->
+        </ul>
+        <div id="myModal" class="modal">
+            <div class="modal-container">
+                <span class="close">&times;</span>
+                <div class="modal-content">
+                    <img src="img/baby.png">
+                </div>
+                <p> Some text in the Modal.. </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="upload">
+    <div class="upload-container">
+        <div class="upload-box">
+            <input type="file" name="uploadFile" multiple>
+        </div>
+        <div class="upload-title">
+            <input class="upload-title-content" placeholder="제목을 입력하세요." type="text" required/>
+        </div>
+        <div class="upload-content">
+            <textarea class="upload-content-content" placeholder="본문내용을 입력하세요." type="text" required></textarea>
+        </div>
+        <div class="uc1-tag">
+            <input class="upload-tag-content" placeholder="#태그입력" type="text" required/>
+        </div>
+        <div class="button-box">
+            <div class="public-private-box">
+                <button name="submit" type="submit" onclick="choice_button()" class="check-button" id="default-public-button">공개</button>
+                <button name="submit" type="submit" onclick="choice_button()" class="check-button" id="default-private-button">비공개</button>
+                <button name="submit" type="submit" onclick="public_check()" class="check-button" id="public-button">공개</button>
+                <button name="submit" type="submit" onclick="private_check()" class="check-button" id="private-button">비공개</button>
+            </div>
+            <button name="submit" type="submit" onclick="saveArticle()" class="check-button">완료</button>
+        </div>
+    </div>
+</div>
+<!--<div class="uc1">-->
+<!--    <div class="upload_box"></div>-->
+<!--    <div class="upload_content"></div>-->
+<!--    <div class="upload_tag"></div>-->
+<!--    <div class="secret_select"></div>-->
+<!--    <div class="done_button"></div>-->
+<!--</div>-->
+<div class="upload-button">
+    <button class="upload-button-item" onclick="upload()"> 10s 업로드 </button>
+</div>
+<div class="paging-button">
+    <div class="paging-right-button">
+        <img onclick="" src="img/right-page-button.png" alt="우측화살표 이미지">
+    </div>
+    <div class="paging-left-button">
+        <img onclick="" src="img/left-page-button.png" alt="좌측화살표 이미지">
+    </div>
+</div>
+
+
+<script src="js/tenseconds.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/3719d7b7e9.js" crossorigin="anonymous"></script>
+</body>
+</html>

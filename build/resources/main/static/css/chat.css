@@ -1,0 +1,107 @@
+body {
+    /*background: #c6dff5; */ /* #8eb3d4*/
+    /*background-image: linear-gradient(-225deg, #7085B6 0%, #87A7D9 50%, #DEF3F8 100%);*/
+    background: linear-gradient(70deg, rgba(132, 204, 222, 0.76), #eee5ca);
+    font-family: "Roboto";
+}
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #748194;
+}
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #748194;
+}
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #748194;
+}
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #748194;
+}
+
+.container {
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: calc(50% - 376px);
+    left: calc(50% - 500px);
+    border-radius: 7px 7px 7px 7px;
+}
+
+.chat-box {
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 980px; /* 980 */
+    height: 770px; /*760px*/
+    border: 10px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.content { /* 채팅 input */
+    margin-left: 123px;
+    margin-top: 25px;
+    margin-right: 10px;
+    font-size: 20px;
+    width: 600px;
+    height: 30px;
+    box-shadow: 0 0 5px antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 7px solid #D5EDFFC6;
+    display: inline-block;
+    border-radius: 10px 10px 10px 10px;
+    outline: none;
+}
+.sendBtn{ /* 전송 버튼 */
+    color: rgba(4, 16, 185, 0.75);
+    cursor: pointer;
+    font-size: 21px;
+    width: 100px;
+    height: 40px;
+    border: 3px solid rgba(175, 209, 250, 0.78);
+    background-color: #D5EDFFC6;
+    border-radius: 10px;
+}
+
+.msgArea {
+    margin: 25px 0 0 126.5px;
+    width: 720px;
+    height: 650px;
+    border: 5px solid rgba(175, 209, 250, 0.78);
+    overflow: auto; /* 스크롤 생성 */
+    /*display : flex;*/
+}
+.msgArea::-webkit-scrollbar { /* 스크롤바 숨기기 */
+    display:none /* Chrome , Safari , Opera */
+}
+
+#user {
+    position: absolute;
+    top: 14px;
+    right: 143px;
+    margin-left: 12px;
+}
+.m1 {
+    font-size: 18px;
+}
+
+.chatIntro-msg{ /* 입장 알림 msg */
+    margin: 10px;
+    padding-left:280px;
+    font-size: 16px;
+    background: #aaaaaa
+}
+.chat-msg { /* 채팅 msg */
+    word-wrap: break-word;
+    /*display: inline-block;*/
+    /*width: 400px;*/
+    width: max-content;
+    white-space: normal;
+    margin : 10px;
+    font-size: 17px;
+    max-width: 400px;
+    padding: 5px;
+    border-radius: 7px 7px 7px 7px;
+}

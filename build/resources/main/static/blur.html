@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="css/blur.css">
+    <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+
+</head>
+<body>
+<div id="name"></div>
+<div class="menu">
+    <div class="m1">
+        <ul>
+            <li><a href="#" class="m11">나</a></li>
+            <li><a href="http://localhost:8080/tenseconds.html" class="m11" >10s</a></li>
+            <li><a href="http://localhost:8080/empathy-space.html" class="m11" style="color: rgba(98,150,241,0.87);" >공감공간</a></li>
+            <li><a href="question.html" class="m11">문의하기</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="space-title">공감공간</div>
+    <div class="c1" id="c1-wide">
+        <a id="nowPage">현재 페이지</a>
+        <ul class="items" id="c1-posting">
+
+        </ul>
+
+        <ul class="page-numbering-1" id="board-pages">
+            <li class="left-number" value="before" ><button type="button" id="beforeButton"><img type="button" class="paging-num" id="left-num-img" value="0" src="img/left-num.png"></button></li>
+            <li class="page-number" value="1"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="2"><img class="paging-num" id="page-number2-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="3"><img class="paging-num" id="page-number3-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="4"><img class="paging-num" id="page-number4-img" value="0" src="img/num.png"></li>
+            <li class="page-number" value="5"><img class="paging-num" id="page-number5-img" value="0" src="img/num.png"></li>
+            <li class="right-number" value="after"><button type="button" id="nextButton"><img class="paging-num" id="right-num-img" value="0" src="img/right-num.png"></button></li>
+        </ul>
+
+
+    </div>
+</div>
+
+<div class ="container1">
+    <div class="space-title">이 글도 공감 해주세요</div>
+    <div class="c2">
+        <ul class="items1">
+        </ul>
+    </div>
+</div>
+
+
+<div class="upload-button">
+    <button class="upload-button-item" onclick="registryPage()"> 글 작성하기 </button>
+</div>
+
+
+<script src="js/blur.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/3719d7b7e9.js" crossorigin="anonymous"></script>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
+</body>
+</html>
