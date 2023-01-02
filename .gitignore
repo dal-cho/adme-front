@@ -1,6 +1,5 @@
 .gradle
 .idea
-gradle
 src/main/java
 src/test
 gradlew
