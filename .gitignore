@@ -1,12 +1,8 @@
 .gradle
 .idea
-gradle
-src/main/java
-src/test
-build.gradle
 gradlew
 gradlew.bat
 HELP.md
 settings.gradle
-src/main/resources/application.properties
+out
 build
