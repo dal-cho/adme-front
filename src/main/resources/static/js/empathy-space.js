@@ -265,13 +265,12 @@ function allRegistry(idx) {
         contentType: false,
         processData: false,
         success: function (response) {
-            let created = response[0]['createdAt']
-            let modified = response[0]['modifiedAt']
-            let idx = response[0]['idx']
-            let title = response[0]['title']
-            let main = response[0]['main']
-            let registryNickname = response[1]
-
+            let created = response['createdAt']
+            let modified = response['modifiedAt']
+            let idx = response['idx']
+            let title = response['title']
+            let main = response['main']
+            let registryNickname = response['nickname']
             // 0000-00-00 형식으로 출력
             let date = new Date(created)
             let newcreated = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
@@ -333,16 +332,16 @@ function findComment(idx) { // comment db 가져오기
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 let commentId = response[i]["commentId"]
-                let commentName = response[i]["commentName"]
+                let commentNickname = response[i]["commentNickname"]
                 let comment = response[i]["comment"]
                 let registryNickname = response[i]["registryNickname"]
                 let temp_html
 
-                if (registryNickname == commentName) { // 게시글 작성자인 경우
+                if (registryNickname == commentNickname) { // 게시글 작성자인 경우
 
                     // 댓글 작성자인 경우
-                    if (nickname == commentName) { // 댓글 작성자인 경우
-                        temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentName" class="writerCommentName">${commentName} : 작성자 </a><a id="${commentId}-comment">${comment}</a>
+                    if (nickname == commentNickname) { // 댓글 작성자인 경우
+                        temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentNickname" class="writerCommentNickname">${commentNickname} : 작성자 </a><a id="${commentId}-comment">${comment}</a>
 <button id="updateBtn-${commentId}" class="updateBtn" type="button" onclick="updateCommentBtn(${commentId})">수정</button>
 <button id="deleteBtn-${commentId}" class="deleteBtn" type="button" onclick="checkDelete(${commentId})">삭제</button></div> 
 <a><input id="updateCommentInput-${commentId}" class="updateCommentInput" style="display: none"><button id="updateAftersaveBtn-${commentId}" class="updateAftersaveBtn" style="display: none" type="button" onclick="afterUpdateComment(${commentId})">저장</button> </a><br>`
@@ -350,14 +349,14 @@ function findComment(idx) { // comment db 가져오기
 
                     // 댓글 작성자가 아닌 경우
                     else {
-                        temp_html = `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentName" class="commentName">${commentName} : 작성자 </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
+                        temp_html = `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentNickname" class="commentNickname">${commentNickname} : 작성자 </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
                     }
 
                 } else { // 댓글 작성자가 아닌 경우
 
                     // 댓글 작성자인 경우
-                    if (nickname == commentName) { // 댓글 작성자인 경우
-                        temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentName" class="writerCommentName">${commentName}</a><a id="${commentId}-comment">${comment}</a>
+                    if (nickname == commentNickname) { // 댓글 작성자인 경우
+                        temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentNickname" class="writerCommentNickname">${commentNickname}</a><a id="${commentId}-comment">${comment}</a>
 <button id="updateBtn-${commentId}" class="updateBtn" type="button" onclick="updateCommentBtn(${commentId})">수정</button>
 <button id="deleteBtn-${commentId}" class="deleteBtn" type="button" onclick="checkDelete(${commentId})">삭제</button></div> 
 <a><input id="updateCommentInput-${commentId}" class="updateCommentInput" style="display: none"><button id="updateAftersaveBtn-${commentId}" class="updateAftersaveBtn" style="display: none" type="button" onclick="afterUpdateComment(${commentId})">저장</button> </a><br>`
@@ -366,7 +365,7 @@ function findComment(idx) { // comment db 가져오기
                     // 댓글 작성자가 아닌 경우
 
                     else {
-                        temp_html = `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentName" class="commentName">${commentName} </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
+                        temp_html = `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentNickname" class="commentNickname">${commentNickname} </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
                     }
 
                 }
@@ -422,12 +421,13 @@ function afterUpdateComment(commentId) {     // 저장 버튼을 누르면 그 �
 
     let RegistryComment = { // 수정
         nickname: nickname,
-        comment: comment
+        comment: comment,
+        registryId : registryId
     }
 
     $.ajax({
         type: "PUT",
-        url: `/comment/${commentId}/registry/${registryId}`,
+        url: `/comment/${commentId}`,
         dataType: 'json',
         data: JSON.stringify(RegistryComment),
         contentType: 'application/json; charset=utf-8',
@@ -452,12 +452,12 @@ function deleteComment(commentId) {
 
     let RegistryComment = {
         nickname: nickname,
-        comment: comment
+        comment: comment,
+        registryId : registryId
     }
-
     $.ajax({
-        type: "DELETE",
-        url: `/comment/${commentId}/registry/${registryId}`,
+        type: "DELETE", // DELETE
+        url: `/comment/${commentId}`,
         dataType: 'json',
         data: JSON.stringify(RegistryComment),
         contentType: 'application/json; charset=utf-8',
