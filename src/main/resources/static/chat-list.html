@@ -12,7 +12,10 @@
 			display: none;
 		}
 	</style>
+	<link rel="stylesheet" href="/css/alarm.css"/>
 	<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container" id="app">
@@ -24,6 +27,9 @@
 			<br><br>
 			<h3>채팅방 리스트</h3>
 		</div>
+	</div>
+	<div>
+		<button type="button" id="randomChat" onclick="randomChat()">랜덤채팅</button>
 	</div>
 	<div class="input-group">
 		<div class="input-group-prepend">
@@ -43,9 +49,15 @@
 		<div class="frame"></div>
 	</ul>
 </div>
+
+<div id="msgStack"></div>
+
 <!-- JavaScript -->
-<script></script>
+<script>
+
+</script>
 <script src="/js/chat-list.js"></script>
+<script src="/js/alarm.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"

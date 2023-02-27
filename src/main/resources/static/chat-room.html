@@ -4,8 +4,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 	<title>Spring Boot WebSocket Chat Application</title>
 	<link rel="stylesheet" href="/css/chat-room.css"/>
+
 	<link rel="stylesheet" href="/css/removeButton.css"/>
 	<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div id="username-page">
@@ -22,6 +25,7 @@
 		</form>
 	</div>
 </div>
+
 <div id="chat-page" class="hidden">
 	<div class="chat-container">
 		<div class="chat-header">
@@ -40,12 +44,14 @@
 			</div>
 		</form>
 	</div>
-	<div id="endChat" class="hidden">
-		<button class="btn-3d blue" onclick=deleteRoom()>삭제</button>
-	</div>
+	<div id="endChat" class="hidden"> <button class="btn-3d blue" onclick=deleteRoom()>삭제</button></div>
+
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="/js/chat-room.js"></script>
+<script src="/js/alarm.js"></script>
+<script src="/js/chat-list.js"></script>
 </body>
 </html>
