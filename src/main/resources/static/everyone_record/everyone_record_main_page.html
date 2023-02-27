@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Everyone's Record Main Page</title>
+    <style>
+        body {
+            background-color: #282828;
+            /*background-image: url("s3에 올린 배경 이미지 주소 입력");*/
+        }
+        a {
+            text-decoration-line: none; /*링크 밑줄효과 제거*/
+        }
+        .background_container>img {
+            pointer-events: none; /* 배경 이미지에 대한 마우스 효과 제거 */
+        }
+
+        /* 로고 설정 */
+        .logo {
+            position: absolute; /*절대위치 설정*/
+            top: 2.5vw;
+            left: 6.5vw;
+
+            font-family: Modak; /*폰트 설정*/
+            font-size: 4vw;
+            color: whitesmoke;
+        }
+        .logo-link {
+            margin-left: -0.8vw; /*글자마다 색상을 적용해돼서 분리한 객체들간의 간격 줄이기*/
+        }
+        .logo-link-a {
+            color: #FF5C4B;
+        }
+        .logo-link-d {
+            color: #F3A11A;
+        }
+        .logo-link-m {
+            color: #62D83E;
+        }
+        .logo-link-e {
+            color: #249EFF;
+        }
+        /*호버효과 적용*/
+        .logo-link:hover {
+            font-size: 4.5vw;
+            color: #F0E6B4;
+        }
+
+        /* 메뉴 바 설정 */
+        .nav-bar {
+            position: absolute;
+            width: 54vw;
+            height: 4vw;
+            top: 3.3vw;
+            left: 50%;
+            transform: translate(-50%, 0%); /*중앙으로 잡아주면 box 의 앞부분 기준으로 box 의 절반만큼 위치 보정*/
+
+            background-color: #F0E6B4;
+            border-radius: 8px;
+        }
+        .nav-container {
+            display: flex; /*가로정렬*/
+            justify-content: space-around; /*가로 크기에 맞게 정렬*/
+            padding-top: 0.5vw;
+
+            font-size: 2vw;
+            font-family: "LingWai SC";
+        }
+        .nav-container>a {
+            color: #282828;
+        }
+        .nav-container>a:hover {
+            color: darkred;
+        }
+
+        /* 비디오 목록 설정 */
+        .video-container {
+            /*border: 1px solid white; */
+            position: absolute;
+            top: 11vw;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            width: 54vw;
+            height: 35vw;
+
+            display: grid; /*바둑판으로 칸 나누기*/
+            grid-template-columns: repeat(4, 1fr); /*가로 4칸 간격은 1fr로 일정*/
+            grid-template-rows: repeat(3, 1fr); /*세로 3칸 간격은 1fr로 일정*/
+            gap: 1vw 0; /*열 간격: 1vw 행간격: 0*/
+        }
+        .video-item {
+            /*border: 1px solid black;*/
+            padding: 0.7vw;
+        }
+        .video-thumbnail {
+            width: 12vw;
+            height: 6.75vw;
+            border: 0.05vw solid #382b22;
+            border-radius: 0.5vw;
+            background-color: white;
+            box-shadow: 0.3vw 0.3vw 0.3vw #382b22;
+
+            overflow: hidden; /*크기 초과시 숨김*/
+            cursor: pointer; /*마우스 올려놓으면 포인터로 변경*/
+        }
+        .video-title {
+            /*border: 1px solid black;*/
+            width: 11.5vw;
+            height: 2.5vw;
+            margin: auto;
+            padding-top: 0.5vw;
+
+            color: #F0E6B4;
+            white-space: nowrap; /*한줄로 모든 글 표시*/
+            overflow: hidden; /*크기 초과시 숨김*/
+            text-overflow: ellipsis; /*초과하는 부분 ... 으로 표시*/
+        }
+        .video-title>a {
+            text-decoration-line: none; /*링크 밑줄효과 제거*/
+            color: #F0E6B4;
+            font-family: "LingWai SC";
+            font-size: 1.3vw;
+        }
+        .title:hover {
+            color: aliceblue;
+        }
+
+        /*paging button*/
+        .pagination {
+            /*border: 1px solid white;*/
+            width: 15vw;
+            position: absolute;
+            top: 48vw;
+            left: 42.5vw;
+        }
+        .paging {
+            width: 15vw;
+
+            display: flex;
+            justify-content: space-around;
+
+            font-family: "LingWai SC";
+        }
+        .paging>div>a {
+            text-decoration-line: none;
+            color: #D2A55A;
+        }
+        .paging>div>a:hover {
+            color: white;
+        }
+
+        /*profile*/
+        .profile-container {
+            /*border: 1px solid black;*/
+            position: absolute;
+            width: 10vw;
+            height: 12.5vw;
+            top: 21vw;
+            left: 83.6vw;
+        }
+        .profile-image {
+            border: 1px solid black;
+            background-color: white;
+            width: 8vw;
+            height: 8vw;
+            margin: 0.8vw auto; /*위 간격: 0.8vw, 가로간격: 자동(중양정렬)*/
+
+            border-radius: 1vw;
+            overflow: hidden;
+        }
+        .profile-image>img {
+            /*border: 1px solid black;*/
+            border-radius: 1.3vw;
+        }
+        .user-nickname {
+            margin-top: 1.3vw;
+        }
+        .nickname {
+            text-align: center; /*글자 중앙정렬*/
+            font-family: "LingWai SC";
+            font-size: 1.3vw;
+        }
+
+        /*logout button*/
+        .logout-button {
+            position: absolute;
+            top: 36.5vw;
+            left: 85.5vw;
+        }
+        .logout-button:active {
+            top: 36.8vw;
+        }
+        .logout {
+            width: 7.7vw;
+            height: 2.2vw;
+
+            background-color: #ECEADE;
+            border: 1px solid #A8A79D;
+            border-radius: 0.7vw;
+            box-shadow: 0 0.4vw 0.02vw -0.02vw #C7C7BB;
+
+            font-family: "LingWai SC";
+            font-size: 1.3vw;
+
+            cursor: pointer;
+        }
+        /*마우스 좌클릭 유지시 효과*/
+        .logout:active {
+            box-shadow: 0 0.1vw 0.02vw -0.02vw #C7C7BB; /*그림자 설정: 가로위치/ 세로위치/ 번짐정도/ 크기/ 색상*/
+        }
+
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="background_container">
+        <img src="../backgroundImg/Everyone_Record_background.jpg" width="100%" alt="BackGround Image">
+    </div>
+    <div class="logo">
+        <a class="logo-link logo-link-a" href="#" style="text-decoration-line: none">A</a>
+        <a class="logo-link logo-link-d" href="#" style="text-decoration-line: none">D</a>
+        <a class="logo-link logo-link-m" href="#" style="text-decoration-line: none">M</a>
+        <a class="logo-link logo-link-e" href="#" style="text-decoration-line: none">E</a>
+    </div>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="#">My Record</a>
+            <a href="#">Everyone's Record</a>
+            <a href="#">Sympathetic Space</a>
+        </div>
+    </nav>
+    <div class="video-container">
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">Title</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+        <div class="video-item">
+            <div class="video-thumbnail">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title">
+                <a class="title" href="#">long title HelloWord hello</a>
+            </div>
+        </div>
+    </div>
+    <div class="pagination">
+        <div class="paging">
+            <div><a href="#">&lt;</a></div>
+            <div><a href="#">1</a></div>
+            <div><a href="#">2</a></div>
+            <div><a href="#">3</a></div>
+            <div><a href="#">4</a></div>
+            <div><a href="#">5</a></div>
+            <div><a href="#">&gt;</a></div>
+        </div>
+    </div>
+    <div class="profile-container">
+        <div class="profile-image">
+            <img src="" alt="Profile Image">
+        </div>
+        <div class="user-nickname">
+            <h3 class="nickname">user_123456</h3>
+        </div>
+    </div>
+    <div class="logout-button">
+        <button class="logout">Logout</button>
+    </div>
+</div>
+
+</body>
+</html>
