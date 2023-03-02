@@ -1,21 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>Websocket Chat</title>
+	<title>Chat</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<!-- CSS -->
-	<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/chatRoomButton.css">
+	<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/dist/css/bootstrap.min.css">
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+	<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+	<script src="/webjars/bootstrap/4.3.1/dist/js/bootstrap.min.js"></script>
 	<style>
 		[v-cloak] {
 			display: none;
 		}
+		.btn{
+			margin: 1rem;
+		}
 	</style>
-	<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+	<link rel="stylesheet" href="/css/alarm.css"/>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<!--	<script src="http://code.jquery.com/jquery-3.5.1.js"></script>-->
+	<!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">-->
+	<!--	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>-->
 </head>
 <body>
 <div class="container" id="app">
+	<br>
 	<div>
 		<h5 id="errorMsg"></h5>
 	</div>
@@ -26,16 +38,11 @@
 		</div>
 	</div>
 	<div class="input-group">
-		<div class="input-group-prepend">
-			<label class="input-group-text">방제목</label>
-		</div>
-		<!--		<input type="text" class="form-control" v-model="room_name" v-on:keyup.enter="createRoom">-->
 		<div class="input-group-append">
-			<button class="btn btn-primary" type="button" onclick="createRoom()">채팅방 개설</button>
+			<button class="btn btn-primary" type="button" onclick="createRoom()">고객센터 채팅방</button>
 		</div>
-		<input type="text" class="form-control" id="createNickname">
 		<div class="input-group-append">
-			<button class="btn btn-primary" type="button" onclick="createNickname()">닉네임 입력</button>
+			<button class="btn btn-primary" id="randomChat" onclick="randomChat()">랜덤채팅</button>
 		</div>
 	</div>
 	<br><br>
@@ -43,14 +50,12 @@
 		<div class="frame"></div>
 	</ul>
 </div>
+
+<div id="msgStack"></div>
+
 <!-- JavaScript -->
-<script></script>
+<script>
+</script>
 <script src="/js/chat-list.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/3719d7b7e9.js" crossorigin="anonymous"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
 </body>
 </html>
