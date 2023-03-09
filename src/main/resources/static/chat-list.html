@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>Chat</title>
+	<title>Websocket Chat</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<!-- CSS -->
@@ -15,19 +15,11 @@
 		[v-cloak] {
 			display: none;
 		}
-		.btn{
-			margin: 1rem;
-		}
 	</style>
 	<link rel="stylesheet" href="/css/alarm.css"/>
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<!--	<script src="http://code.jquery.com/jquery-3.5.1.js"></script>-->
-	<!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">-->
-	<!--	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>-->
 </head>
 <body>
 <div class="container" id="app">
-	<br>
 	<div>
 		<h5 id="errorMsg"></h5>
 	</div>
@@ -37,12 +29,19 @@
 			<h3>채팅방 리스트</h3>
 		</div>
 	</div>
+	<div>
+		<button type="button" id="randomChat" onclick="randomChat()">랜덤채팅</button>
+	</div>
 	<div class="input-group">
-		<div class="input-group-append">
-			<button class="btn btn-primary" type="button" onclick="createRoom()">고객센터 채팅방</button>
+		<div class="input-group-prepend">
+			<label class="input-group-text">방제목</label>
 		</div>
 		<div class="input-group-append">
-			<button class="btn btn-primary" id="randomChat" onclick="randomChat()">랜덤채팅</button>
+			<button class="btn btn-primary" type="button" onclick="createRoom()">채팅방 개설</button>
+		</div>
+		<input type="text" class="form-control" id="createNickname">
+		<div class="input-group-append">
+			<button class="btn btn-primary" type="button" onclick="createNickname()">닉네임 입력</button>
 		</div>
 	</div>
 	<br><br>
@@ -57,5 +56,6 @@
 <script>
 </script>
 <script src="/js/chat-list.js"></script>
+<script src="/js/alarm.js"></script>
 </body>
 </html>
