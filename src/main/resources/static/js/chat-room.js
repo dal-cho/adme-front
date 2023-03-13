@@ -179,3 +179,10 @@ let roomId = url.split("enter/")[1]
 isRoom(roomId)
 usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
+
+function alarmMessage(){
+	document.querySelector('#messageForm').addEventListener("submit", () => {
+		fetch(`/room/publish?sender=${username}&roomId=${roomId}`);
+	});
+}
+alarmMessage()

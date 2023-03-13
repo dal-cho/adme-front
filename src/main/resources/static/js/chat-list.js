@@ -41,7 +41,16 @@ function enterRoom(roomId) {
 
 $(document).ready(function() {
 	showList()
+	alarmSubscribe();
 });
+
+function alarmSubscribe(){
+	let roomId = localStorage.getItem('wschat.roomId')
+	let username = localStorage.getItem('wschat.sender');
+	if (username!= null && roomId != null){
+		start(username, roomId);
+	}
+}
 
 function showList() {
 	let username = localStorage.getItem('wschat.sender')
@@ -87,4 +96,50 @@ function showList() {
 		return;
 	}
 	$('.frame').load(location.href+' .frame');
+}
+function randomChat(){
+	location.href= "/every-chat";
+}
+
+function alarmForm(data){
+	if ($(".toast-body").text() === "") {
+		let url = `/room/enter/${data.roomId}`
+		let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>";
+		toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
+		toast += "<small class='text-muted'>just now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>";
+		toast += "<span aria-hidden='true'>&times;</span></button>";
+		toast += "</div> <div class='toast-body'>" + data.message + "<br>";
+		toast += "<button onclick= " + "closeAlarm()" +"><a href=" + url +"> 바로가기</a></button>" + "</div></div>";
+		$("#msgStack").append(toast);
+		$(".toast").toast({"animation": true, "autohide": false});
+		$('.toast').toast('show');
+	}
+	if ($('.toast').toast('hide')) {
+		$('.toast').toast('show')
+	}
+	if($(".toast fade hide show")){
+		$('.toast').toast('show')
+	}
+}
+function closeAlarm(){
+	$('.toast').toast('hide')
+}
+
+function adminAlarmForm(data){
+	if ($(".toast-body").text().split(" ")[0] !== data.sender){
+		let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>";
+		toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
+		toast += "<small class='text-muted'>just now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>";
+		toast += "<span aria-hidden='true'>&times;</span></button>";
+		toast += "</div> <div class='toast-body'>" + data.message +"</div></div>";
+		$("#msgStack").append(toast);
+		$(".toast").toast({"animation": true, "autohide": false});
+		$('.toast').toast('show');
+	}
+	if ($('.toast').toast('hide')) {
+		$('.toast').toast('show')
+	}
+	if($(".toast fade hide show")){
+		$('.toast').toast('show')
+	}
 }
