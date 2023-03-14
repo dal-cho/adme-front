@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <title>Everyone's Record Main Page</title>
     <style>
         body {
@@ -215,6 +216,123 @@
             box-shadow: 0 0.1vw 0.02vw -0.02vw #C7C7BB; /*그림자 설정: 가로위치/ 세로위치/ 번짐정도/ 크기/ 색상*/
         }
 
+        /*Modal*/
+        .modal-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255, 0.35);
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 38.4vw;
+            height: 33vw;
+
+            background-color: #282828;
+            border-radius: 0.5vw;
+            box-shadow: 0.3vw 0.3vw .3vw 0 rgba(0, 0, 0, 0.7);
+
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .modal-box {
+            width: 95%;
+            height: 100%;
+            margin-left: 1.5vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            color: white;
+        }
+        /*모달 게시물 제목*/
+        .modal-title {
+            text-align: center;
+            width: 90%;
+            height: 1.6vw;
+            padding-top: .6vw;
+            margin: auto;
+            font-size: 1.5vw;
+
+            white-space: nowrap; /*한줄로 모든 글 표시*/
+            overflow: hidden; /*크기 초과시 숨김*/
+            text-overflow: ellipsis; /*초과하는 부분 ... 으로 표시*/
+        }
+        /*모달 영상 영역*/
+        .video-file {
+            height: 57%;
+            padding-top: .3vw;
+        }
+        .video-box {
+            display: flex;
+        }
+        .video-file-box {
+            width: 33vw;
+            height: 18.5625vw;
+            /*border: 1px solid white;*/
+            border-radius: .3vw;
+            background-color: #696A6A;
+            overflow: hidden;
+        }
+        .modal-video {
+            width: 100%;
+        }
+        /*비디오 컨트롤 영역*/
+        .video-right-container {
+            margin-top: .7vw;
+            width: 3.3vw;
+            height: 7vw;
+
+            display: grid; /*바둑판으로 칸 나누기*/
+            grid-template-columns: repeat(2, 1fr); /*가로 4칸 간격은 1fr로 일정*/
+            grid-template-rows: repeat(3, 1fr); /*세로 3칸 간격은 1fr로 일정*/
+            align-items: center;
+        }
+        .video-right-container>p {
+            height: 1vw;
+            text-align: center;
+            font-size: .8vw;
+            margin: .2vw .4vw;
+        }
+        .video-play-box>button {
+            width: 1.7vw;
+            height: 3vw;
+            cursor: pointer;
+        }
+        .video-control-box>button {
+            width: 1.7vw;
+            height: 1.2vw;
+            cursor: pointer;
+        }
+        /*사용자 정보, 내용 영역*/
+        .video-info {
+            margin: .2vw 0;
+            display: flex;
+        }
+        .video-info>div {
+            padding-right: 1vw;
+        }
+        .video-content {
+            height: 26%;
+            margin-bottom: 1vw;
+        }
+        .video-content>textarea {
+            width: 35vw;
+            height: 8.3vw;
+            padding: 0.2vw 0.5vw 0 0;
+            resize: none; /*박스 크기조절 불가*/
+            line-height: 1.4vw; /*상하 줄간격*/
+
+            border: none;
+            background-color: #282828;
+            color: white;
+        }
+        .video-content>textarea:focus {
+            outline: none; /*글상자 클릭시 테두리효과 제거*/
+        }
+
     </style>
 </head>
 <body>
@@ -237,99 +355,99 @@
     </nav>
     <div class="video-container">
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
+            <div class="video-title" onclick="videoModal()">
                 <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
         <div class="video-item">
-            <div class="video-thumbnail">
+            <div class="video-thumbnail" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title">
-                <a class="title" href="#">long title HelloWord hello</a>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
             </div>
         </div>
     </div>
@@ -355,7 +473,47 @@
     <div class="logout-button">
         <button class="logout">Logout</button>
     </div>
+    <div class="modal-container" id="modal">
+        <div class="modal-content">
+            <div class="modal-box">
+                <div class="modal-title">TITLE TITLE TITLE TITLE TITLE TITLE TITLE TITLE TITLE</div>
+                <div class="video-file">
+                    <div class="video-box">
+                        <div class="video-file-box">
+                            <video class="modal-video" id="modal-video2" loop controlslist="nodownload">
+                                <source src="../img/testvideo.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="video-right-container">
+                            <p>&#9654;</p>
+                            <div class="video-play-box">
+                                <button class="video-play-button" onclick="playVideo()">
+                                </button>
+                            </div>
+                            <p>&#10073; &#10073;</p>
+                            <div class="video-control-box">
+                                <button class="video-pause-button" onclick="pauseVideo()">
+                                </button>
+                            </div>
+                            <p>&#9835;</p>
+                            <div class="video-control-box">
+                                <button class="video-mute-button" onclick="mutedVideo()">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="content-nickname">user_123456</div>
+                    <div class="content-date">2023.03.06</div>
+                </div>
+                <div class="video-content">
+                    <textarea readonly placeholder="Content">*읽기 전용입니다.*</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
+<script src="/static/everyone_record/everyone_record_main.js"></script>
 </body>
 </html>
