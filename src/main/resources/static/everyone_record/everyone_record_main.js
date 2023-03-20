@@ -1,7 +1,7 @@
 $(document).ready(function(){
 });
 // 모달 열기
-function videoModal() {
+function videoModal(id) {
     $(".modal-video").get(0).play();
     $(".modal-content").fadeIn(100);
     $(".modal-container").fadeIn(100);
