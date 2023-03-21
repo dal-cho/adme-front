@@ -1,0 +1,8 @@
+.adme-scale-animation:hover {
+    transition: all 0.1s linear;
+    transform: scale(1.05);
+}
+
+.adme-font {
+    font-family: "LingWai SC";
+}

@@ -1,0 +1,375 @@
+body {
+    background-color: #F5E6D7;
+    /*background-image: url("s3에 올린 배경 이미지 주소 입력");*/
+}
+a {
+    text-decoration-line: none; /*링크 밑줄효과 제거*/
+}
+.background_container>img {
+    pointer-events: none; /* 배경 이미지에 대한 마우스 효과 제거 */
+}
+
+/* 로고 설정 */
+.logo {
+    position: absolute; /*절대위치 설정*/
+    top: 2.5vw;
+    left: 6.5vw;
+
+    font-family: Modak; /*폰트 설정*/
+    font-size: 4vw;
+    color: whitesmoke;
+}
+.logo>a {
+    text-decoration-line: none;
+}
+.logo-link {
+    margin-left: -0.8vw; /*글자마다 색상을 적용해돼서 분리한 객체들간의 간격 줄이기*/
+}
+.logo-link-a {
+    color: #FF5C4B;
+}
+.logo-link-d {
+    color: #F3A11A;
+}
+.logo-link-m {
+    color: #62D83E;
+}
+.logo-link-e {
+    color: #249EFF;
+}
+/*호버효과 적용*/
+.logo-link:hover {
+    font-size: 4.5vw;
+    color: #C3B6EC;
+}
+
+/* 메뉴 바 설정 */
+.nav-bar {
+    position: absolute;
+    width: 54vw;
+    height: 4vw;
+    top: 3.3vw;
+    left: 50%;
+    transform: translate(-50%, 0%); /*중앙으로 잡아주면 box 의 앞부분 기준으로 box 의 절반만큼 위치 보정*/
+
+    /*background-color: #F0E6B4;*/
+    border: 1px solid #5F0603;
+    border-radius: 8px;
+}
+.nav-container {
+    display: flex; /*가로정렬*/
+    justify-content: space-around; /*가로 크기에 맞게 정렬*/
+    padding-top: 0.5vw;
+
+    font-size: 2vw;
+    font-family: "LingWai SC";
+}
+.nav-container>a {
+    color: #282828;
+}
+.nav-container>a:hover {
+    color: darkred;
+}
+
+/*side board*/
+.side-board-container {
+    /*border: 1px solid black;*/
+
+    position: absolute;
+    top: 9vw;
+    left: 5%;
+    width: 15vw;
+    height: 39vw;
+}
+.side-board-mark {
+    font-family: "LingWai SC";
+    font-size: 1.6vw;
+    text-align: center;
+    margin: 0 0 .5vw 0;
+}
+.side-board-box {
+    /*border: 1px solid black;*/
+    height: 36vw;
+    overflow: scroll;
+}
+.side-board-item {
+    width: 11vw;
+    height: 4vw;
+    margin: 1vw auto;
+
+    border: 1px solid black;
+    background-color: white;
+    box-shadow: -0.2vw 0.2vw 0 #5b5a5a;
+
+    cursor: pointer;
+}
+.side-board-item-title {
+    width: 9vw;
+    height: 2vw;
+    margin: 1.5vw auto;
+
+    font-size: 0.8vw;
+
+    white-space: nowrap; /*한줄로 모든 글 표시*/
+    overflow: hidden; /*크기 초과시 숨김*/
+    text-overflow: ellipsis; /*초과하는 부분 ... 으로 표시*/
+}
+
+/*board*/
+.board-container {
+    /*border: 1px solid black;*/
+
+    position: absolute;
+    top: 11.8vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 50vw;
+    height: 35vw;
+
+    display: grid; /*바둑판으로 칸 나누기*/
+    grid-template-columns: repeat(4, 1fr); /*가로 4칸 간격은 1fr로 일정*/
+    grid-template-rows: repeat(3, 1fr); /*세로 2칸 간격은 1fr로 일정*/
+    gap: 1vw 0; /*열 간격: 2vw 행간격: 0*/
+    justify-items: center;
+}
+.board-item {
+    width: 11.4vw;
+    height: 9vw;
+
+    border: 1px solid #5F0603;
+    border-radius: 1.2vw;
+    background-color: white;
+    box-shadow: -0.3vw 0.3vw 0 #454541;
+
+    overflow: hidden;
+    cursor: pointer;
+}
+.board {
+    margin: auto;
+    width: 9.7vw;
+    height: 2.5vw;
+    transform: translate(0, 3.5vw);
+
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/*paging button*/
+.pagination {
+    /*border: 1px solid white;*/
+    width: 15vw;
+    position: absolute;
+    top: 48vw;
+    left: 42.5vw;
+}
+.paging {
+    width: 15vw;
+
+    display: flex;
+    justify-content: space-around;
+
+    font-family: "LingWai SC";
+}
+.paging>div>a {
+    text-decoration-line: none;
+    color: #5F0603;
+}
+.paging>div>a:hover {
+    color: black;
+}
+
+/*profile*/
+.profile-container {
+    /*border: 1px solid black;*/
+    position: absolute;
+    width: 10vw;
+    height: 12.5vw;
+    top: 22.7vw;
+    left: 80.9vw;
+}
+.profile-image {
+    border: 1px solid black;
+    background-color: white;
+    width: 8vw;
+    height: 8vw;
+    margin: 0.8vw auto; /*위 간격: 0.8vw, 가로간격: 자동(중양정렬)*/
+
+    border-radius: 1vw;
+    overflow: hidden;
+}
+.profile-image>img {
+    /*border: 1px solid black;*/
+    border-radius: 1.3vw;
+}
+.user-nickname {
+    margin-top: 1.3vw;
+}
+.nickname {
+    text-align: center; /*글자 중앙정렬*/
+    font-family: "LingWai SC";
+    font-size: 1.3vw;
+}
+
+/*logout button*/
+.logout-button {
+    position: absolute;
+    top: 36.5vw;
+    left: 82.2vw;
+}
+.logout-button:active {
+    top: 36.8vw;
+}
+.logout {
+    width: 7.7vw;
+    height: 2.2vw;
+
+    background-color: #ECEADE;
+    border: 1px solid #A8A79D;
+    border-radius: 0.7vw;
+    box-shadow: 0 0.4vw 0.02vw -0.02vw #C7C7BB;
+
+    font-family: "LingWai SC";
+    font-size: 1.3vw;
+
+    cursor: pointer;
+}
+.logout:hover {
+    background-color: whitesmoke;
+}
+/*마우스 좌클릭 유지시 효과*/
+.logout:active {
+    box-shadow: 0 0.1vw 0.02vw -0.02vw #C7C7BB; /*그림자 설정: 가로위치/ 세로위치/ 번짐정도/ 크기/ 색상*/
+}
+
+/*board modal*/
+.board-modal-container {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255, 0.35);
+}
+.board-modal-content {
+    display: none;
+    position: absolute;
+    top: 12.5vw;
+    left: 50%;
+    width: 38.4vw;
+    height: 33vw;
+
+    background-color: #F7E3C1;
+    border: 1px solid #5F0603;
+    border-radius: 1.5vw;
+    box-shadow: 0.3vw 0.3vw .3vw 0 rgba(0, 0, 0, 0.7);
+
+    transform: translateX(-50%);
+}
+.board-box {
+    display: flex;
+    flex-direction: column;
+    width: 35vw;
+    height: 95%;
+    margin: 1vw auto;
+}
+/*모달 닫기 버튼*/
+.board-box-close {
+    margin-left: 99%;
+    width: 1vw;
+    border: none;
+    border-radius: 100%;
+    background-color: #FB6E51;
+    color: white;
+
+    cursor: pointer;
+    text-align: center;
+}
+.board-box-close>p {
+    margin: 0 0 -0.1vw -0.2vw;
+}
+/*모달 게시글 타이틀*/
+.board-title {
+    width: 34vw;
+    height: 2vw;
+    font-size: 2vw;
+
+    white-space: nowrap; /*한줄로 모든 글 표시*/
+    overflow: hidden; /*크기 초과시 숨김*/
+    text-overflow: ellipsis; /*초과하는 부분 ... 으로 표시*/
+}
+.board-info {
+    display: flex;
+    flex-direction: row;
+    margin-top: .8vw;
+    color: #5b5a5a;
+}
+/*메인글 설명 상자*/
+.board-content>textarea {
+    width: 34.5vw;
+    height: 8.3vw;
+    padding: 0.2vw 0.5vw 0 0;
+    resize: none; /*박스 크기조절 불가*/
+    line-height: 1.4vw; /*상하 줄간격*/
+
+    border: 1px solid #5F0603;
+    background-color: #FFECC8;
+    border-radius: 1vw;
+    overflow: scroll;
+}
+.board-content>textarea:focus {
+    outline: none; /*글상자 클릭시 테두리효과 제거*/
+}
+.board-user-nickname {
+    margin-right: 1vw;
+}
+.board-comment-writing-container {
+    display: flex;
+    height: 2vw;
+    justify-content: space-between;
+}
+.board-comment-writing-box-item {
+    width: 30.5vw;
+    padding: 0.3vw 0.5vw 0 0.5vw;
+    resize: none; /*박스 크기조절 불가*/
+    border: 1px solid #5F0603;
+    border-radius: .5vw;
+    font-size: 1vw;
+}
+.board-comment-save {
+    background-color: #D2E9BC;
+    border: 1px solid #A3B493;
+    border-radius: .4vw;
+    cursor: pointer;
+}
+.board-comment-save:hover {
+    background-color: #f0ffeb;
+}
+/*댓글 구역*/
+.board-comments-box {
+    width: 100%;
+    margin-top: .5vw;
+    height: 12.3vw;
+    /*border: 1px solid black;*/
+    display: flex;
+    flex-direction: column;
+    gap: .5vw;
+    overflow: scroll;
+}
+.board-comments-item {
+    width: 100%;
+    /*border: 1px solid black;*/
+}
+.board-comments-userNickname {
+    font-size: .9vw;
+}
+.board-comments-item-date {
+    font-size: .7vw;
+}
+.board-comment {
+    padding: .2vw 0 0 .3vw;
+}
