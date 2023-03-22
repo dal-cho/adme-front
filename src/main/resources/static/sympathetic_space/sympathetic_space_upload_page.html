@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="sympathetic_space_main.css">
+    <title>Sympathetic Record Main Page</title>
+</head>
+<body>
+<div class="main">
+    <div class="background_container">
+        <img src="../backgroundImg/Sympathetic_Space_Upload_Background.jpg" width="100%" alt="BackGround Image">
+    </div>
+    <div class="logo">
+        <a class="logo-link logo-link-a" href="#" >A</a>
+        <a class="logo-link logo-link-d" href="#" >D</a>
+        <a class="logo-link logo-link-m" href="#" >M</a>
+        <a class="logo-link logo-link-e" href="#" >E</a>
+    </div>
+    <nav class="upload-nav-bar">
+        <div class="nav-container">
+            <a>Share Your Emotion</a>
+        </div>
+    </nav>
+    <div class="sympathetic-upload-container">
+        <div class="sympathetic-upload-title direction">
+            <div class="item-property">Title : </div>
+            <input type="text" maxlength="30" placeholder="게시물 제목">
+        </div>
+        <div class="sympathetic-upload-content direction">
+            <div class="item-property">Content : </div>
+            <textarea placeholder="내용을 적어주세요."></textarea>
+        </div>
+    </div>
+    <div class="sympathetic-upload-button">
+        <button class="sympathetic-upload">Upload</button>
+    </div>
+    <div class="profile-container">
+        <div class="profile-image">
+            <img src="" alt="Profile Image">
+        </div>
+        <div class="user-nickname">
+            <h3 class="nickname">user_123456</h3>
+        </div>
+    </div>
+    <div class="logout-button">
+        <button class="logout">Logout</button>
+    </div>
+    <div class="board-modal-container" id="board-Modal">
+        <div class="board-modal-content">
+            <div class="board-box">
+                <button class="board-box-close" onclick="boardClose()"><p>X</p></button>
+                <div class="board-title"> TITLE </div>
+                <div class="board-info">
+                    <div class="board-user-nickname">user_1234</div>
+                    <div class="board-date">2023.03.20</div>
+                </div>
+                <div class="board-content" style="margin: .5vw 0 .5vw 0">
+                    <textarea readonly> *읽기 전용입니다.* 글이 넘치면 스크롤이 활성화 됩니다.</textarea>
+                </div>
+                <div class="line"style="border: .5px solid #5F0603; margin-bottom: .5vw"></div>
+                <div class="board-comment-container">
+                    <div class="board-comment-title-item">Add a Comment</div>
+                    <div class="board-comment-writing-container">
+                        <textarea class="board-comment-writing-box-item" placeholder="Comment"></textarea>
+                        <button class="board-comment-save" onclick="boardSave()">Save</button>
+                    </div>
+                </div>
+                <div class="board-comments-box">
+                    <div class="board-comments-item">
+                        <div class="board-comments-userNickname">userA</div>
+                        <div class="board-comments-item-date">2023.03.20 10:07</div>
+                        <div class="board-comment">댓글입니다.</div>
+                    </div>
+                    <div class="board-comments-item">
+                        <div class="board-comments-userNickname">userB</div>
+                        <div class="board-comments-item-date">2023.03.20 10:00</div>
+                        <div class="board-comment">댓글입니다.</div>
+                    </div>
+                    <div class="board-comments-item">
+                        <div class="board-comments-userNickname">userC</div>
+                        <div class="board-comments-item-date">2023.03.20 10:00</div>
+                        <div class="board-comment">댓글입니다.</div>
+                    </div>
+                    <div class="board-comments-item">
+                        <div class="board-comments-userNickname">userD</div>
+                        <div class="board-comments-item-date">2023.03.20 10:00</div>
+                        <div class="board-comment">댓글입니다.</div>
+                    </div>
+                    <div class="board-comments-item">
+                        <div class="board-comments-userNickname">userE</div>
+                        <div class="board-comments-item-date">2023.03.20 10:00</div>
+                        <div class="board-comment">댓글입니다.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/sympathetic_space/sympathetic_space_main.js"></script>
+</body>
+</html>
