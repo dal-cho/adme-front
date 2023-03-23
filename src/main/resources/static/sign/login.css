@@ -1,0 +1,155 @@
+/* 로고 설정 */
+.logo {
+    position: absolute; /*절대위치 설정*/
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 0%); /*중앙으로 잡아주면 box 의 앞부분 기준으로 box 의 절반만큼 위치 보정*/
+
+
+    font-family: Modak; /*폰트 설정*/
+    font-size: 4vw;
+    color: whitesmoke;
+}
+.logo>a {
+    text-decoration-line: none;
+}
+.logo-link {
+    margin-left: -0.8vw; /*글자마다 색상을 적용해돼서 분리한 객체들간의 간격 줄이기*/
+}
+.logo-link-a {
+    color: #FF5C4B;
+}
+.logo-link-d {
+    color: #F3A11A;
+}
+.logo-link-m {
+    color: #62D83E;
+}
+.logo-link-e {
+    color: #249EFF;
+}
+/*호버효과 적용*/
+.logo-link:hover {
+    font-size: 4.5vw;
+    color: #C3B6EC;
+}
+
+/*로그인 박스 설정*/
+.login-container {
+    /*border: 1px solid black;*/
+    position: absolute; /*절대위치 설정*/
+    width: 30vw;
+    height: 17vw;
+
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, 0%); /*중앙으로 잡아주면 box 의 앞부분 기준으로 box 의 절반만큼 위치 보정*/
+}
+.login-box {
+    width: 28vw;
+    height: 14.5vw;
+
+    border: .4vw solid #525252;
+    border-radius: 1vw;
+    background-color: #FFFEF7;
+    box-shadow: 0 0 0.6vw #454541;
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: .6vw;
+}
+
+/*회원가입 박스 설정*/
+.signup-container {
+    position: absolute; /*절대위치 설정*/
+    width: 33vw;
+    height: 38vw;
+
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0%); /*중앙으로 잡아주면 box 의 앞부분 기준으로 box 의 절반만큼 위치 보정*/
+}
+.signup-box {
+    width: 28vw;
+    height: 35.3vw;
+
+    border: .4vw solid #525252;
+    border-radius: 1vw;
+    background-color: #FFFEF7;
+    box-shadow: 0 0 0.6vw #454541;
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: .6vw;
+}
+
+/*기타 칸 설정*/
+.sign-title {
+    margin-left: 1.5vw;
+    font-size: 2.5vw;
+    font-family: "LingWai SC";
+}
+.sign-link-box {
+    display: flex;
+    justify-content: end;
+}
+.sign-link {
+    margin-right: .5vw;
+    text-align: right;
+    font-size: 1.2vw;
+    font-family: "LingWai SC";
+}
+.sign-link:link {
+    color: black;
+}
+.sign-text-box {
+    border: .2vw solid #525252;
+    border-radius: .3vw;
+    height: 2vw;
+    margin-top: .2vw;
+    padding-left: .6vw;
+    font-size: 1.1vw;
+}
+.sign-check-box {
+    width: 1.5vw;
+    height: 1.5vw;
+    padding-top: 3vw;
+}
+.sign-admin-token-box {
+    border: .2vw solid #525252;
+    border-radius: .3vw;
+    width: 24.5vw;
+    height: 1.8vw;
+    margin-top: 1vw;
+    padding-left: .6vw;
+    font-size: 1.1vw;
+}
+.sign-button {
+    margin-top: 1.2vw;
+    height: 2.5vw;
+
+    border: .2vw solid #525252;
+    border-radius: .5vw;
+    background-color: #FFFEF7;
+    font-size: 1.1vw;
+    cursor: pointer;
+}
+.login-button:hover {
+    background-color: #525252;
+    color: #FFFEF7;
+}
+
+.line {
+    width: 27.5vw;
+    margin: .4vw auto;
+    border: .05vw solid black;
+}
+
+.sign-label {
+    font-size: 1vw;
+    margin: .5vw 0 0 .3vw;
+}
