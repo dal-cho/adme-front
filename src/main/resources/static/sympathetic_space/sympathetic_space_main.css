@@ -71,6 +71,19 @@ a {
     color: darkred;
 }
 
+/*Upload Page*/
+.upload-nav-bar {
+    position: absolute;
+    width: 54vw;
+    height: 4vw;
+    top: 4vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+.upload-nav-bar>div {
+    font-size: 2.6vw;
+}
+
 /*side board*/
 .side-board-container {
     /*border: 1px solid black;*/
@@ -113,6 +126,71 @@ a {
     white-space: nowrap; /*한줄로 모든 글 표시*/
     overflow: hidden; /*크기 초과시 숨김*/
     text-overflow: ellipsis; /*초과하는 부분 ... 으로 표시*/
+}
+
+/*upload-container*/
+.sympathetic-upload-container {
+    /*border: 1px solid black;*/
+    border-radius: 1vw;
+    background-color: #FFF4DF;
+
+    position: absolute;
+    top: 13vw;
+    left: 50%;
+    transform: translate(-46%, 0%);
+    width: 40vw;
+    height: 27vw;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    padding-top: 1.6vw;
+}
+.direction {
+    display: flex;
+    margin-left: -5vw;
+}
+.item-property {
+    width: 11vw;
+    font-family: "LingWai SC";
+    font-size: 2.1vw;
+    color: black;
+    text-align: right;
+    padding-right: 1vw;
+}
+.direction>input {
+    width: 27vw;
+    height: 2.3vw;
+    margin-top: 0.4vw;
+
+    background-color: #F7E3C1;
+    border: none;
+    border-radius: 0.4vw;
+    outline: none;
+
+    text-align: left;
+    padding-left: 0.5vw;
+    font-size: 1vw;
+}
+.direction>textarea {
+    width: 26.5vw;
+    height: 20vw;
+    margin-top: 0.8vw;
+    padding-top: 0.5vw;
+    padding-right: 0.5vw;
+    resize: none; /*박스 크기조절 불가*/
+    line-height: 1.4vw; /*상하 줄간격*/
+
+    background-color: #F7E3C1;
+    border: none;
+    border-radius: 0.4vw;
+    outline: none;
+
+    text-align: left;
+    padding-left: 0.5vw;
+    font-size: 1vw;
 }
 
 /*board*/
@@ -214,6 +292,43 @@ a {
     font-size: 1.3vw;
 }
 
+/*upload button*/
+.sympathetic-upload-button {
+    position: absolute;
+    top: 42.5vw;
+    left: 63vw;
+}
+.sympathetic-upload-button:hover {
+    top: 42.35vw;
+}
+.sympathetic-upload-button:active {
+    top: 42.95vw;
+}
+.sympathetic-upload {
+    width: 7.7vw;
+    height: 2vw;
+
+    background-color: #C3B6EC;
+    /*border: 1px solid #A8A79D;*/
+    border: none;
+    border-radius: 0.7vw;
+    box-shadow: 0 0.4vw 0.02vw -0.02vw #b3a5ee;
+
+    font-family: "LingWai SC";
+    font-size: 1.3vw;
+    color: white;
+
+    cursor: pointer;
+}
+.sympathetic-upload:hover {
+    color: black;
+    background-color: ghostwhite;
+    box-shadow: 0 0.55vw 0.02vw -0.02vw #C7C7BB;
+}
+.sympathetic-upload:active {
+    box-shadow: 0 0.05vw 0.02vw -0.02vw #C7C7BB;
+}
+
 /*logout button*/
 .logout-button {
     position: absolute;
@@ -291,6 +406,7 @@ a {
 }
 .board-box-close>p {
     margin: 0 0 -0.1vw -0.2vw;
+    font-size: 0.9vw;
 }
 /*모달 게시글 타이틀*/
 .board-title {
@@ -308,6 +424,9 @@ a {
     margin-top: .8vw;
     color: #5b5a5a;
 }
+.board-info>div {
+    font-size: 1vw;
+}
 /*메인글 설명 상자*/
 .board-content>textarea {
     width: 34.5vw;
@@ -320,6 +439,7 @@ a {
     background-color: #FFECC8;
     border-radius: 1vw;
     overflow: scroll;
+    font-size: 1vw;
 }
 .board-content>textarea:focus {
     outline: none; /*글상자 클릭시 테두리효과 제거*/
@@ -331,6 +451,9 @@ a {
     display: flex;
     height: 2vw;
     justify-content: space-between;
+}
+.board-comment-title-item {
+    font-size: 1vw;
 }
 .board-comment-writing-box-item {
     width: 30.5vw;
@@ -345,6 +468,7 @@ a {
     border: 1px solid #A3B493;
     border-radius: .4vw;
     cursor: pointer;
+    font-size: 1vw;
 }
 .board-comment-save:hover {
     background-color: #f0ffeb;
