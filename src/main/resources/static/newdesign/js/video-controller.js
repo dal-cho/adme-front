@@ -1,12 +1,3 @@
-$(document).ready(function(){
-});
-// 모달 열기
-function videoModal(id) {
-    $(".modal-video").get(0).play();
-    $(".modal-content").fadeIn(100);
-    $(".modal-container").fadeIn(100);
-}
-
 // 모달 영역 밖 클릭시 닫기
 let modal = document.getElementById("modal");
 window.onclick = function(event) {
@@ -34,7 +25,6 @@ function mutedVideo() {
     muteButton.css("border", "1px solid #3b3b3b");
     muteButton.css("background-color", "#858585");
     muteButton.attr("onclick", "soundVideo()");
-
 }
 // 소리 재생
 function soundVideo() {
