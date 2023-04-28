@@ -73,7 +73,7 @@
 }
 .signup-box {
     width: 28vw;
-    height: 35.3vw;
+    height: 31.5vw;
 
     border: .4vw solid #525252;
     border-radius: 1vw;
@@ -119,15 +119,6 @@
     height: 1.5vw;
     padding-top: 3vw;
 }
-.sign-admin-token-box {
-    border: .2vw solid #525252;
-    border-radius: .3vw;
-    width: 24.5vw;
-    height: 1.8vw;
-    margin-top: 1vw;
-    padding-left: .6vw;
-    font-size: 1.1vw;
-}
 .sign-button {
     margin-top: 1.2vw;
     height: 2.5vw;
@@ -152,4 +143,14 @@
 .sign-label {
     font-size: 1vw;
     margin: .5vw 0 0 .3vw;
+}
+.confirm {
+    display: flex;
+    flex-direction: row;
+}
+.incorrect-password {
+    display: none;
+    color: #FF5C4B;
+    font-size: 0.5vw;
+    margin-left: 1vw;
 }
