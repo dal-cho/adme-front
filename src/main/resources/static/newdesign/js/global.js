@@ -13,6 +13,7 @@ let everyone_record_modify_page = "http://localhost:63342/front/front.main/stati
 let sympathetic_space_main_page = "http://localhost:63342/front/front.main/static/newdesign/templates/sympathetic-space-main-page.html";
 let sympathetic_space_upload_page = "http://localhost:63342/front/front.main/static/newdesign/templates/sympathetic-space-upload-page.html";
 let my_record_main_page = "http://localhost:63342/front/front.main/static/newdesign/templates/my-record-main-page.html";
+let nickname = "";
 
 let cookie = getCookie("TokenCookie");
 
@@ -39,6 +40,12 @@ function navLink() {
     $("#everyone_record").attr("href", everyone_record_main_page);
     $("#sympathetic_space").attr("href", sympathetic_space_main_page);
 }
+function videoUploadLink() {
+    document.location.href = everyone_record_upload_page;
+}
+// function boardUploadLink() {
+//     document.location.href = ;
+// }
 
 // user 정보 조회
 function userInfo() {
@@ -49,6 +56,7 @@ function userInfo() {
         headers: {"X-AUTH-TOKEN": cookie},
         success: function (response) {
             console.log(response);
+            nickname = `${response["nickname"]}`;
             $(".nickname").text(`${response["nickname"]}`);
         }
     })

@@ -1,105 +1,39 @@
 $(document).ready(function () {
-    $(".container").fadeIn(1000);
-    $(".container1").fadeIn(1000);
-    $(".menu").fadeIn(1000);
-    $(".upload-button").fadeIn(1000);
-    pageSelect();
-    pageOver();
-    pageLeave();
-    getArticle(1); // paging
-    $("#name").text(nickname + "님 환영합니다.")
-    findNickname() // nickname 가져오기
+    getArticle(1);
+    needComment();
 });
 
-// 업로드 버튼
-function registryPage() {
-    $(".container").hide();
-    $(".container1").hide();
-    $(".upload-button").hide();
-    $(".registry-container").show();
-    $(".registry-c1").fadeIn();
-    $("#articleModal").fadeOut();
+// 모달 영역 밖 클릭시 닫기
+let modal = document.getElementById("board-Modal");
+let showCommentId;
 
-}
-
-// 페이지버튼 클릭시 fill 이미지로 변경
-function pageSelect() {
-    //마우스 클릭한 곳의 이미지 값을 변화시켜준다. (다른 곳을 클릭하면 이전 클릭 기록은 지워준다.)
-    $('.paging-num').on("click", function () {
-        let id_check = $(this).attr("id");
-        if (id_check.slice(0, 11) === "page-number") {
-            for (let i = 1; i < 6; i++) {
-                $('.paging-num').eq(i).attr("src", "img/num.png");
-                $('.paging-num').eq(i).attr("value", "0");
-            }
-            // $(this).attr("src", "img/num-fill.png");
-            $(this).attr("src", "img/num-fill.png");
-            $(this).attr("value", "1");
+window.onclick = function(event) {
+    if (event.target === modal) {
+        $(".board-modal-container").fadeOut(300);
+        $(".board-modal-content").fadeOut(300);
+        $(".board-comment-writing-box-item").val("");
+        if (showCommentId != null) {
+            hideCommentSave(showCommentId);
         }
-    });
-}
-
-// 페이징버튼에 마우스 올릴시 fill 이미지로 변경
-function pageOver() {
-    //마우스 올린 곳의 이미지 값을 변화시켜준다.
-    $('.paging-num').mouseover(function () {
-        let id_check = $(this).attr("id");
-        let value_check = $(this).attr("value");
-        if (id_check === "left-num-img") {
-            $(this).attr("src", "img/left-num-fill.png");
-        } else if (id_check === "right-num-img") {
-            $(this).attr("src", "img/right-num-fill.png");
-        } else if (value_check === "0" && id_check.slice(0, 11) === "page-number") {
-            $(this).attr("src", "img/num-fill.png");
-        }
-    });
-}
-
-// 페이징버튼에서 마우스 내릴시 빈 이미지로 변경
-function pageLeave() {
-    //마우스가 위치를 벗어나면 이미지 값을 변화시킨다.
-    $('.paging-num').mouseleave(function () {
-        let id_check = $(this).attr("id");
-        let value_check = $(this).attr("value");
-        if (id_check === "left-num-img") {
-            $(this).attr("src", "img/left-num.png");
-        } else if (id_check === "right-num-img") {
-            $(this).attr("src", "img/right-num.png");
-        } else if (value_check === "0" && id_check.slice(0, 11) === "page-number") {
-            $(this).attr("src", "img/num.png");
-        }
-    });
-}
-
-// nickname 가져오기 (index 페이지로 가지 않고 다른 페이지로 갈 경우)
-let nickname = sessionStorage.getItem("nickname");
-function findNickname() {
-    if (!nickname) {
-        $.ajax({
-            type: "GET",
-            url: `http://localhost:8080/finduser`,
-            contentType: "application/json",
-            data: JSON.stringify(),
-            success: function (response) {
-                sessionStorage.setItem("nickname", response)
-                nickname = sessionStorage.getItem("nickname");
-            }
-        })
     }
 }
 
-// nickname이 null 값인 경우 변경 확인
-function reload() {
-    $("#name").text(nickname + "님 환영합니다.")
+// board 모달 열기
+function boardModal(idx) {
+    allRegistry(idx);
+    $(".board-modal-container").fadeIn(100);
+    $(".board-modal-content").fadeIn(100);
 }
 
-if (!nickname) { // 0.5초 뒤에 다시 띄워짐
-    setInterval(reload, 500);
+// board 모달 닫기
+function boardClose() {
+    $(".board-modal-container").fadeOut(300);
+    $(".board-modal-content").fadeOut(300);
+    $(".board-comment-writing-box-item").val("");
+    if (showCommentId != null){
+        hideCommentSave(showCommentId);
+    }
 }
-
-// 모든 registry를 갖고와
-// comment 댓글
-
 
 // 작성 글 페이징
 function getArticle(curpage) {
@@ -108,60 +42,32 @@ function getArticle(curpage) {
         url: `space/${curpage}`,
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            let list = response.data;
-            let fullCount = response.count;
-            $("#c1-posting").empty();
-            $("#nowPage").empty();
+            let list = response.boardList; // 게시물 리스트
 
-            let startPage = response.startPage;
-            let endPage = response.endPage;
-            let prev = response.prev;
-            let next = response.next
+            let startPage = response.startPage; // 시작 페이지 번호
+            let endPage = response.endPage; // 마지막 페이지 번호
+            let prev = response.prev; // 이전 버튼
+            let next = response.next; // 다음 버튼
 
-            $("#nowPage").append(curpage + "페이지")
-            needComment();
+            $(".board-container").empty(); // 게시글 초기화
+
+            // 메인화면 게시글 표시
             for (let i = 0; i < list.length; i++) {
-                num = i + 1;
-                makeListPost(list[i], num, curpage); // 네모 칸 리스트 출력
+                let title = list[i].title;
+                let idx = list[i].idx;
+
+                let tempHtml = `<div class="board-item" onclick="boardModal(${idx})">
+                        <div class="board" >${title}</div>
+                    </div>`;
+
+                $(".board-container").append(tempHtml);
             }
-            makePagination(fullCount, curpage, startPage, endPage, prev, next); // 아래 하단 페이징
+            makePagination(curpage, startPage, endPage, prev, next); // 아래 하단 페이징
         }
     })
 }
 
-
-// 네모 칸 리스트 출력
-function makeListPost(board, num) {
-    let title = board.title;
-    if (title.length >= 20) {
-        title = title.substr(0, 20) + "...";
-    }
-    let content = board.main;
-    let modi = board.modifiedAt;
-    let mode = modi.substr(0, 10);
-    let idx = board.idx;
-
-    $("ul.items1").text("") // 공감이 필요해요 칸 초기화
-    $.ajax({
-        type: "GET",
-        url: `/comment-count?idx=${idx}`,
-        data: {},
-        contentType: false,
-        processData: false,
-        success: function (response){
-            let commentLength = response["size"];
-            let tempHtml = `<div class="item"><button class="makeListPostBtn" onclick="allRegistry(${idx}); findComment(${idx})">
-                        <div class="num" style="display: none">${num}</div>
-                        <div class="title" style="font-size: 16px;">${title}</a></div>
-                        <div class="date" style="display: none">${mode}</div>
-                        <div class="commentLength" >${commentLength}</div>
-                   </div>
-`
-            $("#c1-posting").append(tempHtml);
-        }
-    })
-}
-
+// 공감이 필요해요
 function needComment() {
     $.ajax({
         type: "GET",
@@ -172,58 +78,46 @@ function needComment() {
         success: function (response) {
             switch (response.length) {
                 case 0 :
-                    let temp1 = ` 모든 게시글에 댓글이 달려있어요!`
-                    if ($("div.c2").text().includes("모든 게시글에")) {
-                        break;
-                    }
-                    $("div.c2").append(temp1);
+                    $(".side-board-mark").text("It has become a world where everyone can empathize!");
                     break;
 
                 default :
-                    let temp = ``
                     for (let i = 0; i < response.length; i++) {
-                        let idx = response[i].idx;
                         let title = response[i].title;
-                        let modi = response[i].modifiedAt;
-                        let mode = modi.substr(0, 10);
-                        temp = `<div class="item1" ><button id="needComment" onclick="allRegistry(${idx}); findComment(${idx})">
-                        <div class="comment-num" style="display: none">${num}</div>
-                        <div class="comment-title" style="font-size: 16px;">${title}</a></div>
-                        <div class="comment-date" style="display: none">${mode}</div>
-                   </div>`
-                        $("ul.items1").append(temp)
+                        let idx = response[i].idx;
+                        let temp = `<div class="side-board-item" onclick="boardModal(${idx})">
+                                        <div class="side-board-item-title">${title}</div>
+                                    </div>`
+                        $(".side-board-box").append(temp)
                     }
-
-
             }
         }
     })
 }
 
-
 // 아래 하단 페이징
-function makePagination(count, curpage, startPage, endPage, prev, next) {
+function makePagination(curpage, startPage, endPage, prev, next) {
     let tempHtml = ``;
+    // 이전 페이지가 있다면 < 표시
     if (prev) {
-        tempHtml += `<li class="left-number" value="before" ><button type="button" onclick="beforeClick(${curpage})"><img type="button" class="paging-num" id="left-num-img" value="0" src="img/left-num.png"></button></li>`
+        tempHtml += `<div><a href="#" onclick="beforeClick(${curpage})">&lt;</a></div>`
     }
 
     // 페이징 번호 표시
     for (let i = startPage; i <= endPage; i++) {
-        if (curpage == i) {
-            tempHtml += `
-<li class="page-number" value="${i}" id="curPage"><img class="paging-num" id="page-number1-img" value="0" src="img/num.png"></li>
-      `;
+        if (curpage === i) {
+            tempHtml += `<div><a href="#">${i}</a></div>`;
         } else {
-            tempHtml += `
-<li class="page-number" value="${i}" id="otherPage"><img class="paging-num" id="page-number1-img" value="0" onclick="getArticle(${i})" src="img/num.png"></li>
-`;
+            tempHtml += `<div><a href="#" onclick="getArticle(${i})">${i}</a></div>`;
         }
     }
-    if (next) { // 다음 버튼
-        tempHtml += `<li class="right-number" value="after"><button type="button" id="nextButton" onclick="nextClick(${curpage})"><img class="paging-num" id="right-num-img" value="0" src="img/right-num.png"></button></li>`
+
+    // 다음 페이지가 있다면 < 표시
+    if (next) {
+        tempHtml += `<div><a href="#" onclick="nextClick(${curpage})">&gt;</a></div>`
     }
-    $('#board-pages').html(tempHtml);
+
+    $('.paging').html(tempHtml);
 }
 
 function beforeClick(curpage) {
@@ -233,28 +127,6 @@ function beforeClick(curpage) {
 function nextClick(curpage) {
     getArticle(curpage + 1);
 }
-
-
-// 게시글 등록하기
-function saveArticle() {
-    let form_data = new FormData()
-    form_data.append("title", $("#h1").val())
-    form_data.append("main", $("#h2").val())
-    form_data.append("nickname", nickname)
-
-    $.ajax({
-        type: "POST",
-        url: `/registry`,
-        data: form_data,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            alert("성공적으로 업로드 되었습니다.");
-            location.href = "empathy-space.html"; // 페이지 변환
-        }
-    });
-}
-
 
 // 게시글 상세 페이지
 function allRegistry(idx) {
@@ -272,38 +144,30 @@ function allRegistry(idx) {
             let main = response['main']
             let registryNickname = response['nickname']
             // 0000-00-00 형식으로 출력
-            let date = new Date(created)
+            let date = new Date(modified)
             let newcreated = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
 
-            $("#RegistryId").html(idx);
-            $("#user").html(registryNickname)
-            $("#created").html(newcreated)
-            $("#modal-title").html(title)
-            $("#modal-main").html(main)
+            $(".board-title").html(title);
+            $(".board-user-nickname").html(registryNickname);
+            $(".board-date").html(newcreated);
+            $(".board-content>textarea").text(main);
 
-            $("#articleModal").fadeIn();
-            $(".registry-c1").fadeOut();
+            // onclick 의 값이 잘 변경 되는지 체크
+            $(".board-comment-save").attr("onclick()","comment("+idx+")");
+
+            findComment(idx);
         }
     });
 }
 
-function closeModal() {
-    $("#articleModal").fadeOut();
-    spaceReload()
-}
-
-function spaceReload() {
-    location.reload(); // 새로고침
-}
-
 // 댓글 등록하기
-function Comment() {
-    let form_data = new FormData()
-    form_data.append("comment", $("#comment").val())
-    form_data.append("nickname", nickname)
-    form_data.append("registryIdx", $("#RegistryId").html())
+function Comment(idx) {
+    let saveComment = $('.board-comment-writing-container>textarea').val();
 
-    let registryId = $("#RegistryId").html()
+    let form_data = new FormData();
+    form_data.append("comment",saveComment);
+    form_data.append("registryIdx", idx);
+
     $.ajax({
         type: "POST",
         url: `/comment`,
@@ -311,18 +175,16 @@ function Comment() {
         contentType: false,
         processData: false,
         success: function (response) {
-            // // 댓글 창 값 없애기(input 칸 비우기)
-            $("#comment").val("")
-
             // 댓글 입력 후 댓글 db reload
-            findComment(registryId)
+            findComment(idx);
         }
     });
 }
 
-
+// 댓글 조회
 function findComment(idx) { // comment db 가져오기
-    $("#commentList").text("") // 초기화
+    $(".board-comments-box").empty(); // 초기화
+
     $.ajax({
         type: "GET",
         url: `/comment?idx=${idx}`,
@@ -331,97 +193,94 @@ function findComment(idx) { // comment db 가져오기
         processData: false,
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
-                let commentId = response[i]["commentId"]
-                let commentNickname = response[i]["commentNickname"]
-                let comment = response[i]["comment"]
-                let registryNickname = response[i]["registryNickname"]
-                let temp_html
-
-                if (registryNickname == commentNickname) { // 게시글 작성자인 경우
-
-                    // 댓글 작성자인 경우
-                    if (nickname == commentNickname) { // 댓글 작성자인 경우
-                        temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentNickname" class="writerCommentNickname">${commentNickname} : 작성자 </a><a id="${commentId}-comment">${comment}</a>
-<button id="updateBtn-${commentId}" class="updateBtn" type="button" onclick="updateCommentBtn(${commentId})">수정</button>
-<button id="deleteBtn-${commentId}" class="deleteBtn" type="button" onclick="checkDelete(${commentId})">삭제</button></div> 
-<a><input id="updateCommentInput-${commentId}" class="updateCommentInput" style="display: none"><button id="updateAftersaveBtn-${commentId}" class="updateAftersaveBtn" style="display: none" type="button" onclick="afterUpdateComment(${commentId})">저장</button> </a><br>`
-                    }
-
-                    // 댓글 작성자가 아닌 경우
-                    else {
-                        temp_html = `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentNickname" class="commentNickname">${commentNickname} : 작성자 </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
-                    }
-
-                } else { // 댓글 작성자가 아닌 경우
-
-                    // 댓글 작성자인 경우
-                    if (nickname == commentNickname) { // 댓글 작성자인 경우
-                        temp_html = `<div id="commentParent" class="${commentId}" ><a id="${commentId}-commentNickname" class="writerCommentNickname">${commentNickname}</a><a id="${commentId}-comment">${comment}</a>
-<button id="updateBtn-${commentId}" class="updateBtn" type="button" onclick="updateCommentBtn(${commentId})">수정</button>
-<button id="deleteBtn-${commentId}" class="deleteBtn" type="button" onclick="checkDelete(${commentId})">삭제</button></div> 
-<a><input id="updateCommentInput-${commentId}" class="updateCommentInput" style="display: none"><button id="updateAftersaveBtn-${commentId}" class="updateAftersaveBtn" style="display: none" type="button" onclick="afterUpdateComment(${commentId})">저장</button> </a><br>`
-                    }
-
-                    // 댓글 작성자가 아닌 경우
-
-                    else {
-                        temp_html = `<div id="commentParent" class="${commentId}" style="display:block;"><a id="${commentId}-commentNickname" class="commentNickname">${commentNickname} </a><a id="${commentId}-comment">${comment}</a></div> <br><input id="updateCommentBtn" style="display: none">`
-                    }
-
-                }
-
-
-                $("#commentList").append(temp_html)
-
+                commentPost(response[i], idx);
             }
         }
     })
 }
 
-function updateCommentBtn(commentId) {
-    // 수정 버튼을 누르면 수정 버튼은 사라지고 그 글이 input 칸안에 들어가야 함
+// 댓글 post
+function commentPost(article, registryIdx){
+    let commentId = article["commentId"];
+    let commentNickname = article["commentNickname"];
+    let comment = article["comment"];
+    let registryNickname = article["registryNickname"];
+    let date = article["modifiedAt"];
+    let temp_html;
 
-    let num = commentId + "-comment" // id 값을 가져옴
-    let updateBtn = "#updateBtn-" + commentId
-    let deleteBtn = "#deleteBtn-" + commentId
-
-    $(updateBtn).hide() // 수정 버튼 숨김
-    $(deleteBtn).hide() // 삭제 버튼 숨김
-
-    let comment = document.getElementById(num).innerText // 댓글 값을 가져온다.
-    let updateCommentInput = "#updateCommentInput-" + commentId // 수정 입력 input 창
-    let updateAftersaveBtn = "#updateAftersaveBtn-" + commentId // 저장 버튼
-
-    $(updateCommentInput).show() // 수정 입력 input 창 보여주기
-    $(updateAftersaveBtn).show() // 저장 버튼 보여주기
-    $(updateCommentInput).val(comment) // 수정 전 값 input 창에 띄워주기
+    if (registryNickname === commentNickname) { // 게시글 작성자인 경우
+        if (nickname === commentNickname) { // 댓글 작성자인 경우
+            temp_html = `<div class="line"style="border: 1px dashed rgba(131,128,128,0.18);"></div>
+                         <div class="board-comment-left-item" id="${"commentId-"+commentId}">
+                             <div class="board-comments-userNickname">&#9989; ${commentNickname}</div>
+                             <div class="board-comments-item-date">${date}</div>
+                             <div class="board-comment">${comment}</div>
+                             <textarea class="board-comment-modify-box"></textarea>
+                         </div>
+                         <div class="board-comment-right-item">
+                             <button class="board-comment-btn board-comment-delete" onclick="checkDelete(${commentId}, ${registryIdx})">DELETE</button>
+                             <button class="board-comment-save board-comment-modify" onclick="updateCommentBtn(${commentId})">Modify</button>
+                             <button class="board-comment-save board-comment-modify-save" onclick="afterUpdateComment(${commentId}, ${registryIdx})">SAVE</button>
+                         </div>`
+        }
+        else { // 댓글 작성자가 아닌 경우
+            temp_html = `<div class="line"style="border: 1px dashed rgba(131,128,128,0.18);"></div>
+                         <div class="board-comment-left-item" id="${"commentId-"+commentId}">
+                             <div class="board-comments-userNickname">${commentNickname}</div>
+                             <div class="board-comments-item-date">${date}</div>
+                             <div class="board-comment">${comment}</div>
+                         </div>`
+        }
+    } else { // 게시글 작성자가 아닌 경우
+        if (nickname === commentNickname) { // 댓글 작성자인 경우
+            temp_html = `<div class="line"style="border: 1px dashed rgba(131,128,128,0.18);"></div>
+                         <div class="board-comment-left-item" id="${"commentId-"+commentId}">
+                             <div class="board-comments-userNickname">${commentNickname}</div>
+                             <div class="board-comments-item-date">${date}</div>
+                             <div class="board-comment">${comment}</div>
+                             <textarea class="board-comment-modify-box"></textarea>
+                         </div>
+                         <div class="board-comment-right-item">
+                             <button class="board-comment-btn board-comment-delete" onclick="checkDelete(${commentId}, ${registryIdx})">DELETE</button>
+                             <button class="board-comment-save board-comment-modify" onclick="updateCommentBtn(${commentId})">Modify</button>
+                             <button class="board-comment-save board-comment-modify-save" onclick="afterUpdateComment(${commentId}, ${registryIdx})">SAVE</button>
+                         </div>`
+        }
+        else { // 댓글 작성자가 아닌 경우
+            temp_html = `<div class="line"style="border: 1px dashed rgba(131,128,128,0.18);"></div>
+                         <div class="board-comment-left-item" id="${"commentId-"+commentId}">
+                             <div class="board-comments-userNickname">${commentNickname}</div>
+                             <div class="board-comments-item-date">${date}</div>
+                             <div class="board-comment">${comment}</div>
+                         </div>`
+        }
+    }
+    $("#commentList").append(temp_html)
 }
 
+// 댓글 수정버튼 클릭시 해당 댓글이 input 상자로 변경 ,수정 후 저장시 input 상자값 저장
+// 댓글 수정 버튼
+function updateCommentBtn(commentId) {
+    showCommentId = commentId;
+    let parents = '#commentId-' + commentId;
+    let tempComment = $(parents+'>.board-comment-left-item>.board-comment').text();
 
-function afterUpdateComment(commentId) {     // 저장 버튼을 누르면 그 값이 원래 값 대신 들어가야 함
-    let updateCommentInput = "#updateCommentInput-" + commentId // 수정 입력 input 창
-    let updateAftersaveBtn = "#updateAftersaveBtn-" + commentId // 저장 버튼
+    $(parents+ '>.board-comment-left-item>.board-comment').hide(); // 댓글 div none
+    $(parents+ '>.board-comment-left-item>textarea').val(tempComment);
+    $(parents+ '>.board-comment-left-item>.board-comment-modify-box').show(); // 수정 입력창 block
 
-    $(updateCommentInput).hide(); // input 숨기기
-    $(updateAftersaveBtn).hide() // 저장 버튼 숨기기
+    $(parents+ '>.board-comment-right-item>.board-comment-modify').hide(); // 수정버튼 none
+    $(parents+ '>.board-comment-right-item>.board-comment-modify-save').show(); // 저장버튼 block
+}
 
-    let comment = $(updateCommentInput).val(); // 수정 댓글
-    let queryNum = "#" + commentId + "-comment" // id 값을 가져옴 + 제이쿼리 이용
-    $(queryNum).text("") // 기존 값 초기화
-    $(queryNum).text(comment) // 수정 값 추가
-
-    let updateBtn = "#updateBtn-" + commentId // 수정 버튼
-    let deleteBtn = "#deleteBtn-" + commentId // 삭제 버튼
-
-    $(updateBtn).show() // 수정 버튼 보여주기
-    $(deleteBtn).show() // 삭제 버튼 보여주기
-
-    let registryId = $("#RegistryId").html();
-    let registryNickname = $("#user").text() // 게시글 작성자
+// 수전된 댓글 저장 도작 메소드
+function afterUpdateComment(commentId, registryId) {  // 저장 버튼을 누르면 그 값이 원래 값 대신 들어가야 함
+    let parents = '#commentId-'+commentId;
+    let saveComment = $(parents+ '>.board-comment-left-item>textarea').val();
 
     let RegistryComment = { // 수정
         nickname: nickname,
-        comment: comment,
+        comment: saveComment,
         registryId : registryId
     }
 
@@ -432,39 +291,39 @@ function afterUpdateComment(commentId) {     // 저장 버튼을 누르면 그 �
         data: JSON.stringify(RegistryComment),
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            console.log("success")
+            console.log("success");
         }
-    })
+    });
 }
 
-function checkDelete(commentId) { // 삭제 여부를 묻고 삭제하겠다고 하면 deleteComment 호출
-    let checkDelete = confirm("정말 삭제하실건가요?")
+// 댓글 삭제
+function checkDelete(commentId, registryId) { // 삭제 여부를 묻고 삭제하겠다고 하면 deleteComment 호출
+    let checkDelete = confirm("정말 삭제하실건가요?");
     if (checkDelete) {
-        deleteComment(commentId)
+        deleteComment(commentId, registryId);
     }
 }
 
-function deleteComment(commentId) {
-    let num = commentId + "-comment" // id 값을 가져옴
-    let comment = document.getElementById(num).innerText // 댓글 값을 가져온다.
-    let registryId = $("#RegistryId").html();
-    //let registryNickname = $("#user").text() // 게시글 작성자
-
-    let RegistryComment = {
-        nickname: nickname,
-        comment: comment,
-        registryId : registryId
-    }
+function deleteComment(commentId, registryId) {
     $.ajax({
         type: "DELETE", // DELETE
         url: `/comment/${commentId}`,
         dataType: 'json',
-        data: JSON.stringify(RegistryComment),
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
+            findComment(registryId);
         }
     })
-    let query = "." + commentId
-    let queryEnd = " ." + commentId
-    $(query).load(window.location.href + queryEnd) // 삭제 댓글만 새로고침
+    // 댓글 입력 후 댓글 db reload
+}
+
+// 댓글 수정 저장버튼 비활성화 & 수정버튼 활성화
+function hideCommentSave(id) {
+    let parents = '#commentId-'+id;
+
+    $(parents+ '>.board-comment-left-item>.board-comment').show();
+    $(parents+ '>.board-comment-left-item>.board-comment-modify-box').hide();
+
+    $(parents+ '>.board-comment-right-item>.board-comment-modify').show(); // 수정버튼 none
+    $(parents+ '>.board-comment-right-item>.board-comment-modify-save').hide(); // 저장버튼 block
 }

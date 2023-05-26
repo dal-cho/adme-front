@@ -1,7 +1,7 @@
 // 모달 영역 밖 클릭시 닫기
 let modal = document.getElementById("modal");
 window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target === modal) {
         $(".modal-video").get(0).pause();
         $(".modal-content").fadeOut(300);
         $(".modal-container").fadeOut(300);
