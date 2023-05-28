@@ -33,62 +33,6 @@
                 <a class="title" href="#">Title</a>
             </div>
         </div>
-        <div class="video-item">
-            <div class="video-thumbnail" onclick="videoModal()">
-                <img src="" alt="video1_thumbnail">
-            </div>
-            <div class="video-title" onclick="videoModal()">
-                <a class="title" href="#">Title</a>
-            </div>
-        </div>
-        <div class="video-item">
-            <div class="video-thumbnail" onclick="videoModal()">
-                <img src="" alt="video1_thumbnail">
-            </div>
-            <div class="video-title" onclick="videoModal()">
-                <a class="title" href="#">Title</a>
-            </div>
-        </div>
-        <div class="video-item">
-            <div class="video-thumbnail" onclick="videoModal()">
-                <img src="" alt="video1_thumbnail">
-            </div>
-            <div class="video-title" onclick="videoModal()">
-                <a class="title" href="#">Title</a>
-            </div>
-        </div>
-        <div class="video-item">
-            <div class="video-thumbnail" onclick="videoModal()">
-                <img src="" alt="video1_thumbnail">
-            </div>
-            <div class="video-title" onclick="videoModal()">
-                <a class="title" href="#">Title</a>
-            </div>
-        </div>
-        <div class="video-item">
-            <div class="video-thumbnail" onclick="videoModal()">
-                <img src="" alt="video1_thumbnail">
-            </div>
-            <div class="video-title" onclick="videoModal()">
-                <a class="title" href="#">Title</a>
-            </div>
-        </div>
-        <div class="video-item">
-            <div class="video-thumbnail" onclick="videoModal()">
-                <img src="" alt="video1_thumbnail">
-            </div>
-            <div class="video-title" onclick="videoModal()">
-                <a class="title" href="#">Title</a>
-            </div>
-        </div>
-        <div class="video-item">
-            <div class="video-thumbnail" onclick="videoModal()">
-                <img src="" alt="video1_thumbnail">
-            </div>
-            <div class="video-title" onclick="videoModal()">
-                <a class="title" href="#">Title</a>
-            </div>
-        </div>
     </div>
     <div class="board-container">
         <div class="board-item" onclick="boardModal()">
@@ -124,13 +68,13 @@
         </div>
     </div>
     <div class="logout-button">
-        <button class="button-style">Logout</button>
+        <button class="button-style" onclick="logout()">Logout</button>
     </div>
     <div class="board-upload-button">
-        <button class="button-style">Board</button>
+        <button class="button-style" onclick="boardUploadLink()">Board</button>
     </div>
     <div class="video-upload-button">
-        <button class="button-style">Video</button>
+        <button class="button-style" onclick="videoUploadLink()">Video</button>
     </div>
     <p class="upload-mark">upload</p>
     <div class="modal-container" id="modal">
@@ -141,7 +85,7 @@
                     <div class="video-box">
                         <div class="video-file-box">
                             <video class="modal-video" id="modal-video2" loop controlslist="nodownload">
-                                <source src="../../img/testvideo.mp4" type="video/mp4">
+                                <source src="#" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-right-container">
@@ -178,7 +122,9 @@
         </div>
     </div>
 </div>
-<script src="/newdesign/js/my-record-main.js"></script>
+<script src="../js/my-record-main.js"></script>
+<script src="../js/video-connection.js"></script>
+<script src="../js/video-controller.js"></script>
 <script src="../js/global.js"></script>
 </body>
 </html>

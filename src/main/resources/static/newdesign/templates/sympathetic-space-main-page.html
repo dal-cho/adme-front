@@ -64,7 +64,7 @@
     </div>
     <div class="board-container">
         <div class="board-item" onclick="boardModal()">
-            <div class="board">내용입니다. 이 게시글은 일부러 길게 작성하였습니다. 넘치는 줄은 어떻게 처리해야할지 확인해야 하기 때문이죠.</div>
+            <div class="board">제목입니다. 이 게시글은 일부러 길게 작성하였습니다. 넘치는 줄은 어떻게 처리해야할지 확인해야 하기 때문이죠.</div>
         </div>
         <div class="board-item" onclick="boardModal()">
             <div class="board" >내용입니다.</div>
@@ -125,7 +125,7 @@
     <div class="board-modal-container" id="board-Modal">
         <div class="board-modal-content">
             <div class="board-box">
-                <button class="board-box-close" onclick="boardClose()"><p>X</p></button>
+                <button class="board-box-close" onclick="boardClose()">&#10060;</button>
                 <div class="board-title"> TITLE </div>
                 <div class="board-info">
                     <div class="board-user-nickname">user_1234</div>
@@ -139,41 +139,62 @@
                     <div class="board-comment-title-item">Add a Comment</div>
                     <div class="board-comment-writing-container">
                         <textarea class="board-comment-writing-box-item" placeholder="Comment"></textarea>
-                        <button class="board-comment-save" onclick="boardSave()">Save</button>
+                        <button class="board-comment-btn board-comment-save" onclick="comment()">SAVE</button>
                     </div>
                 </div>
                 <div class="board-comments-box">
-                    <div class="board-comments-item">
-                        <div class="board-comments-userNickname">userA</div>
-                        <div class="board-comments-item-date">2023.03.20 10:07</div>
-                        <div class="board-comment">댓글입니다.</div>
+                    <div class="line"style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+
+                    <div class="board-comments-item" id="commentId-539">
+                        <div class="board-comment-left-item">
+                            <div class="board-comments-userNickname">&#9989; userA</div>
+                            <div class="board-comments-item-date">2023.03.20 10:07</div>
+                            <div class="board-comment" id="comment-1">comment-1 댓글입니다.</div>
+                            <textarea class="board-comment-modify-box"></textarea>
+                        </div>
+                        <div class="board-comment-right-item">
+                            <button class="board-comment-btn board-comment-delete" onclick="checkDelete(539)">DELETE</button>
+                            <button class="board-comment-btn board-comment-modify" onclick="updateCommentBtn(539)">Modify</button>
+                            <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(539)">SAVE</button>
+                        </div>
                     </div>
+                    <div class="line"style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+
                     <div class="board-comments-item">
-                        <div class="board-comments-userNickname">userB</div>
-                        <div class="board-comments-item-date">2023.03.20 10:00</div>
-                        <div class="board-comment">댓글입니다.</div>
+                        <div class="board-comment-left-item">
+                            <div class="board-comments-userNickname">userA</div>
+                            <div class="board-comments-item-date">2023.03.20 10:07</div>
+                            <div class="board-comment">댓글입니다.</div>
+                        </div>
+                        <div class="board-comment-right-item">
+                            <button class="board-comment-btn board-comment-delete" onclick="checkDelete(539)">DELETE</button>
+                            <button class="board-comment-btn board-comment-modify" onclick="updateCommentBtn(539)">Modify</button>
+                            <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(539)">SAVE</button>
+                        </div>
                     </div>
+                    <div class="line"style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+
                     <div class="board-comments-item">
-                        <div class="board-comments-userNickname">userC</div>
-                        <div class="board-comments-item-date">2023.03.20 10:00</div>
-                        <div class="board-comment">댓글입니다.</div>
+                        <div class="board-comment-left-item">
+                            <div class="board-comments-userNickname">userA</div>
+                            <div class="board-comments-item-date">2023.03.20 10:07</div>
+                            <div class="board-comment">댓글입니다.</div>
+                            <textarea class="board-comment-modify-box"></textarea>
+                        </div>
+                        <div class="board-comment-right-item">
+                            <button class="board-comment-btn board-comment-delete" onclick="checkDelete(539)">DELETE</button>
+                            <button class="board-comment-btn board-comment-modify" onclick="updateCommentBtn(539)">Modify</button>
+                            <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(539)">SAVE</button>
+                        </div>
                     </div>
-                    <div class="board-comments-item">
-                        <div class="board-comments-userNickname">userD</div>
-                        <div class="board-comments-item-date">2023.03.20 10:00</div>
-                        <div class="board-comment">댓글입니다.</div>
-                    </div>
-                    <div class="board-comments-item">
-                        <div class="board-comments-userNickname">userE</div>
-                        <div class="board-comments-item-date">2023.03.20 10:00</div>
-                        <div class="board-comment">댓글입니다.</div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="/newdesign/js/sympathetic-space-main.js"></script>
+<!--<script src="../js/sympathetic-space-main.js"></script>-->
+<script src="../../js/empathy-space.js"></script>
 <script src="../js/global.js"></script>
 </body>
 </html>

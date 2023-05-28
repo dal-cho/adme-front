@@ -225,7 +225,6 @@ a {
 .board {
     margin: auto;
     width: 9.7vw;
-    height: 2.5vw;
     transform: translate(0, 3.5vw);
 
     text-align: center;
@@ -373,14 +372,14 @@ a {
 .board-modal-content {
     display: none;
     position: absolute;
-    top: 12.5vw;
+    top: 7.9vw;
     left: 50%;
-    width: 38.4vw;
-    height: 33vw;
+    width: 42.4vw;
+    height: 38vw;
 
     background-color: #F7E3C1;
     border: 1px solid #5F0603;
-    border-radius: 1.5vw;
+    border-radius: 1.2vw;
     box-shadow: 0.3vw 0.3vw .3vw 0 rgba(0, 0, 0, 0.7);
 
     transform: translateX(-50%);
@@ -388,29 +387,25 @@ a {
 .board-box {
     display: flex;
     flex-direction: column;
-    width: 35vw;
+    width: 37vw;
     height: 95%;
     margin: 1vw auto;
 }
 /*모달 닫기 버튼*/
 .board-box-close {
-    margin-left: 99%;
-    width: 1vw;
+    margin-left: 101%;
     border: none;
-    border-radius: 100%;
-    background-color: #FB6E51;
-    color: white;
+    background-color: transparent;
 
     cursor: pointer;
-    text-align: center;
 }
-.board-box-close>p {
-    margin: 0 0 -0.1vw -0.2vw;
-    font-size: 0.9vw;
-}
+/*.board-box-close>p {*/
+/*    margin: 0 0 -0.1vw -0.2vw;*/
+/*    font-size: 0.9vw;*/
+/*}*/
 /*모달 게시글 타이틀*/
 .board-title {
-    width: 34vw;
+    width: 37vw;
     height: 2vw;
     font-size: 2vw;
 
@@ -429,8 +424,8 @@ a {
 }
 /*메인글 설명 상자*/
 .board-content>textarea {
-    width: 34.5vw;
-    height: 8.3vw;
+    width: 36.3vw;
+    height: 12vw;
     padding: 0.2vw 0.5vw 0 0;
     resize: none; /*박스 크기조절 불가*/
     line-height: 1.4vw; /*상하 줄간격*/
@@ -456,22 +451,26 @@ a {
     font-size: 1vw;
 }
 .board-comment-writing-box-item {
-    width: 30.5vw;
+    width: 32.5vw;
     padding: 0.3vw 0.5vw 0 0.5vw;
     resize: none; /*박스 크기조절 불가*/
     border: 1px solid #5F0603;
-    border-radius: .5vw;
-    font-size: 1vw;
+    border-radius: .3vw;
+    font-size: .87vw;
+    outline: none;
+}
+.board-comment-btn {
+    border: none;
+    border-radius: .3vw;
+    cursor: pointer;
+    background-color: transparent;
+}
+.board-comment-btn:hover {
+    background-color: #efefef;
 }
 .board-comment-save {
+    font-size: .9vw;
     background-color: #D2E9BC;
-    border: 1px solid #A3B493;
-    border-radius: .4vw;
-    cursor: pointer;
-    font-size: 1vw;
-}
-.board-comment-save:hover {
-    background-color: #f0ffeb;
 }
 /*댓글 구역*/
 .board-comments-box {
@@ -485,8 +484,13 @@ a {
     overflow: scroll;
 }
 .board-comments-item {
+    display: flex;
+    flex-direction: row;
     width: 100%;
     /*border: 1px solid black;*/
+}
+.board-comment-left-item {
+    width: 92%;
 }
 .board-comments-userNickname {
     font-size: .9vw;
@@ -495,5 +499,49 @@ a {
     font-size: .7vw;
 }
 .board-comment {
+    display: block;
     padding: .2vw 0 0 .3vw;
 }
+
+.board-comment-right-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: .8vw;
+}
+.board-comment-modify {
+    margin-top: .3vw;
+    font-size: 0.7vw;
+}
+/*.board-comment-modify:hover {*/
+/*    background-color: #b0b3ff;*/
+/*    color: black;*/
+/*}*/
+.board-comment-modify-save {
+    font-size: 0.7vw;
+    display: none;
+}
+/*.board-comment-modify-save:hover {*/
+/*    background-color: #eaf1fa;*/
+/*    color: black;*/
+/*}*/
+.board-comment-modify-box {
+    display: none;
+    width: 33vw;
+    height: 1.2vw;
+    padding: 0.2vw 0.3vw 0 0.2vw;
+    resize: none; /*박스 크기조절 불가*/
+    border-radius: .2vw;
+    font-size: .76vw;
+    outline: none;
+}
+
+.board-comment-delete {
+    margin-top: .3vw;
+    font-size: 0.6vw;
+    display: block;
+    color: orangered;
+}
+/*.board-comment-delete:hover {*/
+/*    background-color: #efefef;*/
+/*}*/
