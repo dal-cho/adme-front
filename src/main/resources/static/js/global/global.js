@@ -5,14 +5,14 @@ $(document).ready(function(){
 
 // 변수
 let host = "http://localhost:8080";
-let login_page = "http://localhost:63342/front/front.main/static/newdesign/templates/signin.html";
-let index_page = "http://localhost:63342/front/front.main/static/newdesign/templates/everyone-record-main-page.html";
-let everyone_record_main_page = "http://localhost:63342/front/front.main/static/newdesign/templates/everyone-record-main-page.html";
-let everyone_record_upload_page = "http://localhost:63342/front/front.main/static/newdesign/templates/everyone-record-upload-page.html";
-let everyone_record_modify_page = "http://localhost:63342/front/front.main/static/newdesign/templates/everyone-record-modify-page.html";
-let sympathetic_space_main_page = "http://localhost:63342/front/front.main/static/newdesign/templates/sympathetic-space-main-page.html";
-let sympathetic_space_upload_page = "http://localhost:63342/front/front.main/static/newdesign/templates/sympathetic-space-upload-page.html";
-let my_record_main_page = "http://localhost:63342/front/front.main/static/newdesign/templates/my-record-main-page.html";
+let login_page = "http://localhost:63342/front/front.main/static/templates/signin.html";
+let index_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-main-page.html";
+let everyone_record_main_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-main.html";
+let everyone_record_upload_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-upload-page.html";
+let everyone_record_modify_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-modify-page.html";
+let sympathetic_space_main_page = "http://localhost:63342/front/front.main/static/templates/empathy-space-main.html";
+let sympathetic_space_upload_page = "http://localhost:63342/front/front.main/static/templates/empathy-space-upload-page.html";
+let my_record_main_page = "http://localhost:63342/front/front.main/static/templates/my-record-main-page.html";
 let nickname = "";
 
 let cookie = getCookie("TokenCookie");

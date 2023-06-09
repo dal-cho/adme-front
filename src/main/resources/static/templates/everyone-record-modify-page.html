@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/everyone-record.css">
-    <title>Everyone's Record upload Page</title>
+    <link rel="stylesheet" type="text/css" href="../newdesign/css/everyone-record.css">
+    <title>Everyone's Record Modify Page</title>
 </head>
 <body>
 <div class="main">
     <div class="background_container">
-        <img src="../../backgroundImg/EveryoneRecordBackground2.jpg" width="100%" alt="BackGround Image">
+        <img src="../backgroundImg/EveryoneRecordBackground2.jpg" width="100%" alt="BackGround Image">
     </div>
     <div class="logo">
         <a class="logo-link logo-link-a" href="#" onclick="top.location='javascript:location.reload()'" >A</a>
@@ -18,31 +18,27 @@
         <a class="logo-link logo-link-e" href="#" onclick="top.location='javascript:location.reload()'" >E</a>
     </div>
     <div class="video-Recording">
-        Video Recording
+        Modify Video
     </div>
     <div class="upload-container">
         <div class="upload-title direction">
             <div class="item-property">Title : </div>
-            <input type="text" maxlength="30" placeholder="게시물 제목">
-        </div>
-        <div class="upload-video direction">
-            <div class="item-property">Video : </div>
-            <input type="file" name="uploadFile" multiple>
+            <input id="modify-title" type="text" maxlength="30" placeholder="게시물 제목">
         </div>
         <div class="upload-cut-time direction">
             <div class="item-property">Cut Time : </div>
-            <input type="number" placeholder="01:30 → 90 으로 입력">
+            <input id="modify-time" type="number" placeholder="01:30 → 90 으로 입력">
         </div>
         <div class="upload-thumbnail direction">
             <div class="item-property">Thumbnail : </div>
-            <input type="file" name="thumbnail">
+            <input type="file" name="modify-thumbnail">
         </div>
-        <div class="upload-content direction">
+        <div class="upload-content direction" id="modify-content">
             <div class="item-property">Content : </div>
             <textarea></textarea>
         </div>
         <div class="upload-button">
-            <button class="upload" onclick="videoUpload()">Upload</button>
+            <button class="save" onclick="videoModify()">Save</button>
         </div>
     </div>
     <div class="profile-container">
@@ -57,7 +53,8 @@
         <button class="logout" onclick="logout()">Logout</button>
     </div>
 </div>
-<script src="../js/everyone-record-upload.js"></script>
-<script src="../js/global.js"></script>
+<script src="../js/video/video-config.js"></script>
+<script src="../js/video/video-controller.js"></script>
+<script src="../js/global/global.js"></script>
 </body>
 </html>

@@ -20,14 +20,14 @@ function getList() {
 
 // video 단건조회
 function videoModal(id) {
+    showModal();
     $.ajax({
         type: "GET",
         url: host + '/tenSeconds/video/'+id,
         headers: {"X-AUTH-TOKEN": cookie},
         success: function (response) {
-            // alert("getVideo 동작시작");
             console.log(response);
-            showModal(response);
+            // showModal(response);
         }
     })
 }
@@ -46,15 +46,15 @@ function videoListPost(article, index) {
 }
 
 // 모달에 들어갈 아이템 설정
-function showModal(response) {
-    let date = `${response["videoDate"]}`
-
-    $(".modal-title").text(`${response["title"]}`); // 제목
-    $(".modal-video").attr("id", `${response["id"]}`); // video id 설정
-    $(".modal-video>source").attr("src", `${response["uploadPath"]}`+ `${response["uuid"]}` + ".mp4"); // video 경로
-    $(".content-nickname").text(`${response["nickname"]}`); // 게시물 주인 닉네임
-    $(".content-date").text(date.split("T")[0].replaceAll("-",".")); // 업로드 날짜
-    $(".video-content>textarea").text(`${response["content"]}`); // 게시물 설명
+function showModal() {
+    // let date = `${response["videoDate"]}`
+    //
+    // $(".modal-title").text(`${response["title"]}`); // 제목
+    // $(".modal-video").attr("id", `${response["id"]}`); // video id 설정
+    // $(".modal-video>source").attr("src", `${response["uploadPath"]}`+ `${response["uuid"]}` + ".mp4"); // video 경로
+    // $(".content-nickname").text(`${response["nickname"]}`); // 게시물 주인 닉네임
+    // $(".content-date").text(date.split("T")[0].replaceAll("-",".")); // 업로드 날짜
+    // $(".video-content>textarea").text(`${response["content"]}`); // 게시물 설명
 
     $(".modal-video").get(0).play();
     $(".modal-content").fadeIn(100);

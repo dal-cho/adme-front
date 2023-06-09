@@ -5,7 +5,6 @@ window.onclick = function(event) {
         $(".modal-video").get(0).pause();
         $(".modal-content").fadeOut(300);
         $(".modal-container").fadeOut(300);
-
     }
 }
 
