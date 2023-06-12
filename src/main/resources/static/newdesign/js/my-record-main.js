@@ -70,7 +70,7 @@ function saveArticle() {
         processData: false,
         success: function (response) {
             alert("성공적으로 업로드 되었습니다.");
-            location.href = "empathy-space.html"; // 페이지 변환
+            location.href = "sympathetic-space-main-page.html"; // 페이지 변환
         }
     });
 }
