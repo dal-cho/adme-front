@@ -7,7 +7,7 @@ function getList(currentNumber) {
     console.log("getList");
     $.ajax({
         type: "GET",
-        url: host + '/tenSeconds/list'+currentNumber,
+        url: host + `/tenSeconds/list/${currentNumber}`,
         success: function (response) {
             // alert("getList 동작시작");
             let list = `${response["videoList"]}`;
@@ -89,6 +89,7 @@ function videoModal(id) {
 
 // 모달에 들어갈 아이템 설정
 function showModal(response) {
+    let modifyButton = $(".video-modify-button");
     let date = `${response["videoDate"]}`
 
     $(".modal-title").text(`${response["title"]}`); // 제목
@@ -97,6 +98,7 @@ function showModal(response) {
     $(".content-nickname").text(`${response["nickname"]}`); // 게시물 주인 닉네임
     $(".content-date").text(date.split("T")[0].replaceAll("-",".")); // 업로드 날짜
     $(".video-content>textarea").text(`${response["content"]}`); // 게시물 설명
+    modifyButton.attr("onclick", "modifyLink("+`${response["id"]}`+")");
 
     $(".modal-video").get(0).play();
     $(".modal-content").fadeIn(100);

@@ -13,9 +13,43 @@ let everyone_record_modify_page = "http://localhost:63342/front/front.main/stati
 let sympathetic_space_main_page = "http://localhost:63342/front/front.main/static/templates/empathy-space-main.html";
 let sympathetic_space_upload_page = "http://localhost:63342/front/front.main/static/templates/empathy-space-upload-page.html";
 let my_record_main_page = "http://localhost:63342/front/front.main/static/templates/my-record-main-page.html";
+
 let nickname = "";
+let showCommentId;
 
 let cookie = getCookie("TokenCookie");
+
+let video_modal = document.getElementById("modal");
+let registry_modal = document.getElementById("board-Modal");
+
+// 모달 바깥 클릭시 닫기
+window.onclick = function(event) {
+    if (event.target === video_modal) {
+        $(".modal-video").get(0).pause();
+        $(".modal-content").fadeOut(300);
+        $(".modal-container").fadeOut(300);
+    }
+
+    if (event.target === registry_modal) {
+        $(".board-modal-container").fadeOut(300);
+        $(".board-modal-content").fadeOut(300);
+        $(".board-comment-writing-box-item").val("");
+        if (showCommentId != null) {
+            hideCommentSave(showCommentId);
+        }
+    }
+}
+
+// board 모달 닫기
+function boardClose() {
+    $(".board-modal-container").fadeOut(300);
+    $(".board-modal-content").fadeOut(300);
+    $(".board-comment-writing-box-item").val("");
+    if (showCommentId != null){
+        hideCommentSave(showCommentId);
+    }
+}
+
 
 // 메소드
 function getCookie(key) {
@@ -43,9 +77,13 @@ function navLink() {
 function videoUploadLink() {
     document.location.href = everyone_record_upload_page;
 }
-// function boardUploadLink() {
-//     document.location.href = ;
-// }
+function boardUploadLink() {
+    document.location.href = sympathetic_space_upload_page;
+}
+function modifyLink(id) {
+    getModifyInfo(id);
+    document.location.href = everyone_record_modify_page;
+}
 
 // user 정보 조회
 function userInfo() {

@@ -3,36 +3,11 @@ $(document).ready(function () {
     needComment();
 });
 
-// 모달 영역 밖 클릭시 닫기
-let modal = document.getElementById("board-Modal");
-let showCommentId;
-
-window.onclick = function(event) {
-    if (event.target === modal) {
-        $(".board-modal-container").fadeOut(300);
-        $(".board-modal-content").fadeOut(300);
-        $(".board-comment-writing-box-item").val("");
-        if (showCommentId != null) {
-            hideCommentSave(showCommentId);
-        }
-    }
-}
-
 // board 모달 열기
 function boardModal(idx) {
     allRegistry(idx);
     $(".board-modal-container").fadeIn(100);
     $(".board-modal-content").fadeIn(100);
-}
-
-// board 모달 닫기
-function boardClose() {
-    $(".board-modal-container").fadeOut(300);
-    $(".board-modal-content").fadeOut(300);
-    $(".board-comment-writing-box-item").val("");
-    if (showCommentId != null){
-        hideCommentSave(showCommentId);
-    }
 }
 
 // 작성 글 페이징
@@ -161,7 +136,7 @@ function allRegistry(idx) {
 }
 
 // 댓글 등록하기
-function Comment(idx) {
+function comment(idx) {
     let saveComment = $('.board-comment-writing-container>textarea').val();
 
     let form_data = new FormData();
@@ -306,7 +281,7 @@ function checkDelete(commentId, registryId) { // 삭제 여부를 묻고 삭제�
 
 function deleteComment(commentId, registryId) {
     $.ajax({
-        type: "DELETE", // DELETE
+        type: "DELETE",
         url: `/comment/${commentId}`,
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -314,7 +289,6 @@ function deleteComment(commentId, registryId) {
             findComment(registryId);
         }
     })
-    // 댓글 입력 후 댓글 db reload
 }
 
 // 댓글 수정 저장버튼 비활성화 & 수정버튼 활성화
