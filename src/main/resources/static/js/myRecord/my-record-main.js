@@ -40,7 +40,6 @@ function getMyList(currentNumber) {
     })
 }
 
-
 // 게시글 등록하기
 function saveArticle() {
     let form_data = new FormData();
