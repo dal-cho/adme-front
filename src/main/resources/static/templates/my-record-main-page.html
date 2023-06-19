@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="../newdesign/css/my_record_main.css">
+    <title>My Record Main Page</title>
+</head>
+<body>
+<div class="main">
+    <div class="background_container">
+        <img src="../backgroundImg/MyRecordBackground.jpg" width="100%" alt="BackGround Image">
+    </div>
+    <div class="logo">
+        <a class="logo-link logo-link-a" href="#" onclick="top.location='javascript:location.reload()'" >A</a>
+        <a class="logo-link logo-link-d" href="#" onclick="top.location='javascript:location.reload()'" >D</a>
+        <a class="logo-link logo-link-m" href="#" onclick="top.location='javascript:location.reload()'" >M</a>
+        <a class="logo-link logo-link-e" href="#" onclick="top.location='javascript:location.reload()'" >E</a>
+    </div>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="#" class="my-record" id="my_record">My Record</a>
+            <a href="#" id="everyone_record">Everyone's Record</a>
+            <a href="#" id="sympathetic_space">Sympathetic Space</a>
+        </div>
+    </nav>
+    <div class="video-container">
+        <div class="video-item">
+            <div class="video-thumbnail" onclick="videoModal(1)">
+                <img src="" alt="video1_thumbnail">
+            </div>
+            <div class="video-title" onclick="videoModal()">
+                <a class="title" href="#">Title</a>
+            </div>
+        </div>
+    </div>
+    <div class="board-container">
+        <div class="board-item" onclick="boardModal()">
+            <div class="board">내용입니다. 이 게시글은 일부러 길게 작성하였습니다. 넘치는 줄은 어떻게 처리해야할지 확인해야 하기 때문이죠.</div>
+        </div>
+        <div class="board-item" onclick="boardModal()">
+            <div class="board" >내용입니다.</div>
+        </div>
+        <div class="board-item" onclick="boardModal()">
+            <div class="board">내용입니다.</div>
+        </div>
+        <div class="board-item" onclick="boardModal()">
+            <div class="board">내용입니다.</div>
+        </div>
+    </div>
+    <div class="pagination">
+        <div class="paging">
+            <div><a href="#">&lt;</a></div>
+            <div><a href="#">1</a></div>
+            <div><a href="#">2</a></div>
+            <div><a href="#">3</a></div>
+            <div><a href="#">4</a></div>
+            <div><a href="#">5</a></div>
+            <div><a href="#">&gt;</a></div>
+        </div>
+    </div>
+    <div class="profile-container">
+        <div class="profile-image">
+            <img src="" alt="Profile Image">
+        </div>
+        <div class="user-nickname">
+            <h3 class="nickname">user_123456</h3>
+        </div>
+    </div>
+    <div class="logout-button">
+        <button class="button-style" onclick="logout()">Logout</button>
+    </div>
+    <div class="board-upload-button">
+        <button class="button-style" onclick="boardUploadLink()">Board</button>
+    </div>
+    <div class="video-upload-button">
+        <button class="button-style" onclick="videoUploadLink()">Video</button>
+    </div>
+    <p class="upload-mark">upload</p>
+<!--    비디오 게시물 모달-->
+    <div class="modal-container" id="modal">
+        <div class="modal-content">
+            <div class="modal-box">
+                <div class="modal-title">TITLE TITLE TITLE TITLE TITLE TITLE TITLE TITLE TITLE</div>
+                <div class="video-file">
+                    <div class="video-box">
+                        <div class="video-file-box">
+                            <video class="modal-video" id="modal-video2" loop controlslist="nodownload">
+                                <source src="#" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="video-right-container">
+                            <p>&#9654;</p>
+                            <div class="video-play-box">
+                                <button class="video-play-button" onclick="playVideo()">
+                                </button>
+                            </div>
+                            <p>&#10073; &#10073;</p>
+                            <div class="video-control-box">
+                                <button class="video-pause-button" onclick="pauseVideo()">
+                                </button>
+                            </div>
+                            <p>&#9835;</p>
+                            <div class="video-control-box">
+                                <button class="video-mute-button" onclick="mutedVideo()">
+                                </button>
+                            </div>
+                            <p>✏️</p>
+                            <div class="video-modify-box">
+                                <button class="video-modify-button" onclick="modifyLink()">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="content-nickname">user_123456</div>
+                    <div class="content-date">2023.03.06</div>
+                </div>
+                <div class="video-content">
+                    <textarea readonly placeholder="Content">*읽기 전용입니다.*</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    공감공간 게시물 모달-->
+    <div class="board-modal-container" id="board-Modal">
+        <div class="board-modal-content">
+            <div class="board-box">
+                <button class="board-box-close" onclick="boardClose()">&#10060;</button>
+                <div class="board-title"> TITLE </div>
+                <div class="board-info">
+                    <div class="board-user-nickname">user_1234</div>
+                    <div class="board-date">2023.03.20</div>
+                </div>
+                <div class="board-content" style="margin: .5vw 0 .5vw 0">
+                    <textarea readonly> *읽기 전용입니다.* 글이 넘치면 스크롤이 활성화 됩니다.</textarea>
+                </div>
+                <div class="line" style="border: 1px solid #5F0603; margin-bottom: .5vw"></div>
+                <div class="board-comment-container">
+                    <div class="board-comment-title-item">Add a Comment</div>
+                    <div class="board-comment-writing-container">
+                        <textarea class="board-comment-writing-box-item" placeholder="Comment"></textarea>
+                        <button class="board-comment-btn board-comment-save" onclick="comment()">SAVE</button>
+                    </div>
+                </div>
+                <div class="board-comments-box">
+                    <div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
+
+                    <div class="board-comments-item" id="commentId-539">
+                        <div class="board-comment-left-item">
+                            <div class="board-comments-userNickname">&#9989; userA</div>
+                            <div class="board-comments-item-date">2023.03.20 10:07</div>
+                            <div class="board-comment" id="comment-1">comment-1 댓글입니다.</div>
+                            <textarea class="board-comment-modify-box"></textarea>
+                        </div>
+                        <div class="board-comment-right-item">
+                            <button class="board-comment-btn board-comment-delete" onclick="checkDelete(539)">DELETE</button>
+                            <button class="board-comment-btn board-comment-modify" onclick="updateCommentBtn(539)">Modify</button>
+                            <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(539)">SAVE</button>
+                        </div>
+                    </div>
+                    <div class="line"style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+
+                    <div class="board-comments-item">
+                        <div class="board-comment-left-item">
+                            <div class="board-comments-userNickname">userA</div>
+                            <div class="board-comments-item-date">2023.03.20 10:07</div>
+                            <div class="board-comment">댓글입니다.</div>
+                        </div>
+                        <div class="board-comment-right-item">
+                            <button class="board-comment-btn board-comment-delete" onclick="checkDelete(539)">DELETE</button>
+                            <button class="board-comment-btn board-comment-modify" onclick="updateCommentBtn(539)">Modify</button>
+                            <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(539)">SAVE</button>
+                        </div>
+                    </div>
+                    <div class="line"style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+
+                    <div class="board-comments-item">
+                        <div class="board-comment-left-item">
+                            <div class="board-comments-userNickname">userA</div>
+                            <div class="board-comments-item-date">2023.03.20 10:07</div>
+                            <div class="board-comment">댓글입니다.</div>
+                            <textarea class="board-comment-modify-box"></textarea>
+                        </div>
+                        <div class="board-comment-right-item">
+                            <button class="board-comment-btn board-comment-delete" onclick="checkDelete(539)">DELETE</button>
+                            <button class="board-comment-btn board-comment-modify" onclick="updateCommentBtn(539)">Modify</button>
+                            <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(539)">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../newdesign/js/my-record-main.js"></script>
+<script src="../js/empathySpace/empathy-space.js"></script>
+<script src="../js/video/video-connection.js"></script>
+<script src="../js/video/video-controller.js"></script>
+<script src="../js/video/video-config.js"></script>
+<script src="../js/global/global.js"></script>
+</body>
+</html>

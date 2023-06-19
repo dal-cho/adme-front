@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/my_record_main.css">
-    <title>My Record Main Page</title>
+    <link rel="stylesheet" type="text/css" href="../newdesign/css/global.css">
+    <link rel="stylesheet" type="text/css" href="../newdesign/css/everyone-record.css">
+    <title>Everyone's Record Main Page</title>
 </head>
 <body>
 <div class="main">
     <div class="background_container">
-        <img src="../../backgroundImg/MyRecordBackground.jpg" width="100%" alt="BackGround Image">
+        <img src="../backgroundImg/EveryoneRecordBackground.jpg" width="100%" alt="BackGround Image">
     </div>
     <div class="logo">
         <a class="logo-link logo-link-a" href="#" onclick="top.location='javascript:location.reload()'" >A</a>
@@ -19,33 +20,19 @@
     </div>
     <nav class="nav-bar">
         <div class="nav-container">
-            <a href="#" class="my-record" id="my_record">My Record</a>
+            <a href="#" id="my_record">My Record</a>
             <a href="#" id="everyone_record">Everyone's Record</a>
             <a href="#" id="sympathetic_space">Sympathetic Space</a>
         </div>
     </nav>
     <div class="video-container">
-        <div class="video-item">
-            <div class="video-thumbnail" onclick="videoModal()">
+        <div class="video-item" >
+            <div class="video-thumbnail adme-scale-animation" onclick="videoModal()">
                 <img src="" alt="video1_thumbnail">
             </div>
             <div class="video-title" onclick="videoModal()">
                 <a class="title" href="#">Title</a>
             </div>
-        </div>
-    </div>
-    <div class="board-container">
-        <div class="board-item" onclick="boardModal()">
-            <div class="board">내용입니다. 이 게시글은 일부러 길게 작성하였습니다. 넘치는 줄은 어떻게 처리해야할지 확인해야 하기 때문이죠.</div>
-        </div>
-        <div class="board-item" onclick="boardModal()">
-            <div class="board" >내용입니다.</div>
-        </div>
-        <div class="board-item" onclick="boardModal()">
-            <div class="board">내용입니다.</div>
-        </div>
-        <div class="board-item" onclick="boardModal()">
-            <div class="board">내용입니다.</div>
         </div>
     </div>
     <div class="pagination">
@@ -68,15 +55,8 @@
         </div>
     </div>
     <div class="logout-button">
-        <button class="button-style" onclick="logout()">Logout</button>
+        <button class="logout" onclick="logout()">Logout</button>
     </div>
-    <div class="board-upload-button">
-        <button class="button-style" onclick="boardUploadLink()">Board</button>
-    </div>
-    <div class="video-upload-button">
-        <button class="button-style" onclick="videoUploadLink()">Video</button>
-    </div>
-    <p class="upload-mark">upload</p>
     <div class="modal-container" id="modal">
         <div class="modal-content">
             <div class="modal-box">
@@ -85,6 +65,7 @@
                     <div class="video-box">
                         <div class="video-file-box">
                             <video class="modal-video" id="modal-video2" loop controlslist="nodownload">
+<!--                                <source src="../../img/testvideo.mp4" type="video/mp4">-->
                                 <source src="#" type="video/mp4">
                             </video>
                         </div>
@@ -117,14 +98,9 @@
             </div>
         </div>
     </div>
-    <div class="board-modal-container" id="board-Modal">
-        <div class="board-modal-content">
-        </div>
-    </div>
 </div>
-<script src="../js/my-record-main.js"></script>
-<script src="../js/video-connection.js"></script>
-<script src="../js/video-controller.js"></script>
-<script src="../js/global.js"></script>
+<script src="../js/video/video-controller.js"></script>
+<script src="../js/video/video-connection.js"></script>
+<script src="../js/global/global.js"></script>
 </body>
 </html>

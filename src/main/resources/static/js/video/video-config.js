@@ -36,6 +36,21 @@ function videoUpload() {
     });
 }
 
+// video 수정 페이지 초기값 가져오기
+function getModifyInfo(id) {
+    $.ajax({
+        type: "GET",
+        url: host + '/tenSeconds/video/'+id,
+        headers: {"X-AUTH-TOKEN": cookie},
+        success: function (response) {
+            console.log(response);
+            $("#modify-title").text(`${response["title"]}`); // 제목
+            $(".upload-content>textarea").text(`${response["content"]}`); // 게시물 설명
+            $(".upload-button>button").attr("onclick", "videoModify("+`${response["id"]}`+")");
+        }
+    })
+}
+
 function videoModify(id) {
     let data = {
         "title" : $("#modify-title").val(),
@@ -49,7 +64,6 @@ function videoModify(id) {
     let formData = new FormData();
 
     formData.append("sideData", new Blob([JSON.stringify(data)], {type: "application/json"}));
-
     formData.append("thumbnail", thumbnail[0]);
 
     //ajax 를 통해 controller 와 연결
@@ -67,8 +81,6 @@ function videoModify(id) {
         }
     });
 }
-
-
 
 function checkExtension(fileSize){
     let maxSize = 256000000;
