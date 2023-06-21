@@ -36,7 +36,18 @@ function videoUpload() {
     });
 }
 
-// video 수정 페이지 초기값 가져오기
+// video 파일 체크
+function checkExtension(fileSize){
+    let maxSize = 256000000;
+
+    if(fileSize >= maxSize){
+        alert("파일 사이즈 초과");
+        return false;
+    }
+    return true;
+}
+
+// video 게시글 수정 페이지 초기값 가져오기
 function getModifyInfo(id) {
     $.ajax({
         type: "GET",
@@ -51,6 +62,7 @@ function getModifyInfo(id) {
     })
 }
 
+// video 게시글 수정
 function videoModify(id) {
     let data = {
         "title" : $("#modify-title").val(),
@@ -82,12 +94,7 @@ function videoModify(id) {
     });
 }
 
-function checkExtension(fileSize){
-    let maxSize = 256000000;
+// video 게시글 삭제
+function videoDelete(id) {
 
-    if(fileSize >= maxSize){
-        alert("파일 사이즈 초과");
-        return false;
-    }
-    return true;
 }
