@@ -1,6 +1,9 @@
 $(document).ready(function(){
     getMyList(1);
 });
+
+
+// 내 게시글 전체 조회
 function getMyList(currentNumber) {
     $.ajax({
         type: "GET",
@@ -35,26 +38,42 @@ function getMyList(currentNumber) {
                 $(".board-container").append(tempHtml);
             }
 
-            makePagination(currentNumber, startPage, endPage, prev, next);
+            myPagination(currentNumber, startPage, endPage, prev, next);
         }
     })
 }
 
-// 게시글 등록하기
-function saveArticle() {
-    let form_data = new FormData();
-    form_data.append("title", $("#empathy-upload-title").val());
-    form_data.append("main", $(".sympathetic-upload-content>textarea").val());
 
-    $.ajax({
-        type: "POST",
-        url: `/registry`,
-        data: form_data,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            alert("성공적으로 업로드 되었습니다.");
-            window.location.href = my_record_main_page; // 페이지 변환
+// 페이지 버튼
+function myPagination(currentNumber, startPage, endPage, prev, next) {
+    let tempHtml = ``;
+
+    // 이전 페이지가 있다면 < 표시
+    if (prev) {
+        tempHtml += `<div><a href="#" onclick="beforeClick(${currentNumber})">&lt;</a></div>`;
+    }
+
+    // 페이징 번호 표시
+    for (let i = startPage; i <= endPage; i++) {
+        if (currentNumber === i) {
+            tempHtml += `<div><a href="#">${i}</a></div>`;
+        } else {
+            tempHtml += `<div><a href="#" onclick="getMyList(${i})">${i}</a></div>`;
         }
-    });
+    }
+
+    // 다음 페이지가 있다면 < 표시
+    if (next) {
+        tempHtml += `<div><a href="#" onclick="nextClick(${currentNumber})">&gt;</a></div>`;
+    }
+
+    $('.paging').html(tempHtml);
+}
+
+function beforeClick(currentNumber) {
+    getMyList(currentNumber - 1);
+}
+
+function nextClick(currentNumber) {
+    getMyList(currentNumber + 1);
 }

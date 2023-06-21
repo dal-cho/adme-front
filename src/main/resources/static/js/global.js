@@ -3,24 +3,50 @@ $(document).ready(function(){
     userInfo();
 });
 
-// 변수
+// html 파일 경로값
 let host = "http://localhost:8080";
 let login_page = "http://localhost:63342/front/front.main/static/templates/signin.html";
-let index_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-main-page.html";
-let everyone_record_main_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-main.html";
-let everyone_record_upload_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-upload-page.html";
-let everyone_record_modify_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-modify-page.html";
-let sympathetic_space_main_page = "http://localhost:63342/front/front.main/static/templates/empathy-space-main.html";
-let sympathetic_space_upload_page = "http://localhost:63342/front/front.main/static/templates/empathy-space-upload-page.html";
-let my_record_main_page = "http://localhost:63342/front/front.main/static/templates/my-record-main-page.html";
+let index_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-main.html";
+let everyone_record_main_page = "http://localhost:63342/front/front.main/static/templates/everyone-record.html";
+let everyone_record_upload_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-upload.html";
+let everyone_record_modify_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-modify.html";
+let sympathetic_space_main_page = "http://localhost:63342/front/front.main/static/templates/empathy-space.html";
+let sympathetic_space_upload_page = "http://localhost:63342/front/front.main/static/templates/empathy-space-upload.html";
+let my_record_main_page = "http://localhost:63342/front/front.main/static/templates/my-record.html";
 
-let nickname = "";
-let showCommentId;
-
+// 쿠키값
 let cookie = getCookie("TokenCookie");
 
+// 모달 닫기위한 위치값
 let video_modal = document.getElementById("modal");
 let registry_modal = document.getElementById("board-Modal");
+
+// 기타 변수
+let showCommentId;
+let nickname = "";
+
+
+// 네비게이션바 경로 설정
+function navLink() {
+    $("#my_record").attr("href", my_record_main_page);
+    $("#everyone_record").attr("href", everyone_record_main_page);
+    $("#sympathetic_space").attr("href", sympathetic_space_main_page);
+}
+
+// 비디오 업로드 및 수정 페이지 경로 설정
+function videoUploadLink() {
+    document.location.href = everyone_record_upload_page;
+}
+function modifyLink(id) {
+    getModifyInfo(id);
+    document.location.href = everyone_record_modify_page;
+}
+
+// 공감공간 게시글 업로드 페이지 경로 설정
+function boardUploadLink() {
+    document.location.href = sympathetic_space_upload_page;
+}
+
 
 // 모달 바깥 클릭시 닫기
 window.onclick = function(event) {
@@ -40,7 +66,7 @@ window.onclick = function(event) {
     }
 }
 
-// board 모달 닫기
+// board 모달 닫기 버튼
 function boardClose() {
     $(".board-modal-container").fadeOut(300);
     $(".board-modal-content").fadeOut(300);
@@ -69,22 +95,6 @@ function getCookie(key) {
     return result;
 }
 
-function navLink() {
-    $("#my_record").attr("href", my_record_main_page);
-    $("#everyone_record").attr("href", everyone_record_main_page);
-    $("#sympathetic_space").attr("href", sympathetic_space_main_page);
-}
-function videoUploadLink() {
-    document.location.href = everyone_record_upload_page;
-}
-function boardUploadLink() {
-    document.location.href = sympathetic_space_upload_page;
-}
-function modifyLink(id) {
-    getModifyInfo(id);
-    document.location.href = everyone_record_modify_page;
-}
-
 // user 정보 조회
 function userInfo() {
     console.log("[userInfo] Get UserInfo");
@@ -100,6 +110,7 @@ function userInfo() {
     })
 }
 
+// logout
 function logout() {
     $.ajax({
         type: "GET",

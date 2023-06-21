@@ -248,7 +248,7 @@ function updateCommentBtn(commentId) {
     $(parents+ '>.board-comment-right-item>.board-comment-modify-save').show(); // 저장버튼 block
 }
 
-// 수전된 댓글 저장 도작 메소드
+// 수정된 댓글 저장
 function afterUpdateComment(commentId, registryId) {  // 저장 버튼을 누르면 그 값이 원래 값 대신 들어가야 함
     let parents = '#commentId-'+commentId;
     let saveComment = $(parents+ '>.board-comment-left-item>textarea').val();
