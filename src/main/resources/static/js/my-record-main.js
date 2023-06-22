@@ -7,7 +7,7 @@ $(document).ready(function(){
 function getMyList(currentNumber) {
     $.ajax({
         type: "GET",
-        url: host+`/tenSeconds/my/list/${currentNumber}`,
+        url: host+`/mypage/${currentNumber}`,
         headers: {"X-AUTH-TOKEN": cookie},
         success: function (response) {
             // alert("getList 동작시작");
@@ -23,7 +23,7 @@ function getMyList(currentNumber) {
             $(".board-container").empty();
 
             for (let i=0; i<videoList.length; i++) {
-                videoListPost(videoList[i], i);
+                myVideoPost(videoList[i], i);
             }
 
             // 메인화면 게시글 표시
@@ -31,9 +31,14 @@ function getMyList(currentNumber) {
                 let title = boardList[i].title;
                 let idx = boardList[i].idx;
 
-                let tempHtml = `<div class="board-item" onclick="boardModal(${idx})">
-                        <div class="board" >${title}</div>
-                    </div>`;
+                let tempHtml = `<div class="board-item-box">
+                                    <div class="board-delete-box">
+                                        <button class="board-item-button video-config-button" title="삭제" onclick="articleDelete(${idx})"></button>
+                                    </div>
+                                    <div class="board-item" onclick="boardModal(${idx})">
+                                        <div class="board" >${title}</div>
+                                    </div>
+                                </div>`;
 
                 $(".board-container").append(tempHtml);
             }
@@ -41,6 +46,23 @@ function getMyList(currentNumber) {
             myPagination(currentNumber, startPage, endPage, prev, next);
         }
     })
+}
+
+// 게시글 코드
+function myVideoPost(article, index) {
+    let tempHtml = `<div class="video-item" id="${index}">
+                        <div class="video-delete-box">
+                            <button class="video-config-button video-modify-button" title="수정" onclick="modifyLink(${article["id"]})"></button>
+                            <button class="video-config-button video-delete-button" title="삭제" onclick="videoDelete(${article["id"]})"></button>
+                        </div>
+                        <div class="video-thumbnail adme-scale-animation" onclick="videoModal(${article["id"]})">
+                            <img src="${"files/" + "thumb_" + article["uuid"] +".jpg"}" alt=${"video"+article["id"]+"_thumbnail"}>
+                        </div>
+                        <div class="video-title" onclick="videoModal(${article["id"]})">
+                            <a class="title" href="#">${article["title"]}</a>
+                        </div>
+                    </div>`;
+    $(".video-container").append(tempHtml);
 }
 
 
