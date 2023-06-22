@@ -26,6 +26,10 @@
     </nav>
     <div class="video-container">
         <div class="video-item">
+            <div class="video-delete-box">
+                <button class="video-config-button video-modify-button" title="수정" onclick="modifyLink()"></button>
+                <button class="video-config-button video-delete-button" title="삭제" onclick="videoDelete()"></button>
+            </div>
             <div class="video-thumbnail" onclick="videoModal(1)">
                 <img src="" alt="video1_thumbnail">
             </div>
@@ -35,17 +39,37 @@
         </div>
     </div>
     <div class="board-container">
-        <div class="board-item" onclick="boardModal()">
-            <div class="board">내용입니다. 이 게시글은 일부러 길게 작성하였습니다. 넘치는 줄은 어떻게 처리해야할지 확인해야 하기 때문이죠.</div>
+        <div class="board-item-box">
+            <div class="board-delete-box">
+                <button class="board-item-button video-config-button" title="삭제" onclick="articleDelete()"></button>
+            </div>
+            <div class="board-item" onclick="boardModal()">
+                <div class="board">내용입니다. 이 게시글은 일부러 길게 작성하였습니다. 넘치는 줄은 어떻게 처리해야할지 확인해야 하기 때문이죠.</div>
+            </div>
         </div>
-        <div class="board-item" onclick="boardModal()">
-            <div class="board" >내용입니다.</div>
+        <div class="board-item-box">
+            <div class="board-delete-box">
+                <button class="board-item-button video-config-button" title="삭제" onclick="articleDelete()"></button>
+            </div>
+            <div class="board-item" onclick="boardModal()">
+                <div class="board">내용입니다. 이 게시글은 일부러 길게 작성하였습니다. 넘치는 줄은 어떻게 처리해야할지 확인해야 하기 때문이죠.</div>
+            </div>
         </div>
-        <div class="board-item" onclick="boardModal()">
-            <div class="board">내용입니다.</div>
+        <div class="board-item-box">
+            <div class="board-delete-box">
+                <button class="board-item-button video-config-button" title="삭제" onclick="articleDelete()"></button>
+            </div>
+            <div class="board-item" onclick="boardModal()">
+                <div class="board">내용입니다. 이 게시글은 일부러 길게 작성하였습니다. 넘치는 줄은 어떻게 처리해야할지 확인해야 하기 때문이죠.</div>
+            </div>
         </div>
-        <div class="board-item" onclick="boardModal()">
-            <div class="board">내용입니다.</div>
+        <div class="board-item-box">
+            <div class="board-delete-box">
+                <button class="board-item-button video-config-button" title="삭제" onclick="articleDelete()"></button>
+            </div>
+            <div class="board-item" onclick="boardModal()">
+                <div class="board">내용입니다. 이 게시글은 일부러 길게 작성하였습니다. 넘치는 줄은 어떻게 처리해야할지 확인해야 하기 때문이죠.</div>
+            </div>
         </div>
     </div>
     <div class="pagination">
@@ -105,11 +129,6 @@
                                 <button class="video-mute-button" onclick="mutedVideo()">
                                 </button>
                             </div>
-                            <p>✏️</p>
-                            <div class="video-modify-box">
-                                <button class="video-modify-button" onclick="modifyLink()">
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,7 +165,6 @@
                 </div>
                 <div class="board-comments-box">
                     <div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
-
                     <div class="board-comments-item" id="commentId-539">
                         <div class="board-comment-left-item">
                             <div class="board-comments-userNickname">&#9989; userA</div>

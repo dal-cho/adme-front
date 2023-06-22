@@ -5,14 +5,14 @@ $(document).ready(function(){
 
 // html 파일 경로값
 let host = "http://localhost:8080";
-let login_page = "http://localhost:63342/front/front.main/static/templates/signin.html";
-let index_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-main.html";
-let everyone_record_main_page = "http://localhost:63342/front/front.main/static/templates/everyone-record.html";
-let everyone_record_upload_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-upload.html";
-let everyone_record_modify_page = "http://localhost:63342/front/front.main/static/templates/everyone-record-modify.html";
-let sympathetic_space_main_page = "http://localhost:63342/front/front.main/static/templates/empathy-space.html";
-let sympathetic_space_upload_page = "http://localhost:63342/front/front.main/static/templates/empathy-space-upload.html";
-let my_record_main_page = "http://localhost:63342/front/front.main/static/templates/my-record.html";
+let login_page = "signin.html";
+let index_page = "everyone-record-main.html";
+let everyone_record_main_page = "everyone-record.html";
+let everyone_record_upload_page = "everyone-record-upload.html";
+let everyone_record_modify_page = "everyone-record-modify.html";
+let sympathetic_space_main_page = "empathy-space.html";
+let sympathetic_space_upload_page = "empathy-space-upload.html";
+let my_record_main_page = "my-record.html";
 
 // 쿠키값
 let cookie = getCookie("TokenCookie");
@@ -38,10 +38,12 @@ function videoUploadLink() {
     document.location.href = everyone_record_upload_page;
 }
 function modifyLink(id) {
-    getModifyInfo(id);
-    document.location.href = everyone_record_modify_page;
+    let choice = confirm("해당 게시글물을 수정 하시겠습니까?");
+    if (choice) {
+        getModifyInfo(id);
+        document.location.href = everyone_record_modify_page;
+    }
 }
-
 // 공감공간 게시글 업로드 페이지 경로 설정
 function boardUploadLink() {
     document.location.href = sympathetic_space_upload_page;

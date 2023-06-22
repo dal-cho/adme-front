@@ -18,6 +18,19 @@ function saveArticle() {
 }
 
 // 게시글 삭제
-function deleteArticle(id) {
-
+function articleDelete(id) {
+    let choice = confirm("해당 게시글물을 삭제 하시겠습니까?");
+    if (choice) {
+        $.ajax({
+            type: "DELETE",
+            url: host + '/registry/'+id,
+            contentType: false,
+            processData: false,
+            headers: {"X-AUTH-TOKEN": cookie},
+            success: function (result) {
+                alert("삭제 완료");
+                window.location.href = my_record_main_page;
+            }
+        });
+    }
 }
