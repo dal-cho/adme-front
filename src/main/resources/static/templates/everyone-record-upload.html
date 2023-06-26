@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/global.css">
     <link rel="stylesheet" type="text/css" href="../css/everyone-record.css">
     <title>Everyone's Record upload Page</title>
 </head>
@@ -17,32 +18,32 @@
         <a class="logo-link logo-link-m" href="#" onclick="top.location='javascript:location.reload()'" >M</a>
         <a class="logo-link logo-link-e" href="#" onclick="top.location='javascript:location.reload()'" >E</a>
     </div>
-    <div class="video-Recording">
+    <div class="video-Recording adme-font">
         Video Recording
     </div>
     <div class="upload-container">
         <div class="upload-title direction">
-            <div class="item-property">Title : </div>
+            <div class="item-property adme-font">Title : </div>
             <input type="text" maxlength="30" placeholder="게시물 제목">
         </div>
         <div class="upload-video direction">
-            <div class="item-property">Video : </div>
+            <div class="item-property adme-font">Video : </div>
             <input type="file" name="uploadFile" multiple>
         </div>
         <div class="upload-cut-time direction">
-            <div class="item-property">Cut Time : </div>
+            <div class="item-property adme-font">Cut Time : </div>
             <input type="number" placeholder="01:30 → 90 으로 입력">
         </div>
         <div class="upload-thumbnail direction">
-            <div class="item-property">Thumbnail : </div>
+            <div class="item-property adme-font">Thumbnail : </div>
             <input type="file" name="thumbnail">
         </div>
         <div class="upload-content direction">
-            <div class="item-property">Content : </div>
+            <div class="item-property adme-font">Content : </div>
             <textarea></textarea>
         </div>
         <div class="upload-button">
-            <button class="upload" onclick="videoUpload()">Upload</button>
+            <button class="upload adme-font" onclick="videoUpload()">Upload</button>
         </div>
     </div>
     <div class="profile-container">
@@ -50,11 +51,11 @@
             <img src="" alt="Profile Image">
         </div>
         <div class="user-nickname">
-            <h3 class="nickname">user_123456</h3>
+            <h3 class="nickname adme-font">user_123456</h3>
         </div>
     </div>
     <div class="logout-button">
-        <button class="logout" onclick="logout()">Logout</button>
+        <button class="logout adme-font" onclick="logout()">Logout</button>
     </div>
 </div>
 <script src="../js/video-config.js"></script>

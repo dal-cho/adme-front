@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/global.css">
     <link rel="stylesheet" type="text/css" href="../css/empathy_space.css">
     <title>Empathy Space Upload</title>
 </head>
 <body>
 <div class="main">
     <div class="background_container">
-        <img src="../backgroundImg/SympatheticSpaceUploadBackground.jpg" width="100%" alt="BackGround Image">
+        <img src="../backgroundImg/EmpathySpaceUploadBackground.jpg" width="100%" alt="BackGround Image">
     </div>
     <div class="logo">
         <a class="logo-link logo-link-a" href="#" onclick="top.location='javascript:location.reload()'" >A</a>
@@ -18,33 +19,33 @@
         <a class="logo-link logo-link-e" href="#" onclick="top.location='javascript:location.reload()'" >E</a>
     </div>
     <nav class="upload-nav-bar">
-        <div class="nav-container">
+        <div class="nav-container adme-font">
             <a>Share Your Emotion</a>
         </div>
     </nav>
-    <div class="sympathetic-upload-container">
-        <div class="sympathetic-upload-title direction">
-            <div class="item-property">Title : </div>
+    <div class="empathy-upload-container">
+        <div class="direction">
+            <div class="item-property adme-font">Title : </div>
             <input id="empathy-upload-title" type="text" maxlength="30" placeholder="게시물 제목">
         </div>
-        <div class="sympathetic-upload-content direction">
-            <div class="item-property">Content : </div>
+        <div class="empathy-upload-content direction">
+            <div class="item-property adme-font">Content : </div>
             <textarea placeholder="내용을 적어주세요."></textarea>
         </div>
     </div>
-    <div class="sympathetic-upload-button">
-        <button class="sympathetic-upload" onclick="saveArticle()">Upload</button>
+    <div class="empathy-upload-button">
+        <button class="empathy-upload adme-font" onclick="saveArticle()">Upload</button>
     </div>
     <div class="profile-container">
         <div class="profile-image">
             <img src="" alt="Profile Image">
         </div>
         <div class="user-nickname">
-            <h3 class="nickname">user_123456</h3>
+            <h3 class="nickname adme-font">user_123456</h3>
         </div>
     </div>
     <div class="logout-button">
-        <button class="logout" onclick="logout()">Logout</button>
+        <button class="logout adme-font" onclick="logout()">Logout</button>
     </div>
 </div>
 <script src="../js/empathy-space-config.js"></script>

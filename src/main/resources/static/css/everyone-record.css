@@ -9,34 +9,6 @@ a {
     pointer-events: none; /* 배경 이미지에 대한 마우스 효과 제거 */
 }
 
-/* 로고 설정 */
-.logo {
-    position: absolute; /*절대위치 설정*/
-    top: 2.5vw;
-    left: 6.5vw;
-
-    font-family: Modak; /*폰트 설정*/
-    font-size: 4vw;
-    color: whitesmoke;
-}
-.logo>a {
-    text-decoration-line: none;
-}
-.logo-link {
-    margin-left: -0.8vw; /*글자마다 색상을 적용해돼서 분리한 객체들간의 간격 줄이기*/
-}
-.logo-link-a {
-    color: #FF5C4B;
-}
-.logo-link-d {
-    color: #F3A11A;
-}
-.logo-link-m {
-    color: #62D83E;
-}
-.logo-link-e {
-    color: #249EFF;
-}
 /*호버효과 적용*/
 .logo-link:hover {
     font-size: 4.5vw;
@@ -61,7 +33,6 @@ a {
     padding-top: 0.5vw;
 
     font-size: 2vw;
-    font-family: "LingWai SC";
 }
 .nav-container>a {
     color: #282828;
@@ -115,7 +86,6 @@ a {
 .video-title>a {
     text-decoration-line: none; /*링크 밑줄효과 제거*/
     color: #F0E6B4;
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 }
 .title:hover {
@@ -135,8 +105,6 @@ a {
 
     display: flex;
     justify-content: space-around;
-
-    font-family: "LingWai SC";
 }
 .paging>div>a {
     text-decoration-line: none;
@@ -154,7 +122,6 @@ a {
     left: 50%;
     transform: translate(-50%, 0%); /*중앙으로 잡아주면 box 의 앞부분 기준으로 box 의 절반만큼 위치 보정*/
 
-    font-family: "LingWai SC";
     font-size: 2.5vw;
     color: #F0E6B4;
 }
@@ -182,7 +149,6 @@ a {
 }
 .item-property {
     width: 11vw;
-    font-family: "LingWai SC";
     font-size: 2.3vw;
     color: #F0E6B4;
     text-align: right;
@@ -260,7 +226,6 @@ a {
     border-radius: 0.7vw;
     box-shadow: 0 0.4vw 0.02vw -0.02vw #C7C7BB;
 
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 
     cursor: pointer;
@@ -283,7 +248,6 @@ a {
     border-radius: 0.7vw;
     box-shadow: 0 0.4vw 0.02vw -0.02vw #C7C7BB;
 
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 
     cursor: pointer;
@@ -324,7 +288,6 @@ a {
 }
 .nickname {
     text-align: center; /*글자 중앙정렬*/
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 }
 
@@ -346,7 +309,6 @@ a {
     border-radius: 0.7vw;
     box-shadow: 0 0.4vw 0.02vw -0.02vw #C7C7BB;
 
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 
     cursor: pointer;

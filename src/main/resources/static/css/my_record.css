@@ -9,38 +9,10 @@ a {
     pointer-events: none; /* 배경 이미지에 대한 마우스 효과 제거 */
 }
 
-/* 로고 설정 */
-.logo {
-    position: absolute; /*절대위치 설정*/
-    top: 2.5vw;
-    left: 6.5vw;
-
-    font-family: Modak; /*폰트 설정*/
-    font-size: 4vw;
-    color: whitesmoke;
-}
-.logo>a {
-    text-decoration-line: none;
-}
-.logo-link {
-    margin-left: -0.8vw; /*글자마다 색상을 적용해돼서 분리한 객체들간의 간격 줄이기*/
-}
-.logo-link-a {
-    color: #FF5C4B;
-}
-.logo-link-d {
-    color: #F3A11A;
-}
-.logo-link-m {
-    color: #62D83E;
-}
-.logo-link-e {
-    color: #249EFF;
-}
 /*호버효과 적용*/
 .logo-link:hover {
     font-size: 4.5vw;
-    color: #F0E6B4;
+    color: #96eaf5;
 }
 
 /* 메뉴 바 설정 */
@@ -58,10 +30,10 @@ a {
     padding-top: 0.5vw;
 
     font-size: 2vw;
-    font-family: "LingWai SC";
 }
 .my-record {
-    padding-right: 3.7vw;
+    padding-right: 2vw;
+    margin-left: -1vw;
 }
 .nav-container>a {
     color: #282828;
@@ -150,7 +122,6 @@ a {
 .video-title>a {
     text-decoration-line: none; /*링크 밑줄효과 제거*/
     color: #F0E6B4;
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 }
 .title:hover {
@@ -231,8 +202,6 @@ a {
 
     display: flex;
     justify-content: space-around;
-
-    font-family: "LingWai SC";
 }
 .paging>div>a {
     text-decoration-line: none;
@@ -270,7 +239,6 @@ a {
 }
 .nickname {
     text-align: center; /*글자 중앙정렬*/
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 }
 
@@ -292,7 +260,6 @@ a {
     border-radius: 0.7vw;
     box-shadow: 0 0.4vw 0.02vw -0.02vw #C7C7BB;
 
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 
     cursor: pointer;
@@ -337,7 +304,6 @@ a {
     top: 33.5vw;
     left: 83.3vw;
 
-    font-family: "LingWai SC";
     font-size: 3.6vw;
 }
 
@@ -464,32 +430,6 @@ a {
     outline: none; /*글상자 클릭시 테두리효과 제거*/
 }
 
-/*!*board modal*!*/
-/*.board-modal-container {*/
-/*    display: none;*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    background-color: rgba(255,255,255, 0.35);*/
-/*}*/
-/*.board-modal-content {*/
-/*    display: none;*/
-/*    position: absolute;*/
-/*    top: 12.5vw;*/
-/*    left: 50%;*/
-/*    width: 38.4vw;*/
-/*    height: 33vw;*/
-
-/*    background-color: #282828;*/
-/*    border-radius: 0.5vw;*/
-/*    box-shadow: 0.3vw 0.3vw .3vw 0 rgba(0, 0, 0, 0.7);*/
-
-/*    transform: translateX(-50%);*/
-/*}*/
-
-
 /*board modal*/
 .board-modal-container {
     display: none;
@@ -530,10 +470,7 @@ a {
 
     cursor: pointer;
 }
-/*.board-box-close>p {*/
-/*    margin: 0 0 -0.1vw -0.2vw;*/
-/*    font-size: 0.9vw;*/
-/*}*/
+
 /*모달 게시글 타이틀*/
 .board-title {
     width: 37vw;

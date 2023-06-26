@@ -9,34 +9,6 @@ a {
     pointer-events: none; /* 배경 이미지에 대한 마우스 효과 제거 */
 }
 
-/* 로고 설정 */
-.logo {
-    position: absolute; /*절대위치 설정*/
-    top: 2.5vw;
-    left: 6.5vw;
-
-    font-family: Modak; /*폰트 설정*/
-    font-size: 4vw;
-    color: whitesmoke;
-}
-.logo>a {
-    text-decoration-line: none;
-}
-.logo-link {
-    margin-left: -0.8vw; /*글자마다 색상을 적용해돼서 분리한 객체들간의 간격 줄이기*/
-}
-.logo-link-a {
-    color: #FF5C4B;
-}
-.logo-link-d {
-    color: #F3A11A;
-}
-.logo-link-m {
-    color: #62D83E;
-}
-.logo-link-e {
-    color: #249EFF;
-}
 /*호버효과 적용*/
 .logo-link:hover {
     font-size: 4.5vw;
@@ -62,7 +34,6 @@ a {
     padding-top: 0.5vw;
 
     font-size: 2vw;
-    font-family: "LingWai SC";
 }
 .nav-container>a {
     color: #282828;
@@ -95,7 +66,6 @@ a {
     height: 39vw;
 }
 .side-board-mark {
-    font-family: "LingWai SC";
     font-size: 1.6vw;
     text-align: center;
     margin: 0 0 .5vw 0;
@@ -129,7 +99,7 @@ a {
 }
 
 /*upload-container*/
-.sympathetic-upload-container {
+.empathy-upload-container {
     /*border: 1px solid black;*/
     border-radius: 1vw;
     background-color: #FFF4DF;
@@ -154,7 +124,6 @@ a {
 }
 .item-property {
     width: 11vw;
-    font-family: "LingWai SC";
     font-size: 2.1vw;
     color: black;
     text-align: right;
@@ -248,8 +217,6 @@ a {
 
     display: flex;
     justify-content: space-around;
-
-    font-family: "LingWai SC";
 }
 .paging>div>a {
     text-decoration-line: none;
@@ -287,23 +254,22 @@ a {
 }
 .nickname {
     text-align: center; /*글자 중앙정렬*/
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 }
 
 /*upload button*/
-.sympathetic-upload-button {
+.empathy-upload-button {
     position: absolute;
     top: 42.5vw;
     left: 63vw;
 }
-.sympathetic-upload-button:hover {
+.empathy-upload-button:hover {
     top: 42.35vw;
 }
-.sympathetic-upload-button:active {
+.empathy-upload-button:active {
     top: 42.95vw;
 }
-.sympathetic-upload {
+.empathy-upload {
     width: 7.7vw;
     height: 2vw;
 
@@ -313,18 +279,17 @@ a {
     border-radius: 0.7vw;
     box-shadow: 0 0.4vw 0.02vw -0.02vw #b3a5ee;
 
-    font-family: "LingWai SC";
     font-size: 1.3vw;
     color: white;
 
     cursor: pointer;
 }
-.sympathetic-upload:hover {
+.empathy-upload:hover {
     color: black;
     background-color: ghostwhite;
     box-shadow: 0 0.55vw 0.02vw -0.02vw #C7C7BB;
 }
-.sympathetic-upload:active {
+.sempathy-upload:active {
     box-shadow: 0 0.05vw 0.02vw -0.02vw #C7C7BB;
 }
 
@@ -346,7 +311,6 @@ a {
     border-radius: 0.7vw;
     box-shadow: 0 0.4vw 0.02vw -0.02vw #C7C7BB;
 
-    font-family: "LingWai SC";
     font-size: 1.3vw;
 
     cursor: pointer;

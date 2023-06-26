@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/global.css">
   <link rel="stylesheet" type="text/css" href="../css/sign.css">
   <title>SignUp Page</title>
 </head>
 <body>
 <div class="main">
-  <div class="logo" style="top: 10%">
+  <div class="sign-logo" style="top: 10%">
     <a class="logo-link logo-link-a" href="#" onclick="top.location='javascript:location.reload()'" >A</a>
     <a class="logo-link logo-link-d" href="#" onclick="top.location='javascript:location.reload()'" >D</a>
     <a class="logo-link logo-link-m" href="#" onclick="top.location='javascript:location.reload()'" >M</a>
@@ -16,9 +17,9 @@
   </div>
   <div class="signup-container">
     <div class="signup-box">
-      <div class="sign-title">Sign Up</div>
+      <div class="sign-title adme-font">Sign Up</div>
       <div class="sign-link-box">
-        <a href="signin.html" class="sign-link">Login</a>
+        <a href="signin.html" class="sign-link adme-font">Login</a>
       </div>
       <div class="line"></div>
       <div class="sign-label">ID</div>
@@ -26,17 +27,13 @@
       <div class="sign-label">Password</div>
       <input type="password" class="signup-password sign-text-box">
       <div class="sign-label confirm">Password Confirm
-      <div class="incorrect-password">Password does not match</div>
+        <div class="incorrect-password">Password does not match</div>
       </div>
       <input type="password" class="signup-password-confirm sign-text-box">
       <div class="sign-label">Name</div>
       <input type="text" class="signup-name sign-text-box">
       <div class="sign-label">Email</div>
       <input type="email" class="signup-email sign-text-box" placeholder="abc@email.com">
-<!--      <div class="admin-check-box">-->
-<!--&lt;!&ndash;        <input type="checkbox" class="signup-admin-check sign-check-box">&ndash;&gt;-->
-<!--        <input type="password" class="signup-admin-token sign-admin-token-box">-->
-<!--      </div>-->
       <div class="sign-label token-label" style="display: none">Token</div>
       <input type="password" class="signup-admin-token sign-text-box" style="display: none">
       <button class="sign-button" onclick="signup()"> Done </button>

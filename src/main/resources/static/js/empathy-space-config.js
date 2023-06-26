@@ -2,7 +2,7 @@
 function saveArticle() {
     let form_data = new FormData();
     form_data.append("title", $("#empathy-upload-title").val());
-    form_data.append("main", $(".sympathetic-upload-content>textarea").val());
+    form_data.append("main", $(".empathy-upload-content>textarea").val());
 
     $.ajax({
         type: "POST",

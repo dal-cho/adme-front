@@ -31,7 +31,7 @@ function getArticle(curpage) {
                 let title = list[i].title;
                 let idx = list[i].idx;
 
-                let tempHtml = `<div class="board-item" onclick="boardModal(${idx})">
+                let tempHtml = `<div class="board-item adme-scale-animation" onclick="boardModal(${idx})">
                         <div class="board" >${title}</div>
                     </div>`;
 
@@ -60,7 +60,7 @@ function needComment() {
                     for (let i = 0; i < response.length; i++) {
                         let title = response[i].title;
                         let idx = response[i].idx;
-                        let temp = `<div class="side-board-item" onclick="boardModal(${idx})">
+                        let temp = `<div class="side-board-item adme-scale-animation" onclick="boardModal(${idx})">
                                         <div class="side-board-item-title">${title}</div>
                                     </div>`
                         $(".side-board-box").append(temp)
@@ -185,7 +185,7 @@ function commentPost(article, registryIdx){
 
     if (registryNickname === commentNickname) { // 게시글 작성자인 경우
         if (nickname === commentNickname) { // 댓글 작성자인 경우
-            temp_html = `<div class="line"style="border: 1px dashed rgba(131,128,128,0.18);"></div>
+            temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
                          <div class="board-comment-left-item" id="${"commentId-"+commentId}">
                              <div class="board-comments-userNickname">&#9989; ${commentNickname}</div>
                              <div class="board-comments-item-date">${date}</div>
@@ -199,7 +199,7 @@ function commentPost(article, registryIdx){
                          </div>`
         }
         else { // 댓글 작성자가 아닌 경우
-            temp_html = `<div class="line"style="border: 1px dashed rgba(131,128,128,0.18);"></div>
+            temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
                          <div class="board-comment-left-item" id="${"commentId-"+commentId}">
                              <div class="board-comments-userNickname">${commentNickname}</div>
                              <div class="board-comments-item-date">${date}</div>
@@ -208,7 +208,7 @@ function commentPost(article, registryIdx){
         }
     } else { // 게시글 작성자가 아닌 경우
         if (nickname === commentNickname) { // 댓글 작성자인 경우
-            temp_html = `<div class="line"style="border: 1px dashed rgba(131,128,128,0.18);"></div>
+            temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
                          <div class="board-comment-left-item" id="${"commentId-"+commentId}">
                              <div class="board-comments-userNickname">${commentNickname}</div>
                              <div class="board-comments-item-date">${date}</div>
@@ -222,7 +222,7 @@ function commentPost(article, registryIdx){
                          </div>`
         }
         else { // 댓글 작성자가 아닌 경우
-            temp_html = `<div class="line"style="border: 1px dashed rgba(131,128,128,0.18);"></div>
+            temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
                          <div class="board-comment-left-item" id="${"commentId-"+commentId}">
                              <div class="board-comments-userNickname">${commentNickname}</div>
                              <div class="board-comments-item-date">${date}</div>
