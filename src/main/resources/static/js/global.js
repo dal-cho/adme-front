@@ -10,8 +10,8 @@ let index_page = "everyone-record-main.html";
 let everyone_record_main_page = "everyone-record.html";
 let everyone_record_upload_page = "everyone-record-upload.html";
 let everyone_record_modify_page = "everyone-record-modify.html";
-let sympathetic_space_main_page = "empathy-space.html";
-let sympathetic_space_upload_page = "empathy-space-upload.html";
+let empathy_space_main_page = "empathy-space.html";
+let empathy_space_upload_page = "empathy-space-upload.html";
 let my_record_main_page = "my-record.html";
 
 // 쿠키값
@@ -30,7 +30,7 @@ let nickname = "";
 function navLink() {
     $("#my_record").attr("href", my_record_main_page);
     $("#everyone_record").attr("href", everyone_record_main_page);
-    $("#sympathetic_space").attr("href", sympathetic_space_main_page);
+    $("#empathy_space").attr("href", empathy_space_main_page);
 }
 
 // 비디오 업로드 및 수정 페이지 경로 설정
@@ -46,7 +46,7 @@ function modifyLink(id) {
 }
 // 공감공간 게시글 업로드 페이지 경로 설정
 function boardUploadLink() {
-    document.location.href = sympathetic_space_upload_page;
+    document.location.href = empathy_space_upload_page;
 }
 
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/my_record.css">
+    <link rel="stylesheet" type="text/css" href="../css/global.css">
     <title>My Record Main Page</title>
 </head>
 <body>
@@ -18,10 +19,10 @@
         <a class="logo-link logo-link-e" href="#" onclick="top.location='javascript:location.reload()'" >E</a>
     </div>
     <nav class="nav-bar">
-        <div class="nav-container">
+        <div class="nav-container adme-font">
             <a href="#" class="my-record" id="my_record">My Record</a>
             <a href="#" id="everyone_record">Everyone's Record</a>
-            <a href="#" id="sympathetic_space">Sympathetic Space</a>
+            <a href="#" id="empathy_space">Empathy Space</a>
         </div>
     </nav>
     <div class="video-container">
@@ -33,7 +34,7 @@
             <div class="video-thumbnail" onclick="videoModal(1)">
                 <img src="" alt="video1_thumbnail">
             </div>
-            <div class="video-title" onclick="videoModal()">
+            <div class="video-title adme-font" onclick="videoModal()">
                 <a class="title" href="#">Title</a>
             </div>
         </div>
@@ -73,7 +74,7 @@
         </div>
     </div>
     <div class="pagination">
-        <div class="paging">
+        <div class="paging adme-font">
             <div><a href="#">&lt;</a></div>
             <div><a href="#">1</a></div>
             <div><a href="#">2</a></div>
@@ -88,19 +89,19 @@
             <img src="" alt="Profile Image">
         </div>
         <div class="user-nickname">
-            <h3 class="nickname">user_123456</h3>
+            <h3 class="nickname adme-font">user_123456</h3>
         </div>
     </div>
     <div class="logout-button">
-        <button class="button-style" onclick="logout()">Logout</button>
+        <button class="button-style adme-font" onclick="logout()">Logout</button>
     </div>
     <div class="board-upload-button">
-        <button class="button-style" onclick="boardUploadLink()">Board</button>
+        <button class="button-style adme-font" onclick="boardUploadLink()">Board</button>
     </div>
     <div class="video-upload-button">
-        <button class="button-style" onclick="videoUploadLink()">Video</button>
+        <button class="button-style adme-font" onclick="videoUploadLink()">Video</button>
     </div>
-    <p class="upload-mark">upload</p>
+    <p class="upload-mark adme-font">upload</p>
 <!--    비디오 게시물 모달-->
     <div class="modal-container" id="modal">
         <div class="modal-content">
@@ -178,7 +179,7 @@
                             <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(539)">SAVE</button>
                         </div>
                     </div>
-                    <div class="line"style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+                    <div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
 
                     <div class="board-comments-item">
                         <div class="board-comment-left-item">
@@ -192,7 +193,7 @@
                             <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(539)">SAVE</button>
                         </div>
                     </div>
-                    <div class="line"style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+                    <div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
 
                     <div class="board-comments-item">
                         <div class="board-comment-left-item">

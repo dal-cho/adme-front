@@ -1,32 +1,16 @@
 /* 로고 설정 */
-.logo {
+.sign-logo {
     position: absolute; /*절대위치 설정*/
     top: 25%;
     left: 50%;
     transform: translate(-50%, 0%); /*중앙으로 잡아주면 box 의 앞부분 기준으로 box 의 절반만큼 위치 보정*/
 
-
     font-family: Modak; /*폰트 설정*/
     font-size: 4vw;
     color: whitesmoke;
 }
-.logo>a {
+.sign-logo>a {
     text-decoration-line: none;
-}
-.logo-link {
-    margin-left: -0.8vw; /*글자마다 색상을 적용해돼서 분리한 객체들간의 간격 줄이기*/
-}
-.logo-link-a {
-    color: #FF5C4B;
-}
-.logo-link-d {
-    color: #F3A11A;
-}
-.logo-link-m {
-    color: #62D83E;
-}
-.logo-link-e {
-    color: #249EFF;
 }
 /*호버효과 적용*/
 .logo-link:hover {
@@ -91,7 +75,6 @@
 .sign-title {
     margin-left: 1.5vw;
     font-size: 2.5vw;
-    font-family: "LingWai SC";
 }
 .sign-link-box {
     display: flex;
@@ -101,7 +84,6 @@
     margin-right: .5vw;
     text-align: right;
     font-size: 1.2vw;
-    font-family: "LingWai SC";
 }
 .sign-link:link {
     color: black;

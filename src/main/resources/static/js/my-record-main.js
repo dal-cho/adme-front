@@ -55,7 +55,7 @@ function myVideoPost(article, index) {
                             <button class="video-config-button video-modify-button" title="수정" onclick="modifyLink(${article["id"]})"></button>
                             <button class="video-config-button video-delete-button" title="삭제" onclick="videoDelete(${article["id"]})"></button>
                         </div>
-                        <div class="video-thumbnail adme-scale-animation" onclick="videoModal(${article["id"]})">
+                        <div class="video-thumbnail" onclick="videoModal(${article["id"]})">
                             <img src="${"files/" + "thumb_" + article["uuid"] +".jpg"}" alt=${"video"+article["id"]+"_thumbnail"}>
                         </div>
                         <div class="video-title" onclick="videoModal(${article["id"]})">
