@@ -1,34 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <meta charset="UTF-8">
-  <title>로그인 페이지</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/global.css">
+  <link rel="stylesheet" type="text/css" href="/css/sign.css">
+
+  <title>Login Page</title>
 </head>
 <body>
-<div id="login-form">
-  <div id="login-title">Log into Adme Chat</div>
+<div class="main">
+  <div class="sign-logo">
+    <a class="logo-link logo-link-a" href="#" onclick="top.location='javascript:location.reload()'" >A</a>
+    <a class="logo-link logo-link-d" href="#" onclick="top.location='javascript:location.reload()'" >D</a>
+    <a class="logo-link logo-link-m" href="#" onclick="top.location='javascript:location.reload()'" >M</a>
+    <a class="logo-link logo-link-e" href="#" onclick="top.location='javascript:location.reload()'" >E</a>
+  </div>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="sign-title adme-font">Login</div>
+      <div class="sign-link-box">
+        <a href="/user/login/signup" class="sign-link adme-font">Sign Up</a>
+      </div>
+      <input type="text" class="login-id sign-text-box" placeholder="ID">
+      <input type="password" class="login-password sign-text-box" placeholder="PASSWORD">
+      <button class="login-button sign-button" onclick="signin()"> LOGIN </button>
+    </div>
+  </div>
 
-  <br><br>
+  <div id="login-form">
+    <div id="login-title">social login</div>
 
-  <a href="/oauth2/authorization/naver" >Naver Login</a>
+    <br><br>
 
-  <br><br>
+    <a href="/oauth2/authorization/kakao" >Kakao Login</a>
 
-  <a href="/oauth2/authorization/kakao" >Kakao Login</a>
+    <br><br>
 
-  <br><br>
+    <a href="/oauth2/authorization/google" >Google Login</a>
 
-  <a href="/oauth2/authorization/google" >Google Login</a>
+    <div th:if="${loginError}" class="alert alert-danger" role="alert">로그인에 실패하였습니다.</div>
 
-  <div th:if="${loginError}" class="alert alert-danger" role="alert">로그인에 실패하였습니다.</div>
-
+  </div>
 </div>
+<script src="/js/sign.js"></script>
+<script src="/js/global.js"></script>
 </body>
 </html>
