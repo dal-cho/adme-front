@@ -5,6 +5,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/global.css">
   <link rel="stylesheet" type="text/css" href="../css/sign.css">
+
   <title>Login Page</title>
 </head>
 <body>
@@ -19,12 +20,27 @@
     <div class="login-box">
       <div class="sign-title adme-font">Login</div>
       <div class="sign-link-box">
-        <a href="signup.html" class="sign-link adme-font">Sign Up</a>
+        <a href="/user/login/signup" class="sign-link adme-font">Sign Up</a>
       </div>
       <input type="text" class="login-id sign-text-box" placeholder="ID">
       <input type="password" class="login-password sign-text-box" placeholder="PASSWORD">
       <button class="login-button sign-button" onclick="signin()"> LOGIN </button>
     </div>
+  </div>
+
+  <div id="login-form">
+    <div id="login-title">social login</div>
+
+    <br><br>
+
+    <a href="/oauth2/authorization/kakao" >Kakao Login</a>
+
+    <br><br>
+
+    <a href="/oauth2/authorization/google" >Google Login</a>
+
+    <div th:if="${loginError}" class="alert alert-danger" role="alert">로그인에 실패하였습니다.</div>
+
   </div>
 </div>
 <script src="../js/sign.js"></script>
