@@ -5,7 +5,6 @@ $(document).ready(function(){
 
 // html 파일 경로값
 let host = "http://localhost:8080";
-let login_page = "signin.html";
 let index_page = "everyone-record-main.html";
 let everyone_record_main_page = "everyone-record.html";
 let everyone_record_upload_page = "everyone-record-upload.html";
