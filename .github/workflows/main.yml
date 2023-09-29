@@ -13,15 +13,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Configure AWS Credentials
-        run: |
-          echo ${{ secrets.AWS_ACCESS_KEY_ID }} > aws_access_key_id
-          echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} > aws_secret_access_key
-          aws configure set aws_access_key_id $(cat aws_access_key_id)
-          aws configure set aws_secret_access_key $(cat aws_secret_access_key)
-          aws configure set aws_region ${{ secrets.AWS_REGION }}
-        env:
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
-        shell: bash
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
 
       - name: S3 Deploy
         env:
