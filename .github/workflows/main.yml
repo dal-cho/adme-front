@@ -2,8 +2,7 @@ name: FrontEnd Deploy
 
 on:
   push:
-    branches: [ main ]
-
+    branches: [main]
 
 jobs:
   deploy:
@@ -15,21 +14,20 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-        
+
       - name: Build
-        run: yar build
+        run: yarn build
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ AWS_REGION }}
+        run: |
+          echo ${{ secrets.AWS_ACCESS_KEY_ID }} > aws_access_key_id
+          echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} > aws_secret_access_key
+          aws configure set aws_access_key_id $(cat aws_access_key_id)
+          aws configure set aws_secret_access_key $(cat aws_secret_access_key)
+          aws configure set aws_region ${{ secrets.AWS_REGION }}
+        env:
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+        shell: bash
 
       - name: S3 Deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ AWS_REGION }}
-        run:
-          aws s3 sync ./dist s3://adme-buckets/ --acl bucket-owner-full-control
+        run: aws s3 sync ./dist s3://adme-buckets/ --acl bucket-owner-full-control
