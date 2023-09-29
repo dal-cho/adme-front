@@ -12,12 +12,6 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Build
-        run: yarn build
-
       - name: Configure AWS Credentials
         run: |
           echo ${{ secrets.AWS_ACCESS_KEY_ID }} > aws_access_key_id
