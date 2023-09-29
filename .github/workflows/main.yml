@@ -24,4 +24,8 @@ jobs:
         shell: bash
 
       - name: S3 Deploy
-        run: aws s3 sync ./dist s3://adme-buckets/ --acl bucket-owner-full-control
+        run: |
+          echo "Starting S3 Deploy"
+          aws s3 sync ./dist s3://adme-buckets/ --acl bucket-owner-full-control
+          echo "Finished S3 Deploy"
+  
