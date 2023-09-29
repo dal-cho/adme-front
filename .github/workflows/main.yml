@@ -14,13 +14,13 @@ jobs:
 
       - name: Configure AWS Credentials
         run: |
-          echo ${{ secrets.AWS_ACCESS_KEY_ID }} > aws_access_key_id
-          echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} > aws_secret_access_key
+          echo ${{ AWS_ACCESS_KEY_ID }} > aws_access_key_id
+          echo ${{ AWS_SECRET_ACCESS_KEY }} > aws_secret_access_key
           aws configure set aws_access_key_id $(cat aws_access_key_id)
           aws configure set aws_secret_access_key $(cat aws_secret_access_key)
-          aws configure set aws_region ${{ secrets.AWS_REGION }}
+          aws configure set aws_region ${{ AWS_REGION }}
         env:
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+          AWS_DEFAULT_REGION: ${{ AWS_REGION }}
         shell: bash
 
       - name: S3 Deploy
