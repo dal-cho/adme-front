@@ -26,6 +26,6 @@ jobs:
       - name: S3 Deploy
         run: |
           echo "Starting S3 Deploy"
-          aws --verbose s3 sync ./dist s3://adme-buckets/ --acl bucket-owner-full-control
+          aws --debug s3 sync ./dist s3://adme-buckets/ --acl bucket-owner-full-control
           echo "Finished S3 Deploy"
   
