@@ -28,6 +28,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-        run: aws s3 sync ./dist s3://adme-buckets/ --acl bucket-owner-full-control
+        run: aws s3 sync . s3://adme-buckets/ --acl bucket-owner-full-control
 
   
