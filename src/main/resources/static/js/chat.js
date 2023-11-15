@@ -5,18 +5,23 @@ let messageInput = document.querySelector('#message-input');
 let stompClient = null;
 let token = localStorage.getItem('token');
 let urlSearch = new URLSearchParams(location.search);
-let count=0;
+let count = 0;
 let connectingElement = $(".body");
 let roomId = null;
 let status = ""
 let currentXHR;
 let timerInterval;
+const unsentMessages = [];
+let messageToSend = null;
+let today = new Date();
+let month = today.getMonth() + 1;
+let days = today.getDate();
 
 // 읽음, 안읽음 개수 처리
-function alarmCount(num){
-    if (num===0){
-        count=0;
-    }else{
+function alarmCount(num) {
+    if (num === 0) {
+        count = 0;
+    } else {
         count += num;
     }
     $(".badge").text(count);
@@ -38,24 +43,23 @@ function emptyUsername(token) {
         url: `/find-nickname/` + token,
         contentType: false,
         processData: false,
-        success: function(response) {
+        success: function (response) {
             nickname = response;
             localStorage.setItem('wschat.sender', nickname);
         }
     })
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     alarmSubscribe();
-    if(token==null){
+    if (token == null) {
         findToken();
-    }
-    else if(nickname==null){
+    } else if (nickname == null) {
         emptyUsername(token)
     }
     alarmCount(0)
 });
-messageInput.addEventListener("keyup", function(event) {
+messageInput.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("sendButton").click();
@@ -65,15 +69,15 @@ messageInput.addEventListener("keyup", function(event) {
 function openChat() {
     document.getElementById('container').classList.add('open');
     let nickname = localStorage.getItem('wschat.sender');
-    if (nickname!=null){
+    if (nickname != null) {
         openChatList()
     }
 }
 
 function openChatList() {
     if (document.getElementById("needChat")) {
-        needLine()
-    }else{
+        needLine() // 새로 고침
+    } else {
         let nickname = localStorage.getItem('wschat.sender');
         $.ajax({
             type: "POST",
@@ -81,17 +85,29 @@ function openChatList() {
             data: nickname,
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 localStorage.setItem('wschat.roomName', nickname);
                 localStorage.setItem('wschat.roomId', response["roomId"]);
                 let count = response["userChat"];
                 let message = response["message"];
+                let day = response["day"]
+                let time = response["time"]
+                today = new Date();
+                month = today.getMonth() + 1;
+                days = today.getDate();
+                let now = month + "/" + days
+                let dayTime
+                if (now !== day) {
+                    dayTime = day + " " + time;
+                } else {
+                    dayTime = time;
+                }
                 let temp = `
           <div id="needChat" class="conversation" onclick="joinChat()">
             <div class="top">
               <span class="badge">${count}</span>
               <span class="title">리스트에서 제목</span>
-              <span class="time">18:10</span>
+              <span class="time">${dayTime}</span>
             </div>
             <div class="bottom">
               <span class="user">${nickname}</span>
@@ -122,18 +138,31 @@ function needLine(){
     nickname = localStorage.getItem('wschat.sender');
     $.ajax({
         type: "GET",
-        url: `/room/enter/`+ roomId,
+        url: `/room/enter/` + roomId,
         contentType: false,
         processData: false,
-        success: function(response) {
-            let count = response[1];
-            let message = response[2];
+        success: function (response) {
+            let count = response["userChat"];
+            let message = response["message"];
+            let day = response["day"]
+            let time = response["time"]
+            today = new Date();
+            month = today.getMonth() + 1;
+            days = today.getDate();
+            let now = month + "/" + days;
+            let dayTime
+            if (now !== day) {
+                dayTime = day + " " + time;
+            } else {
+                dayTime = time;
+            }
+
             let temp = `
           <div id="needChat" class="conversation" onclick="joinChat()">
             <div class="top">
               <span class="badge">${count}</span>
               <span class="title">리스트에서 제목</span>
-              <span class="time">18:10</span>
+              <span class="time">${dayTime}</span>
             </div>
             <div class="bottom">
               <span class="user">${nickname}</span>
@@ -156,8 +185,7 @@ function needLine(){
     });
 }
 
-// 고객 센터 채팅 메세지 형식
-function onMessageReceived(payload) {
+function onMessageReceived(payload) { // 메세지 받기
     let message;
     try {
         message = JSON.parse(payload.body);
@@ -165,24 +193,34 @@ function onMessageReceived(payload) {
         message = payload;
     }
     let divName;
-    if (message.sender != "admin") {
+    if (message.sender !== "admin") {
         divName = "user right"
     } else {
         divName = "user left"
     }
     if (message.type === 'JOIN') {
-        if (message.sender != "admin") {
+        if (message.sender !== "admin") {
             alarmCount(0);
             message.message = message.sender + ' 님 안녕하세요';
             seperator(message.message);
         }
-    } else if (message.type === 'LEAVE' && message.sender != "admin") {
+    } else if (message.type === 'LEAVE' && message.sender !== "admin") {
         message.message = message.sender + ' 님이 나가셨습니다.';
         seperator(message.message);
     } else if (message.type === 'DELETE') {
-        message.message = roomName + ' 님 채팅이 종료되어 ' + '현재 시간 [ ' + ms + ' ]  ' + ' 으로 부터 5분 뒤에 삭제될 예정입니다.';
+        message.message = roomName + ' 님 채팅이 종료되어 ' + '현재 시간 [ ' + message.time + ' ]  ' + ' 으로 부터 5분 뒤에 삭제될 예정입니다.';
         seperator(message.message);
     } else if (message.type === 'TALK' && message.message != null) {
+        today = new Date();
+        month = today.getMonth() + 1;
+        days = today.getDate();
+        let dd = month + "/" + days;
+        let dayTime
+        if (dd !== message.day) {
+            dayTime = message.day + " " + message.time;
+        } else {
+            dayTime = message.time;
+        }
         let temp = `
     <div class="${divName}">
     <i class = "avatar">${message.sender[0]}</i>
@@ -192,7 +230,7 @@ function onMessageReceived(payload) {
                     <div class="message-sender">&#9989; _ ${message.sender}</div>
                     <p class="text">${message.message}</p>
                 </div>
-            <div class="message-time">12:08</div>
+            <div class="message-time">${dayTime}</div>
         </div>
     </div>
 </div>
@@ -215,15 +253,17 @@ function seperator(message) {
 
 // 채팅 닫기 버튼 클릭 시
 function closeChat() {
-    if(status==="randomChat"){
-        clearInterval(timerInterval);
+    if (status === "randomChat") {
+        clearInterval(timerInterval); // 타이머 중지
         connectingElement.text("")
         $.ajax({
             type: "GET",
             url: "/random/cancel/" + nickname,
-            success: function() {
+            success: function () {
+                // 취소에 성공한 경우
             },
-            error: function() {
+            error: function () {
+                // 취소에 실패한 경우
             }
         });
     }
@@ -235,11 +275,11 @@ function closeChat() {
     document.querySelector('.chat').classList.add('close');
     document.getElementById('back').classList.add('hidden');
     closeDrawer();
-    if(stompClient==null){
-        $("#randomSendButton").css("display","none")
-    } else if(stompClient.connect()){
+    if (stompClient == null) {
+        $("#randomSendButton").css("display", "none")
+    } else if (stompClient.connect()) {
         stompClient.disconnect();
-        $("#sendButton").css("display","none")
+        $("#sendButton").css("display", "none")
     }
 }
 
@@ -247,11 +287,11 @@ function closeChat() {
 function backChat() {
     isRun = false;
     $(".body").text("")
-    if(stompClient==null){
-        $("#randomSendButton").css("display","none")
-    } else if(stompClient.connect()){
+    if (stompClient == null) {
+        $("#randomSendButton").css("display", "none")
+    } else if (stompClient.connect()) {
         stompClient.disconnect();
-        $("#sendButton").css("display","none")
+        $("#sendButton").css("display", "none")
     }
     document.querySelector('.list').classList.remove('close');
     document.querySelector('.chat').classList.add('close');
@@ -303,47 +343,69 @@ function onConnected() {
     if (document.querySelector('.message-container')) {
         message = $(".message-container").last().text().trim().split("\n")[1].trim()
     }
-    stompClient.send("/app/chat/addUser", {Authorization: token}, JSON.stringify({roomId: roomId, type: 'JOIN', message: message}))
+    stompClient.send("/app/chat/addUser", {Authorization: token}, JSON.stringify({
+        roomId: roomId,
+        type: 'JOIN',
+        message: message
+    }))
 }
 
 function onError(error) {
-    if (connectingElement) {
-        connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-        connectingElement.style.color = 'red';
+    stompClient = null;
+    let temp = `
+<div class="seperator">
+    <div class="text-warning" style="color: red; font-size: 15px">채팅을 이용할 수 없습니다.<br />서버 연결을 확인해주세요.</div>
+</div>`
+    $(".body").append(temp);
+    if (messageToSend) {
+        unsentMessages.push(messageToSend);
+        console.log("messageToSend : " + messageToSend);
     }
 }
 
-// 고객센터 msg 보내기
+// 메세지 보내기
 function sendMessage() {
     alarmMessage()
     let nickname = localStorage.getItem('wschat.sender');
     roomId = localStorage.getItem('wschat.roomId');
     let messageContent = messageInput.value.trim();
+    today = new Date();
+    month = today.getMonth() + 1;
+    days = today.getDate();
+    let hour = ('0' + today.getHours()).slice(-2);
+    let minute = ('0' + today.getMinutes()).slice(-2);
+
+    let chatMessage = {
+        roomId: roomId,
+        sender: nickname,
+        message: messageContent,
+        type: 'TALK',
+        day: month + "/" + days,
+        time: hour + ":" + minute
+    };
     if (messageContent && stompClient) {
-        let chatMessage = {
-            roomId: roomId,
-            sender: nickname,
-            message: messageContent,
-            type: 'TALK'
-        };
         saveFile(chatMessage)
         stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
+    } else {
+        messageToSend = chatMessage;
     }
 }
 
 // 채팅 기록 저장
 function saveFile(chatMessage) {
-    roomId = localStorage.getItem('wschat.roomId');
-    $.ajax({
-        type: "POST",
-        url: `/room/enter/` + roomId + '/' + roomName,
-        data: JSON.stringify(chatMessage),
-        contentType: 'application/json',
-        processData: false,
-        success: function(response) {
-        }
-    });
+    if (stompClient) {
+        roomId = localStorage.getItem('wschat.roomId');
+        $.ajax({
+            type: "POST",
+            url: `/room/enter/` + roomId + '/' + roomName,
+            data: JSON.stringify(chatMessage),
+            contentType: 'application/json',
+            processData: false,
+            success: function (response) {
+            }
+        });
+    }
 }
 
 let isRun = false;
@@ -359,11 +421,11 @@ function getFile() {
         url: `/room/enter/` + roomId + '/' + roomName,
         contentType: false,
         processData: false,
-        success: function(response) {
+        success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 onMessageReceived(response[i])
             }
-        },error: function(jqXHR, textStatus, errorThrown) {
+        }, error: function (jqXHR, textStatus, errorThrown) {
             $(".body").text(`안녕하세요 ${nickname} 님 고객센터 입니다.`);
         }
     })
@@ -374,10 +436,10 @@ function timer(){
     let time = 20;
     let min = "";
     let sec = "";
-    clearInterval(timerInterval);
-    timerInterval = setInterval(function(){
-        min = parseInt(time/60);
-        sec = time%60;
+    clearInterval(timerInterval); // 이전 인터벌 제거
+    timerInterval = setInterval(function () {
+        min = parseInt(time / 60);
+        sec = time % 60;
         connectingElement.text("  현재 1명의 접속을 기다리고 있는 중입니다.  [ " + min + " 분  " + sec + " 초 ]");
         time--;
         if (time < 0) {
@@ -400,21 +462,21 @@ function randomChat() {
 
     currentXHR = $.ajax({
         type: "GET",
-        url: `/join/`+ nickname,
+        url: `/join/` + nickname,
         contentType: 'application/json',
-        async:true,
+        async: true,
         processData: false,
-        beforeSend: function() {
+        beforeSend: function () {
             connectingElement.text("다른 user가 접속할 때 까지 대기중입니다.")
             timer();
-            joinInterval = setInterval(function() {
-            }, );
+            joinInterval = setInterval(function () {
+            },);
         },
-        success: function(chatMessage) {
+        success: function (chatMessage) {
             response = JSON.stringify(chatMessage)
             clearInterval(joinInterval);
             status = ""
-            if (!response){
+            if (!response) {
                 return;
             }
             let message = JSON.parse(response);
@@ -426,11 +488,11 @@ function randomChat() {
             } else if (message.type === 'TIMEOUT') {
                 console.log("timeout!")
             }
-        }, error: function(jqxhr) {
+        }, error: function (jqxhr) {
             console.log("http staus " + JSON.stringify(jqxhr))
             clearInterval(joinInterval);
             connectingElement.text("다시 시도해주세요")
-        }, complete: function() {
+        }, complete: function () {
             clearInterval(joinInterval);
         },
     })
@@ -447,10 +509,10 @@ function randomConnect(event){
 
     let nickname = localStorage.getItem('wschat.sender');
     let token = localStorage.getItem('token');
-    if(nickname){
+    if (nickname) {
         let socket = new SockJS('/ws/chat');
         stompClient = Stomp.over(socket);
-        stompClient.connect({roomId : roomId}, randomOnConnected, onError);
+        stompClient.connect({roomId: roomId}, randomOnConnected, onError);
     }
 }
 
@@ -460,9 +522,13 @@ function randomOnConnected(){
         connectingElement.text("");
     }, 1900)
 
-    setTimeout( function() {
+    setTimeout(function () {
         stompClient.subscribe('/every-chat/' + roomId, randomMessageReceived);
-        stompClient.send("/app/every-chat/addUser", {}, JSON.stringify({roomId: roomId, sender: nickname, type: 'JOIN'}))
+        stompClient.send("/app/every-chat/addUser", {}, JSON.stringify({
+            roomId: roomId,
+            sender: username,
+            type: 'JOIN'
+        }))
         $("#message").removeAttr("disabled");
     }, 2100)
 }
@@ -515,7 +581,7 @@ function randomSendMessage(event){
         let chatMessage = {
             roomId: roomId, sender: nickname, message: messageContent, type: 'TALK'
         };
-        stompClient.send("/app/every-chat/message/"+ roomId, {}, JSON.stringify(chatMessage));
+        stompClient.send("/app/every-chat/message/" + roomId, {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
 }
@@ -523,21 +589,23 @@ function randomSendMessage(event){
 function alarmSubscribe() {
     roomId = localStorage.getItem('wschat.roomId')
     let nickname = localStorage.getItem('wschat.sender');
-    if (nickname != null && roomId != null) {
+    if (nickname != null && roomId != null && stompClient) {
         start(nickname, roomId);
     }
 }
 
 function alarmMessage() {
-    let nickname = localStorage.getItem('wschat.sender');
-    roomId = localStorage.getItem('wschat.roomId');
-    fetch(`/room/publish?sender=${nickname}&roomId=${roomId}`);
+    if (stompClient) {
+        let nickname = localStorage.getItem('wschat.sender');
+        roomId = localStorage.getItem('wschat.roomId');
+        fetch(`/room/publish?sender=${nickname}&roomId=${roomId}`);
+    }
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.conversation').forEach(function(conversation) {
-        conversation.addEventListener('click', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.conversation').forEach(function (conversation) {
+        conversation.addEventListener('click', function () {
             document.querySelector('.list').classList.add('close');
             document.querySelector('.chat').classList.remove('close');
             document.getElementById('back').classList.remove('hidden');
@@ -547,7 +615,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // Fire once
 document.querySelectorAll('focus.auto-expand, textarea.auto-expand').forEach(item => {
-    item.addEventListener('click', function(e) {
+    item.addEventListener('click', function (e) {
         if (e.currentTarget.dataset.triggered) return;
         e.currentTarget.dataset.triggered = true;
         var savedValue = this.value;
@@ -558,7 +626,7 @@ document.querySelectorAll('focus.auto-expand, textarea.auto-expand').forEach(ite
 });
 // Fire anytime
 document.querySelectorAll('input.auto-expand, textarea.auto-expand').forEach(item => {
-    item.addEventListener('input', function(e) {
+    item.addEventListener('input', function (e) {
         var minRows = this.getAttribute('data-min-rows') | 0;
         this.rows = minRows;
         rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
