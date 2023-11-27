@@ -15,6 +15,7 @@ function getArticle(curpage) {
     $.ajax({
         type: "GET",
         url: `space/${curpage}`,
+        headers: {"Authorization": token},
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
             let list = response.boardList; // 게시물 리스트
@@ -47,6 +48,7 @@ function needComment() {
     $.ajax({
         type: "GET",
         url: `/needComment`,
+        headers: {"Authorization": token},
         data: {},
         contentType: false,
         processData: false,
@@ -108,6 +110,7 @@ function allRegistry(idx) {
     $.ajax({
         type: "GET",
         url: `/registry?idx=${idx}`,
+        headers: {"Authorization": token},
         data: {},
         contentType: false,
         processData: false,
@@ -146,6 +149,7 @@ function comment(idx) {
     $.ajax({
         type: "POST",
         url: `/comment`,
+        headers: {"Authorization": token},
         data: form_data,
         contentType: false,
         processData: false,
@@ -163,6 +167,7 @@ function findComment(idx) { // comment db 가져오기
     $.ajax({
         type: "GET",
         url: `/comment?idx=${idx}`,
+        headers: {"Authorization": token},
         data: {},
         contentType: false,
         processData: false,
@@ -262,6 +267,7 @@ function afterUpdateComment(commentId, registryId) {  // 저장 버튼을 누르
     $.ajax({
         type: "PUT",
         url: `/comment/${commentId}`,
+        headers: {"Authorization": token},
         dataType: 'json',
         data: JSON.stringify(RegistryComment),
         contentType: 'application/json; charset=utf-8',
@@ -283,6 +289,7 @@ function deleteComment(commentId, registryId) {
     $.ajax({
         type: "DELETE",
         url: `/comment/${commentId}`,
+        headers: {"Authorization": token},
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         success: function (response) {

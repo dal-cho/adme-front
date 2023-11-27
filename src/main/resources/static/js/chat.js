@@ -1,9 +1,9 @@
-let nickname = localStorage.getItem('wschat.sender');
+
 let roomName = nickname;
 let chatArea = document.querySelector('.chat');
 let messageInput = document.querySelector('#message-input');
 let stompClient = null;
-let token = localStorage.getItem('token');
+
 let urlSearch = new URLSearchParams(location.search);
 let count = 0;
 let connectingElement = $(".body");
@@ -41,11 +41,12 @@ function emptyUsername(token) {
     $.ajax({
         type: "GET",
         url: `/find-nickname/` + token,
+        headers: {"Authorization": token},
         contentType: false,
         processData: false,
         success: function (response) {
             nickname = response;
-            localStorage.setItem('wschat.sender', nickname);
+            localStorage.setItem('nickname', nickname);
         }
     })
 }
@@ -82,6 +83,7 @@ function openChatList() {
         $.ajax({
             type: "POST",
             url: `/room`,
+            headers: {"Authorization": token},
             data: nickname,
             contentType: false,
             processData: false,
@@ -139,6 +141,7 @@ function needLine(){
     $.ajax({
         type: "GET",
         url: `/room/enter/` + roomId,
+        headers: {"Authorization": token},
         contentType: false,
         processData: false,
         success: function (response) {
@@ -259,6 +262,7 @@ function closeChat() {
         $.ajax({
             type: "GET",
             url: "/random/cancel/" + nickname,
+            headers: {"Authorization": token},
             success: function () {
                 // 취소에 성공한 경우
             },
@@ -399,6 +403,7 @@ function saveFile(chatMessage) {
         $.ajax({
             type: "POST",
             url: `/room/enter/` + roomId + '/' + roomName,
+            headers: {"Authorization": token},
             data: JSON.stringify(chatMessage),
             contentType: 'application/json',
             processData: false,
@@ -419,6 +424,7 @@ function getFile() {
     $.ajax({
         type: "GET",
         url: `/room/enter/` + roomId + '/' + roomName,
+        headers: {"Authorization": token},
         contentType: false,
         processData: false,
         success: function (response) {
@@ -463,6 +469,7 @@ function randomChat() {
     currentXHR = $.ajax({
         type: "GET",
         url: `/join/` + nickname,
+        headers: {"Authorization": token},
         contentType: 'application/json',
         async: true,
         processData: false,
