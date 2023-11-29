@@ -9,9 +9,13 @@ let index_page = "everyone-record-main.html";
 let everyone_record_main_page = "everyone-record.html";
 let everyone_record_upload_page = "everyone-record-upload.html";
 let everyone_record_modify_page = "everyone-record-modify.html";
-let empathy_space_main_page = "empathy-space.html";
-let empathy_space_upload_page = "empathy-space-upload.html";
+let registry_main_page = "registry.html";
+let registry_upload_page = "registry-upload.html";
 let my_record_main_page = "my-record.html";
+
+// localStorage
+let token = localStorage.getItem('token');
+let nickname = localStorage.getItem('nickname');
 
 // 쿠키값
 let cookie = getCookie("TokenCookie");
@@ -22,14 +26,14 @@ let registry_modal = document.getElementById("board-Modal");
 
 // 기타 변수
 let showCommentId;
-let nickname = "";
+//let nickname = "";
 
 
 // 네비게이션바 경로 설정
 function navLink() {
     $("#my_record").attr("href", my_record_main_page);
     $("#everyone_record").attr("href", everyone_record_main_page);
-    $("#empathy_space").attr("href", empathy_space_main_page);
+    $("#empathy_space").attr("href", registry_main_page);
 }
 
 // 비디오 업로드 및 수정 페이지 경로 설정
@@ -45,7 +49,7 @@ function modifyLink(id) {
 }
 // 공감공간 게시글 업로드 페이지 경로 설정
 function boardUploadLink() {
-    document.location.href = empathy_space_upload_page;
+    document.location.href = registry_upload_page;
 }
 
 
@@ -102,7 +106,7 @@ function userInfo() {
     $.ajax({
         type: "GET",
         url: host + '/user',
-        headers: {"X-AUTH-TOKEN": cookie},
+        headers: {"Authorization": token},
         success: function (response) {
             console.log(response);
             nickname = `${response["nickname"]}`;
