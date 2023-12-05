@@ -40,7 +40,7 @@ function findToken() {
 function emptyUsername(token) {
     $.ajax({
         type: "GET",
-        url: `/find-nickname/` + token,
+        url: host + `/find-nickname/` + token,
         headers: {"Authorization": token},
         contentType: false,
         processData: false,
@@ -82,7 +82,7 @@ function openChatList() {
         let nickname = localStorage.getItem('wschat.sender');
         $.ajax({
             type: "POST",
-            url: `/room`,
+            url: host + `/room`,
             headers: {"Authorization": token},
             data: nickname,
             contentType: false,
@@ -140,7 +140,7 @@ function needLine(){
     nickname = localStorage.getItem('wschat.sender');
     $.ajax({
         type: "GET",
-        url: `/room/enter/` + roomId,
+        url: host + `/room/enter/` + roomId,
         headers: {"Authorization": token},
         contentType: false,
         processData: false,
@@ -402,7 +402,7 @@ function saveFile(chatMessage) {
         roomId = localStorage.getItem('wschat.roomId');
         $.ajax({
             type: "POST",
-            url: `/room/enter/` + roomId + '/' + roomName,
+            url: host + `/room/enter/` + roomId + '/' + roomName,
             headers: {"Authorization": token},
             data: JSON.stringify(chatMessage),
             contentType: 'application/json',
@@ -423,7 +423,7 @@ function getFile() {
     }
     $.ajax({
         type: "GET",
-        url: `/room/enter/` + roomId + '/' + roomName,
+        url: host + `/room/enter/` + roomId + '/' + roomName,
         headers: {"Authorization": token},
         contentType: false,
         processData: false,
