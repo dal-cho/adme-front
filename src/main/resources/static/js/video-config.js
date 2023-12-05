@@ -1,6 +1,5 @@
 // video 업로드
 function videoUpload() {
-
     let data = {
         "title" : $(".upload-title>input").val(),
         "content" : $(".upload-content>textarea").val(),
@@ -27,7 +26,7 @@ function videoUpload() {
         contentType: false,
         processData: false,
         data: formData,
-        headers: {"X-AUTH-TOKEN": cookie},
+        headers: {"Authorization": token},
         success: function (result) {
             console.log(result);
             alert("업로드 완료");
@@ -52,12 +51,12 @@ function getModifyInfo(id) {
     $.ajax({
         type: "GET",
         url: host + '/tenSeconds/video/'+id,
-        headers: {"X-AUTH-TOKEN": cookie},
+        headers: {"Authorization": token},
         success: function (response) {
             console.log(response);
-            $("#modify-title").text(`${response["title"]}`); // 제목
-            $(".upload-content>textarea").text(`${response["content"]}`); // 게시물 설명
-            $(".upload-button>button").attr("onclick", "videoModify("+`${response["id"]}`+")");
+            $("#modify-title").text(response["title"]); // 제목
+            $(".upload-content>textarea").text(response["content"]); // 게시물 설명
+            $(".upload-button>button").attr("onclick", "videoModify("+response["id"]+")");
         }
     })
 }
@@ -75,7 +74,7 @@ function videoModify(id) {
 
     let formData = new FormData();
 
-    formData.append("sideData", new Blob([JSON.stringify(data)], {type: "application/json"}));
+    formData.append("updateData", new Blob([JSON.stringify(data)], {type: "application/json"}));
     formData.append("thumbnail", thumbnail[0]);
 
     //ajax 를 통해 controller 와 연결
@@ -85,7 +84,7 @@ function videoModify(id) {
         contentType: false,
         processData: false,
         data: formData,
-        headers: {"X-AUTH-TOKEN": cookie},
+        headers: {"Authorization": token},
         success: function (result) {
             console.log(result);
             alert("수정 완료");
@@ -103,7 +102,7 @@ function videoDelete(id) {
             url: host + '/tenSeconds/video/'+id,
             contentType: false,
             processData: false,
-            headers: {"X-AUTH-TOKEN": cookie},
+            headers: {"Authorization": token},
             success: function (result) {
                 alert("삭제 완료");
                 window.location.href = my_record_main_page;

@@ -1,35 +1,29 @@
-$(document).ready(function(){
-    getMyList(1);
-});
-
-
 // 내 게시글 전체 조회
 function getMyList(currentNumber) {
     $.ajax({
         type: "GET",
         url: host+`/mypage/${currentNumber}`,
-        headers: {"X-AUTH-TOKEN": cookie},
+        headers: {"Authorization": token},
         success: function (response) {
             // alert("getList 동작시작");
-            let videoList = `${response["videoList"]}`;
-            let boardList = `${response["boardList"]}`;
+            let content = response["content"];
+            let registryList = content[0];
+            let videoList = content[1];
 
-            let startPage = `${response["startPage"]}`;
-            let endPage = `${response["endPage"]}`; // 마지막 페이지 번호
-            let prev = `${response["prev"]}`; // 이전 버튼
-            let next = `${response["next"]}`; // 다음 버튼
+            let startPage = response["startPage"];
+            let endPage = response["endPage"]; // 마지막 페이지 번호
+            let prev = response["prev"]; // 이전 버튼
+            let next = response["next"]; // 다음 버튼
+            let boardContainer = $(".board-container");
+            let videoContainer = $(".video-container");
 
-            $(".video-container").empty();
-            $(".board-container").empty();
-
-            for (let i=0; i<videoList.length; i++) {
-                myVideoPost(videoList[i], i);
-            }
+            videoContainer.empty();
+            boardContainer.empty();
 
             // 메인화면 게시글 표시
-            for (let i = 0; i < boardList.length; i++) {
-                let title = boardList[i].title;
-                let idx = boardList[i].idx;
+            for (let i = 0; i < registryList.length; i++) {
+                let title = registryList[i].title;
+                let idx = registryList[i].idx;
 
                 let tempHtml = `<div class="board-item-box">
                                     <div class="board-delete-box">
@@ -40,31 +34,33 @@ function getMyList(currentNumber) {
                                     </div>
                                 </div>`;
 
-                $(".board-container").append(tempHtml);
+                boardContainer.append(tempHtml);
+            }
+
+            for (let i=0; i<videoList.length; i++) {
+                let id = videoList[i].id;
+                let title = videoList[i].title;
+                let s3ThumbnailUrl = videoList[i].s3ThumbnailUrl;
+
+                let tempHtml = `<div class="video-item" id=${i}>
+                        <div class="video-delete-box">
+                            <button class="video-config-button video-modify-button" title="수정" onclick="modifyLink(${id})"></button>
+                            <button class="video-config-button video-delete-button" title="삭제" onclick="videoDelete(${id})"></button>
+                        </div>
+                        <div class="video-thumbnail" onclick="videoModal(${id})">
+                            <img src="${s3ThumbnailUrl}">
+                        </div>
+                        <div class="video-title" onclick="videoModal(${id}})">
+                            <a class="title" href="#">${title}</a>
+                        </div>
+                    </div>`;
+                videoContainer.append(tempHtml);
             }
 
             myPagination(currentNumber, startPage, endPage, prev, next);
         }
     })
 }
-
-// 게시글 코드
-function myVideoPost(article, index) {
-    let tempHtml = `<div class="video-item" id="${index}">
-                        <div class="video-delete-box">
-                            <button class="video-config-button video-modify-button" title="수정" onclick="modifyLink(${article["id"]})"></button>
-                            <button class="video-config-button video-delete-button" title="삭제" onclick="videoDelete(${article["id"]})"></button>
-                        </div>
-                        <div class="video-thumbnail" onclick="videoModal(${article["id"]})">
-                            <img src="${"files/" + "thumb_" + article["uuid"] +".jpg"}" alt=${"video"+article["id"]+"_thumbnail"}>
-                        </div>
-                        <div class="video-title" onclick="videoModal(${article["id"]})">
-                            <a class="title" href="#">${article["title"]}</a>
-                        </div>
-                    </div>`;
-    $(".video-container").append(tempHtml);
-}
-
 
 // 페이지 버튼
 function myPagination(currentNumber, startPage, endPage, prev, next) {
@@ -84,7 +80,7 @@ function myPagination(currentNumber, startPage, endPage, prev, next) {
         }
     }
 
-    // 다음 페이지가 있다면 < 표시
+    // 다음 페이지가 있다면 > 표시
     if (next) {
         tempHtml += `<div><a href="#" onclick="nextClick(${currentNumber})">&gt;</a></div>`;
     }

@@ -6,10 +6,11 @@ function saveArticle() {
 
     $.ajax({
         type: "POST",
-        url: `/registry`,
+        url: host + `/registry`,
         data: form_data,
         contentType: false,
         processData: false,
+        headers: {"Authorization": token},
         success: function (response) {
             alert("성공적으로 업로드 되었습니다.");
             window.location.href = my_record_main_page; // 페이지 변환
@@ -26,7 +27,7 @@ function articleDelete(id) {
             url: host + '/registry/'+id,
             contentType: false,
             processData: false,
-            headers: {"X-AUTH-TOKEN": cookie},
+            headers: {"Authorization": token},
             success: function (result) {
                 alert("삭제 완료");
                 window.location.href = my_record_main_page;

@@ -1,8 +1,3 @@
-$(document).ready(function () {
-    mainRegistry(1);
-    sideRegistry();
-});
-
 // board 모달 열기
 function boardModal(idx) {
     allRegistry(idx);
@@ -18,15 +13,14 @@ function mainRegistry(curpage) {
         headers: {"Authorization": token},
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            console.log("registryPaging response : " + JSON.stringify(response));
             let list = response["content"]; // 게시물 리스트
-
-            let startPage = response["startPage"]; // 시작 페이지 번호
+            let startPage = response["startPage"];
             let endPage = response["endPage"]; // 마지막 페이지 번호
             let prev = response["prev"]; // 이전 버튼
             let next = response["next"]; // 다음 버튼
+            let boardContainer = $(".board-container");
 
-            $(".board-container").empty(); // 게시글 초기화
+            boardContainer.empty(); // 게시글 초기화
 
             // 메인화면 게시글 표시
             for (let i = 0; i < list.length; i++) {
@@ -34,10 +28,10 @@ function mainRegistry(curpage) {
                 let idx = list[i].idx;
 
                 let tempHtml = `<div class="board-item adme-scale-animation" onclick="boardModal(${idx})">
-                        <div class="board" >${title}</div>
-                    </div>`;
+                                    <div class="board" >${title}</div>
+                                </div>`;
 
-                $(".board-container").append(tempHtml);
+                boardContainer.append(tempHtml);
             }
             makePagination(curpage, startPage, endPage, prev, next); // 아래 하단 페이징
         }
@@ -54,7 +48,10 @@ function sideRegistry() {
         contentType: false,
         processData: false,
         success: function (response) {
-            console.log("side-registry : " + JSON.stringify(response))
+            console.log(JSON.stringify(response))
+            let sideBoardBox = $(".side-board-box");
+            sideBoardBox.empty();
+
             switch (response.length) {
                 case 0 :
                     $(".side-board-mark").text("It has become a world where everyone can empathize!");
@@ -67,7 +64,7 @@ function sideRegistry() {
                         let temp = `<div class="side-board-item adme-scale-animation" onclick="boardModal(${idx})">
                                         <div class="side-board-item-title">${title}</div>
                                     </div>`
-                        $(".side-board-box").append(temp)
+                        sideBoardBox.append(temp)
                     }
             }
         }
@@ -111,7 +108,7 @@ function nextClick(curpage) {
 function allRegistry(idx) {
     $.ajax({
         type: "GET",
-        url: `/registry?idx=${idx}`,
+        url: host + `/registry?idx=${idx}`,
         headers: {"Authorization": token},
         data: {},
         contentType: false,
@@ -133,7 +130,7 @@ function allRegistry(idx) {
             $(".board-content>textarea").text(main);
 
             // onclick 의 값이 잘 변경 되는지 체크
-            $(".board-comment-save").attr("onclick()", "comment(" + idx + ")");
+            $(".board-comment-save").attr("onclick","comment("+idx+")");
 
             findComment(idx);
         }
@@ -142,15 +139,15 @@ function allRegistry(idx) {
 
 // 댓글 등록하기
 function comment(idx) {
-    let saveComment = $('.board-comment-writing-container>textarea').val();
-
-    let form_data = new FormData();
-    form_data.append("comment", saveComment);
-    form_data.append("registryIdx", idx);
+    let form_data = {
+        "nickname" : nickname,
+        "comment" : $('.board-comment-writing-container>textarea').val(),
+        "registryIdx" : idx
+    }
 
     $.ajax({
         type: "POST",
-        url: `/comment`,
+        url: host + `/comment`,
         headers: {"Authorization": token},
         data: form_data,
         contentType: false,
@@ -266,7 +263,7 @@ function afterUpdateComment(commentId, registryId) {  // 저장 버튼을 누르
 
     $.ajax({
         type: "PUT",
-        url: `/comment/${commentId}`,
+        url: host + `/comment/${commentId}`,
         headers: {"Authorization": token},
         dataType: 'json',
         data: JSON.stringify(RegistryComment),
@@ -288,7 +285,7 @@ function checkDelete(commentId, registryId) { // 삭제 여부를 묻고 삭제�
 function deleteComment(commentId, registryId) {
     $.ajax({
         type: "DELETE",
-        url: `/comment/${commentId}`,
+        url: host + `/comment/${commentId}`,
         headers: {"Authorization": token},
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',

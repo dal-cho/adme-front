@@ -1,14 +1,18 @@
 $(document).ready(function(){
+    $(".nickname").text(nickname);
+
     navLink();
-    userInfo();
+    indexPageInit();
+    loadPage();
 });
 
 // html 파일 경로값
 let host = "http://localhost:8080";
-let index_page = "everyone-record-main.html";
-let everyone_record_main_page = "everyone-record.html";
+let login_page = "login.html";
+let index_page = "everyone-record.html";
 let everyone_record_upload_page = "everyone-record-upload.html";
 let everyone_record_modify_page = "everyone-record-modify.html";
+let everyone_record_main_page = "everyone-record.html";
 let registry_main_page = "registry.html";
 let registry_upload_page = "registry-upload.html";
 let my_record_main_page = "my-record.html";
@@ -17,17 +21,21 @@ let my_record_main_page = "my-record.html";
 let token = localStorage.getItem('token');
 let nickname = localStorage.getItem('nickname');
 
-// 쿠키값
-let cookie = getCookie("TokenCookie");
-
 // 모달 닫기위한 위치값
 let video_modal = document.getElementById("modal");
 let registry_modal = document.getElementById("board-Modal");
 
 // 기타 변수
 let showCommentId;
-//let nickname = "";
 
+// 요일별 index_page 변경
+function indexPageInit() {
+    let today = new Date();
+    let day = today.getDay();  // 요일
+    if(day%2 === 0) {
+        index_page = "registry.html";
+    }
+}
 
 // 네비게이션바 경로 설정
 function navLink() {
@@ -52,6 +60,17 @@ function boardUploadLink() {
     document.location.href = registry_upload_page;
 }
 
+// 각 페이지 클릭시 리스트 가져오기
+function loadPage() {
+    if (window.location.pathname.includes(everyone_record_main_page)) {
+        getList(1);
+    }else if(window.location.pathname.includes(registry_main_page)) {
+        mainRegistry(1);
+        needComment();
+    }else if(window.location.pathname.includes(my_record_main_page)) {
+        getMyList(1);
+    }
+}
 
 // 모달 바깥 클릭시 닫기
 window.onclick = function(event) {
@@ -81,46 +100,13 @@ function boardClose() {
     }
 }
 
-
-// 메소드
-function getCookie(key) {
-    let cookieKey = key +"=";
-    let result = "";
-    let cookieArr = document.cookie.split(";");
-
-    for (let i=0; i<cookieArr.length; i++){
-        if (cookieArr[i][0] === " "){
-            cookieArr[i] = cookieArr[i].substring(1);
-        }
-        if(cookieArr[i].indexOf(cookieKey) === 0) {
-            result = cookieArr[i].slice(cookieKey.length, cookieArr[i].length);
-            return result;
-        }
-    }
-    return result;
-}
-
-// user 정보 조회
-function userInfo() {
-    console.log("[userInfo] Get UserInfo");
-    $.ajax({
-        type: "GET",
-        url: host + '/user',
-        headers: {"Authorization": token},
-        success: function (response) {
-            console.log(response);
-            nickname = `${response["nickname"]}`;
-            $(".nickname").text(`${response["nickname"]}`);
-        }
-    })
-}
-
 // logout
 function logout() {
     $.ajax({
         type: "GET",
         url: host + '/user/logout',
         success: function () {
+            localStorage.clear();
         }
     })
     window.location.replace(login_page);

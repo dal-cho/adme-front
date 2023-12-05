@@ -20,25 +20,20 @@
     <div class="login-box">
       <div class="sign-title adme-font">Login</div>
       <div class="sign-link-box">
-        <a href="../login.html" class="sign-link adme-font">Sign Up</a>
+        <a href="signup.html" class="sign-link adme-font">Sign Up</a>
       </div>
       <input type="text" class="login-id sign-text-box" placeholder="ID">
       <input type="password" class="login-password sign-text-box" placeholder="PASSWORD">
-      <button class="login-button sign-button" onclick="signin()"> LOGIN </button>
+      <button class="login-button sign-button" onclick="signIn()"> LOGIN </button>
+
+      <div class="social-login-form">
+        <div class="social-login-title"> Social Login </div>
+        <div class="social-link">
+          <a href="/oauth2/authorization/kakao" class="social-font social-font-kakao adme-font2" >kakao</a>
+          <a href="/oauth2/authorization/google" class="social-font social-font-google adme-font2">Google</a>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div id="login-form">
-    <div id="login-title">social login</div>
-
-    <br><br>
-
-    <a href="/oauth2/authorization/kakao" >Kakao Login</a>
-
-    <br><br>
-
-    <a href="/oauth2/authorization/google" >Google Login</a>
-
   </div>
 </div>
 <script src="../js/sign.js"></script>
