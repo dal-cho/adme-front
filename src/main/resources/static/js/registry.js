@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    getArticle(1);
-    needComment();
+    mainRegistry(1);
+    sideRegistry();
 });
 
 // board 모달 열기
@@ -11,19 +11,20 @@ function boardModal(idx) {
 }
 
 // 작성 글 페이징
-function getArticle(curpage) {
+function mainRegistry(curpage) {
     $.ajax({
         type: "GET",
-        url: `space/${curpage}`,
+        url: host + `/registry/${curpage}`,
         headers: {"Authorization": token},
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            let list = response.boardList; // 게시물 리스트
+            console.log("registryPaging response : " + JSON.stringify(response));
+            let list = response["content"]; // 게시물 리스트
 
-            let startPage = response.startPage; // 시작 페이지 번호
-            let endPage = response.endPage; // 마지막 페이지 번호
-            let prev = response.prev; // 이전 버튼
-            let next = response.next; // 다음 버튼
+            let startPage = response["startPage"]; // 시작 페이지 번호
+            let endPage = response["endPage"]; // 마지막 페이지 번호
+            let prev = response["prev"]; // 이전 버튼
+            let next = response["next"]; // 다음 버튼
 
             $(".board-container").empty(); // 게시글 초기화
 
@@ -44,15 +45,16 @@ function getArticle(curpage) {
 }
 
 // 공감이 필요해요
-function needComment() {
+function sideRegistry() {
     $.ajax({
         type: "GET",
-        url: `/needComment`,
+        url: host + `/side-registry`,
         headers: {"Authorization": token},
         data: {},
         contentType: false,
         processData: false,
         success: function (response) {
+            console.log("side-registry : " + JSON.stringify(response))
             switch (response.length) {
                 case 0 :
                     $(".side-board-mark").text("It has become a world where everyone can empathize!");
@@ -85,7 +87,7 @@ function makePagination(curpage, startPage, endPage, prev, next) {
         if (curpage === i) {
             tempHtml += `<div><a href="#">${i}</a></div>`;
         } else {
-            tempHtml += `<div><a href="#" onclick="getArticle(${i})">${i}</a></div>`;
+            tempHtml += `<div><a href="#" onclick="mainRegistry(${i})">${i}</a></div>`;
         }
     }
 
@@ -98,11 +100,11 @@ function makePagination(curpage, startPage, endPage, prev, next) {
 }
 
 function beforeClick(curpage) {
-    getArticle(curpage - 1);
+    mainRegistry(curpage - 1);
 }
 
 function nextClick(curpage) {
-    getArticle(curpage + 1);
+    mainRegistry(curpage + 1);
 }
 
 // 게시글 상세 페이지
@@ -131,7 +133,7 @@ function allRegistry(idx) {
             $(".board-content>textarea").text(main);
 
             // onclick 의 값이 잘 변경 되는지 체크
-            $(".board-comment-save").attr("onclick()","comment("+idx+")");
+            $(".board-comment-save").attr("onclick()", "comment(" + idx + ")");
 
             findComment(idx);
         }
@@ -143,7 +145,7 @@ function comment(idx) {
     let saveComment = $('.board-comment-writing-container>textarea').val();
 
     let form_data = new FormData();
-    form_data.append("comment",saveComment);
+    form_data.append("comment", saveComment);
     form_data.append("registryIdx", idx);
 
     $.ajax({
@@ -166,7 +168,7 @@ function findComment(idx) { // comment db 가져오기
 
     $.ajax({
         type: "GET",
-        url: `/comment?idx=${idx}`,
+        url: host + `/comment?idx=${idx}`,
         headers: {"Authorization": token},
         data: {},
         contentType: false,
@@ -180,7 +182,7 @@ function findComment(idx) { // comment db 가져오기
 }
 
 // 댓글 post
-function commentPost(article, registryIdx){
+function commentPost(article, registryIdx) {
     let commentId = article["commentId"];
     let commentNickname = article["commentNickname"];
     let comment = article["comment"];
@@ -191,7 +193,7 @@ function commentPost(article, registryIdx){
     if (registryNickname === commentNickname) { // 게시글 작성자인 경우
         if (nickname === commentNickname) { // 댓글 작성자인 경우
             temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
-                         <div class="board-comment-left-item" id="${"commentId-"+commentId}">
+                         <div class="board-comment-left-item" id="${"commentId-" + commentId}">
                              <div class="board-comments-userNickname">&#9989; ${commentNickname}</div>
                              <div class="board-comments-item-date">${date}</div>
                              <div class="board-comment">${comment}</div>
@@ -202,10 +204,9 @@ function commentPost(article, registryIdx){
                              <button class="board-comment-save board-comment-modify" onclick="updateCommentBtn(${commentId})">Modify</button>
                              <button class="board-comment-save board-comment-modify-save" onclick="afterUpdateComment(${commentId}, ${registryIdx})">SAVE</button>
                          </div>`
-        }
-        else { // 댓글 작성자가 아닌 경우
+        } else { // 댓글 작성자가 아닌 경우
             temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
-                         <div class="board-comment-left-item" id="${"commentId-"+commentId}">
+                         <div class="board-comment-left-item" id="${"commentId-" + commentId}">
                              <div class="board-comments-userNickname">${commentNickname}</div>
                              <div class="board-comments-item-date">${date}</div>
                              <div class="board-comment">${comment}</div>
@@ -214,7 +215,7 @@ function commentPost(article, registryIdx){
     } else { // 게시글 작성자가 아닌 경우
         if (nickname === commentNickname) { // 댓글 작성자인 경우
             temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
-                         <div class="board-comment-left-item" id="${"commentId-"+commentId}">
+                         <div class="board-comment-left-item" id="${"commentId-" + commentId}">
                              <div class="board-comments-userNickname">${commentNickname}</div>
                              <div class="board-comments-item-date">${date}</div>
                              <div class="board-comment">${comment}</div>
@@ -225,10 +226,9 @@ function commentPost(article, registryIdx){
                              <button class="board-comment-save board-comment-modify" onclick="updateCommentBtn(${commentId})">Modify</button>
                              <button class="board-comment-save board-comment-modify-save" onclick="afterUpdateComment(${commentId}, ${registryIdx})">SAVE</button>
                          </div>`
-        }
-        else { // 댓글 작성자가 아닌 경우
+        } else { // 댓글 작성자가 아닌 경우
             temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
-                         <div class="board-comment-left-item" id="${"commentId-"+commentId}">
+                         <div class="board-comment-left-item" id="${"commentId-" + commentId}">
                              <div class="board-comments-userNickname">${commentNickname}</div>
                              <div class="board-comments-item-date">${date}</div>
                              <div class="board-comment">${comment}</div>
@@ -243,25 +243,25 @@ function commentPost(article, registryIdx){
 function updateCommentBtn(commentId) {
     showCommentId = commentId;
     let parents = '#commentId-' + commentId;
-    let tempComment = $(parents+'>.board-comment-left-item>.board-comment').text();
+    let tempComment = $(parents + '>.board-comment-left-item>.board-comment').text();
 
-    $(parents+ '>.board-comment-left-item>.board-comment').hide(); // 댓글 div none
-    $(parents+ '>.board-comment-left-item>textarea').val(tempComment);
-    $(parents+ '>.board-comment-left-item>.board-comment-modify-box').show(); // 수정 입력창 block
+    $(parents + '>.board-comment-left-item>.board-comment').hide(); // 댓글 div none
+    $(parents + '>.board-comment-left-item>textarea').val(tempComment);
+    $(parents + '>.board-comment-left-item>.board-comment-modify-box').show(); // 수정 입력창 block
 
-    $(parents+ '>.board-comment-right-item>.board-comment-modify').hide(); // 수정버튼 none
-    $(parents+ '>.board-comment-right-item>.board-comment-modify-save').show(); // 저장버튼 block
+    $(parents + '>.board-comment-right-item>.board-comment-modify').hide(); // 수정버튼 none
+    $(parents + '>.board-comment-right-item>.board-comment-modify-save').show(); // 저장버튼 block
 }
 
 // 수정된 댓글 저장
 function afterUpdateComment(commentId, registryId) {  // 저장 버튼을 누르면 그 값이 원래 값 대신 들어가야 함
-    let parents = '#commentId-'+commentId;
-    let saveComment = $(parents+ '>.board-comment-left-item>textarea').val();
+    let parents = '#commentId-' + commentId;
+    let saveComment = $(parents + '>.board-comment-left-item>textarea').val();
 
     let RegistryComment = { // 수정
         nickname: nickname,
         comment: saveComment,
-        registryId : registryId
+        registryId: registryId
     }
 
     $.ajax({
@@ -300,11 +300,11 @@ function deleteComment(commentId, registryId) {
 
 // 댓글 수정 저장버튼 비활성화 & 수정버튼 활성화
 function hideCommentSave(id) {
-    let parents = '#commentId-'+id;
+    let parents = '#commentId-' + id;
 
-    $(parents+ '>.board-comment-left-item>.board-comment').show();
-    $(parents+ '>.board-comment-left-item>.board-comment-modify-box').hide();
+    $(parents + '>.board-comment-left-item>.board-comment').show();
+    $(parents + '>.board-comment-left-item>.board-comment-modify-box').hide();
 
-    $(parents+ '>.board-comment-right-item>.board-comment-modify').show(); // 수정버튼 none
-    $(parents+ '>.board-comment-right-item>.board-comment-modify-save').hide(); // 저장버튼 block
+    $(parents + '>.board-comment-right-item>.board-comment-modify').show(); // 수정버튼 none
+    $(parents + '>.board-comment-right-item>.board-comment-modify-save').hide(); // 저장버튼 block
 }
