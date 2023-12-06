@@ -25,13 +25,13 @@
     width: 30vw;
     height: 17vw;
 
-    top: 35%;
+    top: 34%;
     left: 50%;
     transform: translate(-50%, 0%); /*중앙으로 잡아주면 box 의 앞부분 기준으로 box 의 절반만큼 위치 보정*/
 }
 .login-box {
     width: 28vw;
-    height: 14.5vw;
+    height: 19vw;
 
     border: .4vw solid #525252;
     border-radius: 1vw;
@@ -103,6 +103,7 @@
 }
 .sign-button {
     margin-top: 1.2vw;
+    margin-bottom: 1.2vw;
     height: 2.5vw;
 
     border: .2vw solid #525252;
@@ -135,4 +136,30 @@
     color: #FF5C4B;
     font-size: 0.5vw;
     margin-left: 1vw;
+}
+.social-login-form {
+    margin: auto;
+}
+.social-login-title {
+    width: 13vw;
+    font-size: 1vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: .5vw;
+}
+.social-font {
+    font-size: 1.3vw;
+    text-decoration-line: none;
+}
+.social-font-kakao{
+    letter-spacing: 1px;
+    text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
+    color: #eacb4e;
+}
+.social-font-google{
+    color: #3b3b3b;
+}
+.social-link {
+    display: flex;
+    justify-content: space-evenly;
 }

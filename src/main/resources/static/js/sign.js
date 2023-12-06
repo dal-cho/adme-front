@@ -3,6 +3,9 @@ $(document).ready(function(){
     $(".signup-password-confirm").on('focus keyup', function () { checkConfirm() });
 });
 
+let adminCheck = false;
+let adminToken = "";
+
 function signup() {
     let nickname = $(".signup-id").val();
     let password = $(".signup-password").val();
@@ -13,7 +16,9 @@ function signup() {
         'nickname' : nickname,
         'password' : password,
         'name' : name,
-        'email' : email
+        'email' : email,
+        'admin' : adminCheck,
+        'adminToken' : adminToken
     }
 
     $.ajax({
@@ -23,13 +28,21 @@ function signup() {
         contentType: "application/json; charset=utf-8",
         processData: false,
         success: function (response) {
-            alert("회원가입이 완료되었습니다.")
-            window.location.replace(login_page);
+            if(`${response["code"]}` === "1") {
+                alert("회원가입이 완료되었습니다.")
+                window.location.replace(login_page);
+            } else if (`${response["code"]}` === "460") {
+                console.log(`${response["code"]}`)
+                alert("이메일 및 비밀번호 형식을 확인해주세요.")
+            } else if (`${response["code"]}` === "-1") {
+                console.log(`${response["code"]}`)
+                alert("서버에 오류가 있어 사이트를 이용할 수 없습니다.")
+            }
         }
     });
 }
 
-function signin() {
+function signIn() {
     let nickname = $(".login-id").val();
     let password = $(".login-password").val();
 
@@ -43,7 +56,7 @@ function signin() {
         processData: false,
         success: function (response) {
             alert("로그인이 완료되었습니다.")
-            document.cookie = "TokenCookie" + "=" + `${response["token"]}`;
+            window.localStorage.setItem("token", `${response["token"]}`)
             window.location.replace(index_page);
         }
     });
@@ -51,14 +64,18 @@ function signin() {
 
 function checkHidden() {
     let nickname = $(".signup-id").val();
-    if ( nickname === "ADME" ){
+    if (nickname === "ADME") {
         $(".token-label").css("display", "block");
         $(".signup-admin-token").css("display", "block");
         $(".signup-box").css("height", "35.3vw");
+        adminCheck = true;
+        adminToken = $(".signup-admin-token").val()
     } else {
         $(".token-label").css("display", "none");
-        $(".signup-admin-token").css("display", "none");
+        $(".signup-admin-token").val("").css("display", "none");
         $(".signup-box").css("height", "31.5vw");
+        adminCheck = false;
+        adminToken = "";
     }
 }
 

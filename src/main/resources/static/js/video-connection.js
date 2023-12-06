@@ -1,20 +1,16 @@
-$(document).ready(function(){
-    getList(1);
-});
-
 // video 12개 조회
 function getList(currentNumber) {
     console.log("getList");
     $.ajax({
         type: "GET",
         url: host + `/tenSeconds/list/${currentNumber}`,
+        headers: {"Authorization": token},
         success: function (response) {
-            let list = `${response["videoList"]}`;
-
-            let startPage = `${response["startPage"]}`;
-            let endPage = `${response["endPage"]}`; // 마지막 페이지 번호
-            let prev = `${response["prev"]}`; // 이전 버튼
-            let next = `${response["next"]}`; // 다음 버튼
+            let list = response["content"];
+            let startPage = response["startPage"];
+            let endPage = response["endPage"]; // 마지막 페이지 번호
+            let prev = response["prev"]; // 이전 버튼
+            let next = response["next"]; // 다음 버튼
 
             $(".video-container").empty();
 
@@ -30,7 +26,7 @@ function getList(currentNumber) {
 function videoListPost(article, index) {
     let tempHtml = `<div class="video-item" id="${index}">
                         <div class="video-thumbnail adme-scale-animation" onclick="videoModal(${article["id"]})">
-                            <img src="${"files/" + "thumb_" + article["uuid"] +".jpg"}" alt=${"video"+article["id"]+"_thumbnail"}>
+                            <img src="${article["s3ThumbnailUrl"]}" alt=${"video"+article["id"]+"_thumbnail"}>
                         </div>
                         <div class="video-title" onclick="videoModal(${article["id"]})">
                             <a class="title" href="#">${article["title"]}</a>
@@ -78,30 +74,30 @@ function videoModal(id) {
     $(".modal-content").fadeIn(100);
     $(".modal-container").fadeIn(100);
 }
+
 // 모달 활성화 및 아이템 설정
 function showModal(id) {
     $.ajax({
         type: "GET",
         url: host + '/tenSeconds/video/'+id,
-        headers: {"X-AUTH-TOKEN": cookie},
+        headers: {"Authorization": token},
         success: function (response) {
-            let title = response['title'];
             let videoId = response['id'];
-            let videoPath = response['uploadPath'] + response['uuid'] + ".mp4";
-            let nickname = response['nickname'];
-            let date = response['videoDate'];
+            let title = response['title'];
             let content = response['content'];
+            let videoPath = response['s3TenVideoUrl'];
+            let date = response['videoDate'];
+            let nickname = response['nickname'];
+            let modalVideo = $(".modal-video");
 
+            modalVideo.attr("src", videoPath);
+            modalVideo.attr("id", videoId).get(0).play();
             $(".modal-title").text(title);
-            $(".modal-video").attr("id", videoId).get(0).play();
-            $(".modal-video>source").attr("src", videoPath);
             $(".content-nickname").text(nickname);
             $(".content-date").text(date.split("T")[0].replaceAll("-","."));
             $(".video-content>textarea").text(content);
 
             $(".video-modify-button").attr("onclick", "modifyLink("+videoId+")");
-
-            // $(".modal-video").get(0).play();
         }
     });
 }
