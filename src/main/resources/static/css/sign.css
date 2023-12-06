@@ -5,7 +5,7 @@
     left: 50%;
     transform: translate(-50%, 0%); /*중앙으로 잡아주면 box 의 앞부분 기준으로 box 의 절반만큼 위치 보정*/
 
-    font-family: Modak; /*폰트 설정*/
+    font-family: adme, serif; /*폰트 설정*/
     font-size: 4vw;
     color: whitesmoke;
 }
@@ -148,16 +148,16 @@
     margin-bottom: .5vw;
 }
 .social-font {
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     text-decoration-line: none;
 }
 .social-font-kakao{
-    letter-spacing: 1px;
+    letter-spacing: .2vw;
     text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
     color: #eacb4e;
 }
 .social-font-google{
-    color: #3b3b3b;
+    color: #494949;
 }
 .social-link {
     display: flex;

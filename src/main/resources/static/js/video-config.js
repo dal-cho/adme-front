@@ -53,12 +53,12 @@ function getModifyInfo(id) {
         url: host + '/tenSeconds/video/'+id,
         headers: {"Authorization": token},
         success: function (response) {
-            console.log(response);
-            $("#modify-title").text(response["title"]); // 제목
+            console.log(response['title']);
+            $(".modify-title").val(response["title"]); // 제목
             $(".upload-content>textarea").text(response["content"]); // 게시물 설명
             $(".upload-button>button").attr("onclick", "videoModify("+response["id"]+")");
         }
-    })
+    });
 }
 
 // video 게시글 수정

@@ -26,7 +26,7 @@ function getList(currentNumber) {
 function videoListPost(article, index) {
     let tempHtml = `<div class="video-item" id="${index}">
                         <div class="video-thumbnail adme-scale-animation" onclick="videoModal(${article["id"]})">
-                            <img src="${article["s3ThumbnailUrl"]}" alt=${"video"+article["id"]+"_thumbnail"}>
+                            <img class="video-thumbnail-ratio" src="${article["s3ThumbnailUrl"]}" alt=${"video"+article["id"]+"_thumbnail"}>
                         </div>
                         <div class="video-title" onclick="videoModal(${article["id"]})">
                             <a class="title" href="#">${article["title"]}</a>

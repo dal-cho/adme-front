@@ -1,10 +1,23 @@
 /* 로고 설정 */
+@font-face {
+    font-family: 'adme';
+    font-style: normal;
+    font-weight: auto;
+    src: local(Modak-Regular), url("../fonts/Modak-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'HakgyoansimGaeulsopungB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimGaeulsopungB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
 .logo {
     position: absolute; /*절대위치 설정*/
     top: 2.5vw;
     left: 6.5vw;
 
-    font-family: Modak; /*폰트 설정*/
+    font-family: adme, serif; /*폰트 설정*/
     font-size: 4vw;
     color: whitesmoke;
 }
@@ -32,8 +45,8 @@
     transform: scale(1.05);
 }
 .adme-font {
-    font-family: "LingWai SC";
+    font-family: "HakgyoansimGaeulsopungB", sans-serif;
 }
 .adme-font2 {
-    font-family: "Futura";
+    font-family: "adme", serif;
 }

@@ -48,7 +48,7 @@ function getMyList(currentNumber) {
                             <button class="video-config-button video-delete-button" title="삭제" onclick="videoDelete(${id})"></button>
                         </div>
                         <div class="video-thumbnail" onclick="videoModal(${id})">
-                            <img src="${s3ThumbnailUrl}">
+                            <img src="${s3ThumbnailUrl}" class="video-thumbnail-ratio" alt="video+${i}+_thumbnail">
                         </div>
                         <div class="video-title" onclick="videoModal(${id}})">
                             <a class="title" href="#">${title}</a>

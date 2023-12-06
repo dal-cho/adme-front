@@ -56,7 +56,9 @@ function signIn() {
         processData: false,
         success: function (response) {
             alert("로그인이 완료되었습니다.")
-            window.localStorage.setItem("token", `${response["token"]}`)
+            console.log(JSON.stringify(response))
+            window.localStorage.setItem("token", response["token"])
+            window.localStorage.setItem("nickname", response["username"])
             window.location.replace(index_page);
         }
     });
@@ -64,12 +66,14 @@ function signIn() {
 
 function checkHidden() {
     let nickname = $(".signup-id").val();
+    let signupAdminToken = $(".signup-admin-token");
+
     if (nickname === "ADME") {
         $(".token-label").css("display", "block");
-        $(".signup-admin-token").css("display", "block");
+        signupAdminToken.css("display", "block");
         $(".signup-box").css("height", "35.3vw");
         adminCheck = true;
-        adminToken = $(".signup-admin-token").val()
+        adminToken = signupAdminToken.val()
     } else {
         $(".token-label").css("display", "none");
         $(".signup-admin-token").val("").css("display", "none");
