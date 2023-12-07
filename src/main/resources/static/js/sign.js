@@ -56,7 +56,6 @@ function signIn() {
         processData: false,
         success: function (response) {
             alert("로그인이 완료되었습니다.")
-            console.log(JSON.stringify(response))
             window.localStorage.setItem("token", response["token"])
             window.localStorage.setItem("nickname", response["username"])
             window.location.replace(index_page);

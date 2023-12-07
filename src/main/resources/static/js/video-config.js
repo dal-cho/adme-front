@@ -28,7 +28,6 @@ function videoUpload() {
         data: formData,
         headers: {"Authorization": token},
         success: function (result) {
-            console.log(result);
             alert("업로드 완료");
             window.location.href = my_record_main_page;
         }
@@ -53,7 +52,6 @@ function getModifyInfo(id) {
         url: host + '/tenSeconds/video/'+id,
         headers: {"Authorization": token},
         success: function (response) {
-            console.log(response['title']);
             $(".modify-title").val(response["title"]); // 제목
             $(".upload-content>textarea").text(response["content"]); // 게시물 설명
             $(".upload-button>button").attr("onclick", "videoModify("+response["id"]+")");
@@ -86,7 +84,6 @@ function videoModify(id) {
         data: formData,
         headers: {"Authorization": token},
         success: function (result) {
-            console.log(result);
             alert("수정 완료");
             window.location.href = my_record_main_page;
         }

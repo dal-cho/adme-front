@@ -42,7 +42,7 @@ function mainRegistry(curpage) {
 function sideRegistry() {
     $.ajax({
         type: "GET",
-        url: host + `/needComment`,
+        url: host + `/side-registry`,
         headers: {"Authorization": token},
         data: {},
         contentType: false,
@@ -105,7 +105,6 @@ function nextClick(curpage) {
 
 // 게시글 상세 페이지
 function allRegistry(idx) {
-    console.log("allRegistry")
     $.ajax({
         type: "GET",
         url: host + `/registry?idx=${idx}`,
@@ -181,8 +180,6 @@ function findComment(idx) { // comment db 가져오기
 
 // 댓글 post
 function commentPost(article, registryIdx) {
-    console.log("commentPost()");
-    console.log(article);
     let commentId = article["commentId"];
     let commentNickname = article["commentNickname"];
     let comment = article["comment"];
@@ -282,7 +279,6 @@ function afterUpdateComment(commentId, registryIdx) {  // 저장 버튼을 누�
         contentType: "application/json;charset=utf-8",
         dataType : "json",
         success: function (response) {
-            console.log("success");
             allRegistry(registryIdx);
         }
     });
@@ -293,7 +289,6 @@ function checkDelete(commentId, registryIdx) { // 삭제 여부를 묻고 삭제
     let checkDelete = confirm("정말 삭제하실건가요?");
     if (checkDelete) {
         deleteComment(commentId, registryIdx);
-        console.log("deleteComment :   ccccccccc")
         allRegistry(registryIdx);
     }
 }

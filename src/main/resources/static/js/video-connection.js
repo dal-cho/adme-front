@@ -1,6 +1,5 @@
 // video 12개 조회
 function getList(currentNumber) {
-    console.log("getList");
     $.ajax({
         type: "GET",
         url: host + `/tenSeconds/list/${currentNumber}`,
