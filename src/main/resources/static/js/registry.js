@@ -1,8 +1,8 @@
 // board 모달 열기
 function boardModal(idx) {
     allRegistry(idx);
-    $(".board-modal-container").fadeIn(100);
-    $(".board-modal-content").fadeIn(100);
+    $(".board-modal-container").fadeIn(200);
+    $(".board-modal-content").fadeIn(200);
 }
 
 // 작성 글 페이징
@@ -48,7 +48,6 @@ function sideRegistry() {
         contentType: false,
         processData: false,
         success: function (response) {
-            console.log(JSON.stringify(response))
             let sideBoardBox = $(".side-board-box");
             sideBoardBox.empty();
 
@@ -114,14 +113,14 @@ function allRegistry(idx) {
         contentType: false,
         processData: false,
         success: function (response) {
-            let created = response['createdAt']
-            let modified = response['modifiedAt']
-            let idx = response['idx']
-            let title = response['title']
-            let main = response['main']
-            let registryNickname = response['nickname']
+            let created = response['createdAt'];
+            let modified = response['modifiedAt'];
+            let idx = response['idx'];
+            let title = response['title'];
+            let main = response['main'];
+            let registryNickname = response['nickname'];
             // 0000-00-00 형식으로 출력
-            let date = new Date(modified)
+            let date = new Date(modified);
             let newcreated = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
 
             $(".board-title").html(title);
@@ -149,8 +148,9 @@ function comment(idx) {
         type: "POST",
         url: host + `/comment`,
         headers: {"Authorization": token},
-        data: form_data,
-        contentType: false,
+        data: JSON.stringify(form_data),
+        contentType: "application/json;charset=utf-8",
+        dataType : "json",
         processData: false,
         success: function (response) {
             // 댓글 입력 후 댓글 db reload
@@ -184,55 +184,65 @@ function commentPost(article, registryIdx) {
     let commentNickname = article["commentNickname"];
     let comment = article["comment"];
     let registryNickname = article["registryNickname"];
-    let date = article["modifiedAt"];
+    let modifiedAt = article["modifiedAt"];
+    let date = modifiedAt.replaceAll("T"," ").replaceAll("-",".");
     let temp_html;
 
     if (registryNickname === commentNickname) { // 게시글 작성자인 경우
         if (nickname === commentNickname) { // 댓글 작성자인 경우
-            temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
-                         <div class="board-comment-left-item" id="${"commentId-" + commentId}">
-                             <div class="board-comments-userNickname">&#9989; ${commentNickname}</div>
-                             <div class="board-comments-item-date">${date}</div>
-                             <div class="board-comment">${comment}</div>
-                             <textarea class="board-comment-modify-box"></textarea>
-                         </div>
-                         <div class="board-comment-right-item">
-                             <button class="board-comment-btn board-comment-delete" onclick="checkDelete(${commentId}, ${registryIdx})">DELETE</button>
-                             <button class="board-comment-save board-comment-modify" onclick="updateCommentBtn(${commentId})">Modify</button>
-                             <button class="board-comment-save board-comment-modify-save" onclick="afterUpdateComment(${commentId}, ${registryIdx})">SAVE</button>
+            temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+                         <div class="board-comments-item" id="${"commentId-" + commentId}">
+                            <div class="board-comment-left-item">
+                                <div class="board-comments-userNickname">&#9989; ${commentNickname}</div>
+                                <div class="board-comments-item-date">${date}</div>
+                                <div class="board-comment">${comment}</div>
+                                <textarea class="board-comment-modify-box"></textarea>
+                            </div>
+                            <div class="board-comment-right-item">
+                                <button class="board-comment-btn board-comment-delete" onclick="checkDelete(${commentId}, ${registryIdx})">DELETE</button>
+                                <button class="board-comment-btn board-comment-modify" onclick="updateCommentBtn(${commentId})">Modify</button>
+                                <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(${commentId}, ${registryIdx})">SAVE</button>
+                            </div>
                          </div>`
         } else { // 댓글 작성자가 아닌 경우
-            temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
-                         <div class="board-comment-left-item" id="${"commentId-" + commentId}">
-                             <div class="board-comments-userNickname">${commentNickname}</div>
-                             <div class="board-comments-item-date">${date}</div>
-                             <div class="board-comment">${comment}</div>
+            temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+                         <div class="board-comments-item" id="${"commentId-" + commentId}">
+                            <div class="board-comment-left-item" id="${"commentId-" + commentId}">
+                                <div class="board-comments-userNickname">${commentNickname}</div>
+                                <div class="board-comments-item-date">${date}</div>
+                                <div class="board-comment">${comment}</div>
+                            </div>
                          </div>`
         }
     } else { // 게시글 작성자가 아닌 경우
         if (nickname === commentNickname) { // 댓글 작성자인 경우
-            temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
-                         <div class="board-comment-left-item" id="${"commentId-" + commentId}">
-                             <div class="board-comments-userNickname">${commentNickname}</div>
-                             <div class="board-comments-item-date">${date}</div>
-                             <div class="board-comment">${comment}</div>
-                             <textarea class="board-comment-modify-box"></textarea>
-                         </div>
-                         <div class="board-comment-right-item">
-                             <button class="board-comment-btn board-comment-delete" onclick="checkDelete(${commentId}, ${registryIdx})">DELETE</button>
-                             <button class="board-comment-save board-comment-modify" onclick="updateCommentBtn(${commentId})">Modify</button>
-                             <button class="board-comment-save board-comment-modify-save" onclick="afterUpdateComment(${commentId}, ${registryIdx})">SAVE</button>
+            temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+                         <div class="board-comments-item" id="${"commentId-" + commentId}">
+                             <div class="board-comment-left-item">
+                                 <div class="board-comments-userNickname">${commentNickname}</div>
+                                 <div class="board-comments-item-date">${date}</div>
+                                 <div class="board-comment">${comment}</div>
+                                 <textarea class="board-comment-modify-box"></textarea>
+                             </div>
+                             <div class="board-comment-right-item">
+                                 <button class="board-comment-btn board-comment-delete" onclick="checkDelete(${commentId}, ${registryIdx})">DELETE</button>
+                                 <button class="board-comment-btn board-comment-modify" onclick="updateCommentBtn(${commentId})">Modify</button>
+                                 <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(${commentId}, ${registryIdx})">SAVE</button>
+                             </div>
                          </div>`
         } else { // 댓글 작성자가 아닌 경우
-            temp_html = `<div class="line" style="border: 1px dashed rgba(131,128,128,0.18);"></div>
-                         <div class="board-comment-left-item" id="${"commentId-" + commentId}">
-                             <div class="board-comments-userNickname">${commentNickname}</div>
-                             <div class="board-comments-item-date">${date}</div>
-                             <div class="board-comment">${comment}</div>
+            temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+                         <div class="board-comments-item" id="${"commentId-" + commentId}">
+                             <div class="board-comment-left-item">
+                                 <div class="board-comments-userNickname">${commentNickname}</div>
+                                 <div class="board-comments-item-date">${date}</div>
+                                 <div class="board-comment">${comment}</div>
+                             </div>
                          </div>`
         }
     }
-    $("#commentList").append(temp_html)
+    $(".board-comment-writing-container>textarea").val("");
+    $(".board-comments-box").append(temp_html);
 }
 
 // 댓글 수정버튼 클릭시 해당 댓글이 input 상자로 변경 ,수정 후 저장시 input 상자값 저장
@@ -251,38 +261,39 @@ function updateCommentBtn(commentId) {
 }
 
 // 수정된 댓글 저장
-function afterUpdateComment(commentId, registryId) {  // 저장 버튼을 누르면 그 값이 원래 값 대신 들어가야 함
+function afterUpdateComment(commentId, registryIdx) {  // 저장 버튼을 누르면 그 값이 원래 값 대신 들어가야 함
     let parents = '#commentId-' + commentId;
     let saveComment = $(parents + '>.board-comment-left-item>textarea').val();
 
     let RegistryComment = { // 수정
-        nickname: nickname,
-        comment: saveComment,
-        registryId: registryId
+        "nickname" : nickname,
+        "comment" : saveComment,
+        "registryIdx" : registryIdx
     }
 
     $.ajax({
         type: "PUT",
         url: host + `/comment/${commentId}`,
         headers: {"Authorization": token},
-        dataType: 'json',
         data: JSON.stringify(RegistryComment),
-        contentType: 'application/json; charset=utf-8',
+        contentType: "application/json;charset=utf-8",
+        dataType : "json",
         success: function (response) {
-            console.log("success");
+            allRegistry(registryIdx);
         }
     });
 }
 
 // 댓글 삭제
-function checkDelete(commentId, registryId) { // 삭제 여부를 묻고 삭제하겠다고 하면 deleteComment 호출
+function checkDelete(commentId, registryIdx) { // 삭제 여부를 묻고 삭제하겠다고 하면 deleteComment 호출
     let checkDelete = confirm("정말 삭제하실건가요?");
     if (checkDelete) {
-        deleteComment(commentId, registryId);
+        deleteComment(commentId, registryIdx);
+        allRegistry(registryIdx);
     }
 }
 
-function deleteComment(commentId, registryId) {
+function deleteComment(commentId, registryIdx) {
     $.ajax({
         type: "DELETE",
         url: host + `/comment/${commentId}`,
@@ -290,7 +301,6 @@ function deleteComment(commentId, registryId) {
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            findComment(registryId);
         }
     })
 }

@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $(".nickname").text(nickname);
 
-    navLink();
+    linkSetting();
     indexPageInit();
     loadPage();
 });
@@ -37,11 +37,12 @@ function indexPageInit() {
     }
 }
 
-// 네비게이션바 경로 설정
-function navLink() {
+// 네비게이션바 및 logo 경로 설정
+function linkSetting() {
     $("#my_record").attr("href", my_record_main_page);
     $("#everyone_record").attr("href", everyone_record_main_page);
     $("#empathy_space").attr("href", registry_main_page);
+    $(".logo>.logo-link").attr("href", index_page);
 }
 
 // 비디오 업로드 및 수정 페이지 경로 설정
@@ -50,8 +51,8 @@ function videoUploadLink() {
 }
 function modifyLink(id) {
     let choice = confirm("해당 게시글물을 수정 하시겠습니까?");
+    window.localStorage.setItem("modifyId",id);
     if (choice) {
-        getModifyInfo(id);
         document.location.href = everyone_record_modify_page;
     }
 }
@@ -66,9 +67,12 @@ function loadPage() {
         getList(1);
     }else if(window.location.pathname.includes(registry_main_page)) {
         mainRegistry(1);
-        needComment();
+        sideRegistry();
     }else if(window.location.pathname.includes(my_record_main_page)) {
         getMyList(1);
+    }else if(window.location.pathname.includes(everyone_record_modify_page)) {
+        let id = localStorage.getItem("modifyId");
+        getModifyInfo(id);
     }
 }
 

@@ -71,12 +71,16 @@ a {
     overflow: hidden; /*크기 초과시 숨김*/
     cursor: pointer; /*마우스 올려놓으면 포인터로 변경*/
 }
+.video-thumbnail-ratio {
+    width: 102%;
+}
 .video-title {
     /*border: 1px solid black;*/
     width: 11.5vw;
     height: 2.5vw;
     margin: auto;
     padding-top: 0.5vw;
+    text-align: center;
 
     color: #F0E6B4;
     white-space: nowrap; /*한줄로 모든 글 표시*/
