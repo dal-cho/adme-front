@@ -68,7 +68,7 @@ messageInput.addEventListener("keyup", function (event) {
 });
 
 function openChat() {
-    document.getElementById('container').classList.add('open');
+    document.getElementById('chat-container').classList.add('open');
     let nickname = localStorage.getItem('nickname');
     if (nickname != null) {
         openChatList()
@@ -274,7 +274,7 @@ function closeChat() {
     status = ""
     $(".body").text("")
     isRun = false;
-    document.getElementById('container').classList.remove('open');
+    document.getElementById('chat-container').classList.remove('open');
     document.querySelector('.list').classList.remove('close');
     document.querySelector('.chat').classList.add('close');
     document.getElementById('back').classList.add('hidden');
