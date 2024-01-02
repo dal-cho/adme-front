@@ -69,7 +69,7 @@ messageInput.addEventListener("keyup", function (event) {
 
 function openChat() {
     document.getElementById('container').classList.add('open');
-    let nickname = localStorage.getItem('wschat.sender');
+    let nickname = localStorage.getItem('nickname');
     if (nickname != null) {
         openChatList()
     }
@@ -79,7 +79,7 @@ function openChatList() {
     if (document.getElementById("needChat")) {
         needLine() // 새로 고침
     } else {
-        let nickname = localStorage.getItem('wschat.sender');
+        let nickname = localStorage.getItem('nickname');
         $.ajax({
             type: "POST",
             url: host + `/room`,

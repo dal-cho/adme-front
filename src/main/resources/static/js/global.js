@@ -7,15 +7,15 @@ $(document).ready(function(){
 });
 
 // html 파일 경로값
-let host = "http://localhost:8080";
-let login_page = "login.html";
-let index_page = "everyone-record.html";
-let everyone_record_upload_page = "everyone-record-upload.html";
-let everyone_record_modify_page = "everyone-record-modify.html";
-let everyone_record_main_page = "everyone-record.html";
-let registry_main_page = "registry.html";
-let registry_upload_page = "registry-upload.html";
-let my_record_main_page = "my-record.html";
+let host = "ec2-15-165-36-111.ap-northeast-2.compute.amazonaws.com:8080";
+let login_page = "templates/login.html";
+let index_page = "templates/everyone-record.html";
+let everyone_record_upload_page = "templates/everyone-record-upload.html";
+let everyone_record_modify_page = "templates/everyone-record-modify.html";
+let everyone_record_main_page = "templates/everyone-record.html";
+let registry_main_page = "templates/registry.html";
+let registry_upload_page = "templates/registry-upload.html";
+let my_record_main_page = "templates/my-record.html";
 
 // localStorage
 let token = localStorage.getItem('token');
