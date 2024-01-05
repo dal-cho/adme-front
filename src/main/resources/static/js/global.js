@@ -7,7 +7,7 @@ $(document).ready(function(){
 });
 
 // html 파일 경로값
-let host = "http://ec2-15-165-36-111.ap-northeast-2.compute.amazonaws.com:8080";
+let host = "https://api.addyou.site";
 let login_page = "login.html";
 let index_page = "everyone-record.html";
 let everyone_record_upload_page = "everyone-record-upload.html";
