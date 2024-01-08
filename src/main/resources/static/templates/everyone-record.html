@@ -5,6 +5,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/global.css">
     <link rel="stylesheet" type="text/css" href="../css/everyone-record.css">
+    <link rel="stylesheet" type="text/css" href="../css/chat.css">
     <title>Everyone's Record Main Page</title>
 </head>
 <body>
@@ -95,6 +96,128 @@
             </div>
         </div>
     </div>
+
+    <button id="openChat" class="btn btn-special fixed" onclick="openChat()">
+        Chat
+        <div class="badge">0</div>
+    </button>
+    <div id="chat-container" class="fixed">
+
+        <div class="header">
+            <div>
+                <button id="back" class="btn btn-round btn-icon hidden" onclick="backChat()">back
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+                <span class="title">Adme 채팅</span>
+            </div>
+            <button id="closeChat" class="btn btn-round btn-icon" onclick="closeChat()">X
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+        <div class="wrapper">
+            <div class="list">
+                <input type="text" class="search" placeholder="&#xF002; Search" style="height: 20%">
+                <div class="conversations">
+                </div>
+            </div>
+
+            <div class="chat close">
+                <div class="body">
+                </div>
+
+                <div class="footer">
+                    <div class="actions">
+						<textarea id="message-input" class="auto-expand input" rows="1" data-min-rows="1"
+                                  placeholder="Write message"></textarea>
+                        <div class="send" id="sendButtonType">
+
+                        </div>
+                    </div>
+
+                    <div class="options">
+                        <button class="btn btn-icon btn-round" onclick="openDrawer()">openDrawer
+                            <i class="fa fa-ellipsis-v"></i>
+                        </button>
+                        <label class="btn btn-round btn-icon" for="file"> 파일 업로드
+                            <i class="fa fa-paperclip"></i>
+                        </label>
+                        <input id="file" type="file" accept="*" multiple>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="drawer close" style="display: none">
+                <button class="btn btn-round btn-icon" onclick="closeDrawer()">closeDrawer
+                    <i class="fa fa-times"></i>
+                </button>
+
+                <!--			options -->
+                <div class="users">
+                    <h2>Users</h2>
+                    <div class="mentions">
+                        <div class="pill">
+                            <img src="http://cranesafeservices.com.au/wp-content/uploads/2016/09/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg">
+                            <span>adme</span>
+                        </div>
+                        <div class="pill">
+                            <img src="http://cranesafeservices.com.au/wp-content/uploads/2016/09/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg">
+                            <span>User</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="files">
+                    <h2>Files</h2>
+                    <div class="mentions">
+                        <div class="pill">
+                            <span>Filename.cs</span>
+                            <i class="fa fa-arrow-down"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="projects">
+                    <h2>Projects</h2>
+                    <div class="mentions">
+                        <div class="pill">
+                            <i class="fa fa-link"></i>
+                            <span>Project1.cs</span>
+                        </div>
+                        <div class="pill">
+                            <i class="fa fa-link"></i>
+                            <span>Project2.cs</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="ideas">
+                    <h2>Ideas</h2>
+                    <div class="mentions">
+                        <div class="pill">
+                            <i class="fa fa-link"></i>
+                            <span>Idea1.cs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="samples">
+                    <h2>Samples</h2>
+                    <div class="mentions">
+                        <div class="pill">
+                            <i class="fa fa-link"></i>
+                            <span>Sample1.cs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="msgStack"></div>
+
+
 </div>
 <script src="../js/video-controller.js"></script>
 <script src="../js/video-connection.js"></script>

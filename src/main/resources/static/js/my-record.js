@@ -2,7 +2,7 @@
 function getMyList(currentNumber) {
     $.ajax({
         type: "GET",
-        url: host+`/mypage/${currentNumber}`,
+        url: host+`/mypage?curPage=${currentNumber}`,
         headers: {"Authorization": token},
         success: function (response) {
             // alert("getList 동작시작");
