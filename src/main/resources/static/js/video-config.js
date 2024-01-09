@@ -35,11 +35,11 @@ function videoUpload() {
 
 // video 파일 용량체크
 $("input[name=uploadFile]").on("change", function(){
-    let maxSize = 5 * 1024 * 1024; //* 5MB 사이즈 제한
+    let maxSize = 40 * 1024 * 1024; //* 40MB 사이즈 제한
     let fileSize = this.files[0].size; //업로드한 파일용량
 
     if(fileSize > maxSize){
-        alert("파일첨부 사이즈는 5MB 이내로 가능합니다.");
+        alert("파일첨부 사이즈는 40MB 이내로 가능합니다.");
         $(this).val(''); //업로드한 파일 제거
         return;
     }
@@ -47,11 +47,11 @@ $("input[name=uploadFile]").on("change", function(){
 
 // image 파일 용량 체크
 $("input[name=thumbnail]").on("change", function(){
-    let maxSize = 40 * 1024 * 1024; //* 40MB 사이즈 제한
+    let maxSize = 5 * 1024 * 1024; //* 5MB 사이즈 제한
     let fileSize = this.files[0].size; //업로드한 파일용량
 
     if(fileSize > maxSize){
-        alert("파일첨부 사이즈는 40MB 이내로 가능합니다.");
+        alert("파일첨부 사이즈는 5MB 이내로 가능합니다.");
         $(this).val(''); //업로드한 파일 제거
         return;
     }
