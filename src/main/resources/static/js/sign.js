@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $(".signup-id").on('focus keyup', function () { checkHidden() });
     $(".signup-password-confirm").on('focus keyup', function () { checkConfirm() });
+    $(".signup-password").on('focus keyup', function () { checkRegulation() });
 });
 
 let adminCheck = false;
@@ -28,7 +29,7 @@ function signup() {
         contentType: "application/json; charset=utf-8",
         processData: false,
         success: function (response) {
-            if(`${response["code"]}` === "1") {
+            if(`${response["code"]}` === "0") {
                 alert("회원가입이 완료되었습니다.")
                 window.location.replace(login_page);
             } else if (`${response["code"]}` === "460") {
@@ -82,6 +83,16 @@ function checkHidden() {
     }
 }
 
+function checkRegulation() {
+    let password = $(".signup-password").val();
+    const regex = /(?=.*[a-zA-Z])(?=.*\d)(?=.*\W).{8,20}/;
+    if(regex.test(password)) {
+        $(".password-regulation").css("display","none");
+    } else {
+        $(".password-regulation").css("display","block");
+    }
+}
+
 function checkConfirm() {
     let password = $(".signup-password").val();
     let passwordConfirm = $(".signup-password-confirm").val();
@@ -92,4 +103,3 @@ function checkConfirm() {
         $(".incorrect-password").css("display","none");
     }
 }
-

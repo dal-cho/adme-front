@@ -15,7 +15,6 @@ function videoUpload() {
 
     formData.append("sideData", new Blob([JSON.stringify(data)], {type: "application/json"}));
 
-    checkExtension(videoFile.size);
     formData.append("videoFile", videoFile[0]);
     formData.append("thumbnail", thumbnail[0]);
 
@@ -34,16 +33,29 @@ function videoUpload() {
     });
 }
 
-// video 파일 체크
-function checkExtension(fileSize){
-    let maxSize = 256000000;
+// video 파일 용량체크
+$("input[name=uploadFile]").on("change", function(){
+    let maxSize = 5 * 1024 * 1024; //* 5MB 사이즈 제한
+    let fileSize = this.files[0].size; //업로드한 파일용량
 
-    if(fileSize >= maxSize){
-        alert("파일 사이즈 초과");
-        return false;
+    if(fileSize > maxSize){
+        alert("파일첨부 사이즈는 5MB 이내로 가능합니다.");
+        $(this).val(''); //업로드한 파일 제거
+        return;
     }
-    return true;
-}
+});
+
+// image 파일 용량 체크
+$("input[name=thumbnail]").on("change", function(){
+    let maxSize = 40 * 1024 * 1024; //* 40MB 사이즈 제한
+    let fileSize = this.files[0].size; //업로드한 파일용량
+
+    if(fileSize > maxSize){
+        alert("파일첨부 사이즈는 40MB 이내로 가능합니다.");
+        $(this).val(''); //업로드한 파일 제거
+        return;
+    }
+});
 
 // video 게시글 수정 페이지 초기값 가져오기
 function getModifyInfo(id) {

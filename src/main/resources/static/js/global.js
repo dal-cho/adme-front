@@ -4,10 +4,11 @@ $(document).ready(function(){
     linkSetting();
     indexPageInit();
     loadPage();
+    profileSetting();
 });
 
 // html 파일 경로값
-let host = "https://api.addyou.site";
+let host = "https://api.admee.site";
 let login_page = "login.html";
 let index_page = "everyone-record.html";
 let everyone_record_upload_page = "everyone-record-upload.html";
@@ -115,4 +116,26 @@ function logout() {
     })
     window.location.replace(login_page);
     alert("로그아웃 되었습니다.")
+}
+
+function profileSetting() {
+    const path = getProfile();
+    $(".profile-image > img").attr("src", "../profileImg/"+path);
+}
+
+function getProfile() {
+    //랜덤값 생성 (1~100)
+    const ranNum = Math.floor((Math.random() * 99) +1);
+
+    const profile = ['LuckyDuck.png', 'AngryCat.png', 'DraculaCat.png', 'Dog.png'];
+    //확률 생성
+    const pbt = [5, 35, 65, 100];
+    let res = '';
+
+    for (let i = 0; i < profile.length; i++) {
+        if(pbt[i] >= ranNum){
+            res = profile[i]
+            return res
+        }
+    }
 }

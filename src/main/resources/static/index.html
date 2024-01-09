@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADME</title>
+</head>
+<style>
+    @font-face {
+        font-family: 'adme';
+        font-style: normal;
+        font-weight: auto;
+        src: local(Modak-Regular), url("fonts/Modak-Regular.ttf") format("truetype");
+    }
+
+    .logo {
+      position: absolute; /*절대위치 설정*/
+      top: 43%;
+      left: 41%;
+
+      font-family: adme, serif; /*폰트 설정*/
+      font-size: 7vw;
+      color: whitesmoke;
+    }
+    .logo>a {
+      text-decoration-line: none;
+    }
+    .logo-link {
+      margin-left: -0.8vw; /*글자마다 색상을 적용해돼서 분리한 객체들간의 간격 줄이기*/
+    }
+    .logo-link-a {
+      color: #FF5C4B;
+    }
+    .logo-link-d {
+      color: #F3A11A;
+    }
+    .logo-link-m {
+      color: #62D83E;
+    }
+    .logo-link-e {
+      color: #249EFF;
+    }
+    .logo-link:hover {
+      font-size: 8vw;
+      color: #F0E6B4;
+      text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
+    }
+</style>
+<body>
+<div class="main">
+    <div class="logo">
+      <a class="logo-link logo-link-a" href="templates/login.html" onclick="top.location='javascript:location.reload()'" >A</a>
+      <a class="logo-link logo-link-d" href="templates/login.html" onclick="top.location='javascript:location.reload()'" >D</a>
+      <a class="logo-link logo-link-m" href="templates/login.html" onclick="top.location='javascript:location.reload()'" >M</a>
+      <a class="logo-link logo-link-e" href="templates/login.html" onclick="top.location='javascript:location.reload()'" >E</a>
+    </div>
+</div>
+</body>
+</html>

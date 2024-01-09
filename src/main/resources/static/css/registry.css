@@ -1,5 +1,6 @@
 body {
     background-color: #F5E6D7;
+    overflow: hidden;
     /*background-image: url("s3에 올린 배경 이미지 주소 입력");*/
 }
 a {
@@ -250,6 +251,9 @@ a {
 .profile-image>img {
     /*border: 1px solid black;*/
     border-radius: 1.3vw;
+    width: 8vw;
+    height: 8vw;
+    object-fit: cover;
 }
 .user-nickname {
     margin-top: 1.3vw;
