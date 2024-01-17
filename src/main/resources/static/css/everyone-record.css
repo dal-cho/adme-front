@@ -275,7 +275,6 @@ a {
     right: 6.5vw;
 }
 .profile-image {
-    position: absolute;
     border: 1px solid black;
     background-color: white;
     width: 8vw;
