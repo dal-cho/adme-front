@@ -1,3 +1,17 @@
+//video 게시글 비어있는지 체크
+function videoUploadCheck(){
+    let title = $(".upload-title>input").val();
+    let content = $(".upload-content>textarea").val();
+    let setTime = $(".upload-cut-time>input").val();
+    if(title === "") alert("title을 작성해 주세요.");
+    else if(content === "") alert("content를 작성해 주세요.");
+    if(setTime === "") $(".upload-cut-time>input").val(0);
+    if(title !== "" && content !== "") {
+        videoUpload();
+        $(".none-page").css("display", "block");
+    }
+}
+
 // video 업로드
 function videoUpload() {
     let data = {
@@ -28,6 +42,7 @@ function videoUpload() {
         headers: {"Authorization": token},
         success: function (result) {
             alert("업로드 완료");
+            $(".none-page").css("display", "none");
             window.location.href = my_record_main_page;
         }
     });
