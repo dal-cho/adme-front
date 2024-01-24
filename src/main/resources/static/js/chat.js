@@ -88,7 +88,6 @@ function openChatList() {
             contentType: false,
             processData: false,
             success: function (response) {
-                localStorage.setItem('wschat.roomName', nickname);
                 localStorage.setItem('wschat.roomId', response["roomId"]);
                 let count = response["userChat"];
                 let message = response["message"];
