@@ -11,9 +11,6 @@ let currentXHR;
 let timerInterval;
 const unsentMessages = [];
 let messageToSend = null;
-let today
-let month
-let days
 let nickname
 // 읽음, 안읽음 개수 처리
 function alarmCount(num) {
@@ -91,9 +88,9 @@ function openChatList() {
                 let message = response["message"];
                 let day = response["day"]
                 let time = response["time"]
-                today = new Date();
-                month = today.getMonth() + 1;
-                days = today.getDate();
+                let today = new Date();
+                let month = today.getMonth() + 1;
+                let days = today.getDate();
                 let now = month + "/" + days
                 let dayTime
                 if (now !== day) {
@@ -146,9 +143,9 @@ function needLine(){
             let message = response["message"];
             let day = response["day"]
             let time = response["time"]
-            today = new Date();
-            month = today.getMonth() + 1;
-            days = today.getDate();
+            let today = new Date();
+            let month = today.getMonth() + 1;
+            let days = today.getDate();
             let now = month + "/" + days;
             let dayTime
             if (now !== day) {
@@ -211,9 +208,9 @@ function onMessageReceived(payload) { // 메세지 받기
         message.message = nickname + ' 님 채팅이 종료되어 ' + '현재 시간 [ ' + message.time + ' ]  ' + ' 으로 부터 5분 뒤에 삭제될 예정입니다.';
         seperator(message.message);
     } else if (message.type === 'TALK' && message.message != null) {
-        today = new Date();
-        month = today.getMonth() + 1;
-        days = today.getDate();
+        let today = new Date();
+        let month = today.getMonth() + 1;
+        let days = today.getDate();
         let dd = month + "/" + days;
         let dayTime
         if (dd !== message.day) {
@@ -373,9 +370,9 @@ function sendMessage() {
     let nickname = localStorage.getItem('nickname');
     roomId = localStorage.getItem('wschat.roomId');
     let messageContent = messageInput.value.trim();
-    today = new Date();
-    month = today.getMonth() + 1;
-    days = today.getDate();
+    let today = new Date();
+    let month = today.getMonth() + 1;
+    let days = today.getDate();
     let hour = ('0' + today.getHours()).slice(-2);
     let minute = ('0' + today.getMinutes()).slice(-2);
 
