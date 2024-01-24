@@ -11,9 +11,9 @@ let currentXHR;
 let timerInterval;
 const unsentMessages = [];
 let messageToSend = null;
-let today = new Date();
-let month = today.getMonth() + 1;
-let days = today.getDate();
+let today
+let month
+let days
 let nickname
 // 읽음, 안읽음 개수 처리
 function alarmCount(num) {
