@@ -8,7 +8,7 @@ let urlSearch = new URLSearchParams(location.search);
 let count = 0;
 let connectingElement = $(".body");
 let roomId = null;
-let status = ""
+let status = "wait"
 let currentXHR;
 let timerInterval;
 const unsentMessages = [];
@@ -16,7 +16,7 @@ let messageToSend = null;
 let today = new Date();
 let month = today.getMonth() + 1;
 let days = today.getDate();
-
+let nickname
 // 읽음, 안읽음 개수 처리
 function alarmCount(num) {
     if (num === 0) {
@@ -69,7 +69,7 @@ messageInput.addEventListener("keyup", function (event) {
 
 function openChat() {
     document.getElementById('chat-container').classList.add('open');
-    let nickname = localStorage.getItem('nickname');
+    nickname = localStorage.getItem('nickname');
     if (nickname != null) {
         openChatList()
     }
@@ -79,7 +79,7 @@ function openChatList() {
     if (document.getElementById("needChat")) {
         needLine() // 새로 고침
     } else {
-        let nickname = localStorage.getItem('nickname');
+        nickname = localStorage.getItem('nickname');
         $.ajax({
             type: "POST",
             url: host + `/room`,
@@ -137,7 +137,7 @@ function openChatList() {
 function needLine(){
     $(".conversations").empty();
     roomId = localStorage.getItem('wschat.roomId');
-    nickname = localStorage.getItem('wschat.sender');
+    nickname = localStorage.getItem('nickname');
     $.ajax({
         type: "GET",
         url: host + `/room/enter/` + roomId,
@@ -256,7 +256,10 @@ function seperator(message) {
 
 // 채팅 닫기 버튼 클릭 시
 function closeChat() {
-    if (status === "randomChat") {
+    if(status==null || status == undefined){
+
+    }
+    else if (status === "randomChat") {
         clearInterval(timerInterval); // 타이머 중지
         connectingElement.text("")
         $.ajax({
@@ -271,7 +274,7 @@ function closeChat() {
             }
         });
     }
-    status = ""
+    status = "wait"
     $(".body").text("")
     isRun = false;
     document.getElementById('chat-container').classList.remove('open');
@@ -329,7 +332,7 @@ function joinChat() {
 
 function connect() {
     status = "question"
-    let nickname = localStorage.getItem('wschat.sender');
+    nickname = localStorage.getItem('nickname');
     let token = localStorage.getItem('token');
     if (nickname) {
         let socket = new SockJS('/ws');
@@ -370,7 +373,7 @@ function onError(error) {
 // 메세지 보내기
 function sendMessage() {
     alarmMessage()
-    let nickname = localStorage.getItem('wschat.sender');
+    let nickname = localStorage.getItem('nickname');
     roomId = localStorage.getItem('wschat.roomId');
     let messageContent = messageInput.value.trim();
     today = new Date();
@@ -482,7 +485,7 @@ function randomChat() {
         success: function (chatMessage) {
             response = JSON.stringify(chatMessage)
             clearInterval(joinInterval);
-            status = ""
+            status = "wait"
             if (!response) {
                 return;
             }
@@ -514,7 +517,7 @@ function randomConnect(event){
 	`
     $("#sendButtonType").append(temp)
 
-    let nickname = localStorage.getItem('wschat.sender');
+    let nickname = localStorage.getItem('nickname');
     let token = localStorage.getItem('token');
     if (nickname) {
         let socket = new SockJS('/ws/chat');
@@ -581,7 +584,7 @@ function randomMessageReceived(payload){
 
 // 랜덤 채팅 msg
 function randomSendMessage(event){
-    let nickname = localStorage.getItem('wschat.sender');
+    nickname = localStorage.getItem('nickname');
     roomId = localStorage.getItem('wschat.roomId');
     let messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
@@ -595,7 +598,7 @@ function randomSendMessage(event){
 
 function alarmSubscribe() {
     roomId = localStorage.getItem('wschat.roomId')
-    let nickname = localStorage.getItem('wschat.sender');
+    nickname = localStorage.getItem('nickname');
     if (nickname != null && roomId != null && stompClient) {
         start(nickname, roomId);
     }
@@ -603,7 +606,7 @@ function alarmSubscribe() {
 
 function alarmMessage() {
     if (stompClient) {
-        let nickname = localStorage.getItem('wschat.sender');
+        nickname = localStorage.getItem('nickname');
         roomId = localStorage.getItem('wschat.roomId');
         fetch(`/room/publish?sender=${nickname}&roomId=${roomId}`);
     }
