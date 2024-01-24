@@ -1,5 +1,3 @@
-
-let roomName = nickname;
 let chatArea = document.querySelector('.chat');
 let messageInput = document.querySelector('#message-input');
 let stompClient = null;
@@ -88,7 +86,6 @@ function openChatList() {
             contentType: false,
             processData: false,
             success: function (response) {
-                localStorage.setItem('wschat.roomName', nickname);
                 localStorage.setItem('wschat.roomId', response["roomId"]);
                 let count = response["userChat"];
                 let message = response["message"];
@@ -211,7 +208,7 @@ function onMessageReceived(payload) { // 메세지 받기
         message.message = message.sender + ' 님이 나가셨습니다.';
         seperator(message.message);
     } else if (message.type === 'DELETE') {
-        message.message = roomName + ' 님 채팅이 종료되어 ' + '현재 시간 [ ' + message.time + ' ]  ' + ' 으로 부터 5분 뒤에 삭제될 예정입니다.';
+        message.message = nickname + ' 님 채팅이 종료되어 ' + '현재 시간 [ ' + message.time + ' ]  ' + ' 으로 부터 5분 뒤에 삭제될 예정입니다.';
         seperator(message.message);
     } else if (message.type === 'TALK' && message.message != null) {
         today = new Date();
@@ -405,7 +402,7 @@ function saveFile(chatMessage) {
         roomId = localStorage.getItem('wschat.roomId');
         $.ajax({
             type: "POST",
-            url: host + `/room/enter/` + roomId + '/' + roomName,
+            url: host + `/room/enter/` + roomId + '/' + nickname,
             headers: {"Authorization": token},
             data: JSON.stringify(chatMessage),
             contentType: 'application/json',
@@ -426,7 +423,7 @@ function getFile() {
     }
     $.ajax({
         type: "GET",
-        url: host + `/room/enter/` + roomId + '/' + roomName,
+        url: host + `/room/enter/` + roomId + '/' + nickname,
         headers: {"Authorization": token},
         contentType: false,
         processData: false,
