@@ -125,7 +125,7 @@ a {
 .video-title>a {
     text-decoration-line: none; /*링크 밑줄효과 제거*/
     color: #F0E6B4;
-    font-size: 1.3vw;
+    font-size: 1vw;
 }
 .title:hover {
     color: aliceblue;
@@ -359,7 +359,7 @@ a {
     height: 1.6vw;
     padding-top: .6vw;
     margin: auto;
-    font-size: 1.5vw;
+    font-size: 1vw;
 
     white-space: nowrap; /*한줄로 모든 글 표시*/
     overflow: hidden; /*크기 초과시 숨김*/
