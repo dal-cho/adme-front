@@ -11,7 +11,7 @@ let currentXHR;
 let timerInterval;
 const unsentMessages = [];
 let messageToSend = null;
-let nickname
+
 // 읽음, 안읽음 개수 처리
 function alarmCount(num) {
     if (num === 0) {

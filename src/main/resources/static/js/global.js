@@ -5,10 +5,15 @@ $(document).ready(function(){
     indexPageInit();
     loadPage();
     profileSetting();
+
+    // localStorage
+    let token = localStorage.getItem('token');
+    let nickname = localStorage.getItem('nickname');
+    let host = "https://api.admee.site";
 });
 
 // html 파일 경로값
-let host = "https://api.admee.site";
+
 let login_page = "login.html";
 let index_page = "everyone-record.html";
 let everyone_record_upload_page = "everyone-record-upload.html";
@@ -18,9 +23,7 @@ let registry_main_page = "registry.html";
 let registry_upload_page = "registry-upload.html";
 let my_record_main_page = "my-record.html";
 
-// localStorage
-let token = localStorage.getItem('token');
-let nickname = localStorage.getItem('nickname');
+
 
 // 모달 닫기위한 위치값
 let video_modal = document.getElementById("modal");
