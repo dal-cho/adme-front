@@ -329,7 +329,7 @@ function connect() {
     nickname = localStorage.getItem('nickname');
     let token = localStorage.getItem('token');
     if (nickname) {
-        let socket = new SockJS("http://api.admee.site" + '/ws');
+        let socket = new SockJS(host + '/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({Authorization: token}, onConnected, onError);
     }
