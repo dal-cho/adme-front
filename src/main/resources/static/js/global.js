@@ -5,6 +5,8 @@ $(document).ready(function(){
     indexPageInit();
     loadPage();
     profileSetting();
+
+
 });
 
 // html 파일 경로값
