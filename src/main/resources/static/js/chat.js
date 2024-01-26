@@ -93,6 +93,9 @@ function openChatList() {
                 let days = today.getDate();
                 let now = month + "/" + days
                 let dayTime
+                console.log("day : " + day)
+                console.log("time : " + time)
+                console.log("now : " + now)
                 if (now !== day) {
                     dayTime = day + " " + time;
                 } else {
@@ -147,6 +150,9 @@ function needLine(){
             let month = today.getMonth() + 1;
             let days = today.getDate();
             let now = month + "/" + days;
+            console.log("day : " + day)
+            console.log("time : " + time)
+            console.log("now : " + now)
             let dayTime
             if (now !== day) {
                 dayTime = day + " " + time;
