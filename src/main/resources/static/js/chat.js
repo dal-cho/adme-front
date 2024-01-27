@@ -608,7 +608,7 @@ function alarmMessage() {
     if (stompClient) {
         nickname = localStorage.getItem('nickname');
         roomId = localStorage.getItem('wschat.roomId');
-        fetch(`/room/publish?sender=${nickname}&roomId=${roomId}`);
+        fetch(host + `/room/publish?sender=${nickname}&roomId=${roomId}`);
     }
 }
 
