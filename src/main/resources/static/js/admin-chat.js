@@ -11,7 +11,7 @@ messageInput.addEventListener("keyup", function (event) {
 $(document).ready(function () {
     findToken()
     chatList()
-    setInterval(alarmSubscribe(), 4000)
+    //setInterval(alarmSubscribe(), 4000)
     $(".messages-chat").text("");
 });
 
@@ -24,6 +24,11 @@ function findToken() {
 }
 
 var sortJSON = function (data, key, type) {
+    if (!Array.isArray(data)) {
+        console.error("Error: data is not an array.");
+        return data;
+    }
+
     if (type == undefined) {
         type = "asc";
     }
