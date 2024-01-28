@@ -392,7 +392,7 @@ function sendMessage() {
     };
     if (messageContent && stompClient) {
         saveFile(chatMessage)
-        onMessageReceived(JSON.stringify(chatMessage))
+        onMessageReceived(chatMessage)
         stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     } else {
