@@ -102,7 +102,7 @@ function openChatList() {
           <div id="needChat" class="conversation" onclick="joinChat()">
             <div class="top">
               <span class="badge">${count}</span>
-              <span class="title">리스트에서 제목</span>
+              <span class="title">hello</span>
               <span class="time">${dayTime}</span>
             </div>
             <div class="bottom">
@@ -158,7 +158,7 @@ function needLine(){
           <div id="needChat" class="conversation" onclick="joinChat()">
             <div class="top">
               <span class="badge">${count}</span>
-              <span class="title">리스트에서 제목</span>
+              <span class="title">hello</span>
               <span class="time">${dayTime}</span>
             </div>
             <div class="bottom">
