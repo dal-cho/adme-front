@@ -1,4 +1,4 @@
-let nickname = "admin";
+
 let messageInput = document.querySelector(".write-message")
 let chatArea = document.querySelector('.messages-chat');
 let connectingElement = document.querySelector(".messages-chat")
@@ -146,6 +146,7 @@ function onMessageReceived(payload) { // 메세지 받기
 
 function connect() {
     let token = localStorage.getItem('token')
+    let nickname = "admin";
     if (nickname) {
         let socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
@@ -172,6 +173,7 @@ function onError(error) {
 
 function sendMessage() {
     alarmMessage()
+    let nickname = "admin";
     let roomId = localStorage.getItem('wschat.roomId');
     let messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
