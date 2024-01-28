@@ -25,8 +25,8 @@ function findToken() {
 
 var sortJSON = function (data, key, type) {
     if (!Array.isArray(data)) {
-        console.error("Error: data is not an array.");
-        return data;
+
+        return console.log("sortJSON");
     }
 
     if (type == undefined) {
