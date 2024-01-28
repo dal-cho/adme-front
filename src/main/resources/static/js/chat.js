@@ -472,7 +472,7 @@ function randomChat() {
 
     currentXHR = $.ajax({
         type: "GET",
-        url: `/join/` + nickname,
+        url: host + `/join/` + nickname,
         headers: {"Authorization": token},
         contentType: 'application/json',
         async: true,
