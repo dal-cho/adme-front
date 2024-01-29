@@ -109,8 +109,8 @@ function openOAuthPopup() {
     var oauthLoginUrl = "/oauth2/authorization/kakao";
 
     // 팝업 창의 크기 및 위치 설정
-    var width = 600;
-    var height = 400;
+    var width = 700;
+    var height = 450;
     var left = window.innerWidth / 2 - width / 2;
     var top = window.innerHeight / 2 - height / 2;
 
