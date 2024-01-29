@@ -103,3 +103,17 @@ function checkConfirm() {
         $(".incorrect-password").css("display","none");
     }
 }
+
+function openOAuthPopup() {
+    // OAuth 인증 서버의 로그인 링크
+    var oauthLoginUrl = "/oauth2/authorization/kakao";
+
+    // 팝업 창의 크기 및 위치 설정
+    var width = 600;
+    var height = 400;
+    var left = window.innerWidth / 2 - width / 2;
+    var top = window.innerHeight / 2 - height / 2;
+
+    // OAuth 로그인을 위한 팝업 창 열기
+    window.open(oauthLoginUrl, "_blank", "width=" + width + ", height=" + height + ", left=" + left + ", top=" + top);
+}
