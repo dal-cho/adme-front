@@ -93,9 +93,6 @@ function openChatList() {
                 let days = today.getDate();
                 let now = month + "/" + days
                 let dayTime
-                console.log("day : " + day)
-                console.log("time : " + time)
-                console.log("now : " + now)
                 if (now !== day) {
                     dayTime = day + " " + time;
                 } else {
@@ -105,7 +102,7 @@ function openChatList() {
           <div id="needChat" class="conversation" onclick="joinChat()">
             <div class="top">
               <span class="badge">${count}</span>
-              <span class="title">리스트에서 제목</span>
+              <span class="title">hello</span>
               <span class="time">${dayTime}</span>
             </div>
             <div class="bottom">
@@ -150,9 +147,6 @@ function needLine(){
             let month = today.getMonth() + 1;
             let days = today.getDate();
             let now = month + "/" + days;
-            console.log("day : " + day)
-            console.log("time : " + time)
-            console.log("now : " + now)
             let dayTime
             if (now !== day) {
                 dayTime = day + " " + time;
@@ -164,7 +158,7 @@ function needLine(){
           <div id="needChat" class="conversation" onclick="joinChat()">
             <div class="top">
               <span class="badge">${count}</span>
-              <span class="title">리스트에서 제목</span>
+              <span class="title">hello</span>
               <span class="time">${dayTime}</span>
             </div>
             <div class="bottom">
@@ -264,7 +258,7 @@ function closeChat() {
         connectingElement.text("")
         $.ajax({
             type: "GET",
-            url: "/random/cancel/" + nickname,
+            url: host + "/random/cancel/" + nickname,
             headers: {"Authorization": token},
             success: function () {
                 // 취소에 성공한 경우
@@ -392,6 +386,7 @@ function sendMessage() {
     };
     if (messageContent && stompClient) {
         saveFile(chatMessage)
+        onMessageReceived(chatMessage)
         stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     } else {
@@ -471,7 +466,7 @@ function randomChat() {
 
     currentXHR = $.ajax({
         type: "GET",
-        url: `/join/` + nickname,
+        url: host + `/join/` + nickname,
         headers: {"Authorization": token},
         contentType: 'application/json',
         async: true,
@@ -608,7 +603,7 @@ function alarmMessage() {
     if (stompClient) {
         nickname = localStorage.getItem('nickname');
         roomId = localStorage.getItem('wschat.roomId');
-        fetch(`/room/publish?sender=${nickname}&roomId=${roomId}`);
+        fetch(host + `/room/publish?sender=${nickname}&roomId=${roomId}`);
     }
 }
 
