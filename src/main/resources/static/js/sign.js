@@ -106,23 +106,22 @@ function checkConfirm() {
 
 
 function oauth(){
+    let REST_API_KEY
     let loginInfo
-    let kakao
     $.ajax({
         type: "GET",
         url: host + `/oauth2/kakao`,
         contentType: false,
         success: function (response) {
             loginInfo = response[0];
-            kakao = response[1];
-
-            Kakao.init(kakao);
-            Kakao.Auth.authorize({
-                redirectUri: loginInfo,
-            });
+            REST_API_KEY = response[1];
+            `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${loginInfo}`
+            // Kakao.init(kakao);
+            // Kakao.Auth.authorize({
+            //     redirectUri: loginInfo,
+            // });
         }
     })
-
 }
 
 // function loginWithKakao() {
