@@ -104,14 +104,26 @@ function checkConfirm() {
     }
 }
 
-Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 앱의 JavaScript 키 입력
 
 function oauth(){
+    let loginInfo
+    let kakao
+    $.ajax({
+        type: "GET",
+        url: host + `/oauth2-kakao`,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            loginInfo = response[0];
+            kakao = response[1];
+            console.log("response : " + response)
+        }
+    })
+    Kakao.init(kakao);
     Kakao.Auth.authorize({
-        redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
+        redirectUri: loginInfo,
     });
 }
-
 
 // function loginWithKakao() {
 //     Kakao.Auth.authorize({
