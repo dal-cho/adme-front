@@ -116,7 +116,6 @@ function oauth(){
         success: function (response) {
             loginInfo = response[0];
             kakao = response[1];
-            console.log("response : " + response)
         }
     })
     Kakao.init(kakao);
