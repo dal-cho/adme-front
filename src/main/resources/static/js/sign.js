@@ -115,7 +115,7 @@ function oauth(){
         success: function (response) {
             loginInfo = response[0];
             REST_API_KEY = response[1];
-            `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${loginInfo}`
+            window.location.replace(`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${loginInfo}`)
             // Kakao.init(kakao);
             // Kakao.Auth.authorize({
             //     redirectUri: loginInfo,
