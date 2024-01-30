@@ -104,20 +104,6 @@ function checkConfirm() {
     }
 }
 
-function oauth_login(){
-    const url = 'https://api.admee.site/oauth2/authorization/kakao'; // 대상 URL
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            console.log('Response:', data);
-            // 여기에서 응답 데이터를 활용하여 원하는 작업 수행
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // 여기에서 오류를 처리
-        });
-}
-
 // function openOAuthPopup() {
 //     // OAuth 인증 서버의 로그인 링크
 //     var oauthLoginUrl = "/oauth2/authorization/kakao";
