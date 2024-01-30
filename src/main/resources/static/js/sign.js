@@ -115,6 +115,7 @@ function oauth(){
         }
     })
 }
+
 // function openOAuthPopup() {
 //     // OAuth 인증 서버의 로그인 링크
 //     var oauthLoginUrl = "/oauth2/authorization/kakao";
