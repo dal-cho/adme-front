@@ -104,6 +104,17 @@ function checkConfirm() {
     }
 }
 
+function oauth(){
+    $.ajax({
+        type: "GET",
+        url: host + `/oauth2/authorization/kakao`,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            console.log("response : " + response)
+        }
+    })
+}
 // function openOAuthPopup() {
 //     // OAuth 인증 서버의 로그인 링크
 //     var oauthLoginUrl = "/oauth2/authorization/kakao";
