@@ -105,16 +105,18 @@ function checkConfirm() {
 }
 
 function oauth(){
-    window.location("/oauth2/authorization/kakao")
-}
-
-Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 앱의 JavaScript 키 입력
-
-function loginWithKakao() {
     Kakao.Auth.authorize({
         redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
     });
 }
+
+Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 앱의 JavaScript 키 입력
+
+// function loginWithKakao() {
+//     Kakao.Auth.authorize({
+//         redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
+//     });
+// }
 // function openOAuthPopup() {
 //     // OAuth 인증 서버의 로그인 링크
 //     var oauthLoginUrl = "/oauth2/authorization/kakao";
