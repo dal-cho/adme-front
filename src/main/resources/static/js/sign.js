@@ -110,18 +110,20 @@ function oauth(){
     let kakao
     $.ajax({
         type: "GET",
-        url: host + `/oauth2-kakao`,
+        url: host + `/oauth2/kakao`,
         contentType: false,
         processData: false,
         success: function (response) {
             loginInfo = response[0];
             kakao = response[1];
+
+            Kakao.init(kakao);
+            Kakao.Auth.authorize({
+                redirectUri: loginInfo,
+            });
         }
     })
-    Kakao.init(kakao);
-    Kakao.Auth.authorize({
-        redirectUri: loginInfo,
-    });
+
 }
 
 // function loginWithKakao() {
