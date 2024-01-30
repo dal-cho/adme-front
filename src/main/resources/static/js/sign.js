@@ -105,53 +105,7 @@ function checkConfirm() {
 }
 
 
-function oauth(){
-    let REST_API_KEY
-    let REDIRECT_URL
-    let scope
-    $.ajax({
-        type: "GET",
-        url: host + `/oauth2/kakao`,
-        contentType: false,
-        success: function (response) {
-            REDIRECT_URL = response[0];
-            REST_API_KEY = response[1];
-            scope = response[2];
-            //window.location.replace(`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}`)
-            window.location.replace(`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}&scope=${scope}`)
-            //
-            // const url = "https://kauth.kakao.com/oauth/token";
-            // const data = new URLSearchParams();
-            // data.append("grant_type", "authorization_code");
-            // data.append("client_id", REST_API_KEY);
-            // data.append("redirect_uri", REDIRECT_URL);
-            // //data.append("code", YOUR_AUTHORIZE_CODE);
-            //
-            // fetch(url, {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/x-www-form-urlencoded",
-            //     },
-            //     body: data,
-            // })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         console.log("Response:", data);
-            //         // 여기에서 응답 데이터를 처리합니다.
-            //     })
-            //     .catch(error => {
-            //         console.error("Error:", error);
-            //         // 여기에서 오류를 처리합니다.
-            //     });
-        }
-    })
-}
 
-// function loginWithKakao() {
-//     Kakao.Auth.authorize({
-//         redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
-//     });
-// }
 // function openOAuthPopup() {
 //     // OAuth 인증 서버의 로그인 링크
 //     var oauthLoginUrl = "/oauth2/authorization/kakao";
