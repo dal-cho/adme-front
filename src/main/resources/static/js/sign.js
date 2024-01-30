@@ -107,19 +107,39 @@ function checkConfirm() {
 
 function oauth(){
     let REST_API_KEY
-    let loginInfo
+    let REDIRECT_URL
     $.ajax({
         type: "GET",
         url: host + `/oauth2/kakao`,
         contentType: false,
         success: function (response) {
-            loginInfo = response[0];
+            REDIRECT_URL = response[0];
             REST_API_KEY = response[1];
-            window.location.replace(`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${loginInfo}`)
-            // Kakao.init(kakao);
-            // Kakao.Auth.authorize({
-            //     redirectUri: loginInfo,
-            // });
+            //window.location.replace(`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}`)
+
+            const url = "https://kauth.kakao.com/oauth/token";
+            const data = new URLSearchParams();
+            data.append("grant_type", "authorization_code");
+            data.append("client_id", REST_API_KEY);
+            data.append("redirect_uri", REDIRECT_URL);
+            //data.append("code", YOUR_AUTHORIZE_CODE);
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: data,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Response:", data);
+                    // 여기에서 응답 데이터를 처리합니다.
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    // 여기에서 오류를 처리합니다.
+                });
         }
     })
 }
