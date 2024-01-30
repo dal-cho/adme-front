@@ -112,7 +112,6 @@ function oauth(){
         type: "GET",
         url: host + `/oauth2/kakao`,
         contentType: false,
-        processData: false,
         success: function (response) {
             loginInfo = response[0];
             kakao = response[1];
