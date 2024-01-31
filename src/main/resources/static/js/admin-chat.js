@@ -153,7 +153,7 @@ function onMessageReceived(payload) { // 메세지 받기
 function connect() {
     let nickname = "admin";
     if (nickname) {
-        let socket = new SockJS('/ws');
+        let socket = new SockJS(host + '/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({Authorization: token}, onConnected, onError);
     }
