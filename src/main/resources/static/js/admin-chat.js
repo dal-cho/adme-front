@@ -9,7 +9,7 @@ messageInput.addEventListener("keyup", function (event) {
     }
 });
 $(document).ready(function () {
-    findToken()
+    //findToken()
     chatList()
     //setInterval(alarmSubscribe(), 4000)
     $(".messages-chat").text("");
