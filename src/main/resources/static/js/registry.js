@@ -1,3 +1,16 @@
+$(document).ready(function(){
+    let queryString = window.location.search
+    if(queryString){
+        saveToken(queryString)
+    }
+});
+function saveToken(queryString){
+    let urlParams = new URLSearchParams(queryString)
+    window.localStorage.setItem("token", urlParams.get("token"))
+    window.localStorage.setItem("nickname", urlParams.get("name"))
+    window.location.href="https://www.admee.site/templates/registry.html"
+}
+
 // board 모달 열기
 function boardModal(idx) {
     allRegistry(idx);
