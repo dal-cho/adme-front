@@ -47,6 +47,7 @@ function chatList() {
     $.ajax({
         type: "GET",
         url: host + `/rooms`,
+        headers: {"Authorization": token},
         contentType: false,
         processData: false,
         success: function (response) {
@@ -197,6 +198,7 @@ function saveFile(chatMessage) {
     $.ajax({
         type: "POST",
         url: host + `/room/enter/` + roomId + '/' + roomName,
+        headers: {"Authorization": token},
         data: JSON.stringify(chatMessage),
         contentType: 'application/json',
         processData: false,
@@ -213,6 +215,7 @@ function getFile() {
     $.ajax({
         type: "GET",
         url: host + `/room/enter/` + roomId + '/' + roomName,
+        headers: {"Authorization": token},
         contentType: false,
         processData: false,
         success: function (response) {
