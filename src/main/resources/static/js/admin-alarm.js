@@ -22,6 +22,8 @@ function closeAlarm() {
 }
 
 function adminAlarmForm(data) {
+    console.log("admin chat alarm : " + data)
+    console.log("admin chat alarm : " + data.message)
     let idName = "#"+data.roomId
     let alarmCount = $(idName).text()
     $(".discussions").text("")
