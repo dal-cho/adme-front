@@ -9,7 +9,7 @@ messageInput.addEventListener("keyup", function (event) {
     }
 });
 $(document).ready(function () {
-    findToken()
+    //findToken()
     chatList()
     //setInterval(alarmSubscribe(), 4000)
     $(".messages-chat").text("");
@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 function findToken() {
     let urlSearch = new URLSearchParams(location.search);
-    let token = urlSearch.get('token')
+    token = urlSearch.get('token')
     if (token != null && token !== localStorage.getItem('token')) {
         localStorage.setItem('token', token);
     }
@@ -47,6 +47,7 @@ function chatList() {
     $.ajax({
         type: "GET",
         url: host + `/rooms`,
+        headers: {"Authorization": token},
         contentType: false,
         processData: false,
         success: function (response) {
@@ -150,17 +151,15 @@ function onMessageReceived(payload) { // 메세지 받기
 }
 
 function connect() {
-    let token = localStorage.getItem('token')
     let nickname = "admin";
     if (nickname) {
-        let socket = new SockJS('/ws');
+        let socket = new SockJS(host + '/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({Authorization: token}, onConnected, onError);
     }
 }
 
 function onConnected() {
-    let token = localStorage.getItem('token')
     let roomId = localStorage.getItem('wschat.roomId')
     stompClient.subscribe('/topic/public/' + roomId, onMessageReceived);
     let message = $(".message").last().text().trim();
@@ -197,6 +196,7 @@ function saveFile(chatMessage) {
     $.ajax({
         type: "POST",
         url: host + `/room/enter/` + roomId + '/' + roomName,
+        headers: {"Authorization": token},
         data: JSON.stringify(chatMessage),
         contentType: 'application/json',
         processData: false,
@@ -213,6 +213,7 @@ function getFile() {
     $.ajax({
         type: "GET",
         url: host + `/room/enter/` + roomId + '/' + roomName,
+        headers: {"Authorization": token},
         contentType: false,
         processData: false,
         success: function (response) {

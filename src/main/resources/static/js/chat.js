@@ -83,6 +83,7 @@ function openChatList() {
             contentType: false,
             processData: false,
             success: function (response) {
+                console.log(" = = first = = = ")
                 localStorage.setItem('wschat.roomId', response["roomId"]);
                 let count = response["userChat"];
                 let message = response["message"];
@@ -93,10 +94,14 @@ function openChatList() {
                 let days = today.getDate();
                 let now = month + "/" + days
                 let dayTime
-                if (now !== day) {
+                if (now !== day && month!=null) {
                     dayTime = day + " " + time;
-                } else {
+                } else if(time!=null){
                     dayTime = time;
+                }else{
+                    dayTime = "";
+                    message = " 고객센터 입장하기";
+                    count = 0;
                 }
                 let temp = `
           <div id="needChat" class="conversation" onclick="joinChat()">
@@ -129,6 +134,7 @@ function openChatList() {
 
 // 채팅 기록 마지막 줄 띄워주기
 function needLine(){
+    console.log(" = = second = = = ")
     $(".conversations").empty();
     roomId = localStorage.getItem('wschat.roomId');
     nickname = localStorage.getItem('nickname');
@@ -148,12 +154,15 @@ function needLine(){
             let days = today.getDate();
             let now = month + "/" + days;
             let dayTime
-            if (now !== day) {
+            if (now !== day && month!=null) {
                 dayTime = day + " " + time;
-            } else {
+            } else if(time!=null){
                 dayTime = time;
+            }else{
+                dayTime = "";
+                message = " 고객센터 입장하기";
+                count = 0;
             }
-
             let temp = `
           <div id="needChat" class="conversation" onclick="joinChat()">
             <div class="top">
