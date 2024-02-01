@@ -26,24 +26,26 @@ function alarmForm(data) {
     if ($(".toast-body").text() === "") {
         let url = host+ `/room/enter/${data.roomId}`
         let roomId = data.roomId
-        let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>";
-        toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
-        toast += "<small class='text-muted'>just now</small><button type='button' onclick='closeAlarm()' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>";
-        toast += "<span aria-hidden='true'>&times;</span></button>";
-        toast += "</div> <div class='toast-body'>" + data.message + "</div></div>";
+        let toast = `
+           <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+      
+        <strong class="me-auto">알림  </strong>
+        <small class="text-muted">just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" onclick="closeAlarm()"></button>
+      </div>
+      <div class="toast-body">
+        ${data.message}
+      </div>
+    </div>`
         $("#msgStack").append(toast);
-        $(".toast").toast({"animation": true, "autohide": false});
-        $('.toast').toast('show');
-    }
-    if ($('.toast').toast('hide')) {
-        $('.toast').toast('show')
-        setTimeout(closeAlarm, 2500)
-    }
-    if ($(".toast fade hide show")) {
-        $('.toast').toast('show')
+
+        setTimeout(function() {
+            $(".toast").toast('hide'); // Bootstrap의 'hide' 메소드를 호출하여 토스트를 숨김
+        }, 3000);
     }
 }
 
 function closeAlarm() {
-    $('.toast').toast('hide')
+    $('.toast').toast('hide');
 }
