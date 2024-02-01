@@ -47,7 +47,7 @@ function emptyUsername(token) {
 }
 
 $(document).ready(function () {
-    alarmSubscribe();
+    //alarmSubscribe();
     if (token == null) {
         findToken();
     } else if (nickname == null) {
@@ -341,6 +341,7 @@ function connect() {
         let socket = new SockJS(host + '/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({Authorization: token}, onConnected, onError);
+        alarmSubscribe()
     }
 }
 
@@ -395,7 +396,6 @@ function sendMessage() {
     };
     if (messageContent && stompClient) {
         saveFile(chatMessage)
-        onMessageReceived(chatMessage)
         stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     } else {
@@ -601,14 +601,21 @@ function randomSendMessage(event){
 }
 
 function alarmSubscribe() {
+    console.log("alarmSubscribe")
+
     roomId = localStorage.getItem('wschat.roomId')
     nickname = localStorage.getItem('nickname');
+    console.log(nickname)
+    console.log(roomId)
+    console.log("stompClient :" + stompClient)
     if (nickname != null && roomId != null && stompClient) {
         start(nickname, roomId);
     }
 }
 
 function alarmMessage() {
+    console.log("alarmMessage")
+    console.log("stompClient :" + stompClient)
     if (stompClient) {
         nickname = localStorage.getItem('nickname');
         roomId = localStorage.getItem('wschat.roomId');

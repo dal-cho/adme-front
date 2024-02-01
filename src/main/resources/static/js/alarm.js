@@ -1,11 +1,14 @@
 function start(username, roomId){
+    console.log("start sse")
     let id = username + "-" + roomId;
     const eventSource = new EventSource(host + `/room/subscribe/?id=${username}`);
 
     eventSource.onopen = (e) => {
+        console.log("eventSource open")
     };
     eventSource.onerror = (e) => {
         if (e.readyState == EventSource.CLOSED) {
+            console.log("eventSource closed")
         }
         eventSource.close();
     };

@@ -156,6 +156,7 @@ function connect() {
         let socket = new SockJS(host + '/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({Authorization: token}, onConnected, onError);
+        alarmSubscribe()
     }
 }
 
@@ -195,7 +196,6 @@ function sendMessage() {
             time: hour + ":" + minute
         };
         saveFile(chatMessage)
-        onMessageReceived(chatMessage)
         stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
@@ -235,7 +235,21 @@ function getFile() {
     })
 }
 
+function alarmSubscribe() {
+    console.log("alarmSubscribe")
+    roomId = localStorage.getItem('wschat.roomId')
+    nickname = localStorage.getItem('nickname');
+    console.log(nickname)
+    console.log(roomId)
+    console.log(stompClient)
+    if (nickname != null && roomId != null && stompClient) {
+        start(nickname, roomId);
+    }
+}
+
 function alarmMessage() {
+    console.log("  alarmMessage  " )
+    console.log("stompClient :" + stompClient)
     let roomId = localStorage.getItem('wschat.roomId');
     fetch(host + `/room/publish?sender=${nickname}&roomId=${roomId}`);
 }
