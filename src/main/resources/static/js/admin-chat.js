@@ -223,3 +223,8 @@ function getFile() {
         }
     })
 }
+
+function alarmMessage() {
+    let roomId = localStorage.getItem('wschat.roomId');
+    fetch(`/room/publish?sender=${nickname}&roomId=${roomId}`);
+}
