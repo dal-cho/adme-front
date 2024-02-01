@@ -195,6 +195,7 @@ function sendMessage() {
             time: hour + ":" + minute
         };
         saveFile(chatMessage)
+        onMessageReceived(chatMessage)
         stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
