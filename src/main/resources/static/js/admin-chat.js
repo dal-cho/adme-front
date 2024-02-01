@@ -180,9 +180,19 @@ function sendMessage() {
     let nickname = "admin";
     let roomId = localStorage.getItem('wschat.roomId');
     let messageContent = messageInput.value.trim();
+    let today = new Date();
+    let month = today.getMonth() + 1;
+    let days = today.getDate();
+    let hour = ('0' + today.getHours()).slice(-2);
+    let minute = ('0' + today.getMinutes()).slice(-2);
     if (messageContent && stompClient) {
         let chatMessage = {
-            roomId: roomId, sender: nickname, message: messageContent, type: 'TALK'
+            roomId: roomId,
+            sender: nickname,
+            message: messageContent,
+            type: 'TALK',
+            day: month + "/" + days,
+            time: hour + ":" + minute
         };
         saveFile(chatMessage)
         stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(chatMessage));
@@ -226,5 +236,5 @@ function getFile() {
 
 function alarmMessage() {
     let roomId = localStorage.getItem('wschat.roomId');
-    fetch(`/room/publish?sender=${nickname}&roomId=${roomId}`);
+    fetch(host + `/room/publish?sender=${nickname}&roomId=${roomId}`);
 }

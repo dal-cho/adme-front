@@ -1,6 +1,6 @@
 function start(username, roomId){
     let id = username + "-" + roomId;
-    const eventSource = new EventSource(`/room/subscribe/?id=${username}`);
+    const eventSource = new EventSource(host + `/room/subscribe/?id=${username}`);
 
     eventSource.onopen = (e) => {
     };

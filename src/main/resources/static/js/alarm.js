@@ -1,6 +1,6 @@
 function start(username, roomId){
     let id = username + "-" + roomId;
-    const eventSource = new EventSource(`/room/subscribe/?id=${username}`);
+    const eventSource = new EventSource(host + `/room/subscribe/?id=${username}`);
 
     eventSource.onopen = (e) => {
     };
@@ -21,7 +21,7 @@ function start(username, roomId){
 function alarmForm(data) {
     alarmCount(1);
     if ($(".toast-body").text() === "") {
-        let url = `/room/enter/${data.roomId}`
+        let url = host+ `/room/enter/${data.roomId}`
         let roomId = data.roomId
         let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>";
         toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
