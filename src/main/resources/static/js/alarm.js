@@ -29,19 +29,16 @@ function alarmForm(data) {
         toast += "<small class='text-muted'>just now  </small><button type='button' onclick='closeAlarm()' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>";
         toast += "<span aria-hidden='true'>&times;</span></button>";
         toast += "</div> <div class='toast-body'>" + data.message + "</div></div>";
-
         $("#msgStack").append(toast);
-
         setTimeout(function() {
             $("#msgStack").hide()
-        }, 4000);
-
-        if($("#msgStack").hide()){
-            $("#msgStack").show();
-            setTimeout(function() {
-                $("#msgStack").hide()
-            }, 4000);
-        }
+        }, 3000);
+    }
+    if($("#msgStack").css("display") === "none"){
+        $("#msgStack").show();
+        setTimeout(function() {
+            $("#msgStack").hide()
+        }, 3000);
     }
 }
 

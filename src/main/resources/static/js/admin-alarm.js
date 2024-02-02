@@ -41,16 +41,17 @@ let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='
          toast += "</div> <div class='toast-body'>" + data.message + "</div></div>";
 
 
-        if($("#msgStack").style.display === "none"){
+        if($("#msgStack").css("display") === "none"){
+            console.log(" = = = = display : none = = = = ")
             $("#msgStack").show();
             setTimeout(function() {
                 $("#msgStack").hide()
-            }, 4000);
+            }, 3000);
         }else{
             $("#msgStack").append(toast);
             setTimeout(function() {
                 $("#msgStack").hide()
-            }, 4000);
+            }, 3000);
         }
 
     }
