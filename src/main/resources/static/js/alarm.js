@@ -1,6 +1,4 @@
 function start(username, roomId){
-    console.log("start sse")
-    let id = username + "-" + roomId;
     const eventSource = new EventSource(host + `/room/subscribe/?id=${username}`);
 
     eventSource.onopen = (e) => {
@@ -32,13 +30,13 @@ function alarmForm(data) {
         $("#msgStack").append(toast);
         setTimeout(function() {
             $("#msgStack").hide()
-        }, 3000);
+        }, 2000);
     }
     if($("#msgStack").css("display") === "none"){
         $("#msgStack").show();
         setTimeout(function() {
             $("#msgStack").hide()
-        }, 3000);
+        }, 2000);
     }
 }
 
