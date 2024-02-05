@@ -39,6 +39,9 @@ function signup() {
                 console.log(`${response["code"]}`)
                 alert("서버에 오류가 있어 사이트를 이용할 수 없습니다.")
             }
+        },
+        error: function (){
+            alert("해당 ID는 사용할 수 없습니다.")
         }
     });
 }
