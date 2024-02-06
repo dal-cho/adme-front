@@ -4,6 +4,33 @@ $(document).ready(function(){
         saveToken(queryString)
     }
 });
+window.addEventListener("DOMContentLoaded", function() {
+    var currentUrl = window.location.href;
+    if (currentUrl.includes("admin-chat.html") || currentUrl.includes("admin-chat")) {
+        if (checkRole()) {
+            //window.location.href = "admin-chat.html";
+            console.log("= = = 완료 = = ")
+        } else {
+            console.error("문제가 발생하여 페이지를 로드할 수 없습니다.");
+        }
+    }
+});
+
+function checkRole() {
+    fetch(host + "/check-user", {
+        method: 'GET',
+        headers : {"Authorization": token}
+    })
+        .then(data => {
+            if (!response.ok) {
+                throw new Error('response was not ok');
+            }
+        })
+        .catch(error => {
+            //document.location.href = "error.html"
+        });
+}
+
 function saveToken(queryString){
     let urlParams = new URLSearchParams(queryString)
     window.localStorage.setItem("token", urlParams.get("token"))
