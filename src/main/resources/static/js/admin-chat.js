@@ -74,6 +74,9 @@ function chatList() {
 `
                 $(".discussions").append(tempHtml);
             }
+        },
+        error:function (){
+            document.location.href = "error.html"
         }
     })
 }
