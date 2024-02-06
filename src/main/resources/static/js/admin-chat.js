@@ -1,4 +1,3 @@
-
 let messageInput = document.querySelector(".write-message")
 let chatArea = document.querySelector('.messages-chat');
 let connectingElement = document.querySelector(".messages-chat")
@@ -12,20 +11,21 @@ $(document).ready(function () {
     checkRole()
     $(".messages-chat").text("");
 });
-function checkRole(){
-    $.ajax({
-        type: "GET",
-        url: host + `/check-user`,
-        headers: {"Authorization": token},
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            chatList()
-        },
-        error: function (){
-            document.location.href = "error.html"
-        }
+
+function checkRole() {
+    fetch(host + "/check-user", {
+        method: 'GET',
+        headers : {"Authorization": token}
     })
+        .then(data => {
+            if (!response.ok) {
+                throw new Error('response was not ok');
+            }
+            chatList()
+        })
+        .catch(error => {
+            document.location.href = "error.html"
+        });
 }
 
 function findToken() {
@@ -258,7 +258,7 @@ function alarmSubscribe() {
 }
 
 function alarmMessage() {
-    console.log("  alarmMessage  " )
+    console.log("  alarmMessage  ")
     console.log("stompClient :" + stompClient)
     let roomId = localStorage.getItem('wschat.roomId');
     fetch(host + `/room/publish?sender=${nickname}&roomId=${roomId}`);
