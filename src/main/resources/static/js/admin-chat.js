@@ -9,11 +9,24 @@ messageInput.addEventListener("keyup", function (event) {
     }
 });
 $(document).ready(function () {
-    //findToken()
-    chatList()
-    //setInterval(alarmSubscribe(), 4000)
+    checkRole()
     $(".messages-chat").text("");
 });
+function checkRole(){
+    $.ajax({
+        type: "GET",
+        url: host + `/check-user`,
+        headers: {"Authorization": token},
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            chatList()
+        },
+        error: function (){
+            document.location.href = "error.html"
+        }
+    })
+}
 
 function findToken() {
     let urlSearch = new URLSearchParams(location.search);
@@ -74,9 +87,6 @@ function chatList() {
 `
                 $(".discussions").append(tempHtml);
             }
-        },
-        error:function (){
-            document.location.href = "error.html"
         }
     })
 }
