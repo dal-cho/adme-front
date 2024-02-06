@@ -9,7 +9,6 @@ function saveToken(queryString){
     let urlParams = new URLSearchParams(queryString)
     window.localStorage.setItem("token", urlParams.get("token"))
     window.localStorage.setItem("nickname", urlParams.get("name"))
-    //window.location.href="https://www.admee.site/templates/registry.html"
     window.history.replaceState({}, document.title, "https://www.admee.site/templates/registry.html");
 }
 
@@ -37,18 +36,21 @@ function mainRegistry(curpage) {
 
             boardContainer.empty(); // 게시글 초기화
 
-            // 메인화면 게시글 표시
-            for (let i = 0; i < list.length; i++) {
-                let title = list[i].title;
-                let idx = list[i].idx;
+            if(list){
+                // 메인화면 게시글 표시
+                for (let i = 0; i < list.length; i++) {
+                    let title = list[i].title;
+                    let idx = list[i].idx;
 
-                let tempHtml = `<div class="board-item adme-scale-animation" onclick="boardModal(${idx})">
+                    let tempHtml = `<div class="board-item adme-scale-animation" onclick="boardModal(${idx})">
                                     <div class="board" >${title}</div>
                                 </div>`;
 
-                boardContainer.append(tempHtml);
+                    boardContainer.append(tempHtml);
+                }
+                makePagination(curpage, startPage, endPage, prev, next); // 아래 하단 페이징
             }
-            makePagination(curpage, startPage, endPage, prev, next); // 아래 하단 페이징
+
         }
     })
 }
