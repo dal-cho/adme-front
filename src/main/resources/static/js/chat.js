@@ -83,7 +83,6 @@ function openChatList() {
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(" = = first = = = ")
                 localStorage.setItem('wschat.roomId', response["roomId"]);
                 let count = response["userChat"];
                 let message = response["message"];
@@ -119,7 +118,7 @@ function openChatList() {
               <div class="top">
                 <span></span>
                 <span class="title">랜덤 채팅방 참여하기</span>
-                <span class="time">15/05/2019</span>
+                <span class="time">${now}</span>
               </div>
               <div class="bottom">
                 <span class="user">adme</span>
@@ -134,7 +133,6 @@ function openChatList() {
 
 // 채팅 기록 마지막 줄 띄워주기
 function needLine(){
-    console.log(" = = second = = = ")
     $(".conversations").empty();
     roomId = localStorage.getItem('wschat.roomId');
     nickname = localStorage.getItem('nickname');
@@ -179,7 +177,7 @@ function needLine(){
               <div class="top">
                 <span></span>
                 <span class="title">랜덤 채팅방 참여하기</span>
-                <span class="time">15/05/2019</span>
+                <span class="time">${now}</span>
               </div>
               <div class="bottom">
                 <span class="user">adme</span>
