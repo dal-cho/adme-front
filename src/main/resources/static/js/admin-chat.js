@@ -8,23 +8,39 @@ messageInput.addEventListener("keyup", function (event) {
     }
 });
 $(document).ready(function () {
-    checkRole()
+    let queryString = window.location.search
+    if (queryString) {
+        saveToken(queryString)
+    } else {
+        checkRole()
+    }
     $(".messages-chat").text("");
 });
+
+function saveToken(queryString) {
+    let urlParams = new URLSearchParams(queryString)
+    window.localStorage.setItem("token", urlParams.get("token"))
+    window.localStorage.setItem("nickname", urlParams.get("name"))
+    window.history.replaceState({}, document.title, "https://www.admee.site/templates/admin-chat.html");
+    checkRole()
+}
 
 function checkRole() {
     fetch(host + "/check-user", {
         method: 'GET',
-        headers : {"Authorization": token}
+        headers: {"Authorization": token}
     })
-        .then(data => {
-            if (!response.ok) {
-                throw new Error('response was not ok');
+        .then(response => {
+            if (response.status === 200) {
+                console.log("hi")
+            }else{
+                console.log("bye")
             }
-            chatList()
         })
+        //chatList()
         .catch(error => {
-            document.location.href = "error.html"
+            console.log("error : " + error)
+            //document.location.href = "error.html"
         });
 }
 
