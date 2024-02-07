@@ -1,11 +1,11 @@
-$(document).ready(function(){
+$(document).ready(function () {
     let queryString = window.location.search
-    if(queryString){
+    if (queryString) {
         saveToken(queryString)
     }
 });
 
-function saveToken(queryString){
+function saveToken(queryString) {
     let urlParams = new URLSearchParams(queryString)
     window.localStorage.setItem("token", urlParams.get("token"))
     window.localStorage.setItem("nickname", urlParams.get("name"))
@@ -14,13 +14,13 @@ function saveToken(queryString){
 
 // board 모달 열기
 function boardModal(idx) {
-    allRegistry(idx);
+    allArticle(idx);
     $(".board-modal-container").fadeIn(200);
     $(".board-modal-content").fadeIn(200);
 }
 
 // 작성 글 페이징
-function mainRegistry(curpage) {
+function mainArticle(curpage) {
     $.ajax({
         type: "GET",
         url: host + `/registry/${curpage}`,
@@ -36,7 +36,7 @@ function mainRegistry(curpage) {
 
             boardContainer.empty(); // 게시글 초기화
 
-            if(list){
+            if (list) {
                 // 메인화면 게시글 표시
                 for (let i = 0; i < list.length; i++) {
                     let title = list[i].title;
@@ -56,7 +56,7 @@ function mainRegistry(curpage) {
 }
 
 // 공감이 필요해요
-function sideRegistry() {
+function sideArticle() {
     $.ajax({
         type: "GET",
         url: host + `/side-registry`,
@@ -100,7 +100,7 @@ function makePagination(curpage, startPage, endPage, prev, next) {
         if (curpage === i) {
             tempHtml += `<div><a href="#">${i}</a></div>`;
         } else {
-            tempHtml += `<div><a href="#" onclick="mainRegistry(${i})">${i}</a></div>`;
+            tempHtml += `<div><a href="#" onclick="mainArticle(${i})">${i}</a></div>`;
         }
     }
 
@@ -113,15 +113,16 @@ function makePagination(curpage, startPage, endPage, prev, next) {
 }
 
 function beforeClick(curpage) {
-    mainRegistry(curpage - 1);
+    mainArticle(curpage - 1);
 }
 
 function nextClick(curpage) {
-    mainRegistry(curpage + 1);
+    mainArticle(curpage + 1);
 }
 
+
 // 게시글 상세 페이지
-function allRegistry(idx) {
+function allArticle(idx) {
     $.ajax({
         type: "GET",
         url: host + `/registry?idx=${idx}`,
@@ -146,7 +147,7 @@ function allRegistry(idx) {
             $(".board-content>textarea").text(main);
 
             // onclick 의 값이 잘 변경 되는지 체크
-            $(".board-comment-save").attr("onclick","comment("+idx+")");
+            $(".board-comment-save").attr("onclick", "comment(" + idx + ")");
 
             findComment(idx);
         }
@@ -156,9 +157,9 @@ function allRegistry(idx) {
 // 댓글 등록하기
 function comment(idx) {
     let form_data = {
-        "nickname" : nickname,
-        "comment" : $('.board-comment-writing-container>textarea').val(),
-        "registryIdx" : idx
+        "nickname": nickname,
+        "comment": $('.board-comment-writing-container>textarea').val(),
+        "registryIdx": idx
     }
 
     $.ajax({
@@ -167,7 +168,7 @@ function comment(idx) {
         headers: {"Authorization": token},
         data: JSON.stringify(form_data),
         contentType: "application/json;charset=utf-8",
-        dataType : "json",
+        dataType: "json",
         processData: false,
         success: function (response) {
             // 댓글 입력 후 댓글 db reload
@@ -202,7 +203,7 @@ function commentPost(article, registryIdx) {
     let comment = article["comment"];
     let registryNickname = article["registryNickname"];
     let modifiedAt = article["modifiedAt"];
-    let date = modifiedAt.replaceAll("T"," ").replaceAll("-",".");
+    let date = modifiedAt.replaceAll("T", " ").replaceAll("-", ".");
     let temp_html;
 
     if (registryNickname === commentNickname) { // 게시글 작성자인 경우
@@ -283,9 +284,9 @@ function afterUpdateComment(commentId, registryIdx) {  // 저장 버튼을 누�
     let saveComment = $(parents + '>.board-comment-left-item>textarea').val();
 
     let RegistryComment = { // 수정
-        "nickname" : nickname,
-        "comment" : saveComment,
-        "registryIdx" : registryIdx
+        "nickname": nickname,
+        "comment": saveComment,
+        "registryIdx": registryIdx
     }
 
     $.ajax({
@@ -294,9 +295,9 @@ function afterUpdateComment(commentId, registryIdx) {  // 저장 버튼을 누�
         headers: {"Authorization": token},
         data: JSON.stringify(RegistryComment),
         contentType: "application/json;charset=utf-8",
-        dataType : "json",
+        dataType: "json",
         success: function (response) {
-            allRegistry(registryIdx);
+            allArticle(registryIdx);
         }
     });
 }
@@ -306,7 +307,7 @@ function checkDelete(commentId, registryIdx) { // 삭제 여부를 묻고 삭제
     let checkDelete = confirm("정말 삭제하실건가요?");
     if (checkDelete) {
         deleteComment(commentId, registryIdx);
-        allRegistry(registryIdx);
+        allArticle(registryIdx);
     }
 }
 

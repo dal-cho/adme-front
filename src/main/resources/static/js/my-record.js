@@ -27,6 +27,7 @@ function getMyList(currentNumber) {
 
                 let tempHtml = `<div class="board-item-box">
                                     <div class="board-delete-box">
+                                    <button class="board-item-button video-config-button" title="수정" onclick="updateArticle(${idx})"></button>
                                         <button class="board-item-button video-config-button" title="삭제" onclick="articleDelete(${idx})"></button>
                                     </div>
                                     <div class="board-item" onclick="boardModal(${idx})">

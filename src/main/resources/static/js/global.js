@@ -69,8 +69,8 @@ function loadPage() {
     if (window.location.pathname.includes(everyone_record_main_page)) {
         getList(1);
     }else if(window.location.pathname.includes(registry_main_page)) {
-        mainRegistry(1);
-        sideRegistry();
+        mainArticle(1);
+        sideArticle();
     }else if(window.location.pathname.includes(my_record_main_page)) {
         getMyList(1);
     }else if(window.location.pathname.includes(everyone_record_modify_page)) {

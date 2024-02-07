@@ -35,3 +35,22 @@ function articleDelete(id) {
         });
     }
 }
+
+function updateArticle(id){
+    let Registry = { // 수정
+        "title" : $(".board-title").text(),
+        "main" : main,
+    }
+
+    $.ajax({
+        type: "PUT",
+        url: host + `/registry/${id}`,
+        headers: {"Authorization": token},
+        data: JSON.stringify(Registry),
+        contentType: "application/json;charset=utf-8",
+        dataType : "json",
+        success: function (response) {
+            allArticle(id)
+        }
+    });
+}
