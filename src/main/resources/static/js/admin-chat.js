@@ -32,15 +32,13 @@ function checkRole() {
     })
         .then(response => {
             if (response.status === 200) {
-                console.log("hi")
+                chatList()
             }else{
-                console.log("bye")
+                document.location.href = "error.html"
             }
         })
-        //chatList()
         .catch(error => {
-            console.log("error : " + error)
-            //document.location.href = "error.html"
+            document.location.href = "error.html"
         });
 }
 
