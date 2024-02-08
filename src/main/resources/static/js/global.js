@@ -52,6 +52,7 @@ function linkSetting() {
 function videoUploadLink() {
     document.location.href = everyone_record_upload_page;
 }
+
 function modifyLink(id) {
     let choice = confirm("해당 게시글물을 수정 하시겠습니까?");
     window.localStorage.setItem("modifyId",id);
