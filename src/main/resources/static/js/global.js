@@ -34,7 +34,6 @@ let showCommentId;
 let updateTitle
 let updateMain
 let updateId
-let article = "default"
 
 // 요일별 index_page 변경
 function indexPageInit() {
@@ -54,11 +53,17 @@ function linkSetting() {
 }
 
 function articleUpdateLink(id){
+    window.localStorage.setItem("article","update");
+    console.log(" = = articleUpdateLink = = ")
     updateTitle = $(".board-title").text()
     updateMain = $(".board-content").text().trim()
     updateId = id
-    status = "update"
+    console.log("updateMain : " + updateTitle)
+    console.log("updateMain : " + updateMain)
+    console.log("updateId : " + updateId)
+    console.log("article : " + article)
     document.location.href = registry_upload_page;
+    console.log(" = = end = = ")
 }
 
 // 비디오 업로드 및 수정 페이지 경로 설정

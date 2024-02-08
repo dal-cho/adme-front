@@ -1,6 +1,7 @@
 $(document).ready(function(){
-    if(article==="update"){
-        article = "default"
+    localStorage.getItem("article")
+    if(localStorage.getItem("article")==="update"){
+        localStorage.setItem("article", "default")
         update()
     }
 });
@@ -44,8 +45,10 @@ function articleDelete(id) {
 }
 
 function update(){
-    $("#empathy-upload-title").text = updateTitle
-    $(".adme-front").text = updateMain
+    console.log("title : " + updateTitle)
+    console.log("updateMain : " + updateMain)
+    $("#empathy-upload-title").val(updateTitle)
+    $("#contentTextarea").val(updateMain);
 }
 function updateButton(){
     $.ajax({
