@@ -31,6 +31,11 @@ let registry_modal = document.getElementById("board-Modal");
 // 기타 변수
 let showCommentId;
 
+let updateTitle
+let updateMain
+let updateId
+let article = "default"
+
 // 요일별 index_page 변경
 function indexPageInit() {
     let today = new Date();
@@ -46,6 +51,14 @@ function linkSetting() {
     $("#everyone_record").attr("href", everyone_record_main_page);
     $("#empathy_space").attr("href", registry_main_page);
     $(".logo>.logo-link").attr("href", index_page);
+}
+
+function articleUpdateLink(id){
+    updateTitle = $(".board-title").text()
+    updateMain = $(".board-content").text().trim()
+    updateId = id
+    status = "update"
+    document.location.href = registry_upload_page;
 }
 
 // 비디오 업로드 및 수정 페이지 경로 설정

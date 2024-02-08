@@ -1,3 +1,10 @@
+$(document).ready(function(){
+    if(article==="update"){
+        article = "default"
+        update()
+    }
+});
+
 // 게시글 등록하기
 function saveArticle() {
     let form_data = new FormData();
@@ -36,18 +43,9 @@ function articleDelete(id) {
     }
 }
 
-function updateArticle(id){
-    let Registry = { // 수정
-        "title" : $(".board-title").text(),
-        "main" : $(".board-content").text().trim(),
-    }
-    document.location.href = registry_upload_page;
-    update(id, $(".board-title").text(), $(".board-content").text().trim())
-}
-
-function update(id, title, main){
-    $("#empathy-upload-title").text = title
-    $(".adme-front").text = main
+function update(){
+    $("#empathy-upload-title").text = updateTitle
+    $(".adme-front").text = updateMain
 }
 function updateButton(){
     $.ajax({
@@ -61,23 +59,4 @@ function updateButton(){
             allArticle(id)
         }
     });
-}
-
-function updateA(){
-    let contentDiv = document.querySelector('.board-content');
-    let textarea = contentDiv.querySelector('textarea');
-    let input = contentDiv.querySelector('input');
-
-    input.style.display = 'block';
-    input.value = textarea.value;
-    input.focus();
-
-    // textarea의 스타일을 input에 적용
-    input.style.width = textarea.offsetWidth + 'px';
-    input.style.height = textarea.offsetHeight + 'px';
-    input.style.fontFamily = window.getComputedStyle(textarea).fontFamily;
-    input.style.fontSize = window.getComputedStyle(textarea).fontSize;
-
-    textarea.style.display = 'none';
-
 }
