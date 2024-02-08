@@ -62,10 +62,7 @@ function update(){
 
 }
 function updateButton(){
-    console.log("= updateButton = ")
     let id = window.localStorage.getItem("id");
-    console.log("title : " + $("#empathy-upload-title").val())
-    console.log("main : " + $(".empathy-upload-content>textarea").val())
     let Registry = {
         "title": $("#empathy-upload-title").val(),
         "main": $(".empathy-upload-content>textarea").val()
