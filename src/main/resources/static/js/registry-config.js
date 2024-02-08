@@ -45,7 +45,11 @@ function articleDelete(id) {
 }
 
 function update(){
-    console.log("title : " + updateTitle)
+    let id = window.localStorage.getItem("id");
+    let updateTitle =window.localStorage.getItem("updateTitle");
+    let updateMain =window.localStorage.getItem("updateMain");
+    console.log(" = = = update() = = = ")
+    console.log("updateTtitle : " + updateTitle)
     console.log("updateMain : " + updateMain)
     $("#empathy-upload-title").val(updateTitle)
     $("#contentTextarea").val(updateMain);

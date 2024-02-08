@@ -31,10 +31,6 @@ let registry_modal = document.getElementById("board-Modal");
 // 기타 변수
 let showCommentId;
 
-let updateTitle
-let updateMain
-let updateId
-
 // 요일별 index_page 변경
 function indexPageInit() {
     let today = new Date();
@@ -52,18 +48,11 @@ function linkSetting() {
     $(".logo>.logo-link").attr("href", index_page);
 }
 
-function articleUpdateLink(id){
+function articleUpdateLink(){
     window.localStorage.setItem("article","update");
-    console.log(" = = articleUpdateLink = = ")
-    updateTitle = $(".board-title").text()
-    updateMain = $(".board-content").text().trim()
-    updateId = id
-    console.log("updateMain : " + updateTitle)
-    console.log("updateMain : " + updateMain)
-    console.log("updateId : " + updateId)
-    console.log("article : " + article)
+    window.localStorage.setItem("updateTitle",$(".board-title").text());
+    window.localStorage.setItem("updateMain",$(".board-content").text().trim());
     document.location.href = registry_upload_page;
-    console.log(" = = end = = ")
 }
 
 // 비디오 업로드 및 수정 페이지 경로 설정

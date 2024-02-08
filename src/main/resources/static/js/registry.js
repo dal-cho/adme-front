@@ -14,6 +14,7 @@ function saveToken(queryString) {
 
 // board 모달 열기
 function boardModal(idx) {
+    window.localStorage.setItem("id", idx)
     allArticle(idx);
     $(".board-modal-container").fadeIn(200);
     $(".board-modal-content").fadeIn(200);
