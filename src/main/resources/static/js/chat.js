@@ -338,12 +338,14 @@ function connect() {
     if (nickname) {
         let socket = new SockJS(host + '/ws');
         stompClient = Stomp.over(socket);
+        console.log("stomp : " + stompClient)
         stompClient.connect({Authorization: token}, onConnected, onError);
         alarmSubscribe()
     }
 }
 
 function onConnected() {
+    console.log("= = onConnected = = ")
     let token = localStorage.getItem('token');
     roomId = localStorage.getItem('wschat.roomId')
     stompClient.subscribe('/topic/public/' + roomId, onMessageReceived);
