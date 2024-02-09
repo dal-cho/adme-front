@@ -602,7 +602,7 @@ function alarmSubscribe() {
     console.log("alarmSubscribe")
     roomId = localStorage.getItem('wschat.roomId')
     nickname = localStorage.getItem('nickname');
-    if (nickname != null && roomId != null && stompClient) {
+    if (nickname != null && roomId != null) {
         start(nickname, roomId);
     }
 }
