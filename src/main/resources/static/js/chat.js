@@ -353,10 +353,16 @@ function onConnected() {
     if (document.querySelector('.message-container')) {
         message = $(".message-container").last().text().trim().split("\n")[1].trim()
     }
+    let today = new Date();
+    let month = today.getMonth() + 1;
+    let days = today.getDate();
+    let hour = ('0' + today.getHours()).slice(-2);
+    let minute = ('0' + today.getMinutes()).slice(-2);
     stompClient.send("/app/chat/addUser", {Authorization: token}, JSON.stringify({
         roomId: roomId,
         type: 'JOIN',
-        message: message
+        day: month + "/" + days,
+        time: hour + ":" + minute
     }))
 }
 
@@ -384,7 +390,6 @@ function sendMessage() {
     let days = today.getDate();
     let hour = ('0' + today.getHours()).slice(-2);
     let minute = ('0' + today.getMinutes()).slice(-2);
-
     let chatMessage = {
         roomId: roomId,
         sender: nickname,

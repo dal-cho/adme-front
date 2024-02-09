@@ -1,7 +1,7 @@
 function start(username, roomId){
     console.log("alarm start")
-    const eventSource = new EventSource(host + `/room/subscribe/?id=${username}`);
-
+    const eventSource = new EventSource(host + `/room/subscribe/${username}`);
+    console.log("alarm start2")
     eventSource.onopen = (e) => {
         console.log("eventSource open")
     };

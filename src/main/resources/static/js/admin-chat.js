@@ -191,10 +191,16 @@ function onConnected() {
     let roomId = localStorage.getItem('wschat.roomId')
     stompClient.subscribe('/topic/public/' + roomId, onMessageReceived);
     let message = $(".message").last().text().trim();
+    let today = new Date();
+    let month = today.getMonth() + 1;
+    let days = today.getDate();
+    let hour = ('0' + today.getHours()).slice(-2);
+    let minute = ('0' + today.getMinutes()).slice(-2);
     stompClient.send("/app/chat/addUser", {Authorization: token}, JSON.stringify({
         roomId: roomId,
         type: 'JOIN',
-        message: message
+        day: month + "/" + days,
+        time: hour + ":" + minute
     }))
 }
 
