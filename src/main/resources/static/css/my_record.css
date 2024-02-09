@@ -150,26 +150,26 @@ a {
 }
 .board-item-button {
     position: relative;
-    top: 1.5vw;
-    left: 0.6vw;
+    top: 1.9vw;
+    right: 9px;
 
-    height: 1vw;
-    width: 1vw;
+    /*height: 1vw;*/
+    /*width: 1vw;*/
     border-radius: 100px;
     cursor: pointer;
-    background-color: orangered;
+    background-color: antiquewhite;
     border: ivory;
 }
 .board-update-button {
     position: absolute;
-    top: 1.5vw;
-    left: 91%;
-    height: 1vw;
-    width: 1vw;
+    top: 1vw;
+    left: 80%;
+    height: 1.9vw;
+    width: 5.6vw;
     border-radius: 100px;
     cursor: pointer;
     border: ivory;
-    background: sandybrown;
+    background: beige;
 }
 .board-item-button:hover {
     height: .9vw;
