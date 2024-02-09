@@ -163,12 +163,13 @@ a {
 .board-update-button {
     position: absolute;
     top: 1.5vw;
-    left: 390px;
+    left: 91%;
     height: 1vw;
     width: 1vw;
     border-radius: 100px;
     cursor: pointer;
     border: ivory;
+    background: sandybrown;
 }
 .board-item-button:hover {
     height: .9vw;
