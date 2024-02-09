@@ -322,6 +322,7 @@ function joinChat() {
     connect()
     getFile()
     alarmCount(0)
+    alarmSubscribe()
     $("#sendButtonType").empty();
     let temp = `
 	<button class="btn btn-round btn-icon" id="sendButton" type="button" onclick="sendMessage()">send
@@ -338,9 +339,7 @@ function connect() {
     if (nickname) {
         let socket = new SockJS(host + '/ws');
         stompClient = Stomp.over(socket);
-        console.log("stomp : " + stompClient)
         stompClient.connect({Authorization: token}, onConnected, onError);
-        alarmSubscribe()
     }
 }
 
