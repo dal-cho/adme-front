@@ -347,7 +347,7 @@ function onConnected() {
     console.log("= = onConnected = = ")
     let token = localStorage.getItem('token');
     roomId = localStorage.getItem('wschat.roomId')
-    stompClient.subscribe('/topic/public/' + roomId, {Authorization: token}, onMessageReceived);
+    stompClient.subscribe('/topic/public/' + roomId, onMessageReceived);
 
     let message = "";
     if (document.querySelector('.message-container')) {
@@ -618,7 +618,7 @@ function alarmMessage() {
     if (stompClient) {
         nickname = localStorage.getItem('nickname');
         roomId = localStorage.getItem('wschat.roomId');
-        fetch(host + `/room/publish?sender=${nickname}&roomId=${roomId}`);
+        fetch(host + `/alarm/publish?sender=${nickname}&roomId=${roomId}`);
     }
 }
 

@@ -1,8 +1,6 @@
 function start(username, roomId){
     console.log("alarm start")
-    const eventSource = new EventSource(host + `/room/subscribe/${username}`,{
-     headers: { "Authorization": token }
-    });
+    const eventSource = new EventSource(host + `/alarm/subscribe/${username}`);
     console.log("alarm start2")
     eventSource.onopen = (e) => {
         console.log("eventSource open")

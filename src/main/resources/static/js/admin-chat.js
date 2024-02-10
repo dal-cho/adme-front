@@ -281,5 +281,5 @@ function alarmMessage() {
     console.log("  alarmMessage  ")
     console.log("stompClient :" + stompClient)
     let roomId = localStorage.getItem('wschat.roomId');
-    fetch(host + `/room/publish?sender=${nickname}&roomId=${roomId}`);
+    fetch(host + `/alarm/publish?sender=${nickname}&roomId=${roomId}`);
 }
