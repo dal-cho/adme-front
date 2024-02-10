@@ -347,7 +347,7 @@ function onConnected() {
     console.log("= = onConnected = = ")
     let token = localStorage.getItem('token');
     roomId = localStorage.getItem('wschat.roomId')
-    stompClient.subscribe('/topic/public/' + roomId, onMessageReceived);
+    stompClient.subscribe('/topic/public/' + roomId, {Authorization: token}, onMessageReceived);
 
     let message = "";
     if (document.querySelector('.message-container')) {
