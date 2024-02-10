@@ -605,7 +605,6 @@ function randomSendMessage(event){
 }
 
 function alarmSubscribe() {
-    console.log("alarmSubscribe")
     roomId = localStorage.getItem('wschat.roomId')
     nickname = localStorage.getItem('nickname');
     if (nickname != null && roomId != null) {
@@ -614,7 +613,6 @@ function alarmSubscribe() {
 }
 
 function alarmMessage() {
-    console.log("alarmMessage")
     if (stompClient) {
         nickname = localStorage.getItem('nickname');
         roomId = localStorage.getItem('wschat.roomId');
