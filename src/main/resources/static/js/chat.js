@@ -152,13 +152,15 @@ function needLine(){
             let days = today.getDate();
             let now = month + "/" + days;
             let dayTime
+            if(message==null || message.equals("")){
+                message = " 고객센터 입장하기"
+            }
             if (now !== day && month!=null) {
                 dayTime = day + " " + time;
             } else if(time!=null){
                 dayTime = time;
             }else{
-                dayTime = "";
-                message = " 고객센터 입장하기";
+                dayTime = now;
                 count = 0;
             }
             let temp = `
@@ -544,7 +546,7 @@ function randomOnConnected(){
         stompClient.subscribe('/every-chat/' + roomId, randomMessageReceived);
         stompClient.send("/app/every-chat/addUser", {}, JSON.stringify({
             roomId: roomId,
-            sender: username,
+            sender: nickname,
             type: 'JOIN'
         }))
         $("#message").removeAttr("disabled");
