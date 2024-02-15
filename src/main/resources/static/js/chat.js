@@ -438,7 +438,7 @@ function getFile() {
     }
     $.ajax({
         type: "GET",
-        url: host + `/room/enter/` + roomId,
+        url: host + `/room/enter/file/` + roomId,
         headers: {"Authorization": token},
         contentType: false,
         processData: false,
