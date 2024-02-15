@@ -235,11 +235,9 @@ function sendMessage() {
 }
 
 function saveFile(chatMessage) {
-    let roomId = localStorage.getItem('wschat.roomId');
-    let roomName = localStorage.getItem('wschat.roomName')
     $.ajax({
         type: "POST",
-        url: host + `/room/enter/` + roomId + '/' + roomName,
+        url: host + '/room/enter/file',
         headers: {"Authorization": token},
         data: JSON.stringify(chatMessage),
         contentType: 'application/json',
@@ -253,10 +251,9 @@ let isRun = false;
 
 function getFile() {
     let roomId = localStorage.getItem('wschat.roomId');
-    let roomName = localStorage.getItem('wschat.roomName')
     $.ajax({
         type: "GET",
-        url: host + `/room/enter/` + roomId + '/' + roomName,
+        url: host + `/room/enter/` + roomId,
         headers: {"Authorization": token},
         contentType: false,
         processData: false,
