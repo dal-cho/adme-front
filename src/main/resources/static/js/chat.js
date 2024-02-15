@@ -83,6 +83,7 @@ function openChatList() {
             contentType: false,
             processData: false,
             success: function (response) {
+                console.log("openChatList response : " + JSON.stringify(response))
                 if (response) {
                     localStorage.setItem('wschat.roomId', response["roomId"]);
                     let count = response["userChat"];
