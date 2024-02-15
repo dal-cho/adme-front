@@ -83,28 +83,29 @@ function openChatList() {
             contentType: false,
             processData: false,
             success: function (response) {
-                localStorage.setItem('wschat.roomId', response["roomId"]);
-                let count = response["userChat"];
-                let message = response["message"];
-                let day = response["day"]
-                let time = response["time"]
-                let today = new Date();
-                let month = today.getMonth() + 1;
-                let days = today.getDate();
-                let now = month + "/" + days
-                let dayTime
-                if(message==null || message===""){
-                    message = " 고객센터 입장하기"
-                }
-                if (now !== day && month!=null) {
-                    dayTime = day + " " + time;
-                } else if(time!=null){
-                    dayTime = time;
-                }else{
-                    dayTime = now;
-                    count = 0;
-                }
-                let temp = `
+                if (response) {
+                    localStorage.setItem('wschat.roomId', response["roomId"]);
+                    let count = response["userChat"];
+                    let message = response["message"];
+                    let day = response["day"]
+                    let time = response["time"]
+                    let today = new Date();
+                    let month = today.getMonth() + 1;
+                    let days = today.getDate();
+                    let now = month + "/" + days
+                    let dayTime
+                    if (message == null || message === "") {
+                        message = " 고객센터 입장하기"
+                    }
+                    if (now !== day && month != null) {
+                        dayTime = day + " " + time;
+                    } else if (time != null) {
+                        dayTime = time;
+                    } else {
+                        dayTime = now;
+                        count = 0;
+                    }
+                    let temp = `
           <div id="needChat" class="conversation" onclick="joinChat()">
             <div class="top">
               <span class="badge">${count}</span>
@@ -127,14 +128,16 @@ function openChatList() {
                 <span class="message">랜덤으로 2명 채팅이 가능합니다.</span>
               </div>
             </div>`
-                $(".conversations").append(temp);
+                    $(".conversations").append(temp);
+                }
+
             }
         });
     }
 }
 
 // 채팅 기록 마지막 줄 띄워주기
-function needLine(){
+function needLine() {
     $(".conversations").empty();
     roomId = localStorage.getItem('wschat.roomId');
     nickname = localStorage.getItem('nickname');
@@ -154,14 +157,14 @@ function needLine(){
             let days = today.getDate();
             let now = month + "/" + days;
             let dayTime
-            if(message==null || message.equals("")){
+            if (message == null || message.equals("")) {
                 message = " 고객센터 입장하기"
             }
-            if (now !== day && month!=null) {
+            if (now !== day && month != null) {
                 dayTime = day + " " + time;
-            } else if(time!=null){
+            } else if (time != null) {
                 dayTime = time;
-            }else{
+            } else {
                 dayTime = now;
                 count = 0;
             }
@@ -261,10 +264,9 @@ function seperator(message) {
 
 // 채팅 닫기 버튼 클릭 시
 function closeChat() {
-    if(status==null || status == undefined){
+    if (status == null || status == undefined) {
 
-    }
-    else if (status === "randomChat") {
+    } else if (status === "randomChat") {
         clearInterval(timerInterval); // 타이머 중지
         connectingElement.text("")
         $.ajax({
@@ -453,7 +455,7 @@ function getFile() {
 }
 
 // random 채팅 timer(제한 시간)
-function timer(){
+function timer() {
     let time = 20;
     let min = "";
     let sec = "";
@@ -521,7 +523,7 @@ function randomChat() {
 }
 
 // random 채팅 연결 start
-function randomConnect(event){
+function randomConnect(event) {
     let temp = `
 	<button class="btn btn-round btn-icon" id="randomSendButton" type="button" onclick="randomSendMessage()">send
 <i class="fa fa-paper-plane"></i>
@@ -539,8 +541,8 @@ function randomConnect(event){
 }
 
 // random 채팅 join
-function randomOnConnected(){
-    setTimeout(function(){
+function randomOnConnected() {
+    setTimeout(function () {
         connectingElement.text("");
     }, 1900)
 
@@ -556,7 +558,7 @@ function randomOnConnected(){
 }
 
 // random 채팅 msg 형식
-function randomMessageReceived(payload){
+function randomMessageReceived(payload) {
     let message;
     try {
         message = JSON.parse(payload.body);
@@ -595,7 +597,7 @@ function randomMessageReceived(payload){
 }
 
 // 랜덤 채팅 msg
-function randomSendMessage(event){
+function randomSendMessage(event) {
     nickname = localStorage.getItem('nickname');
     roomId = localStorage.getItem('wschat.roomId');
     let messageContent = messageInput.value.trim();
