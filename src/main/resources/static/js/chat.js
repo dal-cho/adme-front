@@ -84,32 +84,28 @@ function openChatList() {
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log("openChatList response : " + JSON.stringify(response))
-                console.log("openChatList response : " + response["roomId"])
-                console.log("openChatList response : " + response["nickname"])
-                if (response) {
-                    localStorage.setItem('wschat.roomId', response["roomId"]);
-                    let count = response["userChat"];
-                    let message = response["message"];
-                    let day = response["day"]
-                    let time = response["time"]
-                    let today = new Date();
-                    let month = today.getMonth() + 1;
-                    let days = today.getDate();
-                    let now = month + "/" + days
-                    let dayTime
-                    if (message == null || message === "") {
-                        message = " 고객센터 입장하기"
-                    }
-                    if (now !== day && month != null) {
-                        dayTime = day + " " + time;
-                    } else if (time != null) {
-                        dayTime = time;
-                    } else {
-                        dayTime = now;
-                        count = 0;
-                    }
-                    let temp = `
+                localStorage.setItem('wschat.roomId', response["roomId"]);
+                let count = response["userChat"];
+                let message = response["message"];
+                let day = response["day"]
+                let time = response["time"]
+                let today = new Date();
+                let month = today.getMonth() + 1;
+                let days = today.getDate();
+                let now = month + "/" + days
+                let dayTime
+                if (message == null || message === "") {
+                    message = " 고객센터 입장하기"
+                }
+                if (now !== day && month != null) {
+                    dayTime = day + " " + time;
+                } else if (time != null) {
+                    dayTime = time;
+                } else {
+                    dayTime = now;
+                    count = 0;
+                }
+                let temp = `
           <div id="needChat" class="conversation" onclick="joinChat()">
             <div class="top">
               <span class="badge">${count}</span>
@@ -132,8 +128,8 @@ function openChatList() {
                 <span class="message">랜덤으로 2명 채팅이 가능합니다.</span>
               </div>
             </div>`
-                    $(".conversations").append(temp);
-                }
+                $(".conversations").append(temp);
+
 
             }
         });
