@@ -1,4 +1,3 @@
-
 let messageInput = document.querySelector(".write-message")
 let chatArea = document.querySelector('.messages-chat');
 let connectingElement = document.querySelector(".messages-chat")
@@ -9,11 +8,39 @@ messageInput.addEventListener("keyup", function (event) {
     }
 });
 $(document).ready(function () {
-    //findToken()
-    chatList()
-    //setInterval(alarmSubscribe(), 4000)
+    let queryString = window.location.search
+    if (queryString) {
+        saveToken(queryString)
+    } else {
+        checkRole()
+    }
     $(".messages-chat").text("");
 });
+
+function saveToken(queryString) {
+    let urlParams = new URLSearchParams(queryString)
+    window.localStorage.setItem("token", urlParams.get("token"))
+    window.localStorage.setItem("nickname", urlParams.get("name"))
+    window.history.replaceState({}, document.title, "https://www.admee.site/templates/admin-chat.html");
+    checkRole()
+}
+
+function checkRole() {
+    fetch(host + "/check-user", {
+        method: 'GET',
+        headers: {"Authorization": token}
+    })
+        .then(response => {
+            if (response.status === 200) {
+                chatList()
+            }else{
+                document.location.href = "error.html"
+            }
+        })
+        .catch(error => {
+            document.location.href = "error.html"
+        });
+}
 
 function findToken() {
     let urlSearch = new URLSearchParams(location.search);
@@ -156,6 +183,7 @@ function connect() {
         let socket = new SockJS(host + '/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({Authorization: token}, onConnected, onError);
+        alarmSubscribe()
     }
 }
 
@@ -163,10 +191,16 @@ function onConnected() {
     let roomId = localStorage.getItem('wschat.roomId')
     stompClient.subscribe('/topic/public/' + roomId, onMessageReceived);
     let message = $(".message").last().text().trim();
+    let today = new Date();
+    let month = today.getMonth() + 1;
+    let days = today.getDate();
+    let hour = ('0' + today.getHours()).slice(-2);
+    let minute = ('0' + today.getMinutes()).slice(-2);
     stompClient.send("/app/chat/addUser", {Authorization: token}, JSON.stringify({
         roomId: roomId,
         type: 'JOIN',
-        message: message
+        day: month + "/" + days,
+        time: hour + ":" + minute
     }))
 }
 
@@ -180,9 +214,19 @@ function sendMessage() {
     let nickname = "admin";
     let roomId = localStorage.getItem('wschat.roomId');
     let messageContent = messageInput.value.trim();
+    let today = new Date();
+    let month = today.getMonth() + 1;
+    let days = today.getDate();
+    let hour = ('0' + today.getHours()).slice(-2);
+    let minute = ('0' + today.getMinutes()).slice(-2);
     if (messageContent && stompClient) {
         let chatMessage = {
-            roomId: roomId, sender: nickname, message: messageContent, type: 'TALK'
+            roomId: roomId,
+            sender: nickname,
+            message: messageContent,
+            type: 'TALK',
+            day: month + "/" + days,
+            time: hour + ":" + minute
         };
         saveFile(chatMessage)
         stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(chatMessage));
@@ -191,11 +235,9 @@ function sendMessage() {
 }
 
 function saveFile(chatMessage) {
-    let roomId = localStorage.getItem('wschat.roomId');
-    let roomName = localStorage.getItem('wschat.roomName')
     $.ajax({
         type: "POST",
-        url: host + `/room/enter/` + roomId + '/' + roomName,
+        url: host + '/room/enter/file',
         headers: {"Authorization": token},
         data: JSON.stringify(chatMessage),
         contentType: 'application/json',
@@ -209,10 +251,9 @@ let isRun = false;
 
 function getFile() {
     let roomId = localStorage.getItem('wschat.roomId');
-    let roomName = localStorage.getItem('wschat.roomName')
     $.ajax({
         type: "GET",
-        url: host + `/room/enter/` + roomId + '/' + roomName,
+        url: host + `/room/enter/file/` + roomId,
         headers: {"Authorization": token},
         contentType: false,
         processData: false,
@@ -222,4 +263,19 @@ function getFile() {
             }
         }
     })
+}
+
+function alarmSubscribe() {
+    console.log("alarmSubscribe")
+    roomId = localStorage.getItem('wschat.roomId')
+    nickname = localStorage.getItem('nickname');
+    if (nickname != null && roomId != null && stompClient) {
+        start(nickname, roomId);
+    }
+}
+
+function alarmMessage() {
+    console.log("  alarmMessage  ")
+    let roomId = localStorage.getItem('wschat.roomId');
+    fetch(host + `/alarm/publish?sender=${nickname}&roomId=${roomId}`);
 }

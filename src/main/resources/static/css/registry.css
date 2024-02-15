@@ -376,7 +376,7 @@ a {
 /*모달 게시글 타이틀*/
 .board-title {
     width: 37vw;
-    height: 2vw;
+    margin: 5px;
     font-size: 2vw;
 
     white-space: nowrap; /*한줄로 모든 글 표시*/
@@ -396,7 +396,7 @@ a {
 .board-content>textarea {
     width: 36.3vw;
     height: 12vw;
-    padding: 0.2vw 0.5vw 0 0.3vw;
+    padding: 10px;
     resize: none; /*박스 크기조절 불가*/
     line-height: 1.4vw; /*상하 줄간격*/
 

@@ -150,15 +150,26 @@ a {
 }
 .board-item-button {
     position: relative;
-    top: 1.5vw;
-    left: 0.6vw;
+    top: 1.9vw;
+    right: 9px;
 
-    height: 1vw;
-    width: 1vw;
+    /*height: 1vw;*/
+    /*width: 1vw;*/
     border-radius: 100px;
     cursor: pointer;
-    background-color: orangered;
+    background-color: antiquewhite;
     border: ivory;
+}
+.board-update-button {
+    position: absolute;
+    top: 1vw;
+    left: 80%;
+    height: 1.9vw;
+    width: 5.6vw;
+    border-radius: 100px;
+    cursor: pointer;
+    border: ivory;
+    background: beige;
 }
 .board-item-button:hover {
     height: .9vw;
@@ -477,7 +488,9 @@ a {
 }
 /*모달 닫기 버튼*/
 .board-box-close {
-    margin-left: 101%;
+    /*margin-left: 101%;*/
+    position: absolute;
+    right: 0px;
     border: none;
     background-color: transparent;
 
@@ -487,8 +500,9 @@ a {
 /*모달 게시글 타이틀*/
 .board-title {
     width: 37vw;
-    height: 2vw;
+    /*height: 2vw;*/
     font-size: 2vw;
+    margin: 5px;
 
     white-space: nowrap; /*한줄로 모든 글 표시*/
     overflow: hidden; /*크기 초과시 숨김*/
@@ -507,7 +521,8 @@ a {
 .board-content>textarea {
     width: 36.3vw;
     height: 12vw;
-    padding: 0.2vw 0.5vw 0 0;
+    /*padding: 0.2vw 0.5vw 0 0;*/
+    padding: 10px;
     resize: none; /*박스 크기조절 불가*/
     line-height: 1.4vw; /*상하 줄간격*/
 

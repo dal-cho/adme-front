@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/my_record.css">
     <link rel="stylesheet" type="text/css" href="../css/global.css">
     <link rel="stylesheet" type="text/css" href="../css/chat.css">
@@ -122,6 +126,7 @@
     <div class="board-modal-container" id="board-Modal">
         <div class="board-modal-content">
             <div class="board-box">
+                <button class="board-update-button" title="수정" onclick="articleUpdateLink()">✏️수정</button>
                 <button class="board-box-close" onclick="boardClose()">&#10060;</button>
                 <div class="board-title"></div>
                 <div class="board-info">
@@ -198,15 +203,6 @@
                         </div>
                     </div>
 
-                    <div class="options">
-                        <button class="btn btn-icon btn-round" onclick="openDrawer()">openDrawer
-                            <i class="fa fa-ellipsis-v"></i>
-                        </button>
-                        <label class="btn btn-round btn-icon" for="file"> 파일 업로드
-                            <i class="fa fa-paperclip"></i>
-                        </label>
-                        <input id="file" type="file" accept="*" multiple>
-                    </div>
                 </div>
             </div>
 
@@ -231,50 +227,6 @@
                     </div>
                 </div>
 
-                <div class="files">
-                    <h2>Files</h2>
-                    <div class="mentions">
-                        <div class="pill">
-                            <span>Filename.cs</span>
-                            <i class="fa fa-arrow-down"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="projects">
-                    <h2>Projects</h2>
-                    <div class="mentions">
-                        <div class="pill">
-                            <i class="fa fa-link"></i>
-                            <span>Project1.cs</span>
-                        </div>
-                        <div class="pill">
-                            <i class="fa fa-link"></i>
-                            <span>Project2.cs</span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="ideas">
-                    <h2>Ideas</h2>
-                    <div class="mentions">
-                        <div class="pill">
-                            <i class="fa fa-link"></i>
-                            <span>Idea1.cs</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="samples">
-                    <h2>Samples</h2>
-                    <div class="mentions">
-                        <div class="pill">
-                            <i class="fa fa-link"></i>
-                            <span>Sample1.cs</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -282,6 +234,7 @@
 
 </div>
 <script src="../js/global.js"></script>
+<script src="/js/alarm.js"></script>
 <script src="../js/chat.js"></script>
 <script src="../js/my-record.js"></script>
 <script src="../js/registry.js"></script>

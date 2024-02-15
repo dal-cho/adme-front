@@ -47,7 +47,7 @@ function emptyUsername(token) {
 }
 
 $(document).ready(function () {
-    alarmSubscribe();
+    //alarmSubscribe();
     if (token == null) {
         findToken();
     } else if (nickname == null) {
@@ -83,7 +83,6 @@ function openChatList() {
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(" = = first = = = ")
                 localStorage.setItem('wschat.roomId', response["roomId"]);
                 let count = response["userChat"];
                 let message = response["message"];
@@ -94,13 +93,15 @@ function openChatList() {
                 let days = today.getDate();
                 let now = month + "/" + days
                 let dayTime
-                if (now !== day && month!=null) {
+                if (message == null || message === "") {
+                    message = " 고객센터 입장하기"
+                }
+                if (now !== day && month != null) {
                     dayTime = day + " " + time;
-                } else if(time!=null){
+                } else if (time != null) {
                     dayTime = time;
-                }else{
-                    dayTime = "";
-                    message = " 고객센터 입장하기";
+                } else {
+                    dayTime = now;
                     count = 0;
                 }
                 let temp = `
@@ -119,7 +120,7 @@ function openChatList() {
               <div class="top">
                 <span></span>
                 <span class="title">랜덤 채팅방 참여하기</span>
-                <span class="time">15/05/2019</span>
+                <span class="time">${now}</span>
               </div>
               <div class="bottom">
                 <span class="user">adme</span>
@@ -127,14 +128,15 @@ function openChatList() {
               </div>
             </div>`
                 $(".conversations").append(temp);
+
+
             }
         });
     }
 }
 
 // 채팅 기록 마지막 줄 띄워주기
-function needLine(){
-    console.log(" = = second = = = ")
+function needLine() {
     $(".conversations").empty();
     roomId = localStorage.getItem('wschat.roomId');
     nickname = localStorage.getItem('nickname');
@@ -154,13 +156,15 @@ function needLine(){
             let days = today.getDate();
             let now = month + "/" + days;
             let dayTime
-            if (now !== day && month!=null) {
+            if (message == null || message.equals("")) {
+                message = " 고객센터 입장하기"
+            }
+            if (now !== day && month != null) {
                 dayTime = day + " " + time;
-            } else if(time!=null){
+            } else if (time != null) {
                 dayTime = time;
-            }else{
-                dayTime = "";
-                message = " 고객센터 입장하기";
+            } else {
+                dayTime = now;
                 count = 0;
             }
             let temp = `
@@ -179,7 +183,7 @@ function needLine(){
               <div class="top">
                 <span></span>
                 <span class="title">랜덤 채팅방 참여하기</span>
-                <span class="time">15/05/2019</span>
+                <span class="time">${now}</span>
               </div>
               <div class="bottom">
                 <span class="user">adme</span>
@@ -259,10 +263,9 @@ function seperator(message) {
 
 // 채팅 닫기 버튼 클릭 시
 function closeChat() {
-    if(status==null || status == undefined){
+    if (status == null || status == undefined) {
 
-    }
-    else if (status === "randomChat") {
+    } else if (status === "randomChat") {
         clearInterval(timerInterval); // 타이머 중지
         connectingElement.text("")
         $.ajax({
@@ -340,11 +343,13 @@ function connect() {
     if (nickname) {
         let socket = new SockJS(host + '/ws');
         stompClient = Stomp.over(socket);
+        alarmSubscribe()
         stompClient.connect({Authorization: token}, onConnected, onError);
     }
 }
 
 function onConnected() {
+    console.log("= = onConnected = = ")
     let token = localStorage.getItem('token');
     roomId = localStorage.getItem('wschat.roomId')
     stompClient.subscribe('/topic/public/' + roomId, onMessageReceived);
@@ -353,10 +358,16 @@ function onConnected() {
     if (document.querySelector('.message-container')) {
         message = $(".message-container").last().text().trim().split("\n")[1].trim()
     }
+    let today = new Date();
+    let month = today.getMonth() + 1;
+    let days = today.getDate();
+    let hour = ('0' + today.getHours()).slice(-2);
+    let minute = ('0' + today.getMinutes()).slice(-2);
     stompClient.send("/app/chat/addUser", {Authorization: token}, JSON.stringify({
         roomId: roomId,
         type: 'JOIN',
-        message: message
+        day: month + "/" + days,
+        time: hour + ":" + minute
     }))
 }
 
@@ -384,7 +395,6 @@ function sendMessage() {
     let days = today.getDate();
     let hour = ('0' + today.getHours()).slice(-2);
     let minute = ('0' + today.getMinutes()).slice(-2);
-
     let chatMessage = {
         roomId: roomId,
         sender: nickname,
@@ -395,7 +405,6 @@ function sendMessage() {
     };
     if (messageContent && stompClient) {
         saveFile(chatMessage)
-        onMessageReceived(chatMessage)
         stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     } else {
@@ -409,7 +418,7 @@ function saveFile(chatMessage) {
         roomId = localStorage.getItem('wschat.roomId');
         $.ajax({
             type: "POST",
-            url: host + `/room/enter/` + roomId + '/' + nickname,
+            url: host + `/room/enter/file`,
             headers: {"Authorization": token},
             data: JSON.stringify(chatMessage),
             contentType: 'application/json',
@@ -430,7 +439,7 @@ function getFile() {
     }
     $.ajax({
         type: "GET",
-        url: host + `/room/enter/` + roomId + '/' + nickname,
+        url: host + `/room/enter/file/` + roomId,
         headers: {"Authorization": token},
         contentType: false,
         processData: false,
@@ -445,7 +454,7 @@ function getFile() {
 }
 
 // random 채팅 timer(제한 시간)
-function timer(){
+function timer() {
     let time = 20;
     let min = "";
     let sec = "";
@@ -513,7 +522,7 @@ function randomChat() {
 }
 
 // random 채팅 연결 start
-function randomConnect(event){
+function randomConnect(event) {
     let temp = `
 	<button class="btn btn-round btn-icon" id="randomSendButton" type="button" onclick="randomSendMessage()">send
 <i class="fa fa-paper-plane"></i>
@@ -531,8 +540,8 @@ function randomConnect(event){
 }
 
 // random 채팅 join
-function randomOnConnected(){
-    setTimeout(function(){
+function randomOnConnected() {
+    setTimeout(function () {
         connectingElement.text("");
     }, 1900)
 
@@ -540,7 +549,7 @@ function randomOnConnected(){
         stompClient.subscribe('/every-chat/' + roomId, randomMessageReceived);
         stompClient.send("/app/every-chat/addUser", {}, JSON.stringify({
             roomId: roomId,
-            sender: username,
+            sender: nickname,
             type: 'JOIN'
         }))
         $("#message").removeAttr("disabled");
@@ -548,7 +557,7 @@ function randomOnConnected(){
 }
 
 // random 채팅 msg 형식
-function randomMessageReceived(payload){
+function randomMessageReceived(payload) {
     let message;
     try {
         message = JSON.parse(payload.body);
@@ -587,7 +596,7 @@ function randomMessageReceived(payload){
 }
 
 // 랜덤 채팅 msg
-function randomSendMessage(event){
+function randomSendMessage(event) {
     nickname = localStorage.getItem('nickname');
     roomId = localStorage.getItem('wschat.roomId');
     let messageContent = messageInput.value.trim();
@@ -603,7 +612,7 @@ function randomSendMessage(event){
 function alarmSubscribe() {
     roomId = localStorage.getItem('wschat.roomId')
     nickname = localStorage.getItem('nickname');
-    if (nickname != null && roomId != null && stompClient) {
+    if (nickname != null && roomId != null) {
         start(nickname, roomId);
     }
 }
@@ -612,7 +621,7 @@ function alarmMessage() {
     if (stompClient) {
         nickname = localStorage.getItem('nickname');
         roomId = localStorage.getItem('wschat.roomId');
-        fetch(host + `/room/publish?sender=${nickname}&roomId=${roomId}`);
+        fetch(host + `/alarm/publish?sender=${nickname}&roomId=${roomId}`);
     }
 }
 

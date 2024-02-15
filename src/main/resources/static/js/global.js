@@ -48,10 +48,18 @@ function linkSetting() {
     $(".logo>.logo-link").attr("href", index_page);
 }
 
+function articleUpdateLink(){
+    window.localStorage.setItem("article","update");
+    window.localStorage.setItem("updateTitle",$(".board-title").text());
+    window.localStorage.setItem("updateMain",$(".board-content").text().trim());
+    document.location.href = registry_upload_page;
+}
+
 // 비디오 업로드 및 수정 페이지 경로 설정
 function videoUploadLink() {
     document.location.href = everyone_record_upload_page;
 }
+
 function modifyLink(id) {
     let choice = confirm("해당 게시글물을 수정 하시겠습니까?");
     window.localStorage.setItem("modifyId",id);
@@ -69,8 +77,8 @@ function loadPage() {
     if (window.location.pathname.includes(everyone_record_main_page)) {
         getList(1);
     }else if(window.location.pathname.includes(registry_main_page)) {
-        mainRegistry(1);
-        sideRegistry();
+        mainArticle(1);
+        sideArticle();
     }else if(window.location.pathname.includes(my_record_main_page)) {
         getMyList(1);
     }else if(window.location.pathname.includes(everyone_record_modify_page)) {
