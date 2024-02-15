@@ -74,7 +74,8 @@ function openChatList() {
     if (document.getElementById("needChat")) {
         needLine() // 새로 고침
     } else {
-        nickname = localStorage.getItem('nickname');
+        //nickname = localStorage.getItem('nickname');
+        nickname = "hh"
         $.ajax({
             type: "POST",
             url: host + `/room`,
