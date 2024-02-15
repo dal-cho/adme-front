@@ -1,5 +1,5 @@
 function start(username, roomId){
-    const eventSource = new EventSource(host + `/alarm/subscribe/?id=${username}`);
+    const eventSource = new EventSource(host + `/alarm/subscribe/${username}`);
 
     eventSource.onopen = (e) => {
         console.log("eventSource open")
@@ -38,7 +38,6 @@ let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='
 
 
         if($("#msgStack").css("display") === "none"){
-            console.log(" = = = = display : none = = = = ")
             $("#msgStack").show();
             setTimeout(function() {
                 $("#msgStack").hide()
