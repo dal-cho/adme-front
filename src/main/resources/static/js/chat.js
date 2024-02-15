@@ -85,6 +85,8 @@ function openChatList() {
             processData: false,
             success: function (response) {
                 console.log("openChatList response : " + JSON.stringify(response))
+                console.log("openChatList response : " + response["roomId"])
+                console.log("openChatList response : " + response["nickname"])
                 if (response) {
                     localStorage.setItem('wschat.roomId', response["roomId"]);
                     let count = response["userChat"];
