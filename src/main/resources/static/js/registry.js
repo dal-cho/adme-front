@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    localStorage.setItem("article", "default")
     let queryString = window.location.search
     if (queryString) {
         saveToken(queryString)

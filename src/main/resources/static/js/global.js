@@ -113,6 +113,8 @@ function boardClose() {
     if (showCommentId != null){
         hideCommentSave(showCommentId);
     }
+    mainArticle(1);
+    sideArticle()
 }
 
 // logout
