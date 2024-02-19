@@ -209,7 +209,7 @@ function commentPost(article, registryIdx) {
     let temp_html;
 
     if (registryNickname === commentNickname) { // 게시글 작성자인 경우
-        if (nickname === commentNickname) { // 댓글 작성자인 경우
+        //if (nickname === commentNickname) { // 댓글 작성자인 경우
             temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
                          <div class="board-comments-item" id="${"commentId-" + commentId}">
                             <div class="board-comment-left-item">
@@ -224,16 +224,17 @@ function commentPost(article, registryIdx) {
                                 <button class="board-comment-btn board-comment-modify-save" onclick="afterUpdateComment(${commentId}, ${registryIdx})">SAVE</button>
                             </div>
                          </div>`
-        } else { // 댓글 작성자가 아닌 경우
-            temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
-                         <div class="board-comments-item" id="${"commentId-" + commentId}">
-                            <div class="board-comment-left-item" id="${"commentId-" + commentId}">
-                                <div class="board-comments-userNickname">${commentNickname}</div>
-                                <div class="board-comments-item-date">${date}</div>
-                                <div class="board-comment">${comment}</div>
-                            </div>
-                         </div>`
-        }
+        // } else { // 댓글 작성자가 아닌 경우
+        //     temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
+        //                  <div class="board-comments-item" id="${"commentId-" + commentId}">
+        //                     <div class="board-comment-left-item" id="${"commentId-" + commentId}">
+        //                         <div class="board-comments-userNickname">${commentNickname}</div>
+        //                         <div class="board-comments-item-date">${date}</div>
+        //                         <div class="board-comment">${comment}</div>
+        //                     </div>
+        //                  </div>`
+        // }
+
     } else { // 게시글 작성자가 아닌 경우
         if (nickname === commentNickname) { // 댓글 작성자인 경우
             temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
