@@ -228,7 +228,7 @@ function commentPost(article, registryIdx) {
             temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
                          <div class="board-comments-item" id="${"commentId-" + commentId}">
                             <div class="board-comment-left-item" id="${"commentId-" + commentId}">
-                                <div class="board-comments-userNickname">${commentNickname}</div>
+                                <div class="board-comments-userNickname">&#9989; ${commentNickname}</div>
                                 <div class="board-comments-item-date">${date}</div>
                                 <div class="board-comment">${comment}</div>
                             </div>
