@@ -323,10 +323,9 @@ function deleteComment(commentId, registryIdx) {
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            console.log("delete Comment")
-            allArticle(registryIdx);
         }
     })
+    allArticle(registryIdx);
 }
 
 // 댓글 수정 저장버튼 비활성화 & 수정버튼 활성화
