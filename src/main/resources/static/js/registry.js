@@ -310,7 +310,6 @@ function checkDelete(commentId, registryIdx) { // 삭제 여부를 묻고 삭제
     let checkDelete = confirm("정말 삭제하실건가요?");
     if (checkDelete) {
         deleteComment(commentId, registryIdx);
-        allArticle(registryIdx);
     }
 }
 
@@ -322,6 +321,7 @@ function deleteComment(commentId, registryIdx) {
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
+            allArticle(registryIdx);
         }
     })
 }
