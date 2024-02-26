@@ -113,8 +113,11 @@ function boardClose() {
     if (showCommentId != null){
         hideCommentSave(showCommentId);
     }
-    mainArticle(1);
-    sideArticle()
+    let st = window.location.pathname
+    if(st.includes("registry")){
+        mainArticle(1);
+        sideArticle()
+    }
 }
 
 // logout
