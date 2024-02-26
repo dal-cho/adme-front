@@ -18,7 +18,9 @@ function boardModal(idx) {
     window.localStorage.setItem("id", idx)
     allArticle(idx);
     $(".board-modal-container").fadeIn(200);
-    $(".board-modal-content").fadeIn(200);
+    $(".board-modal-content").fadeIn(200, function (){
+        $(".board-modal-content").addClass("active");
+    });
 }
 
 // 작성 글 페이징
@@ -321,6 +323,7 @@ function deleteComment(commentId, registryIdx) {
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
+            console.log("delete Comment")
             allArticle(registryIdx);
         }
     })
@@ -336,3 +339,20 @@ function hideCommentSave(id) {
     $(parents + '>.board-comment-right-item>.board-comment-modify').show(); // 수정버튼 none
     $(parents + '>.board-comment-right-item>.board-comment-modify-save').hide(); // 저장버튼 block
 }
+
+let modal = document.getElementsByClassName("board-modal-content")
+
+document.addEventListener("click", (e) => {
+    if (modal[0].classList.contains("active") && !modal[0].contains(e.target)) {
+        $(".board-modal-container").fadeOut(300);
+        $(".board-modal-content").fadeOut(300, function (){
+            $(".board-modal-content").removeClass("active");
+        });
+        $(".board-comment-writing-box-item").val("");
+        if (showCommentId != null) {
+            hideCommentSave(showCommentId);
+        }
+        mainArticle(1);
+        sideArticle()
+    }
+});
