@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    localStorage.setItem("article", "default")
     let queryString = window.location.search
     if (queryString) {
         saveToken(queryString)
@@ -17,7 +18,9 @@ function boardModal(idx) {
     window.localStorage.setItem("id", idx)
     allArticle(idx);
     $(".board-modal-container").fadeIn(200);
-    $(".board-modal-content").fadeIn(200);
+    $(".board-modal-content").fadeIn(200, function (){
+        $(".board-modal-content").addClass("active");
+    });
 }
 
 // 작성 글 페이징
@@ -227,12 +230,13 @@ function commentPost(article, registryIdx) {
             temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
                          <div class="board-comments-item" id="${"commentId-" + commentId}">
                             <div class="board-comment-left-item" id="${"commentId-" + commentId}">
-                                <div class="board-comments-userNickname">${commentNickname}</div>
+                                <div class="board-comments-userNickname">&#9989; ${commentNickname}</div>
                                 <div class="board-comments-item-date">${date}</div>
                                 <div class="board-comment">${comment}</div>
                             </div>
                          </div>`
         }
+
     } else { // 게시글 작성자가 아닌 경우
         if (nickname === commentNickname) { // 댓글 작성자인 경우
             temp_html = `<div class="line" style="border: .1px dashed rgba(131,128,128,0.18);"></div>
@@ -308,7 +312,6 @@ function checkDelete(commentId, registryIdx) { // 삭제 여부를 묻고 삭제
     let checkDelete = confirm("정말 삭제하실건가요?");
     if (checkDelete) {
         deleteComment(commentId, registryIdx);
-        allArticle(registryIdx);
     }
 }
 
@@ -322,6 +325,7 @@ function deleteComment(commentId, registryIdx) {
         success: function (response) {
         }
     })
+    allArticle(registryIdx);
 }
 
 // 댓글 수정 저장버튼 비활성화 & 수정버튼 활성화
@@ -334,3 +338,20 @@ function hideCommentSave(id) {
     $(parents + '>.board-comment-right-item>.board-comment-modify').show(); // 수정버튼 none
     $(parents + '>.board-comment-right-item>.board-comment-modify-save').hide(); // 저장버튼 block
 }
+
+let modal = document.getElementsByClassName("board-modal-content")
+
+document.addEventListener("click", (e) => {
+    if (modal[0].classList.contains("active") && !modal[0].contains(e.target)) {
+        $(".board-modal-container").fadeOut(300);
+        $(".board-modal-content").fadeOut(300, function (){
+            $(".board-modal-content").removeClass("active");
+        });
+        $(".board-comment-writing-box-item").val("");
+        if (showCommentId != null) {
+            hideCommentSave(showCommentId);
+        }
+        mainArticle(1);
+        sideArticle()
+    }
+});

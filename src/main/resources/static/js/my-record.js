@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    localStorage.setItem("article", "default")
+});
+
 // 내 게시글 전체 조회
 function getMyList(currentNumber) {
     $.ajax({
