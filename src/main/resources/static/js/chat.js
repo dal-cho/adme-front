@@ -156,7 +156,7 @@ function needLine() {
             let days = today.getDate();
             let now = month + "/" + days;
             let dayTime
-            if (message == null || message.equals("")) {
+            if (message == null || message === "") {
                 message = " 고객센터 입장하기"
             }
             if (now !== day && month != null) {
