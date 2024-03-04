@@ -96,7 +96,7 @@ function openChatList() {
                 if (message == null || message === "") {
                     message = " 고객센터 입장하기"
                 }
-                if (now !== day && month != null) {
+                if (now !== day && month != null && day!=null) {
                     dayTime = day + " " + time;
                 } else if (time != null) {
                     dayTime = time;
@@ -159,7 +159,7 @@ function needLine() {
             if (message == null || message === "") {
                 message = " 고객센터 입장하기"
             }
-            if (now !== day && month != null) {
+            if (now !== day && month != null && day!=null) {
                 dayTime = day + " " + time;
             } else if (time != null) {
                 dayTime = time;
