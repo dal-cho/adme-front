@@ -209,7 +209,7 @@ function onMessageReceived(payload) { // 메세지 받기
         divName = "user left"
     }
     if (message.type === 'JOIN') {
-        if (message.sender !== "admin") {
+        if (message.sender === nickname) {
             alarmCount(0);
             message.message = message.sender + ' 님 안녕하세요';
             seperator(message.message);
