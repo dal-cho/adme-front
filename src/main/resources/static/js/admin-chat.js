@@ -277,11 +277,5 @@ function alarmSubscribe() {
 function alarmMessage() {
     console.log("  alarmMessage  ")
     let roomId = localStorage.getItem('wschat.roomId');
-    //fetch(host + `/alarm/publish?sender=${nickname}&roomId=${roomId}`);
-    fetch(host + `/alarm/publish?sender=${nickname}&roomId=${roomId}`,{
-        method: 'GET',
-        headers: {
-            "Authorization": token
-        }
-    })
+    fetch(host + `/alarm/publish?sender=${nickname}&roomId=${roomId}`);
 }
