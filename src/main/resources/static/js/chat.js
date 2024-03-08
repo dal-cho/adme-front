@@ -96,7 +96,7 @@ function openChatList() {
                 if (message == null || message === "") {
                     message = " 고객센터 입장하기"
                 }
-                if (now !== day && month != null) {
+                if (now !== day && month != null && day!=null) {
                     dayTime = day + " " + time;
                 } else if (time != null) {
                     dayTime = time;
@@ -156,10 +156,10 @@ function needLine() {
             let days = today.getDate();
             let now = month + "/" + days;
             let dayTime
-            if (message == null || message.equals("")) {
+            if (message == null || message === "") {
                 message = " 고객센터 입장하기"
             }
-            if (now !== day && month != null) {
+            if (now !== day && month != null && day!=null) {
                 dayTime = day + " " + time;
             } else if (time != null) {
                 dayTime = time;
@@ -209,7 +209,7 @@ function onMessageReceived(payload) { // 메세지 받기
         divName = "user left"
     }
     if (message.type === 'JOIN') {
-        if (message.sender !== "admin") {
+        if (message.sender === nickname) {
             alarmCount(0);
             message.message = message.sender + ' 님 안녕하세요';
             seperator(message.message);
